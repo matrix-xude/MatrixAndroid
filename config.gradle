@@ -1,9 +1,25 @@
 ext {
 
+    isThread = false // thread组件是否作为application存在，true:作为application,false:作为lib
+
     android = [
-            minSdkVersion   : 21,
-            targetSdkVersion: 29,
-            versionCode     : 1,
-            versionName     : "1.0"
+            applicationId    : "com.xxd.matrixandroid", // application id
+            versionCode      : 1,
+            versionName      : "1.0",
+
+            minSdkVersion    : 21,
+            targetSdkVersion : 29,
+
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.3"
     ]
+
+    versions = [
+
+    ]
+
+    dependencies = [
+
+    ]
+
 }

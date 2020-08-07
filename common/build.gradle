@@ -1,5 +1,4 @@
-//  app module 不需要构建library
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -8,8 +7,6 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
@@ -29,10 +26,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // 所有的module公共依赖
-    implementation project(":common")
-    // 根据配置设置依赖
-    if (Boolean.valueOf(rootProject.ext.isThread)) {
-        implementation project(":thread")
-    }
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.core:core-ktx:1.3.1'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testApi 'junit:junit:4.13'
+    androidTestApi 'androidx.test.ext:junit:1.1.1'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.2.0'
 }
