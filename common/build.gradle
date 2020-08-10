@@ -35,4 +35,6 @@ dependencies {
     testApi rootProject.ext.dependencies.junit
     androidTestApi rootProject.ext.dependencies.junit_android
     androidTestApi rootProject.ext.dependencies.espresso_core
+
+    api project(":apt-annotation")
 }
