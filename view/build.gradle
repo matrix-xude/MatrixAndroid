@@ -1,5 +1,8 @@
-//  app module 不需要构建library
-apply plugin: 'com.android.application'
+if (Boolean.valueOf(rootProject.ext.isModuleView)) {
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -8,8 +11,10 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-
+        if (Boolean.valueOf(rootProject.ext.isModuleView)) {
+            // 当作为application运行时需要application id
+            applicationId "com.xxd.view"
+        }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
@@ -31,8 +36,4 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
-    // 根据配置设置依赖
-    if (Boolean.valueOf(rootProject.ext.isModuleThread)) {
-        implementation project(":thread")
-    }
 }

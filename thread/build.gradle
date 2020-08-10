@@ -1,4 +1,4 @@
-if (Boolean.valueOf(rootProject.ext.isThread)) {
+if (Boolean.valueOf(rootProject.ext.isModuleThread)) {
     apply plugin: 'com.android.application'
 }else {
     apply plugin: 'com.android.library'
@@ -11,7 +11,7 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        if (Boolean.valueOf(rootProject.ext.isThread)) {
+        if (Boolean.valueOf(rootProject.ext.isModuleThread)) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.thread"
         }

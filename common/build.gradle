@@ -26,11 +26,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    api 'androidx.appcompat:appcompat:1.1.0'
-    api 'androidx.core:core-ktx:1.3.1'
-    api 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testApi 'junit:junit:4.13'
-    androidTestApi 'androidx.test.ext:junit:1.1.1'
-    androidTestApi 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //把implementation 用api代替,它是对外部公开的, 所有其他的module就不需要添加该依赖
+    api rootProject.ext.dependencies.kotlin_stdlib_jdk
+    api rootProject.ext.dependencies.appcompat
+    api rootProject.ext.dependencies.core_ktx
+    api rootProject.ext.dependencies.constraintlayout
+    testApi rootProject.ext.dependencies.junit
+    androidTestApi rootProject.ext.dependencies.junit_android
+    androidTestApi rootProject.ext.dependencies.espresso_core
 }
