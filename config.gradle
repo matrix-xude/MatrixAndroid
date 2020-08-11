@@ -3,7 +3,7 @@ ext {
     // thread组件是否作为application存在，true:作为application,false:作为lib
     isModuleThread = false
     // view组件是否作为application存在，true:作为application,false:作为lib
-    isModuleView = true
+    isModuleView = false
 
     android = [
             applicationId    : "com.xxd.matrixandroid", // application id

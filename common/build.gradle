@@ -33,9 +33,6 @@ dependencies {
     api rootProject.ext.dependencies.appcompat
     api rootProject.ext.dependencies.core_ktx
     api rootProject.ext.dependencies.constraintlayout
-    testApi rootProject.ext.dependencies.junit
-    androidTestApi rootProject.ext.dependencies.junit_android
-    androidTestApi rootProject.ext.dependencies.espresso_core
 
     // annotationProcessor的测试注解
     api project(":apt-annotation")
