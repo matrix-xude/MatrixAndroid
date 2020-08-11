@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -36,5 +37,10 @@ dependencies {
     androidTestApi rootProject.ext.dependencies.junit_android
     androidTestApi rootProject.ext.dependencies.espresso_core
 
+    // annotationProcessor的测试注解
     api project(":apt-annotation")
+    /**annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放
+     * 在需要使用processor的module中
+     */
+    // kapt project(":apt-processor")
 }
