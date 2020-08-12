@@ -14,6 +14,9 @@ android {
         versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //开启MultiDex分包方法
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -23,7 +26,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -36,8 +46,11 @@ dependencies {
 
     // annotationProcessor的测试注解
     api project(":apt-annotation")
-    /**annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放
-     * 在需要使用processor的module中
-     */
+    //annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放在需要使用processor的module中
     // kapt project(":apt-processor")
+
+    api rootProject.ext.dependencies.arouter_api
+
+    api rootProject.ext.dependencies.multidex
+
 }

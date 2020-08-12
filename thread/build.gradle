@@ -5,6 +5,7 @@ if (Boolean.valueOf(rootProject.ext.isModuleThread)) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -21,6 +22,15 @@ android {
         versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        resourcePrefix "${project.name}_"
+
     }
 
     buildTypes {
@@ -28,6 +38,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     /*
@@ -56,5 +70,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
+
+    kapt rootProject.ext.dependencies.arouter_compiler
 
 }
