@@ -2,6 +2,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -16,6 +17,17 @@ android {
         versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //开启MultiDex分包方法
+        multiDexEnabled true
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        resourcePrefix "${project.name}_"
     }
 
     buildTypes {
@@ -30,12 +42,16 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
+
+    kapt rootProject.ext.dependencies.arouter_compiler
 
     // 测试模块不能放在common中，引用不到
     testImplementation rootProject.ext.dependencies.junit

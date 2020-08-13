@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">common</string>
+    <string name="common_app_name">common</string>
+    <string name="common_item_simple_desc">哥德尔不完备定理</string>
 </resources>

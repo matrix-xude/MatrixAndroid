@@ -17,6 +17,14 @@ android {
 
         //开启MultiDex分包方法
         multiDexEnabled true
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        resourcePrefix "${project.name}_"
     }
 
     buildTypes {
@@ -40,17 +48,33 @@ dependencies {
 
     //把implementation 用api代替,它是对外部公开的, 所有其他的module就不需要添加该依赖
     api rootProject.ext.dependencies.kotlin_stdlib_jdk
-    api rootProject.ext.dependencies.appcompat
     api rootProject.ext.dependencies.core_ktx
+
+    api rootProject.ext.dependencies.appcompat
+
+    // 系统控件
     api rootProject.ext.dependencies.constraintlayout
+    api rootProject.ext.dependencies.recyclerview
 
     // annotationProcessor的测试注解
     api project(":apt-annotation")
     //annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放在需要使用processor的module中
     // kapt project(":apt-processor")
 
+    // 分包
+    api rootProject.ext.dependencies.multidex
+
+    // 阿里路由
     api rootProject.ext.dependencies.arouter_api
 
-    api rootProject.ext.dependencies.multidex
+    // 常用工具
+    api rootProject.ext.dependencies.logger
+    
+    // 第三方控件
+    api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
+
+
+
+
 
 }

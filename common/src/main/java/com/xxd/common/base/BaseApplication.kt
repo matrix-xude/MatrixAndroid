@@ -5,6 +5,9 @@ import android.content.Context
 import android.os.Build
 import androidx.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
+import com.orhanobut.logger.PrettyFormatStrategy
 import com.xxd.common.BuildConfig
 
 
@@ -17,6 +20,8 @@ class BaseApplication : Application() {
 
     companion object {
         lateinit var application: BaseApplication
+
+        const val LOG_TAG = "xxd"
     }
 
     override fun attachBaseContext(base: Context?) {
@@ -32,12 +37,33 @@ class BaseApplication : Application() {
         super.onCreate()
 
         initARouter()
+        initLogger()
+    }
+
+    /**
+     * 初始化logger日志
+     */
+    private fun initLogger() {
+        val formatStrategy = PrettyFormatStrategy.newBuilder()
+            .showThreadInfo(false)
+            .methodCount(0)
+            .methodOffset(5)
+            .tag(LOG_TAG)
+            .build()
+        val adapter = object : AndroidLogAdapter(formatStrategy){
+            // 只有debug模式下才打印日志
+            override fun isLoggable(priority: Int, tag: String?): Boolean {
+                return BuildConfig.DEBUG
+            }
+        }
+        Logger.addLogAdapter(adapter)
     }
 
     /**
      * 初始化阿里路由
      */
     private fun initARouter() {
+        // debug模式下打开每次重新编译，否则可能有缓存导致加载不了新的annotation
         if (BuildConfig.DEBUG) {
             ARouter.openLog()
             ARouter.openDebug()

@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.thread_activity_main.*
 
-@Route(path = "/thread/main")
+@Route(path = "/thread/activity/main")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

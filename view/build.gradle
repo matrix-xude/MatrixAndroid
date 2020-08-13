@@ -12,6 +12,7 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
+
         if (Boolean.valueOf(rootProject.ext.isModuleView)) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.view"
@@ -51,7 +52,7 @@ android {
     * */
     sourceSets {
         main {
-            if (Boolean.valueOf(rootProject.ext.isModuleThread)) {//apk
+            if (Boolean.valueOf(rootProject.ext.isModuleView)) {//apk
                 // module 单独作为application时，使用此manifest
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'
             } else {
