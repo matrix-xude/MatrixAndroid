@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.orhanobut.logger.Logger
 import com.xxd.common.base.BaseActivity
+import com.xxd.common.util.LogUtil
 import kotlinx.android.synthetic.main.view_activity_main.*
 import okio.Okio
 
@@ -34,6 +35,7 @@ class MainActivity : BaseActivity() {
         super.initData()
         mAdapter.setNewInstance(mDataList)
 
+        LogUtil().test()
     }
 
     private fun initRecyclerView() {
