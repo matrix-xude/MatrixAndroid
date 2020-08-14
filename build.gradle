@@ -37,8 +37,9 @@ allprojects {
 
         google()
         jcenter()
-        maven { url 'https://jitpack.io' }
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url "https://oss.jfrog.org/libs-snapshot" } // rxAndroid引入的
     }
 }
 

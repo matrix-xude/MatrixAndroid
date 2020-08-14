@@ -24,6 +24,7 @@ android {
             }
         }
 
+        // 资源前置限定，只报红，编译可以通过
         resourcePrefix "${project.name}_"
     }
 
@@ -39,42 +40,45 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //把implementation 用api代替,它是对外部公开的, 所有其他的module就不需要添加该依赖
-    api rootProject.ext.dependencies.kotlin_stdlib_jdk
-    api rootProject.ext.dependencies.core_ktx
 
+    // Android必须的库
     api rootProject.ext.dependencies.appcompat
+
+    // kotlin相关
+    api rootProject.ext.dependencies.kotlin_stdlib_jdk // 基础
+    api rootProject.ext.dependencies.core_ktx // Android简便扩展库
+    api rootProject.ext.dependencies.kotlinx_coroutines_core // 携程
+
+    // 常用工具
+    api rootProject.ext.dependencies.multidex // 分包
+    api rootProject.ext.dependencies.logger // 日志
+    api rootProject.ext.dependencies.rxpermissions // 权限
+    api rootProject.ext.dependencies.arouter_api // 阿里路由
+    api rootProject.ext.dependencies.gson
+    api rootProject.ext.dependencies.immersionbar // 沉浸式bar
+    api rootProject.ext.dependencies.rxjava // rxJava
+    api rootProject.ext.dependencies.rxandroid // rxAndroid
+    api rootProject.ext.dependencies.okio // okio
+    api rootProject.ext.dependencies.okhttp // okHttp
+    api rootProject.ext.dependencies.retrofit // retrofit
+    api rootProject.ext.dependencies.converter_gson // retrofit转json
+    api rootProject.ext.dependencies.glide // glide图片加载，还需要配置annotationProcessor到使用的类中
 
     // 系统控件
     api rootProject.ext.dependencies.constraintlayout
     api rootProject.ext.dependencies.recyclerview
 
-    // annotationProcessor的测试注解
-    api project(":apt-annotation")
-    //annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放在需要使用processor的module中
-    // kapt project(":apt-processor")
-
-    // 分包
-    api rootProject.ext.dependencies.multidex
-
-    // 阿里路由
-    api rootProject.ext.dependencies.arouter_api
-
-    // 常用工具
-    api rootProject.ext.dependencies.logger
-    
     // 第三方控件
     api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
 
-
-
-
-
+    /*// annotationProcessor的测试注解
+    api project(":apt-annotation")
+    //annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放在需要使用processor的module中
+    kapt project(":apt-processor")*/
 }
