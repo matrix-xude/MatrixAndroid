@@ -13,5 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.thread_activity_main)
 
         tvName.text = "thread text"
+
+
     }
 }
