@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.orhanobut.logger.Logger
 
 /**
  *    author : xxd
  *    date   : 2020/8/17
  *    desc   :
  */
-class CommonItemDecoration() : RecyclerView.ItemDecoration() {
+class CommonItemDecoration : RecyclerView.ItemDecoration() {
 
     companion object {
 
@@ -24,10 +25,26 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
 
         /**
          * 限制ItemDecoration方向
+         * kotlin 1.0.3之后就不支持IntDef等，此处限制无效，改用enum
          */
         @IntDef(NONE, VERTICAL, HORIZONTAL)
         @Retention(AnnotationRetention.SOURCE)
+        @Target(AnnotationTarget.FIELD, AnnotationTarget.VALUE_PARAMETER)
         annotation class ItemDecorationOrientation {}
+
+        /**
+         * 当前recyclerview的滑动方向
+         */
+        enum class Orientation {
+            NONE, VERTICAL, HORIZONTAL
+        }
+
+        /**
+         * 当前recyclerview的layoutManager类型
+         */
+        enum class LayoutManager {
+            NONE, GridLayoutManager, LinearLayoutManager, StaggeredGridLayoutManager
+        }
     }
 
     /**
@@ -42,17 +59,33 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
             boundaryEnd = value
             field = value
         }
-    var boundaryStart = 0 // 整体的"左"（VERTICAL下为"上"）边距
-    var boundaryEnd = 0 // 整体的"右"（VERTICAL下为"下"）边距
+    var boundaryStart = 0 // 整体的"左"（HORIZONTAL下为"上"）边距
+    var boundaryEnd = 0 // 整体的"右"（HORIZONTAL下为"下"）边距
     var interval = 0 // 中间item的间距，不包含头尾
-
-    @ItemDecorationOrientation
-    var orientation: Int = NONE // 当前ItemDecoration方向
+    var spanInterval = 0 // 当 spanCount>1 的时候，每个span之间的间距，处理时该间距前后各取1/2，所以最好设置偶数
 
     /**
-     * 滑动方向上每一行的总数
+     * 当前recyclerview方向
      */
-    private var orientationCount = 1
+    private var orientation = Orientation.NONE
+
+    /**
+     * 当前recyclerview的layoutManager类型
+     */
+    private var layoutManager = LayoutManager.NONE
+
+    /**
+     * 初始化该recyclerview的滑动方向
+     */
+    private fun initOrientation(spanCount: Int, isVertical: Boolean) {
+        this.spanCount = spanCount
+        orientation = if (isVertical) Orientation.VERTICAL else Orientation.HORIZONTAL
+    }
+
+    /**
+     * 滑动方向上每一行的item总数
+     */
+    private var spanCount = 1
         set(value) {
             if (value > 0) field = value
         }
@@ -62,14 +95,8 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
         super.onDrawOver(c, parent, state)
     }
 
-
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
-    }
-
-    private fun initOrientation(spanCount: Int, isVertical: Boolean) {
-        orientationCount = spanCount
-        orientation = if (isVertical) VERTICAL else HORIZONTAL
     }
 
     override fun getItemOffsets(
@@ -79,47 +106,93 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
 
-        if (orientation == NONE) {
+        // 没获取到滑动方向前
+        if (orientation == Orientation.NONE) {
             when (val layoutManager = parent.layoutManager) {
-                is GridLayoutManager -> initOrientation(
-                    layoutManager.spanCount,
-                    layoutManager.orientation == LinearLayoutManager.VERTICAL
-                )
-                is LinearLayoutManager -> initOrientation(
-                    1,
-                    layoutManager.orientation == LinearLayoutManager.VERTICAL
-                )
-                is StaggeredGridLayoutManager -> initOrientation(
-                    layoutManager.spanCount,
-                    layoutManager.orientation == LinearLayoutManager.VERTICAL
-                )
+                is GridLayoutManager -> {
+                    initOrientation(
+                        layoutManager.spanCount,
+                        layoutManager.orientation == LinearLayoutManager.VERTICAL
+                    )
+                    this.layoutManager = LayoutManager.GridLayoutManager
+                }
+                is LinearLayoutManager -> {
+                    initOrientation(
+                        1,
+                        layoutManager.orientation == LinearLayoutManager.VERTICAL
+                    )
+                    this.layoutManager = LayoutManager.LinearLayoutManager
+                }
+                is StaggeredGridLayoutManager -> {
+                    initOrientation(
+                        layoutManager.spanCount,
+                        layoutManager.orientation == LinearLayoutManager.VERTICAL
+                    )
+                    this.layoutManager = LayoutManager.StaggeredGridLayoutManager
+                }
+                else -> {
+                    Logger.e("当前recyclerview获取不到layoutManager")
+                    this.layoutManager = LayoutManager.NONE
+                }
             }
+        }
+
+        // 获取不到滑动方向，不处理间隔
+        if (orientation == Orientation.NONE) {
+            Logger.e("当前recyclerview获取不到orientation")
+            return
         }
 
         val adapter = parent.adapter
         // 如果adapter为null不处理间距
         adapter?.let {
             val position = parent.getChildAdapterPosition(view)
-            // 以前注释以竖直滑动为例，实际处理了2竖直、水平2种滑动
-            if (position / orientationCount == 0) { // 第一行
+
+            // 以下注释以竖直滑动为例，实际处理了2竖直、水平2种滑动
+
+            // 第一行：headOffset设置，非第一行：滑动方向上间隔设置
+            val isFirstRow = position / spanCount == 0
+            if (isFirstRow) {
                 evaluateHead(outRect, headOffset)
             } else { // 滑动方向上的间隔处理
-                evaluateInterval(outRect, interval, true)
+                evaluateInterval(outRect, interval)
             }
 
-            if (position / orientationCount == (it.itemCount - 1) / orientationCount) { // 最后一行
+            // 最后一行：tailOffset设置
+            val isLastRow = position / spanCount == (it.itemCount - 1) / spanCount
+            if (isLastRow) {
                 evaluateTail(outRect, tailOffset)
             }
 
-            if (position % orientationCount == 0) { // 第一列
+            // 第一列：boundaryStart设置，非第一列：非滑动方向间隔设置
+            var isFirstLine = position % spanCount == 0
+            if (layoutManager == LayoutManager.StaggeredGridLayoutManager) { // 瀑布流判断第一列需要特殊处理
+                val layoutParams = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
+                isFirstLine = layoutParams.spanIndex == 0
+            }
+            if (isFirstLine) {
                 evaluateBoundaryStart(outRect, boundaryStart)
+                if (spanCount > 1) {
+                    evaluateSpanInterval(outRect, spanInterval / 2, true)
+                }
             } else { // 非滑动方向上的间隔处理
-                evaluateInterval(outRect, interval, false)
+                evaluateSpanInterval(outRect, spanInterval / 2, false)
+                evaluateSpanInterval(outRect, spanInterval / 2, true) // 最后一列尾部的多处理了，不过下面重新处理最后一列
             }
 
-            if (position % orientationCount == orientationCount - 1) { // 最后一列
-                evaluateBoundaryEnd(outRect, boundaryEnd)
+            // 最后一列：boundaryEnd设置
+            var isLastLine = position % spanCount == spanCount - 1
+            if (layoutManager == LayoutManager.StaggeredGridLayoutManager) { // 瀑布流需要特殊处理
+                val layoutParams = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
+                isLastLine = layoutParams.spanIndex == spanCount - 1
             }
+            if (isLastLine) {
+                evaluateBoundaryEnd(outRect, boundaryEnd)
+                if (spanCount > 1) {
+                    evaluateSpanInterval(outRect, spanInterval / 2, false)
+                }
+            }
+
         }
 
     }
@@ -128,9 +201,10 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
      * 给头部偏移量赋值
      */
     private fun evaluateHead(outRect: Rect, offset: Int) {
-        if (orientation == VERTICAL) {
+        if (orientation == Orientation.VERTICAL) {
             outRect.top = offset
-        } else {
+        }
+        if (orientation == Orientation.HORIZONTAL) {
             outRect.left = offset
         }
     }
@@ -139,9 +213,10 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
      * 给尾部偏移量赋值
      */
     private fun evaluateTail(outRect: Rect, offset: Int) {
-        if (orientation == VERTICAL) {
+        if (orientation == Orientation.VERTICAL) {
             outRect.bottom = offset
-        } else {
+        }
+        if (orientation == Orientation.HORIZONTAL) {
             outRect.right = offset
         }
     }
@@ -150,9 +225,10 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
      * BoundaryStart赋值
      */
     private fun evaluateBoundaryStart(outRect: Rect, offset: Int) {
-        if (orientation == VERTICAL) {
+        if (orientation == Orientation.VERTICAL) {
             outRect.left = offset
-        } else {
+        }
+        if (orientation == Orientation.HORIZONTAL) {
             outRect.top = offset
         }
     }
@@ -161,26 +237,40 @@ class CommonItemDecoration() : RecyclerView.ItemDecoration() {
      * BoundaryEnd赋值
      */
     private fun evaluateBoundaryEnd(outRect: Rect, offset: Int) {
-        if (orientation == VERTICAL) {
+        if (orientation == Orientation.VERTICAL) {
             outRect.right = offset
-        } else {
+        }
+        if (orientation == Orientation.HORIZONTAL) {
             outRect.bottom = offset
         }
     }
 
     /**
      * 间隔赋值,默认赋值在上部、左部
-     * @param isScrollOrientationLine 是否为滑动方向上的行，true:是 false:否
      */
-    private fun evaluateInterval(outRect: Rect, offset: Int, isScrollOrientationLine: Boolean) {
-        if (orientation == VERTICAL) {
-            if (isScrollOrientationLine)
-                outRect.top = offset
+    private fun evaluateInterval(outRect: Rect, offset: Int) {
+        if (orientation == Orientation.VERTICAL) {
+            outRect.top = offset
+        }
+        if (orientation == Orientation.HORIZONTAL) {
+            outRect.left = offset
+        }
+    }
+
+    /**
+     * 非滑动方向上的间隔赋值
+     * @param isTail 是否为尾部，vertical下为bottom, horizontal下为right  true:是否尾部，false:不是尾部
+     */
+    private fun evaluateSpanInterval(outRect: Rect, offset: Int, isTail: Boolean) {
+        if (orientation == Orientation.VERTICAL) {
+            if (isTail)
+                outRect.right = offset
             else
                 outRect.left = offset
-        } else {
-            if (isScrollOrientationLine)
-                outRect.left = offset
+        }
+        if (orientation == Orientation.HORIZONTAL) {
+            if (isTail)
+                outRect.bottom = offset
             else
                 outRect.top = offset
         }
