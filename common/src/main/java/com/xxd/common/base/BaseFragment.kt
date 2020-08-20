@@ -39,7 +39,7 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun getLayoutId(): Int
 
-    private fun initView() {
+    open fun initView() {
 
     }
 

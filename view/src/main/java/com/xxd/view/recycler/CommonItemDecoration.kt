@@ -13,14 +13,14 @@ import com.orhanobut.logger.Logger
 /**
  *    author : xxd
  *    date   : 2020/8/17
- *    desc   :
+ *    desc   : 通用的ItemDecoration，适配了系统的3种layoutManager
  */
 class CommonItemDecoration : RecyclerView.ItemDecoration() {
 
     companion object {
 
         const val NONE = 0 // 没有确定方向，此状态下不绘制
-        const val VERTICAL = 1 // 垂直方向，默认
+        const val VERTICAL = 1 // 垂直方向
         const val HORIZONTAL = 2 // 水平方向
 
         /**
@@ -43,7 +43,8 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
          * 当前recyclerview的layoutManager类型
          */
         enum class LayoutManager {
-            NONE, GridLayoutManager, LinearLayoutManager, StaggeredGridLayoutManager
+            // 对应3种系统的manager,自定义manager暂时未处理
+            NONE, Grid, Linear, StaggeredGrid
         }
     }
 
@@ -114,21 +115,21 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
                         layoutManager.spanCount,
                         layoutManager.orientation == LinearLayoutManager.VERTICAL
                     )
-                    this.layoutManager = LayoutManager.GridLayoutManager
+                    this.layoutManager = LayoutManager.Grid
                 }
                 is LinearLayoutManager -> {
                     initOrientation(
                         1,
                         layoutManager.orientation == LinearLayoutManager.VERTICAL
                     )
-                    this.layoutManager = LayoutManager.LinearLayoutManager
+                    this.layoutManager = LayoutManager.Linear
                 }
                 is StaggeredGridLayoutManager -> {
                     initOrientation(
                         layoutManager.spanCount,
                         layoutManager.orientation == LinearLayoutManager.VERTICAL
                     )
-                    this.layoutManager = LayoutManager.StaggeredGridLayoutManager
+                    this.layoutManager = LayoutManager.StaggeredGrid
                 }
                 else -> {
                     Logger.e("当前recyclerview获取不到layoutManager")
@@ -166,7 +167,7 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
 
             // 第一列：boundaryStart设置，非第一列：非滑动方向间隔设置
             var isFirstLine = position % spanCount == 0
-            if (layoutManager == LayoutManager.StaggeredGridLayoutManager) { // 瀑布流判断第一列需要特殊处理
+            if (layoutManager == LayoutManager.StaggeredGrid) { // 瀑布流判断第一列需要特殊处理
                 val layoutParams = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
                 isFirstLine = layoutParams.spanIndex == 0
             }
@@ -182,7 +183,7 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
 
             // 最后一列：boundaryEnd设置
             var isLastLine = position % spanCount == spanCount - 1
-            if (layoutManager == LayoutManager.StaggeredGridLayoutManager) { // 瀑布流需要特殊处理
+            if (layoutManager == LayoutManager.StaggeredGrid) { // 瀑布流需要特殊处理
                 val layoutParams = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
                 isLastLine = layoutParams.spanIndex == spanCount - 1
             }
