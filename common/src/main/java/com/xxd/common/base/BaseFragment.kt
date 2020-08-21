@@ -9,31 +9,41 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.orhanobut.logger.Logger
+import com.xxd.common.lifecycle.FragmentInitDataObserver
+import com.xxd.common.lifecycle.FragmentVisibleObserver
 
 /**
  *    author : xxd
  *    date   : 2020/8/13
  *    desc   :
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), IFragmentInitData, IIsVisible {
 
     /**
-     * 根view,可用来获取一切
+     * 根view,可用来获取一切,需要在onCreateView执行完之后使用
      */
-    lateinit var mRootView: View
+    lateinit var rootView: View
+
+    /**
+     * 真实判断是否可见的Observer
+     */
+    private lateinit var visibleObserver: FragmentVisibleObserver
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mRootView = inflater.inflate(getLayoutId(), container, false)
-        return mRootView
+        rootView = inflater.inflate(getLayoutId(), container, false)
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycle.addObserver(FragmentLifecycleObserver())
+        lifecycle.addObserver(FragmentInitDataObserver(this))
+        visibleObserver = FragmentVisibleObserver()
+        lifecycle.addObserver(visibleObserver)
         initView()
     }
 
@@ -43,6 +53,18 @@ abstract class BaseFragment : Fragment() {
 
     }
 
+    override fun initDataImmediately() {
+    }
+
+    override fun initDataLazy() {
+    }
+
+    override fun initDataEveryTime() {
+    }
+
+    override fun isVisibilityToUser(): Boolean {
+        return visibleObserver.isVisibilityToUser()
+    }
 
     /**
      * 监听fragment生命周期的观察者

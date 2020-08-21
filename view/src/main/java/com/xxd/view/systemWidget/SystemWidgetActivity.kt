@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.view_activity_system_widget.*
 class SystemWidgetActivity : BaseActivity() {
 
     private lateinit var adapter: BaseQuickAdapter<String, BaseViewHolder>
-    private val dataList = listOf("ViewFLipper","","","","","","")
+    private val dataList = listOf("ViewFlipper", "", "", "", "", "", "")
 
     override fun getLayoutId(): Int {
         return R.layout.view_activity_system_widget
@@ -30,11 +30,22 @@ class SystemWidgetActivity : BaseActivity() {
 
     override fun initData() {
         super.initData()
-
+        adapter.setList(dataList)
     }
 
     private fun initListener() {
-        adapter.setList(dataList)
+        adapter.setOnItemClickListener { _, _, position ->
+            when (position) {
+                0 -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.flContent, ViewFlipperFragment()).commit()
+                }
+                1 -> {
+                    ViewFlipperFragment()
+                }
+            }
+        }
+
     }
 
 

@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ViewFlipper
         android:id="@+id/viewFlipper"
-        android:flipInterval="2000"
         android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        android:layout_height="wrap_content"
+        android:autoStart="true"
+        android:flipInterval="2000"
+        android:inAnimation="@anim/common_anim_bottom_in"
+        android:outAnimation="@anim/common_anim_top_out" />
+
+    <AdapterViewFlipper
+        android:layout_marginTop="100dp"
+        android:autoStart="false"
+        android:flipInterval="2000"
+        android:id="@+id/adapterViewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 </LinearLayout>

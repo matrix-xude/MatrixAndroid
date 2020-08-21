@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--所有的数组资源放在这里，实际上Android加载values会将所有xml合并，只通过属性名区分-->
+<!--如：string，color等，放这里只是为了方便查看-->
+<resources>
+    <string-array name="view_quantum_mechanics">
+        <item>量子力学（Quantum Mechanics），为物理学理论，</item>
+        <item>是研究物质世界微观粒子运动规律的物理学分支，</item>
+        <item>主要研究原子、分子、凝聚态物质，以及原子核和基本粒子的结构、性质的基础理论。</item>
+        <item>它与相对论一起构成现代物理学的理论基础。</item>
+        <item>量子力学不仅是现代物理学的基础理论之一，而且在化学等学科和许多近代技术中得到广泛应用。</item>
+    </string-array>
+</resources>
