@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.base.BaseActivity
-import com.xxd.view.recycler.CommonItemDecoration
+import com.xxd.common.tool.CommonItemDecoration
 import com.xxd.view.recycler.RecyclerActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
 import kotlinx.android.synthetic.main.view_activity_main.*
@@ -58,9 +58,9 @@ class MainActivity : BaseActivity() {
         rvMain.layoutManager = manager
         rvMain.addItemDecoration(CommonItemDecoration().apply {
             interval = 20
-            headOffset = 30
-            tailOffset = 30
             boundary = 15
+            boundaryHead = 30
+            boundaryTail = 30
         })
         mAdapter =
             object :

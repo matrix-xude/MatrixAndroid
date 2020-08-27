@@ -1,52 +1,53 @@
 package com.xxd.thread
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
-import com.orhanobut.logger.Logger
-import kotlinx.android.synthetic.main.thread_activity_main.*
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.xxd.common.base.BaseTitleActivity
+import com.xxd.common.tool.CommonItemDecoration
 
 @Route(path = "/thread/activity/main")
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseTitleActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.thread_activity_main)
+    lateinit var adapter: BaseQuickAdapter<String, BaseViewHolder>
+    private lateinit var recyclerView: RecyclerView
+    private val dataList = listOf("线程基础","线程切换","RxJava")
 
-        val extras = intent.extras
-        val string = extras?.getString("key")
-        val int = extras?.getInt("position")
-        val stringExtra = intent.getStringExtra(ARouter.RAW_URI)
-        tvName.text = "thread text"
+    override fun getTitleName(): CharSequence? {
+        return "线程总汇"
+    }
 
-        tvName.setOnClickListener {
-//            val intent = Intent(this,MainActivity::class.java)
-//            intent.putExtra("key","法法")
-//            intent.putExtra("position",2)
-//            startActivity(intent)
+    override fun getLayoutId(): Int {
+        return R.layout.common_simple_recycler_view
+    }
+
+    override fun initView() {
+        super.initView()
+        recyclerView = rootView.findViewById(R.id.recyclerView)
+        initRecyclerView()
+    }
+
+    override fun initData() {
+        super.initData()
+        adapter.setList(dataList)
+    }
+
+    private fun initRecyclerView() {
+
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView.addItemDecoration(CommonItemDecoration().apply {
+            boundary = 20
+            interval = 15
+        })
+        adapter = object :
+            BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_vertical_simple_text) {
+            override fun convert(holder: BaseViewHolder, item: String) {
+                holder.setText(R.id.tvName, item)
+            }
+
         }
-            tvName.addOnAttachStateChangeListener(object :View.OnAttachStateChangeListener{
-                override fun onViewDetachedFromWindow(v: View?) {
-                    Logger.d(this@MainActivity == null)
-                    Logger.d(this@MainActivity.isFinishing)
-                    Logger.d(this@MainActivity.isDestroyed)
-                    Logger.d("onViewDetachedFromWindow")
-                }
-
-                override fun onViewAttachedToWindow(v: View?) {
-                    Logger.d("onViewAttachedToWindow")
-                }
-
-            })
-
-        tvName.text = "11112222"
-        Logger.d("设置了文字")
-
-
-
-
+        recyclerView.adapter = adapter
     }
 }

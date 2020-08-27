@@ -3,7 +3,7 @@ package com.xxd.common.lifecycle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.xxd.common.base.IFragmentInitData
+import com.xxd.common.init.IFragmentInitData
 
 /**
  *    author : xxd

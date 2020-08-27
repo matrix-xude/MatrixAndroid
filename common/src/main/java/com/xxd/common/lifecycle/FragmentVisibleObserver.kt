@@ -3,14 +3,15 @@ package com.xxd.common.lifecycle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.xxd.common.base.IIsVisible
+import com.xxd.common.init.IIsVisible
 
 /**
  *    author : xxd
  *    date   : 2020/8/21
  *    desc   : 当前fragment是否可见
  */
-class FragmentVisibleObserver : LifecycleObserver, IIsVisible {
+class FragmentVisibleObserver : LifecycleObserver,
+    IIsVisible {
 
     /**
      * 当前fragment是否可见

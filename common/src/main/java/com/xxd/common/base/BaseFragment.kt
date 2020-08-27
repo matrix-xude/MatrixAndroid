@@ -9,6 +9,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.orhanobut.logger.Logger
+import com.xxd.common.init.IFragmentInitData
+import com.xxd.common.init.IIsVisible
 import com.xxd.common.lifecycle.FragmentInitDataObserver
 import com.xxd.common.lifecycle.FragmentVisibleObserver
 
@@ -17,7 +19,8 @@ import com.xxd.common.lifecycle.FragmentVisibleObserver
  *    date   : 2020/8/13
  *    desc   :
  */
-abstract class BaseFragment : Fragment(), IFragmentInitData, IIsVisible {
+abstract class BaseFragment : Fragment(), IFragmentInitData,
+    IIsVisible {
 
     /**
      * 根view,可用来获取一切,需要在onCreateView执行完之后使用

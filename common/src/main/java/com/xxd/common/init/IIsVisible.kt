@@ -1,4 +1,4 @@
-package com.xxd.common.base
+package com.xxd.common.init
 
 /**
  *    author : xxd

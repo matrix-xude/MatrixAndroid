@@ -1,4 +1,4 @@
-package com.xxd.view.recycler
+package com.xxd.common.tool
 
 import android.graphics.Canvas
 import android.graphics.Rect
@@ -52,18 +52,20 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
      * 根据 orientation 来区分以下参数的含义
      * ex: head,tail 表示recyclerview滑动的开始、结束两端，VERTICAL下即为上下方向，HORIZONTAL即为左右方向
      */
-    var headOffset = 0 // 滑动开始端方向偏移量
-    var tailOffset = 0 // 滑动结束端方向偏移量
-    var boundary = 0  // 同时设置 boundaryStart,boundaryEnd 2个数值
-        set(value) {
-            boundaryStart = value
-            boundaryEnd = value
-            field = value
-        }
+    var boundaryHead = 0 // 滑动开始端方向偏移量
+    var boundaryTail = 0 // 滑动结束端方向偏移量
     var boundaryStart = 0 // 整体的"左"（HORIZONTAL下为"上"）边距
     var boundaryEnd = 0 // 整体的"右"（HORIZONTAL下为"下"）边距
     var interval = 0 // 中间item的间距，不包含头尾
     var spanInterval = 0 // 当 spanCount>1 的时候，每个span之间的间距，处理时该间距前后各取1/2，所以最好设置偶数
+    var boundary = 0  // 同时设置4个边距的数值，类型padding
+        set(value) {
+            boundaryStart = value
+            boundaryEnd = value
+            boundaryHead = value
+            boundaryTail = value
+            field = value
+        }
 
     /**
      * 当前recyclerview方向
@@ -154,7 +156,7 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
             // 第一行：headOffset设置，非第一行：滑动方向上间隔设置
             val isFirstRow = position / spanCount == 0
             if (isFirstRow) {
-                evaluateHead(outRect, headOffset)
+                evaluateHead(outRect, boundaryHead)
             } else { // 滑动方向上的间隔处理
                 evaluateInterval(outRect, interval)
             }
@@ -162,7 +164,7 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
             // 最后一行：tailOffset设置
             val isLastRow = position / spanCount == (it.itemCount - 1) / spanCount
             if (isLastRow) {
-                evaluateTail(outRect, tailOffset)
+                evaluateTail(outRect, boundaryTail)
             }
 
             // 第一列：boundaryStart设置，非第一列：非滑动方向间隔设置
