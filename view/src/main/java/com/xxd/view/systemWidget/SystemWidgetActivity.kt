@@ -4,8 +4,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.base.BaseActivity
+import com.xxd.common.tool.CommonItemDecoration
 import com.xxd.view.R
-import com.xxd.view.recycler.CommonItemDecoration
 import kotlinx.android.synthetic.main.view_activity_system_widget.*
 
 /**
@@ -52,8 +52,6 @@ class SystemWidgetActivity : BaseActivity() {
     private fun initRecyclerView() {
         rvTop.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvTop.addItemDecoration(CommonItemDecoration().apply {
-            headOffset = 30
-            tailOffset = 20
             interval = 15
             boundary = 15
         })

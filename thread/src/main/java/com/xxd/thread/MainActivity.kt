@@ -1,53 +1,43 @@
 package com.xxd.thread
 
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.xxd.common.base.BaseTitleActivity
-import com.xxd.common.tool.CommonItemDecoration
+import com.xxd.common.fast.SimpleListActivity
+import com.xxd.common.util.IntentUtil
+import com.xxd.thread.basic.ThreadBasicActivity
 
 @Route(path = "/thread/activity/main")
-class MainActivity : BaseTitleActivity() {
+class MainActivity : SimpleListActivity<String>() {
 
-    lateinit var adapter: BaseQuickAdapter<String, BaseViewHolder>
-    private lateinit var recyclerView: RecyclerView
-    private val dataList = listOf("线程基础","线程切换","RxJava")
+    private val dataList = listOf("线程基础", "线程切换", "RxJava", "WorkManager")
 
     override fun getTitleName(): CharSequence? {
         return "线程总汇"
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.common_simple_recycler_view
+    override fun getDataList(): Collection<String> {
+        return dataList
+    }
+
+    override fun getItemLayoutResId(): Int {
+        return R.layout.common_item_vertical_simple_text
+    }
+
+    override fun convertItem(holder: BaseViewHolder, item: String) {
+        holder.setText(R.id.tvName, item)
     }
 
     override fun initView() {
         super.initView()
-        recyclerView = rootView.findViewById(R.id.recyclerView)
-        initRecyclerView()
+        initListener()
     }
 
-    override fun initData() {
-        super.initData()
-        adapter.setList(dataList)
-    }
-
-    private fun initRecyclerView() {
-
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.addItemDecoration(CommonItemDecoration().apply {
-            boundary = 20
-            interval = 15
-        })
-        adapter = object :
-            BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_vertical_simple_text) {
-            override fun convert(holder: BaseViewHolder, item: String) {
-                holder.setText(R.id.tvName, item)
+    private fun initListener() {
+        simpleAdapter.setOnItemClickListener { _, _, position ->
+            when (position) {
+                0 -> IntentUtil.startActivity(this, ThreadBasicActivity::class.java)
             }
-
         }
-        recyclerView.adapter = adapter
     }
+
 }
