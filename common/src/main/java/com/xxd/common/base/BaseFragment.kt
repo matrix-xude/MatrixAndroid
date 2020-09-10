@@ -43,7 +43,7 @@ abstract class BaseFragment : Fragment(), IFragmentInitData,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycle.addObserver(FragmentLifecycleObserver())
+//        lifecycle.addObserver(FragmentLifecycleObserver())
         lifecycle.addObserver(FragmentInitDataObserver(this))
         visibleObserver = FragmentVisibleObserver()
         lifecycle.addObserver(visibleObserver)

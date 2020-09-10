@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical"
+    tools:context=".basic.ThreadInterruptFragment">
+
+    <Button
+        android:id="@+id/bt1"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:text="中断线程" />
+
+    <TextView
+        android:id="@+id/tv1"
+        style="@style/common_TextStyleLevel3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/common_item_simple_desc" />
+
+</LinearLayout>

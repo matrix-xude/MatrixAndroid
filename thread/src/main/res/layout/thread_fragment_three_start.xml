@@ -31,7 +31,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/common_magenta"
         android:padding="10dp"
-        android:text="implement runnable" />
+        android:text="实现 runnable" />
 
     <TextView
         android:id="@+id/tv2"
@@ -48,7 +48,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/common_magenta"
         android:padding="10dp"
-        android:text="implement callBack" />
+        android:text="实现 Callable, 创建 FutureTask" />
 
     <TextView
         android:id="@+id/tv3"

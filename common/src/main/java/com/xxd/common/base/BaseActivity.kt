@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.xxd.common.databinding.CommonActivityBaseBinding
 import com.xxd.common.init.ActivityRegisterImpl
 import com.xxd.common.init.IActivityRegister
 
