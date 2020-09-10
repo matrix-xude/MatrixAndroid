@@ -4,12 +4,13 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.IntentUtil
+import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.basic.ThreadBasicActivity
 
 @Route(path = "/thread/activity/main")
 class MainActivity : SimpleListActivity<String>() {
 
-    private val dataList = listOf("线程基础", "线程切换", "RxJava", "WorkManager")
+    private val dataList = listOf("线程基础", "线程切换", "RxJava", "测试页面")
 
     override fun getTitleName(): CharSequence? {
         return "线程总汇"

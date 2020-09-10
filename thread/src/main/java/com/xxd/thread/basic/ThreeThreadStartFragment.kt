@@ -1,5 +1,7 @@
 package com.xxd.thread.basic
 
+import androidx.core.net.toUri
+import androidx.core.view.doOnPreDraw
 import com.xxd.common.base.BaseFragment
 import com.xxd.thread.R
 import kotlinx.android.synthetic.main.thread_fragment_three_start.*
@@ -18,6 +20,11 @@ class ThreeThreadStartFragment : BaseFragment() {
     override fun initView() {
         super.initView()
         initListener()
+    }
+
+    override fun initDataLazy() {
+        super.initDataLazy()
+        val a = ""
     }
 
     private fun initListener() {
@@ -39,7 +46,7 @@ class ThreeThreadStartFragment : BaseFragment() {
     class TestThread : Thread() {
 
         override fun run() {
-            
+
         }
     }
 }

@@ -1,3 +1,4 @@
+include ':other'
 rootProject.name='MatrixAndroid'
 include ':app'
 include ':thread'

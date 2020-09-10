@@ -17,9 +17,7 @@ object IntentUtil {
      */
     fun startActivity(packageContext: Context, clazz: Class<*>, listener: IntentExtras? = null) {
         val intent = Intent(packageContext, clazz)
-        listener?.let {
-            it.params(intent)
-        }
+        listener?.params(intent)
         packageContext.startActivity(intent)
     }
 

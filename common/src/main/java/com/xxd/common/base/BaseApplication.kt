@@ -3,6 +3,7 @@ package com.xxd.common.base
 import android.app.Application
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.orhanobut.logger.AndroidLogAdapter

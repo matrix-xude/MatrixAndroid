@@ -9,7 +9,7 @@ buildscript {
       * 此变量可以在 config.gradle 中找到，所以 buildscript 先于 apply from: "config.gradle" 运行
       * 尚未理解， 需要了解gradle的各个编译机制才能解决
       * */
-    ext.kotlin_version = '1.3.71'
+    ext.kotlin_version = '1.4.10'
     repositories {
         println("文件——build.gradle——buildscript——repositories——执行时机")
 
