@@ -1,5 +1,4 @@
-include ':other'
-rootProject.name='MatrixAndroid'
+rootProject.name = 'MatrixAndroid'
 include ':app'
 include ':thread'
 include ':common'

@@ -12,7 +12,7 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        if (Boolean.valueOf(rootProject.ext.isModuleThread)) {
+        if (Boolean.valueOf(rootProject.ext.isModuleOther)) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.other"
         }

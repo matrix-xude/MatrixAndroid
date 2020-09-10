@@ -28,6 +28,14 @@
     <style name="common_TextStyleLevel3">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/common_black</item>
+    </style>
+
+    <!--默认的四级文字样式,灰色小字-->
+    <style name="common_TextStyleLevel4">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/common_darkgray</item>
     </style>

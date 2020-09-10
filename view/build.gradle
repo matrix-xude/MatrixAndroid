@@ -44,6 +44,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        // 解决ktx的编译问题，默认使用的是1.6
+        jvmTarget = "1.8"
+    }
 
     /*
     * java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，

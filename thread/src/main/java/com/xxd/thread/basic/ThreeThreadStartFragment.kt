@@ -25,11 +25,12 @@ class ThreeThreadStartFragment : BaseFragment() {
     override fun initDataLazy() {
         super.initDataLazy()
         val a = ""
+        a.toUri()
     }
 
     private fun initListener() {
         bt1.setOnClickListener {
-
+            TestThread().start()
         }
         bt2.setOnClickListener {
 
