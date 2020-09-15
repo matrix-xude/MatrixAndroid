@@ -6,11 +6,14 @@ import com.xxd.thread.R
 import kotlinx.android.synthetic.main.thread_fragment_wait_notify.*
 import okhttp3.internal.notifyAll
 import okhttp3.internal.wait
+import java.lang.Exception
 
 /**
  *    author : xxd
  *    date   : 2020/9/11
- *    desc   : wait(),notify(),notifyAll()必须在能拿到锁的情况下调用，否则报错
+ *    desc   : wait(),notify(),notifyAll()必须在能拿到锁的情况下调用
+ *    (所以wait，notify必须使用synchronized的锁)，否则报错
+ *    线程的生命周期与当前Activity，Fragment无关，所以线程的使用需要注意生命周期
  */
 class ThreadWaitNotifyFragment : BaseFragment() {
 
@@ -24,6 +27,10 @@ class ThreadWaitNotifyFragment : BaseFragment() {
      */
     var i = 0
 
+    var produceThread: Thread? = null
+    var consumeThread: Thread? = null
+    var threadInterruptFlag = false
+
     companion object {
         // 最大的货物持有数量
         const val MAX_HOLD_NUM = 5
@@ -35,10 +42,17 @@ class ThreadWaitNotifyFragment : BaseFragment() {
 
     override fun initView() {
         super.initView()
+        produceThread = ProduceThread()
+        consumeThread = ConsumeThread()
         bt1.setOnClickListener {
-            ProduceThread().start()
-            ConsumeThread().start()
+            produceThread?.start()
+            consumeThread?.start()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        threadInterruptFlag = true
     }
 
     /**
@@ -46,18 +60,19 @@ class ThreadWaitNotifyFragment : BaseFragment() {
      */
     inner class ProduceThread : Thread() {
         override fun run() {
-            while (true) {
-                while (holdList.size >= MAX_HOLD_NUM) {
-                    notifyAll()
-                    wait()
-                }
+            while (!threadInterruptFlag) {
                 // 生产者、消费者用同一把锁，类锁
-                synchronized(ThreadWaitNotifyFragment::class.java) {
+                synchronized(holdList) {
+                    while (holdList.size >= MAX_HOLD_NUM) {
+                        holdList.notifyAll()
+                        holdList.wait()
+                    }
                     i++
                     val product = "产品编号$i"
                     holdList.add(product)
-                    LogUtil.d("生产了产品：$product")
+                    LogUtil.d("生产：$product")
                 }
+                sleep(1000)
             }
         }
     }
@@ -67,15 +82,17 @@ class ThreadWaitNotifyFragment : BaseFragment() {
      */
     inner class ConsumeThread : Thread() {
         override fun run() {
-            while (true) {
-                while (holdList.size < 0) {
-                    notifyAll()
-                    wait()
-                }
-                synchronized(ThreadWaitNotifyFragment::class.java) {
+            sleep(2000)
+            while (!threadInterruptFlag) {
+                synchronized(holdList) {
+                    while (holdList.size <= 0) {
+                        holdList.notifyAll()
+                        holdList.wait()
+                    }
                     val product = holdList.removeFirst()
-                    LogUtil.d("消费了产品：$product")
+                    LogUtil.d("消费了：$product")
                 }
+                sleep(1000)
             }
         }
     }

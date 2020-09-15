@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical"
+    tools:context=".basic.ThreadLockFragment">
+
+    <TextView
+        android:id="@+id/tv1"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="lock()" />
+
+
+    <TextView
+        android:id="@+id/tv2"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="tryLock()" />
+
+    <TextView
+        android:id="@+id/tv3"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="lockInterruptibly()线程开始" />
+
+    <TextView
+        android:id="@+id/tv4"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="lockInterruptibly()中断线程等待" />
+
+    <TextView
+        android:id="@+id/tv5"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="condition 线程" />
+
+    <TextView
+        android:id="@+id/tv6"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="中断condition 线程" />
+
+    <TextView
+        android:id="@+id/tv7"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="readLock 线程" />
+
+    <TextView
+        android:id="@+id/tv8"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="writeLock 线程" />
+
+
+</LinearLayout>

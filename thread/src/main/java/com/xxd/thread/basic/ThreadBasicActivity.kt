@@ -10,7 +10,7 @@ import com.xxd.common.fast.SimpleSwitchFragmentActivity
  */
 class ThreadBasicActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("3种线程的实现", "线程中断", "wait和notify", "", "")
+    private val dataList = listOf("3种线程的实现", "线程中断", "wait和notify", "Lock类的使用", "")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -21,6 +21,7 @@ class ThreadBasicActivity : SimpleSwitchFragmentActivity() {
             0 -> ThreeThreadStartFragment()
             1 -> ThreadInterruptFragment()
             2 -> ThreadWaitNotifyFragment()
+            3-> ThreadLockFragment()
             else -> ThreeThreadStartFragment()
         }
     }
