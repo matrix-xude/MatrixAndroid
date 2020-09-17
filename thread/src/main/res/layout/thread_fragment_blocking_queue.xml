@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical"
+    tools:context=".basic.BlockingQueueFragment">
+
+    <TextView
+        android:id="@+id/tv1"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="1一个核心线程，3个最大线程，阻塞队列为5个，丢弃策略为DiscardOldest,同时开始5个线程" />
+
+    <TextView
+        android:id="@+id/tv2"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="条件同上，同时开启10个线程" />
+
+    <TextView
+        android:id="@+id/tv3"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="Thread.start(）2次会崩溃，所以ThreadTool中是while循环抽取任务，run()执行，直到没有任务" />
+
+</LinearLayout>
