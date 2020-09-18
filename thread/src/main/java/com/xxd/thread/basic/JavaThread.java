@@ -1,8 +1,5 @@
 package com.xxd.thread.basic;
 
-import com.xxd.common.base.BaseFragment;
-import com.xxd.common.util.log.LogUtil;
-
 /**
  * author : xxd
  * date   : 2020/9/17
@@ -33,8 +30,8 @@ public class JavaThread {
         }
     }
 
-    private synchronized int addOne() {
-        return a++;
+    private synchronized void addOne() {
+        a++;
     }
 
 
