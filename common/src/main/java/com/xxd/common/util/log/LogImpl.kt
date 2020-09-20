@@ -19,6 +19,7 @@ class LogImpl : ILog {
     }
 
     override fun d(any: Any?, tag: String?) {
+        Logger.t(tag).d(any)
     }
 
     override fun i(message: String, tag: String?) {

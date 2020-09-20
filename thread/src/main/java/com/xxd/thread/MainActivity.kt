@@ -6,6 +6,7 @@ import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.IntentUtil
 import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.basic.ThreadBasicActivity
+import com.xxd.thread.encode.EncodeActivity
 
 @Route(path = "/thread/activity/main")
 class MainActivity : SimpleListActivity<String>() {
@@ -37,6 +38,7 @@ class MainActivity : SimpleListActivity<String>() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> IntentUtil.startActivity(this, ThreadBasicActivity::class.java)
+                1 -> IntentUtil.startActivity(this, EncodeActivity::class.java)
             }
         }
     }

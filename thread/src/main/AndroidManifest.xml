@@ -5,6 +5,7 @@
     <application>
         <activity android:name=".MainActivity"/>
         <activity android:name=".basic.ThreadBasicActivity" />
+        <activity android:name=".encode.EncodeActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical"
+    tools:context=".encode.ObjectEncodeFragment">
+
+    <TextView
+        android:id="@+id/tv1"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_magenta"
+        android:padding="8dp"
+        android:text="把对象序列化（编码）" />
+
+    <TextView
+        android:id="@+id/tv2"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="8dp"
+        android:text="把对byte[]反序列化（解码）" />
+
+    <TextView
+        android:id="@+id/tv3"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="8dp"
+        android:text="把对象写到本地文件" />
+
+    <TextView
+        android:id="@+id/tv4"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_magenta"
+        android:padding="8dp"
+        android:text="把本地文件读成对象" />
+
+
+</LinearLayout>
