@@ -49,7 +49,6 @@ class ObjectEncodeFragment : BaseFragment() {
         }
     }
 
-    @Throws(IOException::class)
     private fun encodeBook() {
         val baos = ByteArrayOutputStream()
         val oos = ObjectOutputStream(baos)

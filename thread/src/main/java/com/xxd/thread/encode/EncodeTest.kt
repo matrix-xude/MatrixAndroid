@@ -58,7 +58,7 @@ class EncodeTest {
             oos.writeObject(burst)
         }
 
-       private fun readResolve(): Any {
+        private fun readResolve(): Any {
             println("readResolve")
             return FixedStar().apply {
                 name = "${this@FixedStar.name}_readResolve"
@@ -164,11 +164,11 @@ class EncodeTest {
     /**
      * 测试Serializable 的4个反射方法
      *  writeReplace
-        writeObject
-        readObject
-        readResolve
-        FixedStar(name=北极星_writeReplace_readResolve, lifecycle=25 亿年,
-                    burst=永不爆发_writeReplace_readResolve)
+    writeObject
+    readObject
+    readResolve
+    FixedStar(name=北极星_writeReplace_readResolve, lifecycle=25 亿年,
+    burst=永不爆发_writeReplace_readResolve)
      */
     fun test3() {
         val fixedStar = FixedStar().apply {
@@ -179,6 +179,17 @@ class EncodeTest {
         val byteArray = writeObject(fixedStar)
         val readObject = readObject<FixedStar>(byteArray)
         println(readObject)
+    }
+
+    /**
+     * 测试序列化前和序列化后对象是否为同一个
+     * 不是同一个
+     */
+    fun test4() {
+        val planet = Planet("天王星", 32.67)
+        val byteArray = writeObject(planet)
+        val planetAfter = readObject<Planet>(byteArray)
+        println(planet==planetAfter)
     }
 
     private fun writeObject(any: Any): ByteArray {
