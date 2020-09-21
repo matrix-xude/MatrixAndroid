@@ -5,6 +5,7 @@ import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.R
 import kotlinx.android.synthetic.main.thread_fragment_encode_object.*
 import java.io.*
+import kotlin.jvm.Throws
 
 /**
  * author : xxd
@@ -48,6 +49,7 @@ class ObjectEncodeFragment : BaseFragment() {
         }
     }
 
+    @Throws(IOException::class)
     private fun encodeBook() {
         val baos = ByteArrayOutputStream()
         val oos = ObjectOutputStream(baos)
