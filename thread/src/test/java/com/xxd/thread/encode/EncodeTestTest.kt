@@ -31,4 +31,9 @@ class EncodeTestTest {
     fun test3() {
         mTest.test3()
     }
+
+    @Test
+    fun test4() {
+        mTest.test4()
+    }
 }
