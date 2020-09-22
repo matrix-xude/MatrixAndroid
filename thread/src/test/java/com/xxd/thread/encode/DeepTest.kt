@@ -21,7 +21,7 @@ class DeepTest {
 
     @Test
     fun encodeFile() {
-        mDeep.encodeFile()
+//        mDeep.encodeFile()
     }
 
     @Test

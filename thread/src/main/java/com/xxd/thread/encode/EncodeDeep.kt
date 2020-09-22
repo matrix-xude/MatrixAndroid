@@ -1,11 +1,6 @@
 package com.xxd.thread.encode
 
-import com.xxd.common.util.log.LogUtil
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
-import java.io.Serializable
+import java.io.*
 
 /**
  * author : xxd
@@ -17,25 +12,53 @@ import java.io.Serializable
 class EncodeDeep {
 
     companion object {
-        const val DEEP_OUT_PATH = "deep.out"
+//        const val DEEP_OUT_PATH = "deep.out"
+        const val DEEP_OUT_PATH = "deep2.out"
 
         // https://blog.csdn.net/fuhao_ma/article/details/102969349
     }
 
-    data class Deep(var index: Int, var name: String) : Serializable {
+    data class Deep(var index: Int, var name: String, var stars: String) : CopyDeep(),
+        Serializable {
         companion object {
             const val serialVersionUID = 1L
         }
     }
 
-    data class CopyDeep(var index: Int, var name: String) : Serializable {
+    /**
+     * 父类不实现 Serializable 不会被序列化，也不会报错
+     */
+    open class CopyDeep  {
+        var copyNum: Int? = null
+        var copyName: String? = null
+
+        companion object {
+            const val serialVersionUID = 2L
+        }
+    }
+
+    /**
+     * 测试没有无餐构造函数是否能被反序列化
+     * 结论：反序列化不需要无参构造函数，可以反序列化成功
+     * tip：java中有4种创建类的方法 1.new 2.反射 3.clone 4.ObjectInputStream的readObject（）方法
+     */
+    class DeepConstructor private constructor(var a : Int, var name : String, var b : Int) : Serializable{
+
         companion object {
             const val serialVersionUID = 1L
         }
+
+        override fun toString(): String {
+            return "DeepConstructor(a=$a, name='$name')"
+        }
+
     }
 
     fun encodeFile() {
-        val deep = Deep(1, "fff")
+        val deep = Deep(2, "方法", "water star")
+        deep.copyNum = 5
+        deep.copyName = "rrr"
+//        val deep = DeepConstructor(3,"量子")
         try {
             val fos = FileOutputStream(DEEP_OUT_PATH)
             val oos = ObjectOutputStream(fos)

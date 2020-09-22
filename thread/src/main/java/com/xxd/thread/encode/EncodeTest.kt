@@ -75,8 +75,6 @@ class EncodeTest {
                 burst = "${this@FixedStar.burst}_writeReplace"
             }
         }
-
-
     }
 
     // 行星
