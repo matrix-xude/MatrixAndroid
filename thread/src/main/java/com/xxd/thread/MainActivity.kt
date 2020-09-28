@@ -7,6 +7,7 @@ import com.xxd.common.util.IntentUtil
 import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.basic.ThreadBasicActivity
 import com.xxd.thread.encode.EncodeActivity
+import com.xxd.thread.encode.ParcelableJava
 
 @Route(path = "/thread/activity/main")
 class MainActivity : SimpleListActivity<String>() {
