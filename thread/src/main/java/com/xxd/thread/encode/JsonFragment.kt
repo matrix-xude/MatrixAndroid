@@ -23,7 +23,7 @@ class JsonFragment : BaseFragment() {
     private val gson = Gson()
 
     override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_blocking_queue
+        return 0
     }
 
     class JsonA {

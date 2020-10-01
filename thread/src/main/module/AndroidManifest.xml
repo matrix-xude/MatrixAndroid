@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xxd.thread">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.xxd.common.base.BaseApplication"
         android:allowBackup="true"
@@ -19,6 +21,7 @@
         </activity>
         <activity android:name=".basic.ThreadBasicActivity" />
         <activity android:name=".encode.EncodeActivity" />
+        <activity android:name=".rxjava.RxJavaActivity" />
     </application>
 
 </manifest>

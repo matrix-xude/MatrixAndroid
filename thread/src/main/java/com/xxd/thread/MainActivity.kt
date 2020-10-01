@@ -8,11 +8,12 @@ import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.basic.ThreadBasicActivity
 import com.xxd.thread.encode.EncodeActivity
 import com.xxd.thread.encode.ParcelableJava
+import com.xxd.thread.rxjava.RxJavaActivity
 
 @Route(path = "/thread/activity/main")
 class MainActivity : SimpleListActivity<String>() {
 
-    private val dataList = listOf("线程基础", "线程切换", "RxJava", "测试页面")
+    private val dataList = listOf("线程基础", "序列化、Json", "RxJava", "星辰大海")
 
     override fun getTitleName(): CharSequence? {
         return "线程总汇"
@@ -40,6 +41,7 @@ class MainActivity : SimpleListActivity<String>() {
             when (position) {
                 0 -> IntentUtil.startActivity(this, ThreadBasicActivity::class.java)
                 1 -> IntentUtil.startActivity(this, EncodeActivity::class.java)
+                2 -> IntentUtil.startActivity(this, RxJavaActivity::class.java)
             }
         }
     }
