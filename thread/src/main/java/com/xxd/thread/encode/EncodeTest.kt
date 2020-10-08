@@ -161,7 +161,7 @@ class EncodeTest {
 
     /**
      * 测试Serializable 的4个反射方法
-     *  writeReplace
+    writeReplace
     writeObject
     readObject
     readResolve

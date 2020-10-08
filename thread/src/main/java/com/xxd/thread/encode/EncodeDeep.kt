@@ -1,5 +1,10 @@
 package com.xxd.thread.encode
 
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableSource
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.SingleSource
+import io.reactivex.rxjava3.functions.Function
 import java.io.*
 
 /**
@@ -58,7 +63,7 @@ class EncodeDeep {
         val deep = Deep(2, "方法", "water star")
         deep.copyNum = 5
         deep.copyName = "rrr"
-//        val deep = DeepConstructor(3,"量子")
+//        val deep = DeepC onstructor(3,"量子")
         try {
             val fos = FileOutputStream(DEEP_OUT_PATH)
             val oos = ObjectOutputStream(fos)
