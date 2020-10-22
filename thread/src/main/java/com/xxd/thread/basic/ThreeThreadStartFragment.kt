@@ -40,16 +40,18 @@ class ThreeThreadStartFragment : BaseFragment() {
         }
         bt3.setOnClickListener {
 
-//            Thread(Runnable {
+            Thread(Runnable {
                 LogUtil.d("${Thread.currentThread().name}:当前计算for循环的开始线程")
                 // 第三种线程实现方法，带返回值，FutureTask，接收的参数即为新线程执行的方法
                 val futureTask = FutureTask<Int>(TestCallable())
+                // start之后已经开始执行Call中的方法
                 Thread(futureTask).start()
                 LogUtil.d("${Thread.currentThread().name}:FutureTask start之后")
                 // 此方法会阻塞线程，如果在主线中调用，会anr
                 val get = futureTask.get()
                 LogUtil.d("${Thread.currentThread().name}:当前计算for循环的结果:$get")
-//            }).start()
+//                LogUtil.d("${Thread.currentThread().name}:Future get()之后")
+            }).start()
         }
     }
 
