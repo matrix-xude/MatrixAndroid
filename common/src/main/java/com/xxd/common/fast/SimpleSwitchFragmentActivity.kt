@@ -1,5 +1,6 @@
 package com.xxd.common.fast
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,15 +25,14 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
      */
     private lateinit var simpleAdapter: BaseQuickAdapter<String, BaseViewHolder>
 
-    protected lateinit var simpleSwitchBinding: CommonActivitySwitchFragmentBinding
+    protected lateinit var switchFragmentBinding: CommonActivitySwitchFragmentBinding
 
-    override fun viewBinding() {
-        simpleSwitchBinding =
-            CommonActivitySwitchFragmentBinding.inflate(layoutInflater, super.rootView, true)
-    }
-
-    override fun getRoot(): ViewGroup {
-        return simpleSwitchBinding.root
+    override fun setContentView(view: View?) {
+        switchFragmentBinding = CommonActivitySwitchFragmentBinding.inflate(layoutInflater)
+        super.setContentView(switchFragmentBinding.root)
+        view?.let {
+            switchFragmentBinding.root.addView(it)
+        }
     }
 
     /**
@@ -63,8 +63,8 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
 
     private fun initRecyclerView() {
 
-        simpleSwitchBinding.rvTop.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        simpleSwitchBinding.rvTop.addItemDecoration(CommonItemDecoration().apply {
+        switchFragmentBinding.rvTop.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        switchFragmentBinding.rvTop.addItemDecoration(CommonItemDecoration().apply {
             boundary = 20
             interval = 15
         })
@@ -75,6 +75,6 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
             }
 
         }
-        simpleSwitchBinding.rvTop.adapter = simpleAdapter
+        switchFragmentBinding.rvTop.adapter = simpleAdapter
     }
 }

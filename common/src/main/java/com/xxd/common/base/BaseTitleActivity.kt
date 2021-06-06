@@ -12,26 +12,27 @@ import com.xxd.common.databinding.CommonActivityBaseBinding
  */
 abstract class BaseTitleActivity : BaseActivity() {
 
-    protected lateinit var titlebinding: CommonActivityBaseBinding
+    protected lateinit var titleBinding: CommonActivityBaseBinding
 
-    override fun viewBinding() {
-        titlebinding = CommonActivityBaseBinding.inflate(layoutInflater, super.rootView, true)
-    }
+    override fun setContentView(view: View?) {
+        titleBinding = CommonActivityBaseBinding.inflate(layoutInflater)
+        super.setContentView(titleBinding.root)
+        view?.let {
+            titleBinding.root.addView(it)
+        }
 
-    override fun getRoot(): ViewGroup {
-        return titlebinding.root
     }
 
     private fun init() {
 
         // 返回按钮
-        titlebinding.ivTitleBack.visibility = if (showBackIcon()) View.VISIBLE else View.GONE
-        titlebinding.ivTitleBack.setOnClickListener {
+        titleBinding.ivTitleBack.visibility = if (showBackIcon()) View.VISIBLE else View.GONE
+        titleBinding.ivTitleBack.setOnClickListener {
             onBackPressed()
         }
 
         // 标题
-        titlebinding.tvTitleName.text = getTitleName()
+        titleBinding.tvTitleName.text = getTitleName()
     }
 
     /**

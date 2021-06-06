@@ -17,23 +17,21 @@ import com.xxd.common.init.IActivityRegister
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected lateinit var rootView: ViewGroup
+    protected lateinit var rootView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.common_item_horizontal_simple_text)
-        rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup
-        viewBinding()
+        setContentView(getContentView())
+        rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
         initRegister()
         initView()
         initData()
     }
 
-    open fun viewBinding() {}
-
-    open fun getRoot(): ViewGroup {
-        return rootView
-    }
+    /**
+     * 获取ContentView，适配的是ViewBinding
+     */
+    abstract fun getContentView(): View
 
     private fun initRegister() {
         getRegister()?.register(this)

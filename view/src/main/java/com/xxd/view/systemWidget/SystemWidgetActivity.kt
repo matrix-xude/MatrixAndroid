@@ -18,9 +18,7 @@ class SystemWidgetActivity : BaseActivity() {
     private lateinit var adapter: BaseQuickAdapter<String, BaseViewHolder>
     private val dataList = listOf("ViewFlipper", "", "", "", "", "", "")
 
-    override fun getLayoutId(): Int {
-        return R.layout.view_activity_system_widget
-    }
+
 
     override fun initView() {
         super.initView()

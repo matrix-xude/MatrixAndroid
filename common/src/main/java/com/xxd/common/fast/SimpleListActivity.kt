@@ -1,5 +1,6 @@
 package com.xxd.common.fast
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,10 +42,10 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
     protected lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewBinding
 
-    override fun viewBinding() {
-        super.viewBinding()
+    override fun getContentView(): View {
         simpleRecyclerBinding =
-            CommonSimpleRecyclerViewBinding.inflate(layoutInflater, super.rootView)
+            CommonSimpleRecyclerViewBinding.inflate(layoutInflater, titleBinding.root)
+        return simpleRecyclerBinding.root
     }
 
     override fun initView() {
@@ -59,7 +60,8 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
     private fun initRecyclerView() {
 
-        simpleRecyclerBinding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        simpleRecyclerBinding.recyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         simpleRecyclerBinding.recyclerView.addItemDecoration(CommonItemDecoration().apply {
             boundary = 20
             interval = 15

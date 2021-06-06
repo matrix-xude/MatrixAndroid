@@ -1,5 +1,6 @@
 package com.xxd.myself
 
+import android.view.View
 import com.xxd.common.base.BaseTitleActivity
 import com.xxd.myself.databinding.MyselfActivityMainBinding
 
@@ -11,14 +12,15 @@ class MainActivity : BaseTitleActivity() {
         return "随心所欲"
     }
 
-    override fun viewBinding() {
-        myselfBinding = MyselfActivityMainBinding.inflate(layoutInflater, super.rootView, true)
+    override fun getContentView(): View {
+        myselfBinding = MyselfActivityMainBinding.inflate(layoutInflater)
+        return myselfBinding.root
     }
 
     override fun initData() {
         super.initData()
         myselfBinding.tv1.text = "打分法"
-        titlebinding.tvTitleName.text = "fadf"
+        titleBinding.tvTitleName.text = "fadf"
     }
 
 }
