@@ -151,7 +151,7 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
         adapter?.let {
             val position = parent.getChildAdapterPosition(view)
 
-            // 以下注释以竖直滑动为例，实际处理了2竖直、水平2种滑动
+            // 以下注释以竖直滑动为例，实际处理了竖直、水平2种滑动
 
             // 第一行：headOffset设置，非第一行：滑动方向上间隔设置
             val isFirstRow = position / spanCount == 0

@@ -7,13 +7,14 @@
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
+        <activity
+            android:name=".recycler.RecyclerActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".systemWidget.SystemWidgetActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
-    <activity
-        android:name=".recycler.RecyclerActivity"
-        android:screenOrientation="portrait"
-        tools:ignore="LockedOrientationActivity" />
-    <activity android:name=".systemWidget.SystemWidgetActivity"
-        android:screenOrientation="portrait"
-        tools:ignore="LockedOrientationActivity"/>
 
 </manifest>
