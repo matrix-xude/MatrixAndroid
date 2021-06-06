@@ -1,13 +1,15 @@
 package com.xxd.common.fast
 
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.R
 import com.xxd.common.base.BaseTitleActivity
+import com.xxd.common.databinding.CommonSimpleRecyclerViewBinding
 import com.xxd.common.tool.CommonItemDecoration
-import kotlinx.android.synthetic.main.common_simple_recycler_view.*
 
 /**
  *    author : xxd
@@ -37,8 +39,12 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
      */
     abstract fun convertItem(holder: BaseViewHolder, item: T)
 
-    override fun getLayoutId(): Int {
-        return R.layout.common_simple_recycler_view
+    protected lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewBinding
+
+    override fun viewBinding() {
+        super.viewBinding()
+        simpleRecyclerBinding =
+            CommonSimpleRecyclerViewBinding.inflate(layoutInflater, super.rootView)
     }
 
     override fun initView() {
@@ -53,19 +59,19 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
     private fun initRecyclerView() {
 
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.addItemDecoration(CommonItemDecoration().apply {
+        simpleRecyclerBinding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        simpleRecyclerBinding.recyclerView.addItemDecoration(CommonItemDecoration().apply {
             boundary = 20
             interval = 15
         })
         simpleAdapter = object :
             BaseQuickAdapter<T, BaseViewHolder>(getItemLayoutResId()) {
             override fun convert(holder: BaseViewHolder, item: T) {
-                convertItem(holder,item)
+                convertItem(holder, item)
             }
 
         }
-        recyclerView.adapter = simpleAdapter
+        simpleRecyclerBinding.recyclerView.adapter = simpleAdapter
     }
 
 

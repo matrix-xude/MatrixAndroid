@@ -1,10 +1,8 @@
 package com.xxd.common.base
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import com.xxd.common.R
-import kotlinx.android.synthetic.main.common_activity_base.*
+import android.view.ViewGroup
+import com.xxd.common.databinding.CommonActivityBaseBinding
 
 /**
  *    author : xxd
@@ -14,23 +12,26 @@ import kotlinx.android.synthetic.main.common_activity_base.*
  */
 abstract class BaseTitleActivity : BaseActivity() {
 
+    protected lateinit var titlebinding: CommonActivityBaseBinding
 
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(R.layout.common_activity_base)
-        LayoutInflater.from(this).inflate(getLayoutId(), llCommon)
-        init()
+    override fun viewBinding() {
+        titlebinding = CommonActivityBaseBinding.inflate(layoutInflater, super.rootView, true)
+    }
+
+    override fun getRoot(): ViewGroup {
+        return titlebinding.root
     }
 
     private fun init() {
 
         // 返回按钮
-        ivTitleBack.visibility = if (showBackIcon()) View.VISIBLE else View.GONE
-        ivTitleBack.setOnClickListener {
+        titlebinding.ivTitleBack.visibility = if (showBackIcon()) View.VISIBLE else View.GONE
+        titlebinding.ivTitleBack.setOnClickListener {
             onBackPressed()
         }
 
         // 标题
-        tvTitleName.text = getTitleName()
+        titlebinding.tvTitleName.text = getTitleName()
     }
 
     /**

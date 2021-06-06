@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
+import com.xxd.common.R
 import com.xxd.common.init.ActivityRegisterImpl
 import com.xxd.common.init.IActivityRegister
 
@@ -15,21 +17,23 @@ import com.xxd.common.init.IActivityRegister
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected lateinit var rootView: View
+    protected lateinit var rootView: ViewGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
-        rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
+        setContentView(R.layout.common_item_horizontal_simple_text)
+        rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup
+        viewBinding()
         initRegister()
         initView()
         initData()
     }
 
-    /**
-     * 获取layout的id
-     */
-    abstract fun getLayoutId(): Int
+    open fun viewBinding() {}
+
+    open fun getRoot(): ViewGroup {
+        return rootView
+    }
 
     private fun initRegister() {
         getRegister()?.register(this)

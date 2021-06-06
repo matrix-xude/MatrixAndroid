@@ -1,16 +1,24 @@
 package com.xxd.myself
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import kotlinx.android.synthetic.main.myself_activity_main.*
+import com.xxd.common.base.BaseTitleActivity
+import com.xxd.myself.databinding.MyselfActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    @SuppressLint("SetTextI18n")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.myself_activity_main)
+class MainActivity : BaseTitleActivity() {
 
-        tv1.text = "kotlin android extends"
+    private lateinit var myselfBinding: MyselfActivityMainBinding
+
+    override fun getTitleName(): CharSequence? {
+        return "随心所欲"
     }
+
+    override fun viewBinding() {
+        myselfBinding = MyselfActivityMainBinding.inflate(layoutInflater, super.rootView, true)
+    }
+
+    override fun initData() {
+        super.initData()
+        myselfBinding.tv1.text = "打分法"
+        titlebinding.tvTitleName.text = "fadf"
+    }
+
 }
