@@ -16,10 +16,16 @@ abstract class BaseTitleActivity : BaseActivity() {
 
     override fun setContentView(view: View?) {
         titleBinding = CommonActivityBaseBinding.inflate(layoutInflater)
-        super.setContentView(titleBinding.root)
         view?.let {
-            titleBinding.root.addView(it)
+            titleBinding.root.addView(
+                it,
+                ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            )
         }
+        super.setContentView(titleBinding.root)
 
     }
 
