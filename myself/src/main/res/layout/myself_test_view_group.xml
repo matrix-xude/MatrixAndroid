@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_inner"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_aqua"
-    android:id="@+id/ll_inner"
 
     tools:ignore="MissingDefaultResource">
 
     <FrameLayout
-        android:background="@color/common_darkmagenta"
         android:layout_width="200dp"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:background="@color/common_darkmagenta">
 
-        <TextView
+        <com.xxd.myself.view.ShapeTextView
             android:id="@+id/tv_inner_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="的沙发斯蒂芬大师风"
-            android:textColor="@color/common_black"
-            android:textSize="22sp" />
+            android:textColor="@color/common_blue"
+            android:background="@color/common_colorPrimary"
+            android:textSize="22sp"
+            app:shapeRadiusTopLeft="@dimen/dp_4"
+            app:_color="@color/common_cornsilk"
+            app:myself_radius="5dp"
+            app:myself_stroke_color="@color/common_red"
+            app:myself_stroke_width="1dp"
+            tools:textColor="@color/common_floralwhite" />
     </FrameLayout>
 
 </LinearLayout>

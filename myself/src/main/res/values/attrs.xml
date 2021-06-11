@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <!--    公用的shape属性-->
+    <attr name="shapeRadiusTopLeft" format="dimension" />
+    <attr name="shapeRadiusTopRight" format="dimension" />
+    <attr name="shapeRadiusBottomLeft" format="dimension" />
+    <attr name="shapeRadiusBottomRight" format="dimension" />
+    <attr name="shapeRadius" format="dimension" />
+    <attr name="shapeColor" format="color" />
+    <attr name="shapeStrokeWidth" format="dimension" />
+    <attr name="shapeStrokeColor" format="color" />
+
+    <declare-styleable name="ShapeTextView">
+        <attr name="shapeRadiusTopLeft" />
+        <attr name="shapeRadiusTopRight" />
+        <attr name="shapeRadiusBottomLeft" />
+        <attr name="shapeRadiusBottomRight" />
+        <attr name="shapeRadius" />
+        <attr name="shapeColor" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+    </declare-styleable>
+</resources>
