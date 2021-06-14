@@ -24,23 +24,19 @@ class MainActivity : BaseTitleActivity() {
         super.initData()
         titleBinding.tvTitleName.text = "测试"
 
+        myselfBinding.tv1.setOnClickListener {  }
+
+
+
 
 //        val view = layoutInflater.inflate(R.layout.myself_test_view_group, LinearLayout(this), false)
 //        myselfBinding.cl1.addView(view)
 
-        layoutInflater.inflate(R.layout.myself_test_view_group, myselfBinding.cl2, true)
-
-
-        val root = myselfBinding.root
-        val llOuter : MyselfTestViewGroupBinding = myselfBinding.llOuter
-        val root1 = llOuter.root
-        llOuter.tvInner1.text = "33333333333333"
-
-
-//        val tv1 = root.findViewById<TextView>(R.id.tv_inner_1)
-//        tv1.text = "11111111111111111"
-
-        val i  = 1
+//        layoutInflater.inflate(R.layout.myself_test_view_group, myselfBinding.cl2, true)
+//
+//
+//        val llOuter : MyselfTestViewGroupBinding = myselfBinding.llOuter
+//        llOuter.tvInner1.text = "33333333333333"
 
     }
 
