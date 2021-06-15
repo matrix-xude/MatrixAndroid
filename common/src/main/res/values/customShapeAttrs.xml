@@ -1,0 +1,102 @@
+<!--适配了3种常用的shape,select格式的背景图,起用此属性不再使用android自带的background-->
+<!--1：普通shape-->
+<!--2: 选中后有背景变化的shape-->
+<!--3: 选中后有背景变化的background-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+    <!--******************************1.普通的shape用到的属性*******************************-->
+    <!--圆角半径，优先使用具体上下左右的数据，没有则使用通用的radius-->
+    <attr name="CustomShapeRadius" format="dimension" />
+    <attr name="CustomShapeRadiusTopLeft" format="dimension" />
+    <attr name="CustomShapeRadiusTopRight" format="dimension" />
+    <attr name="CustomShapeRadiusBottomLeft" format="dimension" />
+    <attr name="CustomShapeRadiusBottomRight" format="dimension" />
+    <!--填充颜色-->
+    <attr name="CustomShapeFillColor" format="color" />
+    <!--边框的宽度-->
+    <attr name="CustomShapeStrokeWidth" format="dimension" />
+    <!--边框的颜色-->
+    <attr name="CustomShapeStrokeColor" format="color" />
+    <!--************************************************************************************-->
+
+    <!--************2.pressed状态会变另一个shape,普通状态还是用普通shape属性，pressed之后用以下属性**********-->
+    <!--判断条件！！~~~~~~是否起用press后变色的效果，true:会解析press后的shape数据，即以下数据-->
+    <attr name="CustomShapeCanPress" format="boolean" />
+    <!--按压后在原fillColor的基础上给一个透明度，[0,1]之间，如果没有设置ColorFillPressed，则使用此值-->
+    <attr name="CustomShapeTransparencyScale" format="float" />
+    <!--点击后的圆角半径-->
+    <attr name="CustomShapeRadiusPressed" format="dimension" />
+    <attr name="CustomShapeRadiusTopLeftPressed" format="dimension" />
+    <attr name="CustomShapeRadiusTopRightPressed" format="dimension" />
+    <attr name="CustomShapeRadiusBottomLeftPressed" format="dimension" />
+    <attr name="CustomShapeRadiusBottomRightPressed" format="dimension" />
+    <!--点击后的填充颜色-->
+    <attr name="CustomShapeFillColorPressed" format="color" />
+    <!--点击后的边框的宽度-->
+    <attr name="CustomShapeStrokeWidthPressed" format="dimension" />
+    <!--点击后的边框的颜色-->
+    <attr name="CustomShapeStrokeColorPressed" format="color" />
+    <!--************************************************************************************-->
+
+    <!--**********************3.使用2个Background作为press效果，不再解析上面的属性*******************-->
+    <!--判断条件！！是否起用背景图切换，true:不再解析上面的所有数据，直接使用下面2个图片的切换-->
+    <attr name="CustomShapeCanBackground" format="boolean" />
+    <!--常驻背景图-->
+    <attr name="CustomShapeBackgroundPressed" format="reference" />
+    <!--被选中后的背景图-->
+    <attr name="CustomShapeBackgroundNormal" format="reference" />
+    <!--************************************************************************************-->
+
+    <!--起用以上属性的TextView，必须与名字对应，才在xml写属性的时候有提示，所以拷贝一遍需要用到的属性-->
+
+    <declare-styleable name="CustomShapeTextView">
+        <attr name="CustomShapeRadius" />
+        <attr name="CustomShapeRadiusTopLeft" />
+        <attr name="CustomShapeRadiusTopRight" />
+        <attr name="CustomShapeRadiusBottomLeft" />
+        <attr name="CustomShapeRadiusBottomRight" />
+        <attr name="CustomShapeFillColor" />
+        <attr name="CustomShapeStrokeWidth" />
+        <attr name="CustomShapeStrokeColor" />
+
+        <attr name="CustomShapeCanPress" />
+        <attr name="CustomShapeTransparencyScale" />
+        <attr name="CustomShapeFillColorPressed" />
+        <attr name="CustomShapeStrokeColorPressed" />
+
+        <attr name="CustomShapeCanBackground" />
+        <attr name="CustomShapeBackgroundPressed" />
+        <attr name="CustomShapeBackgroundNormal" />
+    </declare-styleable>
+
+    <!--    简单4个属性的TextView-->
+    <declare-styleable name="CustomShapeSimpleTextView">
+        <attr name="CustomShapeRadius" />
+        <attr name="CustomShapeFillColor" />
+        <attr name="CustomShapeStrokeWidth" />
+        <attr name="CustomShapeStrokeColor" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomShapeConstraintLayout">
+        <attr name="CustomShapeRadius" />
+        <attr name="CustomShapeRadiusTopLeft" />
+        <attr name="CustomShapeRadiusTopRight" />
+        <attr name="CustomShapeRadiusBottomLeft" />
+        <attr name="CustomShapeRadiusBottomRight" />
+        <attr name="CustomShapeFillColor" />
+        <attr name="CustomShapeStrokeWidth" />
+        <attr name="CustomShapeStrokeColor" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomShapeLinearLayout">
+        <attr name="CustomShapeRadius" />
+        <attr name="CustomShapeRadiusTopLeft" />
+        <attr name="CustomShapeRadiusTopRight" />
+        <attr name="CustomShapeRadiusBottomLeft" />
+        <attr name="CustomShapeRadiusBottomRight" />
+        <attr name="CustomShapeFillColor" />
+        <attr name="CustomShapeStrokeWidth" />
+        <attr name="CustomShapeStrokeColor" />
+    </declare-styleable>
+
+</resources>

@@ -14,25 +14,45 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/common_slateblue" >
+        <com.xxd.common.tool.shape.CustomShapeTextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:text="的沙发斯蒂芬大师风"
+            android:textColor="@color/common_black"
+            android:layout_margin="50dp"
+            android:textSize="22sp"
+            app:CustomShapeCanPress="true"
+            app:CustomShapeFillColor="#ff0000"
+            app:CustomShapeRadius="30dp"
+            app:CustomShapeFillColorPressed="#00ffff"
+            app:CustomShapeRadiusPressed="10dp"
+            app:CustomShapeTransparencyScale="0.5"
+            app:CustomShapeCanBackground="false"
+            app:CustomShapeBackgroundNormal="@drawable/abc_vector_test"
+            app:CustomShapeBackgroundPressed="@drawable/brvah_sample_footer_loading"
+             />
 
-            <include
-                android:id="@+id/ll_outer"
-                layout="@layout/myself_test_view_group"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/cl_1"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:background="@color/common_slateblue" >-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/common_firebrick" />
+        <!--            <include-->
+        <!--                android:id="@+id/ll_outer"-->
+        <!--                layout="@layout/myself_test_view_group"/>-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/cl_2"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:background="@color/common_firebrick" />-->
 
 
     </LinearLayout>
