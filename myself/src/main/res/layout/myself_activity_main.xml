@@ -8,54 +8,56 @@
     android:background="@color/common_aquamarine"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/llCommon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="10dp"
+        android:orientation="horizontal" />
 
-        <com.xxd.common.tool.shape.CustomShapeTextView
-            android:id="@+id/tv_1"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:text="的沙发斯蒂芬大师风"
-            android:textColor="@color/common_black"
-            android:layout_margin="50dp"
-            android:textSize="22sp"
-            app:CustomShapeCanPress="true"
-            app:CustomShapeFillColor="#ff0000"
-            app:CustomShapeRadius="30dp"
-            app:CustomShapeFillColorPressed="#00ffff"
-            app:CustomShapeRadiusPressed="10dp"
-            app:CustomShapeTransparencyScale="0.5"
-            app:CustomShapeCanBackground="false"
-            app:CustomShapeBackgroundNormal="@drawable/abc_vector_test"
-            app:CustomShapeBackgroundPressed="@drawable/brvah_sample_footer_loading"
-             />
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_rosybrown"
+        android:maxWidth="220dp"
+        android:padding="20dp"
+        android:text="测aaaaaaaaa\aa试fffffffffffffffffffffffffffffffff1"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gl_1"
+         />
 
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="@color/common_crimson"
+        android:padding="20dp"
+        android:text="测2324234 4324试2"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--            android:id="@+id/cl_1"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:background="@color/common_slateblue" >-->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="tv_1,tv_2" />
 
-        <!--            <include-->
-        <!--                android:id="@+id/ll_outer"-->
-        <!--                layout="@layout/myself_test_view_group"/>-->
-
-        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--            android:id="@+id/cl_2"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:background="@color/common_firebrick" />-->
-
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_darkkhaki"
+        android:padding="20dp"
+        android:text="测试3"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_2"
+        app:layout_constraintStart_toStartOf="@id/barrier_1"
+        app:layout_constraintTop_toTopOf="@id/tv_1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

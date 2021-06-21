@@ -1,8 +1,12 @@
 package com.xxd.common.base
 
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.orhanobut.logger.Logger
 import com.xxd.common.databinding.CommonActivityBaseBinding
+import com.xxd.common.extend.binding
+import com.xxd.common.extend.inflateBinding
 
 /**
  *    author : xxd
@@ -12,11 +16,19 @@ import com.xxd.common.databinding.CommonActivityBaseBinding
  */
 abstract class BaseTitleActivity : BaseActivity() {
 
-    protected lateinit var titleBinding: CommonActivityBaseBinding
+    protected val titleBinding: CommonActivityBaseBinding by binding(false)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun setContentView(view: View?) {
-        titleBinding = CommonActivityBaseBinding.inflate(layoutInflater)
+
+
         view?.let {
+            val parent = it.parent
+            if (parent is ViewGroup)
+                parent.removeView(view)
             titleBinding.root.addView(
                 it,
                 ViewGroup.LayoutParams(
@@ -28,6 +40,7 @@ abstract class BaseTitleActivity : BaseActivity() {
         super.setContentView(titleBinding.root)
 
     }
+
 
     private fun init() {
 
