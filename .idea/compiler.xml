@@ -4,12 +4,11 @@
     <bytecodeTargetLevel target="1.8">
       <module name="apt-annotation" target="1.8" />
       <module name="apt-processor" target="1.8" />
-      <module name="MatrixAndroid.app" target="11" />
-      <module name="MatrixAndroid.common" target="11" />
-      <module name="MatrixAndroid.demo" target="14" />
-      <module name="MatrixAndroid.myself" target="11" />
-      <module name="MatrixAndroid.thread" target="11" />
-      <module name="MatrixAndroid.view" target="11" />
+      <module name="MatrixAndroid.app" target="16" />
+      <module name="MatrixAndroid.common" target="16" />
+      <module name="MatrixAndroid.myself" target="16" />
+      <module name="MatrixAndroid.thread" target="16" />
+      <module name="MatrixAndroid.view" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
