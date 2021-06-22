@@ -42,7 +42,7 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
     protected lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewBinding
 
-    override fun getContentView(): View {
+    fun getContentView(): View {
         simpleRecyclerBinding =
             CommonSimpleRecyclerViewBinding.inflate(layoutInflater, titleBinding.root)
         return simpleRecyclerBinding.root

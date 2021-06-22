@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.xxd.common.R
+import com.xxd.common.extend.binding
 import com.xxd.common.init.ActivityRegisterImpl
 import com.xxd.common.init.IActivityRegister
 
@@ -17,21 +18,14 @@ import com.xxd.common.init.IActivityRegister
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected lateinit var rootView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getContentView())
-        rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
         initRegister()
         initView()
         initData()
-    }
 
-    /**
-     * 获取ContentView，适配的是ViewBinding
-     */
-    abstract fun getContentView(): View
+    }
 
     private fun initRegister() {
         getRegister()?.register(this)
