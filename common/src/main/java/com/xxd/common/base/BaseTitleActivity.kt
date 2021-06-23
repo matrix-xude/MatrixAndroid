@@ -3,10 +3,8 @@ package com.xxd.common.base
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import com.orhanobut.logger.Logger
 import com.xxd.common.databinding.CommonActivityBaseBinding
 import com.xxd.common.extend.binding
-import com.xxd.common.extend.inflateBinding
 
 /**
  *    author : xxd
@@ -24,7 +22,6 @@ abstract class BaseTitleActivity : BaseActivity() {
 
     override fun setContentView(view: View?) {
 
-
         view?.let {
             val parent = it.parent
             if (parent is ViewGroup)
@@ -38,7 +35,6 @@ abstract class BaseTitleActivity : BaseActivity() {
             )
         }
         super.setContentView(titleBinding.root)
-
     }
 
 

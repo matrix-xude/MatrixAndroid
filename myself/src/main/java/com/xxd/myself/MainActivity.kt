@@ -1,9 +1,7 @@
 package com.xxd.myself
 
 import android.os.Bundle
-import android.view.View
 import com.orhanobut.logger.Logger
-import com.xxd.common.base.BaseActivity
 import com.xxd.common.base.BaseTitleActivity
 import com.xxd.common.extend.binding
 import com.xxd.myself.databinding.MyselfActivityMainBinding

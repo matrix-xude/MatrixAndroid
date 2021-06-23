@@ -30,7 +30,7 @@ ext {
             espressoCoreVersion                 : '3.3.0', // espresso测试，暂时没了解使用方式
 
             // kotlin相关
-            kotlinStdlibJdkVersion              : '1.4.10', // kotlin基础包
+            kotlinStdlibJdkVersion              : '1.4.32', // kotlin基础包
             coreKtxVersion                      : "1.3.1", // kotlin-android扩展，简便写法
             kotlinxCoroutinesCoreVersion        : '1.3.9-native-mt', // 携程核心包
 
