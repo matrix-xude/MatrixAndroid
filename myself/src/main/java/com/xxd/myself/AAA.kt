@@ -22,12 +22,20 @@ fun main() {
     println(b.str)
     b.str = "111"
 
+    val arr1 = Array(10) { a ->
+        println(a)
+        "ac$a"
+    }
+    arr1.forEach {
+        println(it)
+    }
+
     val str by lazy {
         ""
     }
 }
 
-class B{
-    var str : String by AAA()
+class B {
+    var str: String by AAA()
 
 }
