@@ -5,10 +5,11 @@ import com.orhanobut.logger.Logger
 import com.xxd.common.base.BaseTitleActivity
 import com.xxd.common.extend.binding
 import com.xxd.myself.databinding.MyselfActivityMainBinding
+import com.xxd.myself.databinding.MyselfActivityMainLlBinding
 
 class MainActivity : BaseTitleActivity() {
 
-    private val myselfBinding: MyselfActivityMainBinding by binding(true)
+    private val myselfBinding: MyselfActivityMainLlBinding by binding(true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

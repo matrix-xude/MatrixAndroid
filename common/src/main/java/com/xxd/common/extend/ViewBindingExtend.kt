@@ -44,7 +44,8 @@ inline fun <reified T : ViewBinding> inflateBinding(layoutInflater: LayoutInflat
 
 //inline fun <reified T : ViewBinding> Fragment.binding()
 
-class FragmentBindingDelegate<T : ViewBinding>(private val clazz :Class<T>) : ReadOnlyProperty<Fragment,T>{
+class FragmentBindingDelegate<T : ViewBinding>(private val clazz: Class<T>) :
+    ReadOnlyProperty<Fragment, T> {
     override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
         TODO("Not yet implemented")
     }
