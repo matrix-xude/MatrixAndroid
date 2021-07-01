@@ -22,7 +22,7 @@ import kotlin.reflect.KProperty
 
 /**
  * Activity的扩展函数,ViewBinding调用
- * @param setContextView 是否调用Activity的 setContextView()方法，正常都需要调用，某些base类中有不调用的需求
+ * @param setContextView 是否调用Activity的 setContextView()方法
  */
 inline fun <reified T : ViewBinding> Activity.binding(setContextView: Boolean = true) = lazy {
     inflateBinding<T>(layoutInflater).apply { if (setContextView) setContentView(root) }

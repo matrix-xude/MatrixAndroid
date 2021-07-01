@@ -1,6 +1,5 @@
 package com.xxd.common.base
 
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.xxd.common.databinding.CommonActivityBaseBinding
@@ -15,10 +14,6 @@ import com.xxd.common.extend.binding
 abstract class BaseTitleActivity : BaseActivity() {
 
     protected val titleBinding: CommonActivityBaseBinding by binding(false)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun setContentView(view: View?) {
 
