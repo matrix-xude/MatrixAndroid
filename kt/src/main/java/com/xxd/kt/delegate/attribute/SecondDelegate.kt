@@ -10,7 +10,7 @@ import kotlin.reflect.KProperty
 class SecondDelegate {
 
     private var getValueAmount = 0
-    private var setValueAmount = 0
+    var setValueAmount = 0
 
     // operator 关键字就可以告诉编译器这是覆写了某个操作，不再需要继承接口
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
@@ -23,4 +23,10 @@ class SecondDelegate {
         val str = "第${++setValueAmount}次赋值->$value"
         println("对象：${thisRef?.javaClass?.simpleName} 中的 ${property.name} 赋值一次：${str}")
     }
+}
+
+// 通过扩展函数实现也可以，优先使用内部函数，没有内部函数再使用此函数
+operator fun  SecondDelegate.setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+    val str = "扩展函数${setValueAmount}"
+    println("对象：${thisRef?.javaClass?.simpleName} 中的 ${property.name} 赋值一次：${str}")
 }
