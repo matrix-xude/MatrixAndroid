@@ -71,6 +71,7 @@ abstract class BaseFragment : Fragment(), IFragmentInitData,
 
     /**
      * 监听fragment生命周期的观察者
+     * @OnLifecycleEvent 标记的每个方法都是粘性的，可以接收到已经发生过的回调
      */
     class FragmentLifecycleObserver : LifecycleObserver {
 
@@ -106,7 +107,7 @@ abstract class BaseFragment : Fragment(), IFragmentInitData,
 
         @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
         fun onAny() {
-            Logger.d("FragmentLifecycleObserver.onAny")
+//            Logger.d("FragmentLifecycleObserver.onAny")
         }
     }
 }

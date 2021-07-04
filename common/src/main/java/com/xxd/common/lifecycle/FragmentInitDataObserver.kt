@@ -3,6 +3,7 @@ package com.xxd.common.lifecycle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.orhanobut.logger.Logger
 import com.xxd.common.init.IFragmentInitData
 
 /**
@@ -21,14 +22,17 @@ class FragmentInitDataObserver(
     private var isLoadedData = false
 
     override fun initDataImmediately() {
+        Logger.d("BaseFragment的 initDataImmediately 被触发")
         fragmentInit?.initDataImmediately()
     }
 
     override fun initDataLazy() {
+        Logger.d("BaseFragment的 initDataLazy 被触发")
         fragmentInit?.initDataLazy()
     }
 
     override fun initDataEveryTime() {
+        Logger.d("BaseFragment的 initDataEveryTime 被触发")
         fragmentInit?.initDataEveryTime()
     }
 

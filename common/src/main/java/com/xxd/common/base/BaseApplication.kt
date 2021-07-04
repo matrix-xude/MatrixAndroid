@@ -22,7 +22,7 @@ class BaseApplication : Application() {
     companion object {
         lateinit var application: BaseApplication
 
-        const val LOG_TAG = "xxd"
+        const val LOG_TAG = "matrix"
     }
 
     override fun attachBaseContext(base: Context?) {
