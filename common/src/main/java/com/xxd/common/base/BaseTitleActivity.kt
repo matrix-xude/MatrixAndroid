@@ -15,29 +15,38 @@ import com.xxd.common.extend.binding
 abstract class BaseTitleActivity : BaseActivity() {
 
     // 如果这里传true,就死循环了
-    protected val titleBinding: CommonActivityBaseBinding by binding(false)
-    
+//    protected val titleBinding: CommonActivityBaseBinding by binding(false)
+    protected lateinit var titleBinding: CommonActivityBaseBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         titleBinding.root
         super.setContentView(titleBinding.root)
     }
 
-    override fun setContentView(view: View?) {
-
-        view?.let {
-            val parent = it.parent
-            if (parent is ViewGroup)
-                parent.removeView(view)
-            titleBinding.root.addView(
-                it,
-                ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                )
-            )
-        }
+    final override fun getContentViewBase(): View {
+        titleBinding = CommonActivityBaseBinding.inflate(layoutInflater)
+        getContentViewBaseTitle(titleBinding.root)
+        return titleBinding.root
     }
+
+    abstract fun getContentViewBaseTitle(rootView : ViewGroup)
+
+//    override fun setContentView(view: View?) {
+//
+//        view?.let {
+//            val parent = it.parent
+//            if (parent is ViewGroup)
+//                parent.removeView(view)
+//            titleBinding.root.addView(
+//                it,
+//                ViewGroup.LayoutParams(
+//                    ViewGroup.LayoutParams.MATCH_PARENT,
+//                    ViewGroup.LayoutParams.MATCH_PARENT
+//                )
+//            )
+//        }
+//    }
 
     override fun initView() {
         super.initView()

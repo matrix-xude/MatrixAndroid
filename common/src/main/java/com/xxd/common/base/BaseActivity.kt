@@ -1,6 +1,7 @@
 package com.xxd.common.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.xxd.common.init.ActivityRegisterImpl
 import com.xxd.common.init.IActivityRegister
@@ -16,11 +17,14 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(getContentViewBase())
         initRegister()
         initView()
         initData()
 
     }
+
+    abstract fun getContentViewBase(): View
 
     private fun initRegister() {
         getRegister()?.register(this)
