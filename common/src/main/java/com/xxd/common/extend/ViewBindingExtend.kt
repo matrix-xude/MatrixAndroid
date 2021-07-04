@@ -34,6 +34,7 @@ import kotlin.reflect.KProperty
  * @param setContextView 是否调用Activity的 setContextView()方法
  */
 inline fun <reified T : ViewBinding> Activity.binding(setContextView: Boolean = true) = lazy {
+    Logger.d("Activity.binding 被调用")
     inflateBinding<T>(layoutInflater).apply { if (setContextView) setContentView(root) }
 }
 

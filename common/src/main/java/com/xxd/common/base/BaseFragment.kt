@@ -19,27 +19,14 @@ import com.xxd.common.lifecycle.FragmentVisibleObserver
  *    date   : 2020/8/13
  *    desc   :
  */
-abstract class BaseFragment : Fragment(), IFragmentInitData,
+abstract class BaseFragment : Fragment(),
+    IFragmentInitData,
     IIsVisible {
-
-    /**
-     * 根view,可用来获取一切,需要在onCreateView执行完之后使用
-     */
-    lateinit var rootView: View
 
     /**
      * 真实判断是否可见的Observer
      */
     private lateinit var visibleObserver: FragmentVisibleObserver
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        rootView = inflater.inflate(getLayoutId(), container, false)
-        return rootView
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,19 +37,20 @@ abstract class BaseFragment : Fragment(), IFragmentInitData,
         initView()
     }
 
-    abstract fun getLayoutId(): Int
-
     open fun initView() {
 
     }
 
     override fun initDataImmediately() {
+        Logger.d("initDataImmediately 被调用")
     }
 
     override fun initDataLazy() {
+        Logger.d("initDataLazy 被调用")
     }
 
     override fun initDataEveryTime() {
+        Logger.d("initDataEveryTime 被调用")
     }
 
     override fun isVisibilityToUser(): Boolean {

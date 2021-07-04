@@ -18,10 +18,6 @@ class BindingFragment : BaseFragment() {
 
     var binding by binding<MyselfFragmentTestBinding>()
 
-    override fun getLayoutId(): Int {
-        TODO("Not yet implemented")
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

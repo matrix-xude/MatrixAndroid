@@ -1,5 +1,6 @@
 package com.xxd.common.base
 
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.xxd.common.databinding.CommonActivityBaseBinding
@@ -13,7 +14,14 @@ import com.xxd.common.extend.binding
  */
 abstract class BaseTitleActivity : BaseActivity() {
 
+    // 如果这里传true,就死循环了
     protected val titleBinding: CommonActivityBaseBinding by binding(false)
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        titleBinding.root
+        super.setContentView(titleBinding.root)
+    }
 
     override fun setContentView(view: View?) {
 
@@ -29,11 +37,10 @@ abstract class BaseTitleActivity : BaseActivity() {
                 )
             )
         }
-        super.setContentView(titleBinding.root)
     }
 
-
-    private fun init() {
+    override fun initView() {
+        super.initView()
 
         // 返回按钮
         titleBinding.ivTitleBack.visibility = if (showBackIcon()) View.VISIBLE else View.GONE
