@@ -1,27 +1,22 @@
-package com.xxd.common.base
+package com.xxd.common.base.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.orhanobut.logger.Logger
-import com.xxd.common.init.IFragmentInitData
-import com.xxd.common.init.IIsVisible
-import com.xxd.common.lifecycle.FragmentInitDataObserver
-import com.xxd.common.lifecycle.FragmentVisibleObserver
 
 /**
  *    author : xxd
  *    date   : 2020/8/13
- *    desc   :
+ *    desc   : BaseFragment，不做任何业务逻辑,只确定Fragment的结构（可移植到任意app）
+ *    1. 提供一个initView（）的空实现,可以覆写
+ *    2. 提供3个initData()方法 1.立即加载；2.懒加载；3.每次界面可见都加载
+ *    3. 提供一个当前是否可见（处于onStart状态）的方法
  */
-abstract class BaseFragment : Fragment(),
-    IFragmentInitData,
-    IIsVisible {
+abstract class BaseFragment : Fragment(), IFragmentInitData, IFragmentVisible {
 
     /**
      * 真实判断是否可见的Observer
@@ -30,28 +25,20 @@ abstract class BaseFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        lifecycle.addObserver(FragmentLifecycleObserver())
-        lifecycle.addObserver(FragmentInitDataObserver(this))
         visibleObserver = FragmentVisibleObserver()
-        lifecycle.addObserver(visibleObserver)
+        viewLifecycleOwner.lifecycle.addObserver(visibleObserver)
         initView()
+//        lifecycle.addObserver(FragmentLifecycleObserver())
+        viewLifecycleOwner.lifecycle.addObserver(FragmentInitDataObserver(this))
     }
 
-    open fun initView() {
+    open fun initView() {}
 
-    }
+    override fun initDataImmediately() {}
 
-    override fun initDataImmediately() {
-        Logger.d("initDataImmediately 被调用")
-    }
+    override fun initDataLazy() {}
 
-    override fun initDataLazy() {
-        Logger.d("initDataLazy 被调用")
-    }
-
-    override fun initDataEveryTime() {
-        Logger.d("initDataEveryTime 被调用")
-    }
+    override fun initDataEveryTime() {}
 
     override fun isVisibilityToUser(): Boolean {
         return visibleObserver.isVisibilityToUser()
@@ -95,7 +82,7 @@ abstract class BaseFragment : Fragment(),
 
         @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
         fun onAny() {
-//            Logger.d("FragmentLifecycleObserver.onAny")
+            Logger.d("FragmentLifecycleObserver.onAny")
         }
     }
 }

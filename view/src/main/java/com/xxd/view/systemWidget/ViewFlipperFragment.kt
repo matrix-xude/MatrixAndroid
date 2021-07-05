@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import android.widget.ViewFlipper
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.view.R
 import kotlinx.android.synthetic.main.view_fragment_flipper.*
 

@@ -1,8 +1,7 @@
 package com.xxd.myself
 
 import android.view.ViewGroup
-import com.xxd.common.base.BaseTitleActivity
-import com.xxd.common.extend.binding
+import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.myself.databinding.MyselfActivityMainBinding
 
 class MainActivity : BaseTitleActivity() {
@@ -13,7 +12,7 @@ class MainActivity : BaseTitleActivity() {
     private val fragmentArray = listOf(BindingFragment(), BindingFragment2())
     private var currentFragmentIndex = 0
 
-    override fun getContentViewBaseTitle(rootView: ViewGroup) {
+    override fun provideBaseTitleRootView(rootView: ViewGroup) {
         myselfBinding = MyselfActivityMainBinding.inflate(layoutInflater,rootView,true)
     }
 

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.orhanobut.logger.Logger
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.extend.binding
 import com.xxd.myself.databinding.MyselfFragmentTestBinding
 

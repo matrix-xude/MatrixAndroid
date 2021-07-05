@@ -1,4 +1,4 @@
-package com.xxd.common.init
+package com.xxd.common.base.fragment
 
 /**
  *    author : xxd

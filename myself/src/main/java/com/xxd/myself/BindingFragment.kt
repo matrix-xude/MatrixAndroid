@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.orhanobut.logger.Logger
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.extend.binding
 import com.xxd.myself.databinding.MyselfFragmentTestBinding
 
@@ -26,6 +26,11 @@ class BindingFragment : BaseFragment() {
         binding = MyselfFragmentTestBinding.inflate(inflater, container, false)
         Logger.d("--------------onCreateView,after binding inflate-------------------------")
         return binding.root
+    }
+
+    override fun initView() {
+        super.initView()
+        Logger.d("我是initView()")
     }
 
     override fun initDataImmediately() {

@@ -1,6 +1,6 @@
 package com.xxd.thread.rxjava
 
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.R
 import io.reactivex.rxjava3.core.*

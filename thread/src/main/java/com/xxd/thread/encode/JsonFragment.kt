@@ -1,6 +1,5 @@
 package com.xxd.thread.encode
 
-import android.text.TextUtils
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
@@ -8,8 +7,7 @@ import com.google.gson.annotations.*
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
-import com.xxd.common.base.BaseFragment
-import com.xxd.thread.R
+import com.xxd.common.base.fragment.BaseFragment
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 

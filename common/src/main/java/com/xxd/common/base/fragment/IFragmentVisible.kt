@@ -1,11 +1,11 @@
-package com.xxd.common.init
+package com.xxd.common.base.fragment
 
 /**
  *    author : xxd
  *    date   : 2020/8/21
  *    desc   :
  */
-interface IIsVisible {
+interface IFragmentVisible {
 
     /**
      * 当前界面是否可见

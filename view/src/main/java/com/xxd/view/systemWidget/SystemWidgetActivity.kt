@@ -3,7 +3,7 @@ package com.xxd.view.systemWidget
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.xxd.common.base.BaseActivity
+import com.xxd.common.base.activity.BaseActivity
 import com.xxd.common.tool.CommonItemDecoration
 import com.xxd.view.R
 import kotlinx.android.synthetic.main.view_activity_system_widget.*

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.R
 
 /**

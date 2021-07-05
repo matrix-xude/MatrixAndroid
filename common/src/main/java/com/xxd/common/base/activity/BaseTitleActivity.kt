@@ -1,10 +1,9 @@
-package com.xxd.common.base
+package com.xxd.common.base.activity
 
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.xxd.common.base.activity.BaseActivity
 import com.xxd.common.databinding.CommonActivityBaseBinding
-import com.xxd.common.extend.binding
 
 /**
  *    author : xxd
@@ -14,17 +13,21 @@ import com.xxd.common.extend.binding
  */
 abstract class BaseTitleActivity : BaseActivity() {
 
-    // 如果这里传true,就死循环了
-//    protected val titleBinding: CommonActivityBaseBinding by binding(false)
     protected lateinit var titleBinding: CommonActivityBaseBinding
 
+    /**
+     * final 终结父类抽象获取contentView方法
+     */
     final override fun getContentViewBase(): View {
         titleBinding = CommonActivityBaseBinding.inflate(layoutInflater)
-        getContentViewBaseTitle(titleBinding.root)
+        provideBaseTitleRootView(titleBinding.root)
         return titleBinding.root
     }
 
-    abstract fun getContentViewBaseTitle(rootView : ViewGroup)
+    /**
+     * 对子类提供当前viewBinding的root当做父布局
+     */
+    abstract fun provideBaseTitleRootView(rootView : ViewGroup)
 
     override fun initView() {
         super.initView()

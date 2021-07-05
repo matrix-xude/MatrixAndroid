@@ -1,10 +1,9 @@
-package com.xxd.common.lifecycle
+package com.xxd.common.base.fragment
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.orhanobut.logger.Logger
-import com.xxd.common.init.IFragmentInitData
+import com.xxd.common.base.fragment.IFragmentInitData
 
 /**
  *    author : xxd
@@ -12,8 +11,8 @@ import com.xxd.common.init.IFragmentInitData
  *    desc   : 此处真实调用数据加载，BaseFragment只是代理类
  *    用到了接口委托 IFragmentInitData by fragmentInit
  */
-class FragmentInitDataObserver(private val fragmentInit: IFragmentInitData) : LifecycleObserver,
-    IFragmentInitData by fragmentInit {
+class FragmentInitDataObserver(private val impl: IFragmentInitData) : LifecycleObserver,
+    IFragmentInitData by impl {
 
     /**
      * 是否已经加载过数据，判断懒加载使用

@@ -1,14 +1,11 @@
 package com.xxd.common.fast
 
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.xxd.common.R
-import com.xxd.common.base.BaseTitleActivity
+import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.databinding.CommonSimpleRecyclerViewBinding
 import com.xxd.common.tool.CommonItemDecoration
 

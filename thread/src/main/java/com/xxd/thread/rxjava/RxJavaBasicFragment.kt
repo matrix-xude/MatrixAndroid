@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.R
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers

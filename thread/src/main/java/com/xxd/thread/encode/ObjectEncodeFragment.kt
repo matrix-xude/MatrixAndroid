@@ -1,11 +1,10 @@
 package com.xxd.thread.encode
 
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.R
 import kotlinx.android.synthetic.main.thread_fragment_encode_object.*
 import java.io.*
-import kotlin.jvm.Throws
 
 /**
  * author : xxd

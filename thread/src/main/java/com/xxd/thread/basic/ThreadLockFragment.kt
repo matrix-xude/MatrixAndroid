@@ -1,14 +1,12 @@
 package com.xxd.thread.basic
 
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.R
 import kotlinx.android.synthetic.main.thread_fragment_lock.*
-import okhttp3.internal.notifyAll
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.Condition
-import java.util.concurrent.locks.ReadWriteLock
 import java.util.concurrent.locks.ReentrantLock
 import java.util.concurrent.locks.ReentrantReadWriteLock
 

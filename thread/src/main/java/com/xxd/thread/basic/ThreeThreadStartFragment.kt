@@ -1,7 +1,7 @@
 package com.xxd.thread.basic
 
 import android.annotation.SuppressLint
-import com.xxd.common.base.BaseFragment
+import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
 import com.xxd.thread.R
 import kotlinx.android.synthetic.main.thread_fragment_three_start.*

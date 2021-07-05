@@ -1,6 +1,6 @@
 package com.xxd.view.recycler
 
-import com.xxd.common.base.BaseActivity
+import com.xxd.common.base.activity.BaseActivity
 import com.xxd.view.R
 
 /**
