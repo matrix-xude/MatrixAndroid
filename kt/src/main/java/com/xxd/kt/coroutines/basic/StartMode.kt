@@ -1,0 +1,79 @@
+package com.xxd.kt.coroutines.basic
+
+import kotlinx.coroutines.*
+import kotlin.concurrent.thread
+
+/**
+ *    author : xxd
+ *    date   : 2021/7/6
+ *    desc   : 携程启动方式
+ */
+
+suspend fun main() {
+    start6()
+}
+
+// java启动线程的方式
+fun start1() {
+    val thread = object : Thread() {
+        override fun run() {
+            println("线程启动了")
+        }
+    }
+    // 这句话比较多此一举，因为1.1有个stop，后来废弃了
+    thread.start()
+}
+
+// kotlin对线程启动的优化
+fun start2() {
+    val thread = thread {
+        println("优化线程启动，不用调用start()方法")
+    }
+}
+
+// 携程默认直接启动,DEFAULT模式
+fun start3() {
+    GlobalScope.launch {
+        println("直接启动了携程！")
+    }
+    Thread.sleep(100)
+}
+
+// 携程不直接启动，LAZY模式
+suspend fun start4() {
+    println(1)
+    val job = GlobalScope.launch(start = CoroutineStart.LAZY) {
+        println("携程没有直接启动")
+    }
+    // 隐式启动携程
+    job.join()
+    println(2)
+    Thread.sleep(100)
+}
+
+// 携程取消,ATOMIC模式
+suspend fun start5(){
+    printMessage(1)
+    val job = GlobalScope.launch(start = CoroutineStart.ATOMIC) {
+        printMessage(2)
+        delay(100)
+        printMessage(3)
+    }
+    job.cancel()
+    printMessage(4)
+    Thread.sleep(100)
+}
+
+// UNDISPATCHED，不是使用调度器，直接执行，直到第一个挂起，才使用调度器
+suspend fun start6(){
+    printMessage(1)
+    val job = GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+        printMessage(2)
+        delay(10)
+        printMessage(3)
+    }
+    printMessage(4)
+    job.join()
+    // join之后，打印5的携程不再是main,待理解
+    printMessage(5)
+}

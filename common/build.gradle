@@ -59,6 +59,7 @@ dependencies {
 
     // kotlin相关
     api rootProject.ext.dependencies.kotlin_stdlib_jdk // 基础
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2' // android Main等
     api rootProject.ext.dependencies.core_ktx // Android简便扩展库
     api rootProject.ext.dependencies.kotlinx_coroutines_core // 携程
 

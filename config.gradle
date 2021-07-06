@@ -31,7 +31,7 @@ ext {
 
             // kotlin相关
             kotlinStdlibJdkVersion              : '1.4.32', // kotlin基础包
-            coreKtxVersion                      : "1.3.1", // kotlin-android扩展，简便写法
+            coreKtxVersion                      : "1.3.1", // ktx扩展，简便写法
             kotlinxCoroutinesCoreVersion        : '1.3.9-native-mt', // 携程核心包
 
             // 工具
@@ -40,7 +40,7 @@ ext {
             arouterApiVersion                   : "1.5.0", // 阿里路由基础包
             arouterCompilerVersion              : "1.2.2", // annotation 阿里路由
             loggerVersion                       : "2.2.0", // 支持各种的logger类
-            gsonVersion                         : "2.8.6", // gson
+            gsonVersion                         : "2.8.7", // gson
             immersionbarVersion                 : "3.0.0", // 沉浸式bar
 
             rxjavaVersion                       : '3.0.6',// RxJava3
