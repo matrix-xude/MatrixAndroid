@@ -1,6 +1,7 @@
 package com.xxd.common.fast
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -33,6 +34,11 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
         }
     }
 
+    override fun provideBaseTitleRootView(rootView: ViewGroup) {
+        switchFragmentBinding =
+            CommonActivitySwitchFragmentBinding.inflate(layoutInflater, rootView, true)
+    }
+
     /**
      * 获取数据
      */
@@ -61,7 +67,8 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
 
     private fun initRecyclerView() {
 
-        switchFragmentBinding.rvTop.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        switchFragmentBinding.rvTop.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         switchFragmentBinding.rvTop.addItemDecoration(CommonItemDecoration().apply {
             boundary = 20
             interval = 15

@@ -1,6 +1,7 @@
 package com.xxd.common.fast
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -39,10 +40,8 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
     protected lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewBinding
 
-    fun getContentView(): View {
-        simpleRecyclerBinding =
-            CommonSimpleRecyclerViewBinding.inflate(layoutInflater, titleBinding.root)
-        return simpleRecyclerBinding.root
+    override fun provideBaseTitleRootView(rootView: ViewGroup) {
+        CommonSimpleRecyclerViewBinding.inflate(layoutInflater, rootView)
     }
 
     override fun initView() {
