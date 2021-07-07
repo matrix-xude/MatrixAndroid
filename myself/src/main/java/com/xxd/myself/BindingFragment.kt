@@ -16,22 +16,22 @@ import com.xxd.myself.databinding.MyselfFragmentTestBinding
  */
 class BindingFragment : BaseFragment() {
 
-    var binding by binding<MyselfFragmentTestBinding>()
+    private var binding by binding<MyselfFragmentTestBinding>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = MyselfFragmentTestBinding.inflate(inflater, container, false)
-        Logger.d("--------------onCreateView,after binding inflate-------------------------")
         return binding.root
     }
 
     override fun initView() {
         super.initView()
-        Logger.d("我是initView()")
+        binding.in3.tv3.paint.isFakeBoldText = true
     }
+
 
     override fun initDataImmediately() {
         super.initDataImmediately()

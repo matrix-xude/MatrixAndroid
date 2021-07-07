@@ -24,7 +24,22 @@
         android:padding="20dp"
         android:text="切换Fragment"
         android:textSize="22sp"
+        android:textColor="@color/common_black"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gl_1" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_azure"
+        android:maxWidth="220dp"
+        android:padding="20dp"
+        android:text="文字粗细"
+        android:textColor="@color/common_black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tv_1"
         app:layout_constraintTop_toTopOf="@id/gl_1" />
 
     <FrameLayout

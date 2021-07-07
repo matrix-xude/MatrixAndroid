@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 class MainActivity : BaseTitleActivity() {
 
-//    private val myselfBinding: MyselfActivityMainBinding by binding(true)
     private lateinit var myselfBinding: MyselfActivityMainBinding
 
     private val fragmentArray = listOf(BindingFragment(), BindingFragment2())
@@ -24,6 +23,11 @@ class MainActivity : BaseTitleActivity() {
         return "随心所欲"
     }
 
+    override fun initView() {
+        super.initView()
+        myselfBinding.tv1.paint.isFakeBoldText = true
+        myselfBinding.tv2.paint.isFakeBoldText = true
+    }
 
 
     override fun initData() {
@@ -41,7 +45,7 @@ class MainActivity : BaseTitleActivity() {
                 .commit()
         }
 
-        coroutines()
+//        coroutines()
     }
 
     private fun coroutines(){
