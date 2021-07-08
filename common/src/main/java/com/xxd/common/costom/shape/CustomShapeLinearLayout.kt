@@ -1,17 +1,15 @@
-package com.xxd.common.tool.shape
+package com.xxd.common.costom.shape
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
-
+import android.widget.LinearLayout
 
 /**
  * author : xxd
- * date   : 2021/6/13
- * desc   : 只带4个基本属性的shape，方便提示使用
+ * date   : 2021/6/14
+ * desc   :
  */
-class CustomShapeSimpleTextView : AppCompatTextView {
-
+class CustomShapeLinearLayout : LinearLayout {
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(

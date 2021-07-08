@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.R
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.databinding.CommonActivitySwitchFragmentBinding
-import com.xxd.common.tool.CommonItemDecoration
+import com.xxd.common.costom.decoration.CommonItemDecoration
 
 /**
  *    author : xxd

@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.base.activity.BaseActivity
-import com.xxd.common.tool.CommonItemDecoration
+import com.xxd.common.costom.decoration.CommonItemDecoration
 import com.xxd.view.recycler.RecyclerActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
 import kotlinx.android.synthetic.main.view_activity_main.*

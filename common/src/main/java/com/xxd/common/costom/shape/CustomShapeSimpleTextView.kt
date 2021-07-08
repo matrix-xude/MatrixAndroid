@@ -1,4 +1,4 @@
-package com.xxd.common.tool.shape
+package com.xxd.common.costom.shape
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,9 +8,9 @@ import androidx.appcompat.widget.AppCompatTextView
 /**
  * author : xxd
  * date   : 2021/6/13
- * desc   : 带全部自定义属性的TextView
+ * desc   : 只带4个基本属性的shape，方便提示使用
  */
-class CustomShapeTextView : AppCompatTextView {
+class CustomShapeSimpleTextView : AppCompatTextView {
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)

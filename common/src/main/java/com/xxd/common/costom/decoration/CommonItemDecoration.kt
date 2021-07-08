@@ -1,5 +1,6 @@
-package com.xxd.common.tool
+package com.xxd.common.costom.decoration
 
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.View
@@ -18,7 +19,6 @@ import com.orhanobut.logger.Logger
 class CommonItemDecoration : RecyclerView.ItemDecoration() {
 
     companion object {
-
         const val NONE = 0 // 没有确定方向，此状态下不绘制
         const val VERTICAL = 1 // 垂直方向
         const val HORIZONTAL = 2 // 水平方向

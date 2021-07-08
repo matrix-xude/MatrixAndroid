@@ -1,7 +1,7 @@
-package com.xxd.common.tool.shape
+package com.xxd.common.costom.shape
 
-import com.xxd.common.tool.shape.factory.DrawableFactory
-import com.xxd.common.tool.shape.factory.model.JudgeDrawableFactory
+import com.xxd.common.costom.shape.factory.DrawableFactory
+import com.xxd.common.costom.shape.factory.model.JudgeDrawableFactory
 
 /**
  * author : xxd
