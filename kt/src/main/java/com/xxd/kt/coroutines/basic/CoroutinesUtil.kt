@@ -11,7 +11,7 @@ var lastPrintTime = 0L
 /**
  * 打印携程信息专用
  */
-fun printMessage(message: Any , printInterval: Boolean = true) {
+fun log(message: Any, printInterval: Boolean = false) {
     println(
         "(当前运行线程：${Thread.currentThread().name}; ${
             System.currentTimeMillis().apply {
