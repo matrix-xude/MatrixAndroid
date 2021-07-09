@@ -53,27 +53,27 @@ suspend fun start4() {
 
 // 携程取消,ATOMIC模式
 suspend fun start5(){
-    printMessage(1)
+    log(1)
     val job = GlobalScope.launch(start = CoroutineStart.ATOMIC) {
-        printMessage(2)
+        log(2)
         delay(100)
-        printMessage(3)
+        log(3)
     }
     job.cancel()
-    printMessage(4)
+    log(4)
     Thread.sleep(100)
 }
 
 // UNDISPATCHED，不是使用调度器，直接执行，直到第一个挂起，才使用调度器
 suspend fun start6(){
-    printMessage(1)
+    log(1)
     val job = GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-        printMessage(2)
+        log(2)
         delay(10)
-        printMessage(3)
+        log(3)
     }
-    printMessage(4)
+    log(4)
     job.join()
     // join之后，打印5的携程不再是main,待理解
-    printMessage(5)
+    log(5)
 }
