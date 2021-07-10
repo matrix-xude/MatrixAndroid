@@ -6,6 +6,7 @@
       <module name="apt-processor" target="1.8" />
       <module name="MatrixAndroid.app" target="11" />
       <module name="MatrixAndroid.common" target="11" />
+      <module name="MatrixAndroid.coroutine" target="11" />
       <module name="MatrixAndroid.myself" target="11" />
       <module name="MatrixAndroid.thread" target="11" />
       <module name="MatrixAndroid.view" target="11" />

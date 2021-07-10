@@ -16,6 +16,8 @@ import com.xxd.common.costom.decoration.CommonItemDecoration
  */
 abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
+    private lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewBinding
+
     /**
      * recyclerView的adapter，子类可以拿着去自己实现点击事件等
      */
@@ -37,10 +39,9 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
      */
     abstract fun convertItem(holder: BaseViewHolder, item: T)
 
-    protected lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewBinding
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
-        CommonSimpleRecyclerViewBinding.inflate(layoutInflater, rootView)
+        simpleRecyclerBinding = CommonSimpleRecyclerViewBinding.inflate(layoutInflater, rootView)
     }
 
     override fun initView() {
