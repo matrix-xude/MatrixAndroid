@@ -3,6 +3,8 @@ package com.xxd.coroutine
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.R
 import com.xxd.common.fast.SimpleListActivity
+import com.xxd.common.util.intent.IntentUtil
+import com.xxd.coroutine.exception.ExceptionCoroutineActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
@@ -26,9 +28,9 @@ class MainActivity : SimpleListActivity<String>() {
 
     override fun initView() {
         super.initView()
-        simpleAdapter.setOnItemChildClickListener { _, _, position ->
-            when(position){
-//                0 -> IntentUtil.startActivity(this,)
+        simpleAdapter.setOnItemClickListener { _, _, position ->
+            when (position) {
+                0 -> IntentUtil.startActivity<ExceptionCoroutineActivity>(this)
             }
         }
     }

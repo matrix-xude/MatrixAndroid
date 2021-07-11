@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_1"
+            style="@style/common_TextStyleLevel2"
+            android:padding="5dp"
+            android:text="按钮1"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_2"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮2"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_3"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮3"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_4"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮4"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_5"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮5"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_1">
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_6"
+            style="@style/common_TextStyleLevel2"
+            android:padding="5dp"
+            android:text="按钮6"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_7"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮7"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_8"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮8"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_9"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮9"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:id="@+id/tv_10"
+            style="@style/common_TextStyleLevel2"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="按钮10"
+            app:CustomShapeFillColor="@color/common_brown"
+            app:CustomShapeRadius="5dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

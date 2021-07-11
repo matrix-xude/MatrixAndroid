@@ -1,13 +1,12 @@
 package com.xxd.thread
 
+import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
-import com.xxd.common.util.IntentUtil
-import com.xxd.common.util.log.LogUtil
+import com.xxd.common.util.intent.IntentUtil
 import com.xxd.thread.basic.ThreadBasicActivity
 import com.xxd.thread.encode.EncodeActivity
-import com.xxd.thread.encode.ParcelableJava
 import com.xxd.thread.rxjava.RxJavaActivity
 
 @Route(path = "/thread/activity/main")
@@ -39,9 +38,9 @@ class MainActivity : SimpleListActivity<String>() {
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
-                0 -> IntentUtil.startActivity(this, ThreadBasicActivity::class.java)
-                1 -> IntentUtil.startActivity(this, EncodeActivity::class.java)
-                2 -> IntentUtil.startActivity(this, RxJavaActivity::class.java)
+                0 -> IntentUtil.startActivity<ThreadBasicActivity>(this)
+                1 -> IntentUtil.startActivity<EncodeActivity>(this)
+                2 -> IntentUtil.startActivity<RxJavaActivity>(this)
             }
         }
     }
