@@ -7,7 +7,9 @@ import com.xxd.common.extend.onClick
 import com.xxd.coroutine.databinding.CoroutineActivityExceptionBinding
 import com.xxd.coroutine.myself.MyInterceptor
 import com.xxd.coroutine.utils.log
+import com.xxd.coroutine.utils.log2
 import kotlinx.coroutines.*
+import java.lang.RuntimeException
 
 /**
  * author : xxd
@@ -44,57 +46,52 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
         viewBinding.tv10.onClick { m10() }
     }
 
+    private val coroutineExceptionHandler =
+        CoroutineExceptionHandler { coroutineContext, throwable ->
+            log2("handler捕获了异常：${throwable.message}", coroutineContext)
+        }
+
+    // try catch 会捕获异常，不会传到 coroutineExceptionHandler
     private fun m1() {
-        GlobalScope.launch(Dispatchers.Main) {
-            log("start回调")
-            val result = withContext(Dispatchers.IO) {
-                Thread.sleep(2000)
-                log("获取数据中")
-                "高大上"
+        GlobalScope.launch(Dispatchers.Main + CoroutineName("1") + coroutineExceptionHandler) {
+            try {
+                delay(10)
+                throw RuntimeException("异常-1")
+            } catch (e: Exception) {
+                log(e, this)
             }
-            log("result=$result")
         }
     }
 
     private fun m2() {
-        GlobalScope.launch(Dispatchers.Main) {
-            log("start回调")
-            val job = async(Dispatchers.IO) {
-                Thread.sleep(2000)
-                log("获取数据中")
-                "高大上"
-            }
-            log("使用 async 之后")
-            val result = job.await()
-            log("result=$result")
+        GlobalScope.launch(Dispatchers.Main + CoroutineName("2") + coroutineExceptionHandler) {
+            delay(10)
+            throw RuntimeException("异常-2")
         }
     }
 
     private fun m3() {
-        GlobalScope.launch(MyInterceptor()) {
-            log("start回调")
-            val job = async(Dispatchers.IO) {
-                Thread.sleep(2000)
-                log("获取数据中")
-                "高大上"
-            }
-            log("使用 async 之后")
-            val result = job.await()
-            log("result=$result")
+        GlobalScope.launch(MyInterceptor()+CoroutineName("1"),start = CoroutineStart.DEFAULT) {
+
+
+            log(1, this)
+            launch (CoroutineName("2"),){
+                delay(2)
+                log(2, this)
+            }.join()
+            log(3, this)
         }
     }
 
     private fun m4() {
-        GlobalScope.launch(Dispatchers.Main) {
-            log("start回调")
-            dialog.show()
-            val result = withContext(Dispatchers.IO) {
-                Thread.sleep(2000)
-                log("获取数据中")
-                "高大上"
-            }
-            log("result=$result")
-            dialog.dismiss()
+        GlobalScope.launch(MyInterceptor()+CoroutineName("1"), start = CoroutineStart.DEFAULT) {
+
+            log(1, this)
+            launch (CoroutineName("2"),){
+//                delay(2)
+                log(2, this)
+            }.join()
+            log(3, this)
         }
     }
 
@@ -269,7 +266,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
                 var i = 0
                 launch {
-                    while (true){
+                    while (true) {
                         delay(1)
                         log("能否停止${i++}")
                     }
