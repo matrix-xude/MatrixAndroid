@@ -23,7 +23,12 @@
         </activity>
         <activity
             android:name=".exception.ExceptionCoroutineActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".cancel.CancelCoroutineActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

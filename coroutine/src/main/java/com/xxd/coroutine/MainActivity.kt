@@ -4,11 +4,12 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.R
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
+import com.xxd.coroutine.cancel.CancelCoroutineActivity
 import com.xxd.coroutine.exception.ExceptionCoroutineActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val itemArray = listOf("携程异常")
+    private val itemArray = listOf("携程异常","携程取消")
 
     override fun getDataList(): Collection<String> {
         return itemArray
@@ -31,6 +32,7 @@ class MainActivity : SimpleListActivity<String>() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> IntentUtil.startActivity<ExceptionCoroutineActivity>(this)
+                1 -> IntentUtil.startActivity<CancelCoroutineActivity>(this)
             }
         }
     }
