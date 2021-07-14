@@ -4,7 +4,6 @@ if (Boolean.valueOf(rootProject.ext.isModuleView)) {
     apply plugin: 'com.android.library'
 }
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -47,6 +46,10 @@ android {
     kotlinOptions {
         // 解决ktx的编译问题，默认使用的是1.6
         jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     /*

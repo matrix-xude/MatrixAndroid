@@ -1,18 +1,14 @@
 package com.xxd.view
 
-import android.content.Intent
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.xxd.common.base.activity.BaseActivity
-import com.xxd.common.costom.decoration.CommonItemDecoration
+import com.xxd.common.fast.SimpleListActivity
+import com.xxd.common.util.intent.IntentUtil
 import com.xxd.view.recycler.RecyclerActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
-import kotlinx.android.synthetic.main.view_activity_main.*
 
 @Route(path = "/view/activity/main")
-class MainActivity : BaseActivity() {
+class MainActivity : SimpleListActivity<String>() {
 
     private val mDataList = mutableListOf(
         "lifecycle",
@@ -21,55 +17,35 @@ class MainActivity : BaseActivity() {
         "自定义的view",
         "终章"
     )
-    private lateinit var mAdapter: BaseQuickAdapter<String, BaseViewHolder>
-
-    override fun getLayoutId(): Int {
-        return R.layout.view_activity_main
-    }
 
     override fun initView() {
         super.initView()
-        initRecyclerView()
         initListener()
     }
 
-    override fun initData() {
-        super.initData()
-        mAdapter.setNewInstance(mDataList)
-    }
-
     private fun initListener() {
-        mAdapter.setOnItemClickListener { _, _, position ->
+        simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
-                1 -> toActivity(RecyclerActivity::class.java)
-                2 -> toActivity(SystemWidgetActivity::class.java)
+                1 -> IntentUtil.startActivity<RecyclerActivity>(this)
+                2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
             }
         }
     }
 
-    private fun toActivity(clazz: Class<out Any>) {
-        val intent = Intent(this, clazz)
-        startActivity(intent)
+    override fun getTitleName(): CharSequence {
+        return "View集合"
     }
 
+    override fun getDataList(): Collection<String> {
+        return mDataList
+    }
 
-    private fun initRecyclerView() {
-        val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rvMain.layoutManager = manager
-        rvMain.addItemDecoration(CommonItemDecoration().apply {
-            interval = 20
-            boundary = 15
-            boundaryHead = 30
-            boundaryTail = 30
-        })
-        mAdapter =
-            object :
-                BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_vertical_simple_text) {
-                override fun convert(holder: BaseViewHolder, item: String) {
-                    holder.setText(R.id.tvName, item)
-                }
-            }
-        rvMain.adapter = mAdapter
+    override fun getItemLayoutResId(): Int {
+        return R.layout.common_item_vertical_simple_text
+    }
+
+    override fun convertItem(holder: BaseViewHolder, item: String) {
+        holder.setText(R.id.tv_Name, item)
     }
 
 }

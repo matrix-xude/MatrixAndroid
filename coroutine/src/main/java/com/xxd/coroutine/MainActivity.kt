@@ -24,7 +24,7 @@ class MainActivity : SimpleListActivity<String>() {
     }
 
     override fun convertItem(holder: BaseViewHolder, item: String) {
-        holder.setText(R.id.tvName, item)
+        holder.setText(R.id.tv_Name, item)
     }
 
     override fun initView() {

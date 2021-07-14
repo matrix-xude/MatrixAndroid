@@ -1,65 +1,30 @@
 package com.xxd.view.systemWidget
 
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.xxd.common.base.activity.BaseActivity
-import com.xxd.common.costom.decoration.CommonItemDecoration
-import com.xxd.view.R
-import kotlinx.android.synthetic.main.view_activity_system_widget.*
+import androidx.fragment.app.Fragment
+import com.xxd.common.fast.SimpleSwitchFragmentActivity
 
 /**
  *    author : xxd
  *    date   : 2020/8/20
  *    desc   :
  */
-class SystemWidgetActivity : BaseActivity() {
+class SystemWidgetActivity : SimpleSwitchFragmentActivity() {
 
-    private lateinit var adapter: BaseQuickAdapter<String, BaseViewHolder>
     private val dataList = listOf("ViewFlipper", "", "", "", "", "", "")
-
-
-
-    override fun initView() {
-        super.initView()
-        initRecyclerView()
-        initListener()
+    override fun getDataList(): Collection<String> {
+        return dataList
     }
 
-    override fun initData() {
-        super.initData()
-        adapter.setList(dataList)
-    }
-
-    private fun initListener() {
-        adapter.setOnItemClickListener { _, _, position ->
-            when (position) {
-                0 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.flContent, ViewFlipperFragment()).commit()
-                }
-                1 -> {
-                    ViewFlipperFragment()
-                }
-            }
+    override fun getPositionFragment(position: Int): Fragment {
+        return when (position) {
+            0 -> ViewFlipperFragment()
+            1 -> ViewFlipperFragment()
+            else -> throw RuntimeException("当前无内容")
         }
-
     }
 
-
-    private fun initRecyclerView() {
-        rvTop.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvTop.addItemDecoration(CommonItemDecoration().apply {
-            interval = 15
-            boundary = 15
-        })
-        adapter = object :
-            BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_horizontal_simple_text) {
-            override fun convert(holder: BaseViewHolder, item: String) {
-                holder.setText(R.id.tvName, item)
-            }
-        }
-        rvTop.adapter = adapter
+    override fun getTitleName(): CharSequence {
+        return "系统控件研究"
     }
 
 }

@@ -10,6 +10,7 @@ import com.xxd.common.R
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.databinding.CommonActivitySwitchFragmentBinding
 import com.xxd.common.costom.decoration.CommonItemDecoration
+import com.xxd.common.extend.binding
 
 /**
  *    author : xxd
@@ -24,15 +25,7 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
      */
     private lateinit var simpleAdapter: BaseQuickAdapter<String, BaseViewHolder>
 
-    protected lateinit var switchFragmentBinding: CommonActivitySwitchFragmentBinding
-
-    override fun setContentView(view: View?) {
-        switchFragmentBinding = CommonActivitySwitchFragmentBinding.inflate(layoutInflater)
-        super.setContentView(switchFragmentBinding.root)
-        view?.let {
-            switchFragmentBinding.root.addView(it)
-        }
-    }
+    private lateinit var switchFragmentBinding: CommonActivitySwitchFragmentBinding
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
         switchFragmentBinding =
@@ -76,7 +69,7 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
         simpleAdapter = object :
             BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_horizontal_simple_text) {
             override fun convert(holder: BaseViewHolder, item: String) {
-                holder.setText(R.id.tvName, item)
+                holder.setText(R.id.tv_Name, item)
             }
 
         }

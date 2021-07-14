@@ -11,9 +11,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_activity_main)
-        tvName.text = "app text"
+        tv_Name.text = "app text"
 
-        tvName.setOnClickListener {
+        tv_Name.setOnClickListener {
 //            startActivity(Intent(this,MainActivity::class.java))
 //            ARouter.getInstance()
 //                .build("/thread/activity/main")

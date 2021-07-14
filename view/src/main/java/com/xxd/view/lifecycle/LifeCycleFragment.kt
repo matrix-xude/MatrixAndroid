@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
-import com.xxd.common.R
+import com.xxd.common.databinding.CommonTestMatchLayoutBinding
+import com.xxd.common.extend.binding
 
 /**
  *    author : xxd
@@ -15,9 +16,7 @@ import com.xxd.common.R
  */
 class LifeCycleFragment : BaseFragment() {
 
-    override fun getLayoutId(): Int {
-        return R.layout.common_test_match_layout
-    }
+    private var viewBinding by binding<CommonTestMatchLayoutBinding>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,8 +26,9 @@ class LifeCycleFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        viewBinding = CommonTestMatchLayoutBinding.inflate(layoutInflater,container,false)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

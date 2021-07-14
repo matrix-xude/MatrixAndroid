@@ -39,8 +39,8 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
      */
     abstract fun convertItem(holder: BaseViewHolder, item: T)
 
-
-    override fun provideBaseTitleRootView(rootView: ViewGroup) {
+    // final可以屏蔽子类覆写该方法
+    final override fun provideBaseTitleRootView(rootView: ViewGroup) {
         simpleRecyclerBinding = CommonSimpleRecyclerViewBinding.inflate(layoutInflater, rootView)
     }
 

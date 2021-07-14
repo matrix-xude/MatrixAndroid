@@ -1,13 +1,17 @@
 package com.xxd.view.systemWidget
 
 import android.animation.ObjectAnimator
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.xxd.common.base.fragment.BaseFragment
+import com.xxd.common.databinding.CommonSimpleTextBinding
+import com.xxd.common.extend.binding
 import com.xxd.view.R
-import kotlinx.android.synthetic.main.view_fragment_flipper.*
+import com.xxd.view.databinding.ViewFragmentFlipperBinding
 
 /**
  *    author : xxd
@@ -16,25 +20,32 @@ import kotlinx.android.synthetic.main.view_fragment_flipper.*
  */
 class ViewFlipperFragment : BaseFragment() {
 
+    private var viewBinding by binding<ViewFragmentFlipperBinding>()
     private val dataList = mutableListOf<String>()
     private lateinit var adapter: BaseAdapter
 
-    override fun getLayoutId(): Int {
-        return R.layout.view_fragment_flipper
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        viewBinding = ViewFragmentFlipperBinding.inflate(layoutInflater, container, false)
+        return viewBinding.root
     }
 
     override fun initView() {
         super.initView()
+        val stringArray = resources.getStringArray(R.array.view_quantum_mechanics)
+        dataList.addAll(stringArray)
+        initViewFlipper()
         initAdapterViewFlipper()
     }
 
     override fun initDataLazy() {
         super.initDataLazy()
-        val stringArray = resources.getStringArray(R.array.view_quantum_mechanics)
-        dataList.addAll(stringArray)
         adapter.notifyDataSetChanged()
-        adapterViewFlipper.startFlipping()
-        initViewFlipper()
+        viewBinding.adapterViewFlipper.startFlipping()
+        viewBinding.viewFlipper.startFlipping()
     }
 
     /**
@@ -44,7 +55,7 @@ class ViewFlipperFragment : BaseFragment() {
      * 如果AdapterViewFlipper的高度是wrap_content，会自动适配第一个子View
      */
     private fun initAdapterViewFlipper() {
-         adapter = object : BaseAdapter() {
+        adapter = object : BaseAdapter() {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
                 val view = convertView ?: View.inflate(context, R.layout.common_simple_text, null)
                 view as TextView
@@ -52,7 +63,7 @@ class ViewFlipperFragment : BaseFragment() {
                 val inAnimator = ObjectAnimator.ofFloat(
                     view,
                     "y",
-                    adapterViewFlipper.measuredHeight.toFloat(),
+                    viewBinding.adapterViewFlipper.measuredHeight.toFloat(),
                     0f
                 ).apply {
                     duration = 500
@@ -61,14 +72,14 @@ class ViewFlipperFragment : BaseFragment() {
                     view,
                     "y",
                     0f,
-                    -adapterViewFlipper.measuredHeight.toFloat()
+                    -viewBinding.adapterViewFlipper.measuredHeight.toFloat()
                 ).apply {
                     duration = 500
                 }
-                adapterViewFlipper.inAnimation = inAnimator
-                adapterViewFlipper.outAnimation = outAnimator
+                viewBinding.adapterViewFlipper.inAnimation = inAnimator
+                viewBinding.adapterViewFlipper.outAnimation = outAnimator
                 view.setOnClickListener {
-                    adapterViewFlipper.showNext()
+                    viewBinding.adapterViewFlipper.showNext()
                 }
                 return view
             }
@@ -85,7 +96,7 @@ class ViewFlipperFragment : BaseFragment() {
                 return dataList.size
             }
         }
-        adapterViewFlipper.adapter = adapter
+        viewBinding.adapterViewFlipper.adapter = adapter
     }
 
     /**
@@ -94,11 +105,11 @@ class ViewFlipperFragment : BaseFragment() {
      * 如果ViewFlipper的高度是wrap_content，会自动适配最高的那个addView
      */
     private fun initViewFlipper() {
-        viewFlipper.removeAllViews()
+        viewBinding.viewFlipper.removeAllViews()
         repeat(dataList.size) {
-            val tvSimple = View.inflate(context, R.layout.common_simple_text, null) as TextView
-            tvSimple.text = dataList[it]
-            viewFlipper.addView(tvSimple)
+            val binding = CommonSimpleTextBinding.inflate(layoutInflater)
+            binding.tvName.text = dataList[it]
+            viewBinding.viewFlipper.addView(binding.tvName)
         }
     }
 

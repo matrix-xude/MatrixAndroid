@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <ViewFlipper
-        android:id="@+id/viewFlipper"
+        android:id="@+id/view_Flipper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoStart="true"
@@ -16,10 +16,10 @@
         android:outAnimation="@anim/common_anim_top_out" />
 
     <AdapterViewFlipper
+        android:id="@+id/adapter_View_Flipper"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_marginTop="100dp"
         android:autoStart="false"
-        android:flipInterval="2000"
-        android:id="@+id/adapterViewFlipper"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:flipInterval="2000" />
 </LinearLayout>

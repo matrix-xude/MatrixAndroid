@@ -1,6 +1,5 @@
 package com.xxd.thread
 
-import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
@@ -27,7 +26,7 @@ class MainActivity : SimpleListActivity<String>() {
     }
 
     override fun convertItem(holder: BaseViewHolder, item: String) {
-        holder.setText(R.id.tvName, item)
+        holder.setText(R.id.tv_Name, item)
     }
 
     override fun initView() {

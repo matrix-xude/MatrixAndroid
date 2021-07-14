@@ -7,7 +7,7 @@
 
     <!--一个默认的只显示文字的简单item-->
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tv_Name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         style="@style/common_TextStyleLevel2"
