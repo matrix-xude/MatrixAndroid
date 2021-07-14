@@ -4,7 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
-import com.xxd.view.recycler.RecyclerActivity
+import com.xxd.view.recycler.RecyclerDiffActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
 
 @Route(path = "/view/activity/main")
@@ -26,7 +26,7 @@ class MainActivity : SimpleListActivity<String>() {
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
-                1 -> IntentUtil.startActivity<RecyclerActivity>(this)
+                1 -> IntentUtil.startActivity<RecyclerDiffActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
             }
         }

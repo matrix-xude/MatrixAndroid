@@ -16,7 +16,7 @@ import com.xxd.view.databinding.ViewFragmentFlipperBinding
 /**
  *    author : xxd
  *    date   : 2020/8/20
- *    desc   : ViewFlipper,AdapterViewFlipper
+ *    desc   : ViewFlipper,AdapterViewFlipper 上下滚动的信息
  */
 class ViewFlipperFragment : BaseFragment() {
 
