@@ -3,6 +3,7 @@ package com.xxd.coroutine.exception
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -12,5 +13,5 @@ import kotlin.coroutines.CoroutineContext
  */
 object MyScope : CoroutineScope {
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.IO + CoroutineName("MyScope")
+        get() = SupervisorJob() + CoroutineName("MyScope") + Dispatchers.IO
 }

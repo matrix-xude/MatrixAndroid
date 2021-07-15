@@ -1,6 +1,7 @@
 package com.xxd.coroutine.exception
 
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
@@ -30,11 +31,11 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
             "Global作用域2",
             "MyScope作用域1",
             "MyScope作用域2",
-            "站位",
-            "站位",
-            "站位",
-            "站位",
-            "站位",
+            "try catch位置",
+            "异常后状态",
+            "MyGlobal并发1",
+            "MyGlobal并发2",
+            "supervisorScope",
             "站位",
             "站位"
         )
@@ -171,9 +172,9 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
                     try {  // 这里抓捕不到异常
                         async(coroutineExceptionHandler) {
-                                delay(10)
-                                throw RuntimeException("async 抛出来的")
-                            }
+                            delay(10)
+                            throw RuntimeException("async 抛出来的")
+                        }
                     } catch (e: Exception) {
                         log("5 $e")
                     }
@@ -187,6 +188,48 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     fun m8() {
         log("Job1活跃？：${job1?.isActive}； Job1是否执行完毕：${job1?.isCompleted}; Job1是否取消：${job1?.isCancelled}")
+    }
+
+    fun m9() {
+        MyScope.launch(coroutineExceptionHandler) {
+            log(9, this)
+            try {
+                delay(2000)
+            } catch (e: Exception) {
+                log("9 $e", this)
+            }
+            log(91)
+        }
+    }
+
+    fun m10() {
+        MyScope.launch(coroutineExceptionHandler) {
+            log(10, this)
+            delay(1000)
+            throw RuntimeException("异常10")
+        }
+    }
+
+    fun m11() {
+        MyScope.launch() {
+            log(11, this)
+
+                supervisorScope {
+                    val job1 = async(coroutineExceptionHandler) {
+                        delay(200)
+                        log(2)
+                        throw RuntimeException("哈哈哈错了")
+                        "哈哈"
+                    }
+                    val job2 = async {
+                        delay(2000)
+                        log(3)
+                        "呵呵"
+                    }
+
+                    log("11-2  ${job2.await()}")
+                }
+        }
     }
 
 
