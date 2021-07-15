@@ -1,15 +1,18 @@
 package com.xxd.coroutine.exception
 
-import android.app.ProgressDialog
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.xxd.common.base.activity.BaseTitleActivity
-import com.xxd.common.extend.onClick
+import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
+import com.xxd.common.costom.binding.helper.BaseBindingViewHolder
+import com.xxd.common.costom.decoration.CommonItemDecoration
+import com.xxd.common.util.toast.ToastUtil
 import com.xxd.coroutine.databinding.CoroutineActivityExceptionBinding
+import com.xxd.coroutine.databinding.CoroutineItemExceptionBinding
 import com.xxd.coroutine.myself.MyInterceptor
 import com.xxd.coroutine.utils.log
 import com.xxd.coroutine.utils.log2
 import kotlinx.coroutines.*
-import java.lang.RuntimeException
 
 /**
  * author : xxd
@@ -19,31 +22,62 @@ import java.lang.RuntimeException
 class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     private lateinit var viewBinding: CoroutineActivityExceptionBinding
-
-    private val dialog by lazy {
-        ProgressDialog(this)
-    }
+    private val buttonArray =
+        listOf(
+            "带try catch",
+            "不带try catch",
+            "Global作用域1",
+            "Global作用域2",
+            "MyScope作用域1",
+            "MyScope作用域2",
+            "站位",
+            "站位",
+            "站位",
+            "站位",
+            "站位",
+            "站位",
+            "站位"
+        )
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
         viewBinding = CoroutineActivityExceptionBinding.inflate(layoutInflater, rootView, true)
     }
 
     override fun getTitleName(): CharSequence {
-        return "携程异常传递机制"
+        return "携程异常"
     }
 
     override fun initView() {
         super.initView()
-        viewBinding.tv1.onClick { m1() }
-        viewBinding.tv2.onClick { m2() }
-        viewBinding.tv3.onClick { m3() }
-        viewBinding.tv4.onClick { m4() }
-        viewBinding.tv5.onClick { m5() }
-        viewBinding.tv6.onClick { m6() }
-        viewBinding.tv7.onClick { m7() }
-        viewBinding.tv8.onClick { m8() }
-        viewBinding.tv9.onClick { m9() }
-        viewBinding.tv10.onClick { m10() }
+
+        viewBinding.rv1.apply {
+            layoutManager = GridLayoutManager(this@ExceptionCoroutineActivity, 4)
+            addItemDecoration(CommonItemDecoration().apply {
+                boundary = 20
+                interval = 20
+                spanInterval = 30
+            })
+            adapter =
+                object : BaseBindingQuickAdapter<String, CoroutineItemExceptionBinding>() {
+                    override fun convert(
+                        holder: BaseBindingViewHolder<CoroutineItemExceptionBinding>,
+                        item: String
+                    ) {
+                        holder.binding.tv1.text = item
+                    }
+                }.apply {
+                    setNewInstance(buttonArray.toMutableList())
+                    setOnItemClickListener { _, _, position ->
+                        // 反射调用 m1,m2……方法，方便
+                        try {
+                            this@ExceptionCoroutineActivity.javaClass.getDeclaredMethod("m${position + 1}")
+                                .invoke(this@ExceptionCoroutineActivity)
+                        } catch (e: Exception) {
+                            ToastUtil.showToast("该方法还没有创建！")
+                        }
+                    }
+                }
+        }
     }
 
     private val coroutineExceptionHandler =
@@ -52,7 +86,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
         }
 
     // try catch 会捕获异常，不会传到 coroutineExceptionHandler
-    private fun m1() {
+    fun m1() {
         GlobalScope.launch(Dispatchers.Main + CoroutineName("1") + coroutineExceptionHandler) {
             try {
                 delay(10)
@@ -63,219 +97,98 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
         }
     }
 
-    private fun m2() {
+    // 没捕获的异常会被 coroutineExceptionHandler 接收
+    fun m2() {
         GlobalScope.launch(Dispatchers.Main + CoroutineName("2") + coroutineExceptionHandler) {
             delay(10)
             throw RuntimeException("异常-2")
         }
     }
 
-    private fun m3() {
-        GlobalScope.launch(MyInterceptor()+CoroutineName("1"),start = CoroutineStart.DEFAULT) {
-
-
+    fun m3() {
+        GlobalScope.launch(Dispatchers.Main + CoroutineName("3") + coroutineExceptionHandler) {
             log(1, this)
-            launch (CoroutineName("2"),){
-                delay(2)
-                log(2, this)
-            }.join()
-            log(3, this)
-        }
-    }
-
-    private fun m4() {
-        GlobalScope.launch(MyInterceptor()+CoroutineName("1"), start = CoroutineStart.DEFAULT) {
-
-            log(1, this)
-            launch (CoroutineName("2"),){
-//                delay(2)
-                log(2, this)
-            }.join()
-            log(3, this)
-        }
-    }
-
-    // 异常处理
-    private fun m5() {
-        GlobalScope.launch(Dispatchers.Main + MyInterceptor()) {
-            log(1)
             try {
-                coroutineScope { //①
-                    log(2)
-                    launch { // ②
-                        log(3)
-                        launch { // ③
-                            log(4)
-                            delay(100)
-                            log(222222222)
-                            throw ArithmeticException("Hey!!")
-                        }
-                        log(5)
-                    }
-                    log(6)
-                    val job = launch { // ④
-                        log(7)
-                        delay(1000)
-                    }
-                    try {
-                        log(8)
-                        job.join()
-                        log("9")
-                    } catch (e: Exception) {
-                        log("10. $e")
-                    }
-                }
-                log(11)
-            } catch (e: Exception) {
-                log("12. $e")
-            }
-            log(13)
-        }
-    }
-
-    // 异常处理
-    private fun m6() {
-        GlobalScope.launch(Dispatchers.Main + MyInterceptor()) {
-            log(1)
-            try {
-//                coroutineScope { //①
-                log(2)
-                launch { // ②
-                    log(3)
-                    launch { // ③
-                        log(4)
-                        delay(100)
-                        log(222222222)
-                        throw ArithmeticException("Hey!!")
-                    }
-                    log(5)
-                }
-                log(6)
-                val job = launch { // ④
-                    log(7)
-                    delay(1000)
-                }
-                try {
-                    log(8)
-                    job.join()
-                    log("9")
-                } catch (e: Exception) {
-                    log("10. $e")
-                }
-//                }
-                log(11)
-            } catch (e: Exception) {
-                log("12. $e")
-            }
-            log(13)
-        }
-    }
-
-    private fun m7() {
-        GlobalScope.launch(MyInterceptor()) {
-            val job = this.coroutineContext[Job]
-            log(job!!)
-            try {
-                launch {
-                    val job = this.coroutineContext[Job]
-                    log(job!!)
+                GlobalScope.launch {
                     delay(10)
-                    throw ArithmeticException("Hey!!")
-                }
-
-                launch {
-                    delay(100)
-                    log(1)
+                    throw RuntimeException("异常3")
                 }
             } catch (e: Exception) {
-                log(e.message!!)
+                log(e, this)
             }
         }
     }
 
-    private fun m8() {
-        GlobalScope.launch(MyInterceptor()) {
+    fun m4() {
+        GlobalScope.launch(Dispatchers.Main + CoroutineName("4") + coroutineExceptionHandler) {
+            log(1, this)
+            GlobalScope.launch {
+                delay(10)
+                throw RuntimeException("异常4")
+            }
+        }
+    }
+
+    fun m5() {
+        MyScope.launch(coroutineExceptionHandler) {
+            log(1, this)
             try {
-                val job = this.coroutineContext[Job]
-                log(job!!)
+                MyScope.launch {
+                    delay(10)
+                    throw RuntimeException("异常3")
+                }
+            } catch (e: Exception) {
+                log(e, this)
+            }
+        }
+    }
+
+    fun m6() {
+        MyScope.launch(coroutineExceptionHandler) {
+            log(1, this)
+            MyScope.launch {
+                delay(10)
+                throw RuntimeException("异常4")
+            }
+        }
+    }
+
+    private var job1: Job? = null
+
+    fun m7() {
+        job1 = MyScope.launch(coroutineExceptionHandler) {
+            log(1)
+            try {  // 可以抓到 RuntimeException("async 抛出来的")
                 coroutineScope {
-                    val job = this.coroutineContext[Job]
-                    log(job!!)
                     launch {
-                        val job = this.coroutineContext[Job]
-                        log(job!!)
-                        delay(10)
-                        throw ArithmeticException("Hey!!")
+                        try {  // 可以抓到一个 JobCancellationException 异常
+                            delay(10000)
+                            log(2)
+                        } catch (e: Exception) {
+                            log("3 $e")
+                        }
                     }
 
-                    launch {
-                        delay(100)
-                        log(1)
+                    try {  // 这里抓捕不到异常
+                        async(coroutineExceptionHandler) {
+                                delay(10)
+                                throw RuntimeException("async 抛出来的")
+                            }
+                    } catch (e: Exception) {
+                        log("5 $e")
                     }
+                    log(4)
                 }
             } catch (e: Exception) {
-                log(e.message!!)
+                log("6 $e")
             }
         }
     }
 
-    private fun m9() {
-        GlobalScope.launch(MyInterceptor()
-                + CoroutineExceptionHandler { coroutineContext, throwable ->
-            log(coroutineContext)
-            log(throwable)
-        }
-        ) {
-            val job = this.coroutineContext[Job]
-            log(job!!)
-            try {
-                val job2 = async {
-                    val job = this.coroutineContext[Job]
-                    log(job!!)
-                    delay(10)
-                    throw ArithmeticException("Hey!!")
-                }
-//                val await = job2.await()
-
-                launch {
-                    delay(100)
-                    log(1)
-                }
-            } catch (e: Exception) {
-                log(e.message!!)
-            }
-        }
+    fun m8() {
+        log("Job1活跃？：${job1?.isActive}； Job1是否执行完毕：${job1?.isCompleted}; Job1是否取消：${job1?.isCancelled}")
     }
 
-    private fun m10() {
-        GlobalScope.launch(MyInterceptor()
-                + CoroutineExceptionHandler { coroutineContext, throwable ->
-            log(coroutineContext)
-            log(throwable)
-        }
-        ) {
-            val job = this.coroutineContext[Job]
-            log(job!!)
-            try {
-                launch {
-                    val job = this.coroutineContext[Job]
-                    log(job!!)
-                    delay(10)
-                    throw ArithmeticException("Hey!!")
-                }
-
-                var i = 0
-                launch {
-                    while (true) {
-                        delay(1)
-                        log("能否停止${i++}")
-                    }
-                }
-            } catch (e: Exception) {
-                log(e.message!!)
-            }
-        }
-    }
 
 }
 
