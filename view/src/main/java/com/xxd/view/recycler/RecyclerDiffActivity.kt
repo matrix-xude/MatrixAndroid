@@ -14,6 +14,7 @@ import com.xxd.common.databinding.CommonSimpleTextBinding
 import com.xxd.common.util.log.LogUtil
 import com.xxd.view.databinding.ViewActivityRecyclerBinding
 import java.util.*
+import java.util.logging.Logger
 
 /**
  *    author : xxd
@@ -46,11 +47,11 @@ class RecyclerDiffActivity : BaseTitleActivity() {
 
     override fun initData() {
         super.initData()
-//        listData = fakeData2()
+        listData = fakeData2()
     }
 
     private fun initRecyclerView3() {
-        viewBinding.rv1.apply {
+        viewBinding.rv3.apply {
             layoutManager = LinearLayoutManager(this@RecyclerDiffActivity)
             addItemDecoration(CommonItemDecoration().apply {
                 boundary = 10
@@ -251,9 +252,10 @@ class RecyclerDiffActivity : BaseTitleActivity() {
                             diffResult.dispatchUpdatesTo(adapter1)
                         }
                         6 -> {
-                            val b1 = Bean1(1,Bean1.Bean2("jack"))
-                            val b2 = Bean1(2,Bean1.Bean2("amber"))
-                            val b3 = Bean1(1,Bean1.Bean2("youtube"))
+                            val b1 = Bean1(1, Bean1.Bean2("jack"))
+                            val b2 = Bean1(2, Bean1.Bean2("amber"))
+                            val b3 = Bean1(1, Bean1.Bean2("youtube"))
+                            val b4 = Bean1(1, Bean1.Bean2("jack"))
 
 
                             old.apply {
@@ -262,18 +264,32 @@ class RecyclerDiffActivity : BaseTitleActivity() {
                                 add(b3)
                             }
                             new.apply {
-                                add(b1.apply { bean2.name="rose" })
+                                add(b1)
                                 add(b2)
-                                add(b3)
+                                add(b4)
                             }
                             listData3 = old
                             adapter3.notifyDataSetChanged()
 
                         }
-                        7 ->{
-                            val myDiff = MyDiff(old, new)
+                        7 -> {
+                            val myDiff = object : MyDiff<Bean1>(old, new) {
+                                override fun areItemsTheSame(
+                                    oldItemPosition: Int,
+                                    newItemPosition: Int
+                                ): Boolean {
+                                    super.areItemsTheSame(oldItemPosition, newItemPosition)
+                                    return old[oldItemPosition].id == new[newItemPosition].id
+                                }
+                            }
                             listData3 = new
-                            DiffUtil.calculateDiff(myDiff).dispatchUpdatesTo(adapter3)
+                            val calculateDiff = DiffUtil.calculateDiff(myDiff,true)
+                            val convertNewPositionToOld = calculateDiff.convertNewPositionToOld(2)
+                            LogUtil.d("``` convertNewPositionToOld(2) = $convertNewPositionToOld")
+                            val c2 = calculateDiff.convertOldPositionToNew(2)
+                            LogUtil.d("``` convertOldPositionToNew(2) = $c2")
+                            calculateDiff.dispatchUpdatesTo(MyListUpdateBack())
+                            calculateDiff.dispatchUpdatesTo(adapter3)
                         }
                     }
                 }

@@ -8,7 +8,7 @@ import com.xxd.common.util.log.LogUtil
  *    date   : 2021/7/14
  *    desc   : CallBack 统计
  */
-class MyDiff<T>(private val oldList: List<T>?, private val newList: List<T>?) :
+open class MyDiff<T>(private val oldList: List<T>?, private val newList: List<T>?) :
     DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
