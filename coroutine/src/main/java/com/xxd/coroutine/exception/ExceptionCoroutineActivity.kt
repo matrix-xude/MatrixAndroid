@@ -1,16 +1,15 @@
 package com.xxd.coroutine.exception
 
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
 import com.xxd.common.costom.binding.helper.BaseBindingViewHolder
 import com.xxd.common.costom.decoration.CommonItemDecoration
 import com.xxd.common.util.toast.ToastUtil
+import com.xxd.coroutine.cancel.MyInterceptor
 import com.xxd.coroutine.databinding.CoroutineActivityExceptionBinding
 import com.xxd.coroutine.databinding.CoroutineItemExceptionBinding
-import com.xxd.coroutine.myself.MyInterceptor
 import com.xxd.coroutine.utils.log
 import com.xxd.coroutine.utils.log2
 import kotlinx.coroutines.*
@@ -36,8 +35,8 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
             "MyGlobal并发1",
             "MyGlobal并发2",
             "supervisorScope",
-            "站位",
-            "站位"
+            "async",
+            "async2"
         )
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
@@ -83,7 +82,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     private val coroutineExceptionHandler =
         CoroutineExceptionHandler { coroutineContext, throwable ->
-            log2("handler捕获了异常：${throwable.message}", coroutineContext)
+            log2("handler捕获了异常：${throwable}", coroutineContext)
         }
 
     // try catch 会捕获异常，不会传到 coroutineExceptionHandler
@@ -214,21 +213,55 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
         MyScope.launch() {
             log(11, this)
 
-                supervisorScope {
-                    val job1 = async(coroutineExceptionHandler) {
-                        delay(200)
-                        log(2)
-                        throw RuntimeException("哈哈哈错了")
-                        "哈哈"
-                    }
-                    val job2 = async {
-                        delay(2000)
-                        log(3)
-                        "呵呵"
-                    }
-
-                    log("11-2  ${job2.await()}")
+            supervisorScope {
+                val job1 = async(coroutineExceptionHandler) {
+                    delay(200)
+                    log(2)
+                    throw RuntimeException("哈哈哈错了")
+                    "哈哈"
                 }
+                val job2 = async {
+                    delay(2000)
+                    log(3)
+                    "呵呵"
+                }
+
+                log("11-2  ${job2.await()}")
+            }
+        }
+    }
+
+    fun m12() {
+        GlobalScope.launch(MyInterceptor() + coroutineExceptionHandler) {
+            delay(50)
+            log(11)
+            val job1 = async {
+                log(3)
+                delay(2500)
+                throw RuntimeException("哈哈")
+            }
+
+            launch {
+                try {
+                    delay(1000)
+                } catch (e: Exception) {
+                    log("2 $e")
+                }
+            }
+            Thread.sleep(2000)
+//            job1.await()
+            log(4)
+        }
+
+    }
+
+    fun m13() {
+        GlobalScope.launch(MyInterceptor()) {
+            val job1 = async {
+                delay(1)
+                log(0,this)
+            }
+            job1.await() // 根据job1是否完成执行调度
         }
     }
 
