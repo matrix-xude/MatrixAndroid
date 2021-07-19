@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_goldenrod"
+    tools:context=".BindingFragment2">
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_lightblue"
+            android:padding="10dp"
+            android:text="内容1"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_greenyellow"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text="内容2"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_khaki"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text="内容3"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

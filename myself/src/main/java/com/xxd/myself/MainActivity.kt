@@ -3,6 +3,7 @@ package com.xxd.myself
 import android.view.ViewGroup
 import com.orhanobut.logger.Logger
 import com.xxd.common.base.activity.BaseTitleActivity
+import com.xxd.common.module.login.LoginOwner
 import com.xxd.myself.databinding.MyselfActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -44,6 +45,8 @@ class MainActivity : BaseTitleActivity() {
                 })
                 .commit()
         }
+
+        LoginOwner.instance.change().setLoginStatus(true)
 
 //        coroutines()
     }
