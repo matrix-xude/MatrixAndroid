@@ -99,4 +99,11 @@
         <attr name="CustomShapeStrokeColor" />
     </declare-styleable>
 
+    <declare-styleable name="CustomEditText">
+        <attr name="CustomShapeRadius" />
+        <attr name="CustomShapeFillColor" />
+        <attr name="CustomShapeStrokeWidth" />
+        <attr name="CustomShapeStrokeColor" />
+    </declare-styleable>
+
 </resources>

@@ -3,6 +3,7 @@ package com.xxd.myself
 import android.view.ViewGroup
 import com.orhanobut.logger.Logger
 import com.xxd.common.base.activity.BaseTitleActivity
+import com.xxd.common.extend.onClick
 import com.xxd.common.module.login.LoginOwner
 import com.xxd.myself.databinding.MyselfActivityMainBinding
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,7 @@ class MainActivity : BaseTitleActivity() {
     private var currentFragmentIndex = 0
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
-        myselfBinding = MyselfActivityMainBinding.inflate(layoutInflater,rootView,true)
+        myselfBinding = MyselfActivityMainBinding.inflate(layoutInflater, rootView, true)
     }
 
     override fun getTitleName(): CharSequence {
@@ -46,12 +47,19 @@ class MainActivity : BaseTitleActivity() {
                 .commit()
         }
 
+        myselfBinding.tv2.onClick {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fl_contain, EditTextFragment())
+                .commit()
+        }
+
         LoginOwner.instance.change().setLoginStatus(true)
 
 //        coroutines()
     }
 
-    private fun coroutines(){
+    private fun coroutines() {
         // 用Handler进行了线程切换，最后打印
         GlobalScope.launch(Dispatchers.Main) {
             Logger.d("当前线程${Thread.currentThread().name} --》 成功1")
