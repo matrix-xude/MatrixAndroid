@@ -33,9 +33,10 @@ class TabLayoutFragment : BaseFragment() {
     override fun initDataLazy() {
         super.initDataLazy()
         viewBinding.vpTopic.adapter = VPAdapter(this)
+        viewBinding.vpTopic.offscreenPageLimit =3
 
         TabLayoutMediator(viewBinding.tlTopic, viewBinding.vpTopic) { tap, positon2 ->
-            tap.text = "话题$positon2"
+            tap.text = "话题${if(positon2%2==0) "" else ""}$positon2"
         }.attach()
     }
 

@@ -5,6 +5,7 @@
     <color name="common_colorAccent">#03DAC5</color>
 
     <!--颜色大全-->
+    <color name="common_transparent">#00ffffff</color> <!-- 透明 -->
     <color name="common_white">#ffffff</color> <!-- 白色 -->
     <color name="common_ivory">#fffff0</color> <!-- 象牙色 -->
     <color name="common_lightyellow">#ffffe0</color> <!-- 亮黄色 -->

@@ -34,4 +34,9 @@ class TopicBaseFragment(private val index: Int) : BaseFragment() {
         viewBinding.tv1.text = "Amber $index"
         Logger.d("我被调用了 Fragment $index")
     }
+
+    override fun initDataImmediately() {
+        super.initDataImmediately()
+        Logger.d("initDataImmediately 我被调用了 Fragment $index")
+    }
 }

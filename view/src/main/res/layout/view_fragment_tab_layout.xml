@@ -14,7 +14,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicator="@drawable/view_tab_indicator" />
+        app:tabMode="scrollable"
+        app:tabPaddingStart="0dp"
+        app:tabPaddingTop="20dp"
+
+        app:tabPaddingEnd="0dp"
+        app:tabIndicatorFullWidth="true"
+        app:tabPaddingBottom="20dp"
+        app:tabMinWidth="10dp"
+        android:paddingStart="15dp"
+        app:tabSelectedTextColor="@color/common_lawngreen"
+        app:tabTextColor="@color/common_gold"
+        app:tabRippleColor="@color/common_transparent"
+        app:tabIndicatorGravity="bottom"
+        app:tabIndicator="@drawable/view_tab_indicator2" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_topic"
