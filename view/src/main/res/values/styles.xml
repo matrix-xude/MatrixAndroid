@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/view_colorAccent</item>
     </style>
 
+    <style name="view_indicator_text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
