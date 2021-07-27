@@ -22,7 +22,7 @@ abstract class BaseBindingQuickAdapter<T, VB : ViewBinding>(
 
     // 找到反射的类，只要执行一次就够了
     private val reflectMethod by lazy {
-        viewBindingClass?.getMethod("inflate", LayoutInflater::class.java)
+        viewBindingClass?.getMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
     }
 
     // 初始化的时候就反射找该VB的真实class类型
@@ -45,7 +45,7 @@ abstract class BaseBindingQuickAdapter<T, VB : ViewBinding>(
         parent: ViewGroup,
         viewType: Int
     ): BaseBindingViewHolder<VB> {
-        val vb = reflectMethod?.invoke(null, LayoutInflater.from(context))?.let { it as VB }
+        val vb = reflectMethod?.invoke(null, LayoutInflater.from(context), parent, false)?.let { it as VB }
             ?: reflectNullViewHolder(LayoutInflater.from(context))
             ?: throw NullPointerException("当前反射找不到VB : ViewBinding的泛型,请覆写 getHolder(layoutInflater: LayoutInflater) 方法")
         return BaseBindingViewHolder(vb)

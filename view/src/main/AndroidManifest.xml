@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.xxd.view">
 
-    <application>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+    <application tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".recycler.RecyclerDiffActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".systemWidget.SystemWidgetActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".material.MaterialDesignActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

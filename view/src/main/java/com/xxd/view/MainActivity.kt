@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
+import com.xxd.view.material.MaterialDesignActivity
 import com.xxd.view.recycler.RecyclerDiffActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
 
@@ -14,6 +15,7 @@ class MainActivity : SimpleListActivity<String>() {
         "lifecycle",
         "RecyclerView",
         "系统的view",
+        "meter design",
         "自定义的view",
         "终章"
     )
@@ -28,6 +30,7 @@ class MainActivity : SimpleListActivity<String>() {
             when (position) {
                 1 -> IntentUtil.startActivity<RecyclerDiffActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
+                3 -> IntentUtil.startActivity<MaterialDesignActivity>(this)
             }
         }
     }

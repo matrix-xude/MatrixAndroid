@@ -11,6 +11,8 @@ import android.view.View
 /**
  * View扩展点击事件
  */
-fun View.onClick(block: ((View) -> Unit)?) {
-    this.setOnClickListener(block)
+inline fun View.onClick(crossinline block: ((View) -> Unit)) {
+    this.setOnClickListener{
+        block(it)
+    }
 }

@@ -1,8 +1,11 @@
 package com.xxd.myself
 
 import android.view.ViewGroup
+import com.gyf.immersionbar.BarHide
+import com.gyf.immersionbar.ktx.immersionBar
 import com.orhanobut.logger.Logger
 import com.xxd.common.base.activity.BaseTitleActivity
+import com.xxd.common.extend.onClick
 import com.xxd.common.module.login.LoginOwner
 import com.xxd.myself.databinding.MyselfActivityMainBinding
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +29,11 @@ class MainActivity : BaseTitleActivity() {
 
     override fun initView() {
         super.initView()
+        immersionBar {
+            statusBarColor(R.color.common_white)
+            fitsSystemWindows(true)
+            statusBarDarkFont(true)
+        }
         myselfBinding.tv1.paint.isFakeBoldText = true
         myselfBinding.tv2.paint.isFakeBoldText = true
     }
@@ -44,6 +52,12 @@ class MainActivity : BaseTitleActivity() {
                     currentFragmentIndex %= 2
                 })
                 .commit()
+        }
+
+        myselfBinding.tv2.onClick {
+            immersionBar {
+                hideBar(BarHide.FLAG_HIDE_STATUS_BAR)
+            }
         }
 
         LoginOwner.instance.change().setLoginStatus(true)
