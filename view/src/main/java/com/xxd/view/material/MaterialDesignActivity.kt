@@ -1,6 +1,7 @@
 package com.xxd.view.material
 
 import androidx.fragment.app.Fragment
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.xxd.common.fast.SimpleSwitchFragmentActivity
 import com.xxd.view.material.tablayout.TabLayoutFragment
 
@@ -9,6 +10,7 @@ import com.xxd.view.material.tablayout.TabLayoutFragment
  *    date   : 2020/8/20
  *    desc   :
  */
+@Route(path = "/view/activity/MaterialDesignActivity")
 class MaterialDesignActivity : SimpleSwitchFragmentActivity() {
 
     private val dataList = listOf("tabLayout", "", "", "", "", "", "")

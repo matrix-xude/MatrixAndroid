@@ -77,6 +77,8 @@ dependencies {
     api 'com.gyf.immersionbar:immersionbar-components:3.0.0'
     // kotlin扩展（可选）
     api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
+    //基础工具库(RxTool)
+    api 'com.github.tamsiree.RxTool:RxKit:2.6.3'
 
     api rootProject.ext.dependencies.gson // gson
     api rootProject.ext.dependencies.rxjava // rxJava

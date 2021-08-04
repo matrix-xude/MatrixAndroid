@@ -22,6 +22,8 @@ class MainActivity : SimpleListActivity<String>() {
 
     override fun initView() {
         super.initView()
+        val extras = intent.extras
+        val stringExtra = intent.getStringExtra("key")
         initListener()
     }
 

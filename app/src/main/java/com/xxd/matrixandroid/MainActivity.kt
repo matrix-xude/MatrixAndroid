@@ -15,21 +15,21 @@ class MainActivity : AppCompatActivity() {
 
         tv_Name.setOnClickListener {
 //            startActivity(Intent(this,MainActivity::class.java))
-//            ARouter.getInstance()
-//                .build("/thread/activity/main")
-//                .withInt("position",1)
-//                .withString("key","just do it")
-//                .navigation()
-
-            val uri = Uri.Builder()
-                .scheme("")
-                .authority("mai")
-                .path("")
-                .appendQueryParameter("","")
-                .build()
             ARouter.getInstance()
-                .build(Uri.parse("http://main/thread/activity/main?position=1&key=aaa"))
+                .build("/view/activity/main")
+                .withInt("position",1)
+                .withString("key","just do it")
                 .navigation()
+
+//            val uri = Uri.Builder()
+//                .scheme("")
+//                .authority("mai")
+//                .path("")
+//                .appendQueryParameter("","")
+//                .build()
+//            ARouter.getInstance()
+//                .build(Uri.parse("http://main/thread/activity/main?position=1&key=aaa"))
+//                .navigation()
         }
     }
 }

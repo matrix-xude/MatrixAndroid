@@ -4,6 +4,8 @@ import android.view.ViewGroup
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ktx.immersionBar
 import com.orhanobut.logger.Logger
+import com.tamsiree.rxkit.RxDeviceTool
+import com.tamsiree.rxkit.RxImageTool
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.extend.onClick
 import com.xxd.common.module.login.LoginOwner
@@ -36,6 +38,8 @@ class MainActivity : BaseTitleActivity() {
         }
         myselfBinding.tv1.paint.isFakeBoldText = true
         myselfBinding.tv2.paint.isFakeBoldText = true
+
+        RxDeviceTool
     }
 
 
