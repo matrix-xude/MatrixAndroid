@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
+import com.xxd.view.iconfont.IconFontActivity
 import com.xxd.view.material.MaterialDesignActivity
 import com.xxd.view.recycler.RecyclerDiffActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
@@ -12,11 +13,12 @@ import com.xxd.view.systemWidget.SystemWidgetActivity
 class MainActivity : SimpleListActivity<String>() {
 
     private val mDataList = mutableListOf(
-        "lifecycle",
+        "lifecycle", // 0
         "RecyclerView",
         "系统的view",
         "meter design",
         "自定义的view",
+        "icon_font", // 5 阿里通用文本图案
         "终章"
     )
 
@@ -33,6 +35,7 @@ class MainActivity : SimpleListActivity<String>() {
                 1 -> IntentUtil.startActivity<RecyclerDiffActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
                 3 -> IntentUtil.startActivity<MaterialDesignActivity>(this)
+                5 -> IntentUtil.startActivity<IconFontActivity>(this)
             }
         }
     }

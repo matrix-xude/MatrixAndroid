@@ -16,6 +16,9 @@
         <activity
             android:name=".material.MaterialDesignActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".iconfont.IconFontActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

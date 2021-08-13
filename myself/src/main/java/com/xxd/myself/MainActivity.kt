@@ -1,14 +1,14 @@
 package com.xxd.myself
 
+import android.view.View
 import android.view.ViewGroup
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ktx.immersionBar
 import com.orhanobut.logger.Logger
-import com.tamsiree.rxkit.RxDeviceTool
-import com.tamsiree.rxkit.RxImageTool
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.extend.onClick
 import com.xxd.common.module.login.LoginOwner
+import com.xxd.common.util.toast.ToastUtil
 import com.xxd.myself.databinding.MyselfActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,13 +16,13 @@ import kotlinx.coroutines.launch
 
 class MainActivity : BaseTitleActivity() {
 
-    private lateinit var myselfBinding: MyselfActivityMainBinding
+    private lateinit var viewBinding: MyselfActivityMainBinding
 
     private val fragmentArray = listOf(BindingFragment(), BindingFragment2())
     private var currentFragmentIndex = 0
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
-        myselfBinding = MyselfActivityMainBinding.inflate(layoutInflater,rootView,true)
+        viewBinding = MyselfActivityMainBinding.inflate(layoutInflater,rootView,true)
     }
 
     override fun getTitleName(): CharSequence {
@@ -36,19 +36,19 @@ class MainActivity : BaseTitleActivity() {
             fitsSystemWindows(true)
             statusBarDarkFont(true)
         }
-        myselfBinding.tv1.paint.isFakeBoldText = true
-        myselfBinding.tv2.paint.isFakeBoldText = true
+        viewBinding.tv1.paint.isFakeBoldText = true
+        viewBinding.tv2.paint.isFakeBoldText = true
 
-        RxDeviceTool
+        viewBinding.tv1.visibility = View.GONE
     }
 
 
     override fun initData() {
         super.initData()
         titleBinding.tvTitleName.text = "测试222"
-        myselfBinding.root
+        viewBinding.root
 
-        myselfBinding.tv1.setOnClickListener {
+        viewBinding.tv1.setOnClickListener {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fl_contain, fragmentArray[currentFragmentIndex].apply {
@@ -58,10 +58,11 @@ class MainActivity : BaseTitleActivity() {
                 .commit()
         }
 
-        myselfBinding.tv2.onClick {
-            immersionBar {
-                hideBar(BarHide.FLAG_HIDE_STATUS_BAR)
-            }
+        viewBinding.tv2.onClick {
+//            immersionBar {
+//                hideBar(BarHide.FLAG_HIDE_STATUS_BAR)
+//            }
+            ToastUtil.showToast("111111")
         }
 
         LoginOwner.instance.change().setLoginStatus(true)
