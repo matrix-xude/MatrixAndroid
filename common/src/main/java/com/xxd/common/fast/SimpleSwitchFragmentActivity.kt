@@ -1,6 +1,5 @@
 package com.xxd.common.fast
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,7 +9,6 @@ import com.xxd.common.R
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.databinding.CommonActivitySwitchFragmentBinding
 import com.xxd.common.costom.decoration.CommonItemDecoration
-import com.xxd.common.extend.binding
 
 /**
  *    author : xxd
@@ -69,7 +67,7 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
         simpleAdapter = object :
             BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_horizontal_simple_text) {
             override fun convert(holder: BaseViewHolder, item: String) {
-                holder.setText(R.id.tv_Name, item)
+                holder.setText(R.id.tv_name, item)
             }
 
         }

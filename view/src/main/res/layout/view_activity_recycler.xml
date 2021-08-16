@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".recycler.RecyclerDiffActivity">
+    tools:context=".recycler.diff.RecyclerDiffActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_1"

@@ -65,7 +65,7 @@ class MainActivity : BaseTitleActivity() {
             ToastUtil.showToast("111111")
         }
 
-        LoginOwner.instance.change().setLoginStatus(true)
+//        LoginOwner.instance.change().setLoginStatus(true)
 
 //        coroutines()
     }

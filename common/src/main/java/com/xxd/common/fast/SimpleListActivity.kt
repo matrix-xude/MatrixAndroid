@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.base.activity.BaseTitleActivity
-import com.xxd.common.databinding.CommonSimpleRecyclerViewBinding
 import com.xxd.common.costom.decoration.CommonItemDecoration
+import com.xxd.common.databinding.CommonSimpleRecyclerViewMergeBinding
 
 /**
  *    author : xxd
@@ -16,7 +16,7 @@ import com.xxd.common.costom.decoration.CommonItemDecoration
  */
 abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
-    private lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewBinding
+    private lateinit var simpleRecyclerBinding: CommonSimpleRecyclerViewMergeBinding
 
     /**
      * recyclerView的adapter，子类可以拿着去自己实现点击事件等
@@ -41,7 +41,7 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
     // final可以屏蔽子类覆写该方法
     final override fun provideBaseTitleRootView(rootView: ViewGroup) {
-        simpleRecyclerBinding = CommonSimpleRecyclerViewBinding.inflate(layoutInflater, rootView)
+        simpleRecyclerBinding = CommonSimpleRecyclerViewMergeBinding.inflate(layoutInflater, rootView)
     }
 
     override fun initView() {

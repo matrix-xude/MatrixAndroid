@@ -1,4 +1,4 @@
-package com.xxd.view.recycler
+package com.xxd.view.recycler.diff
 
 /**
  *    author : xxd

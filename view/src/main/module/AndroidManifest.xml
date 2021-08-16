@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".recycler.RecyclerDiffActivity"
+            android:name=".recycler.diff.RecyclerDiffActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".systemWidget.SystemWidgetActivity"
@@ -33,6 +33,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".iconfont.IconFontActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recycler.RecyclerPagerActivity"
             android:screenOrientation="portrait" />
     </application>
 

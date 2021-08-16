@@ -1,4 +1,4 @@
-package com.xxd.view.recycler
+package com.xxd.view.recycler.diff
 
 import androidx.recyclerview.widget.DiffUtil
 import com.xxd.common.util.log.LogUtil

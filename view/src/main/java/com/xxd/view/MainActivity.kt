@@ -6,7 +6,7 @@ import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
 import com.xxd.view.iconfont.IconFontActivity
 import com.xxd.view.material.MaterialDesignActivity
-import com.xxd.view.recycler.RecyclerDiffActivity
+import com.xxd.view.recycler.RecyclerPagerActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
 
 @Route(path = "/view/activity/main")
@@ -32,7 +32,7 @@ class MainActivity : SimpleListActivity<String>() {
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
-                1 -> IntentUtil.startActivity<RecyclerDiffActivity>(this)
+                1 -> IntentUtil.startActivity<RecyclerPagerActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
                 3 -> IntentUtil.startActivity<MaterialDesignActivity>(this)
                 5 -> IntentUtil.startActivity<IconFontActivity>(this)
@@ -53,7 +53,7 @@ class MainActivity : SimpleListActivity<String>() {
     }
 
     override fun convertItem(holder: BaseViewHolder, item: String) {
-        holder.setText(R.id.tv_Name, item)
+        holder.setText(R.id.tv_name, item)
     }
 
 }
