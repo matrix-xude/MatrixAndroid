@@ -40,6 +40,7 @@ allprojects {
         mavenCentral()
         maven { url 'https://jitpack.io' }
         maven { url "https://oss.jfrog.org/libs-snapshot" } // rxAndroid引入的
+        maven { url "https://s01.oss.sonatype.org/content/groups/public" } //banner轮播器引入 https://github.com/youth5201314/banner
     }
 }
 

@@ -99,7 +99,8 @@ dependencies {
 
 
     // 第三方控件
-    api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
+    api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper // adapter
+    api 'io.github.youth5201314:banner:2.2.2' // 轮播图
 
     /*// annotationProcessor的测试注解
     api project(":apt-annotation")
