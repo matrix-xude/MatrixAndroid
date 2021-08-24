@@ -2,19 +2,18 @@ package com.xxd.view.third
 
 import androidx.fragment.app.Fragment
 import com.xxd.common.fast.SimpleSwitchFragmentActivity
-import com.xxd.view.recycler.adapter.DelegateMultiFragment
-import com.xxd.view.recycler.adapter.MultiFragment
-import com.xxd.view.recycler.adapter.provider.ProviderFragment
 import com.xxd.view.third.banner.BannerFragment
+import com.xxd.view.third.banner.BannerFragment2
+import com.xxd.view.third.indicator.MagicIndicatorFragment
 
 /**
  *    author : xxd
  *    date   : 2021/8/16
  *    desc   :
  */
-class ThirdPagerActivity: SimpleSwitchFragmentActivity() {
+class ThirdPagerActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("Banner")
+    private val dataList = listOf("Banner", "Banner2", "MagicIndicator")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -23,6 +22,8 @@ class ThirdPagerActivity: SimpleSwitchFragmentActivity() {
     override fun getPositionFragment(position: Int): Fragment {
         return when (position) {
             0 -> BannerFragment()
+            1 -> BannerFragment2()
+            2 -> MagicIndicatorFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

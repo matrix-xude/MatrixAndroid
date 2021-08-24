@@ -101,6 +101,7 @@ dependencies {
     // 第三方控件
     api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper // adapter
     api 'io.github.youth5201314:banner:2.2.2' // 轮播图
+    api 'com.github.hackware1993:MagicIndicator:1.7.0' // 指示器
 
     /*// annotationProcessor的测试注解
     api project(":apt-annotation")
