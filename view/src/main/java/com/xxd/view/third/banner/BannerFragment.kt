@@ -47,8 +47,10 @@ class BannerFragment : BaseFragment() {
     }
 
     private fun initBanner2() {
-        val list2 = mutableListOf(R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5,
-                R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5)
+        val list2 = mutableListOf(
+            R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5,
+            R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5
+        )
         viewBinding.banner2.setAdapter(object : BannerAdapter<Int, BaseBindingViewHolder<ViewItemBanner2Binding>>(list2) {
 
             override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BaseBindingViewHolder<ViewItemBanner2Binding> {
@@ -65,7 +67,7 @@ class BannerFragment : BaseFragment() {
             }
 
         })
-                .indicator = CircleIndicator(context)
+            .indicator = CircleIndicator(context)
 
 
 
@@ -102,8 +104,10 @@ class BannerFragment : BaseFragment() {
 
     private fun initViewPager() {
         viewBinding.vp1.offscreenPageLimit = 2
-        val list1 = mutableListOf(R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5,
-                R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5)
+        val list1 = mutableListOf(
+            R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5,
+            R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5
+        )
 //        viewBinding.vp1.adapter = object : BaseBindingQuickAdapter<Int, ViewItemBanner2Binding>(list1) {
 //
 //            override fun convert(holder: BaseBindingViewHolder<ViewItemBanner2Binding>, item: Int) {

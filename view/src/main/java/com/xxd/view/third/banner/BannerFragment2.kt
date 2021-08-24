@@ -67,8 +67,13 @@ class BannerFragment2 : BaseFragment() {
     }
 
     private fun initBanner2() {
-        val list2 = mutableListOf(R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5,
-                R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5)
+        // 非常
+        val list2 = mutableListOf(
+            R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1,
+            R.drawable.view_bg_2, R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2,
+            R.drawable.view_bg_3, R.drawable.view_bg_4, R.drawable.view_bg_5, R.drawable.view_bg_1, R.drawable.view_bg_2, R.drawable.view_bg_3,
+            R.drawable.view_bg_4, R.drawable.view_bg_5
+        )
         viewBinding.banner2.setAdapter(object : BannerAdapter<Int, BaseBindingViewHolder<ViewItemBanner2Binding>>(list2) {
 
             override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BaseBindingViewHolder<ViewItemBanner2Binding> {
@@ -83,9 +88,7 @@ class BannerFragment2 : BaseFragment() {
                 LogUtil.d("viewHolder计算值：position=$position2")
                 LogUtil.d("回调值：position=$position data=${getData(position)}")
             }
-
-        })
-                .indicator = CircleIndicator(context)
+        }).indicator = CircleIndicator(context)
 
 
 
@@ -104,9 +107,6 @@ class BannerFragment2 : BaseFragment() {
 
         })
     }
-
-
-
 
 
 }
