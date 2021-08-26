@@ -35,6 +35,8 @@
         android:background="@color/common_darkkhaki"
         app:banner_auto_loop="true"
         app:banner_infinite_loop="true"
+        app:banner_round_top_left="true"
+        app:banner_round_top_right="true"
         app:banner_radius="20dp" />
 
     <androidx.viewpager2.widget.ViewPager2
