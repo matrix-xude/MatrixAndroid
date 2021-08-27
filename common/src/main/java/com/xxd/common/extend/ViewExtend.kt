@@ -21,7 +21,7 @@ val clickMap by lazy {
 /**
  * View扩展点击事件
  */
-inline fun View.onClick(intervalTime: Int = 500, crossinline block: ((View) -> Unit)) {
+inline fun View.onClick(intervalTime: Int = 0, crossinline block: ((View) -> Unit)) {
     this.setOnClickListener {
         val clickInterval = clickMap[it.id]
         val elapsedRealtime = SystemClock.elapsedRealtime()

@@ -2,6 +2,7 @@ package com.xxd.view.myself
 
 import androidx.fragment.app.Fragment
 import com.xxd.common.fast.SimpleSwitchFragmentActivity
+import com.xxd.view.myself.flow.FirstViewGroupFragment
 import com.xxd.view.third.banner.BannerFragment
 import com.xxd.view.third.banner.BannerFragment2
 import com.xxd.view.third.indicator.MagicIndicatorFragment
@@ -21,7 +22,7 @@ class MyselfViewPagerActivity : SimpleSwitchFragmentActivity() {
 
     override fun getPositionFragment(position: Int): Fragment {
         return when (position) {
-            0 -> BannerFragment()
+            0 -> FirstViewGroupFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

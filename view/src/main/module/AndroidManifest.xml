@@ -40,6 +40,9 @@
         <activity
             android:name=".third.ThirdPagerActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".myself.MyselfViewPagerActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

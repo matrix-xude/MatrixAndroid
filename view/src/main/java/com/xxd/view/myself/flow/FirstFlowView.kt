@@ -4,13 +4,17 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.core.view.children
-import androidx.core.view.isEmpty
+import com.xxd.common.util.log.LogUtil
+import com.xxd.view.myself.util.MeasureUtil
 
 /**
  *    author : xxd
  *    date   : 2021/8/26
  *    desc   : 自定义ViewGroup的尝试
  *    自定义一个流式布局，类似标签页，根据内部的子View宽度自动换行
+ *    1. 处理了padding
+ *    2. 没有处理子类的margin
+ *    3. 如果放于滑动控件中，只能处于数值滑动的控件，横滑无法处理自动换行
  */
 class FirstFlowView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) :
     ViewGroup(context, attributeSet, defStyleAttr) {
@@ -18,6 +22,8 @@ class FirstFlowView @JvmOverloads constructor(context: Context, attributeSet: At
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)  // 父类测量了background
 
+        MeasureUtil.logMeasureSpec(widthMeasureSpec, "width")
+        MeasureUtil.logMeasureSpec(heightMeasureSpec, "height")
         initParam()
 
         measureMyChildView(widthMeasureSpec, heightMeasureSpec)
@@ -49,7 +55,7 @@ class FirstFlowView @JvmOverloads constructor(context: Context, attributeSet: At
             measureChild(view, widthMeasureSpec, heightMeasureSpec)
             val childInfo = ChildMeasureInfo(view.measuredWidth, view.measuredHeight)
             // 第一行添加
-            mLineInfoList.takeIf { isEmpty() }?.add(LineInfo(mutableListOf(), currentLineNumber, 0))
+            mLineInfoList.takeIf { it.isEmpty() }?.add(LineInfo(mutableListOf(), currentLineNumber, 0))
             // 当前行已经存储的View的Measure信息
             val currentLine = mLineInfoList.last()
             if (currentLine.list.isEmpty()) { // 只有第一行可能出现，直接添加进去
@@ -89,27 +95,40 @@ class FirstFlowView @JvmOverloads constructor(context: Context, attributeSet: At
             width1 = width1.coerceAtMost(width)
         }
         val mode2 = MeasureSpec.getMode(heightMeasureSpec)
-        if (mode2 == MeasureSpec.AT_MOST) {
+        if (mode2 == MeasureSpec.AT_MOST || mode2 == MeasureSpec.UNSPECIFIED) {
             var height = 0
-            height += 0.coerceAtMost((mLineInfoList.size - 1) * mIntervalHeight) // 间隔的距离
+            // 数值方向需要计算间隔
+            height += 0.coerceAtLeast((mLineInfoList.size - 1) * mIntervalHeight) // 间隔的距离
             mLineInfoList.forEach { info ->
                 height += info.maxHeight
             }
             height += paddingTop + paddingBottom
-            height1 = height1.coerceAtMost(height)
+            if (mode2 == MeasureSpec.AT_MOST)
+                height1 = height1.coerceAtMost(height)
+            if (mode2 == MeasureSpec.UNSPECIFIED)  // 高度不限制下，需要多少就是多少
+                height1 = height.coerceAtLeast(height1)
         }
 
         setMeasuredDimension(width1, height1)
     }
 
+    // l t r b 是相对于父布局的 左 上 右 下，不是相对于屏幕的
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
 
+        LogUtil.d("onLayout 布局开始 changed=$changed,left=$l,top=$t,right=$r,bottom=$b,")
+
         var index = 0
+        var tempTop = paddingTop
         do {
             mLineInfoList.removeFirstOrNull()?.run {
+                var tempLeft = paddingLeft
                 list.forEach {
-                    
+                    val child = getChildAt(index)
+                    child.layout(tempLeft, tempTop, tempLeft + it.measuredWidth, tempTop + it.measuredHeight)
+                    index++
+                    tempLeft += it.measuredWidth + mIntervalWidth
                 }
+                tempTop += this.maxHeight + mIntervalHeight
             }
         } while (mLineInfoList.isNotEmpty())
 

@@ -6,6 +6,7 @@ import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
 import com.xxd.view.iconfont.IconFontActivity
 import com.xxd.view.material.MaterialDesignActivity
+import com.xxd.view.myself.MyselfViewPagerActivity
 import com.xxd.view.recycler.RecyclerPagerActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
 import com.xxd.view.third.ThirdPagerActivity
@@ -18,7 +19,7 @@ class MainActivity : SimpleListActivity<String>() {
         "RecyclerView",
         "系统的view",
         "meter design",
-        "自定义的view",
+        "自定义的view", // 4
         "icon_font", // 5 阿里通用文本图案
         "第三方控件", // 6
         "终章"
@@ -37,6 +38,7 @@ class MainActivity : SimpleListActivity<String>() {
                 1 -> IntentUtil.startActivity<RecyclerPagerActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
                 3 -> IntentUtil.startActivity<MaterialDesignActivity>(this)
+                4 -> IntentUtil.startActivity<MyselfViewPagerActivity>(this)
                 5 -> IntentUtil.startActivity<IconFontActivity>(this)
                 6 -> IntentUtil.startActivity<ThirdPagerActivity>(this)
             }
