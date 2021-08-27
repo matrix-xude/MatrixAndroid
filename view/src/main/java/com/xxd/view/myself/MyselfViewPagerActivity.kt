@@ -3,6 +3,7 @@ package com.xxd.view.myself
 import androidx.fragment.app.Fragment
 import com.xxd.common.fast.SimpleSwitchFragmentActivity
 import com.xxd.view.myself.flow.FirstViewGroupFragment
+import com.xxd.view.myself.flow.MyFlowViewRecyclerFragment
 import com.xxd.view.third.banner.BannerFragment
 import com.xxd.view.third.banner.BannerFragment2
 import com.xxd.view.third.indicator.MagicIndicatorFragment
@@ -14,7 +15,7 @@ import com.xxd.view.third.indicator.MagicIndicatorFragment
  */
 class MyselfViewPagerActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("自定义ViewGroup")
+    private val dataList = listOf("自定义ViewGroup","在Recycler中的表现")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -23,6 +24,7 @@ class MyselfViewPagerActivity : SimpleSwitchFragmentActivity() {
     override fun getPositionFragment(position: Int): Fragment {
         return when (position) {
             0 -> FirstViewGroupFragment()
+            1 -> MyFlowViewRecyclerFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

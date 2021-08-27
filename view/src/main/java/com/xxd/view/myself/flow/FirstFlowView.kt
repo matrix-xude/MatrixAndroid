@@ -14,7 +14,7 @@ import com.xxd.view.myself.util.MeasureUtil
  *    自定义一个流式布局，类似标签页，根据内部的子View宽度自动换行
  *    1. 处理了padding
  *    2. 没有处理子类的margin
- *    3. 如果放于滑动控件中，只能处于数值滑动的控件，横滑无法处理自动换行
+ *    3. 如果放于滑动控件中，只能处于垂直滑动的控件，横滑无法处理自动换行
  */
 class FirstFlowView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) :
     ViewGroup(context, attributeSet, defStyleAttr) {
@@ -22,8 +22,8 @@ class FirstFlowView @JvmOverloads constructor(context: Context, attributeSet: At
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)  // 父类测量了background
 
-        MeasureUtil.logMeasureSpec(widthMeasureSpec, "width")
-        MeasureUtil.logMeasureSpec(heightMeasureSpec, "height")
+        MeasureUtil.logMeasureSpec(widthMeasureSpec, "${id}-width")
+        MeasureUtil.logMeasureSpec(heightMeasureSpec, "${id}-height")
         initParam()
 
         measureMyChildView(widthMeasureSpec, heightMeasureSpec)

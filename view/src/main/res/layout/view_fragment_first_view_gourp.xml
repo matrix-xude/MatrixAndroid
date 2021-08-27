@@ -126,16 +126,8 @@
                 android:textSize="15sp" />
         </com.xxd.view.myself.flow.FirstFlowView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/common_gold"
-            android:padding="10dp"
-            android:gravity="center"
-            android:text="站位专用"
-            android:textColor="@color/common_black"
-            android:textSize="15sp"
-            android:visibility="visible" />
+
+
 
         <TextView
             android:layout_width="match_parent"
@@ -147,6 +139,105 @@
             android:textColor="@color/common_black"
             android:textSize="15sp"
             android:visibility="visible" />
+
+        <com.xxd.view.myself.flow.FirstFlowView
+            android:id="@+id/flow_view_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/common_paleturquoise"
+            android:paddingStart="0dp"
+            android:paddingTop="0dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@color/common_burlywood"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="发打发的范德萨范德萨范德萨发的"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/view_bg_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/common_burlywood"
+                android:maxLines="1"
+                android:text="发打发的范德萨范德fdafxxxxxd"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_burlywood"
+                android:text="短发到付是从v"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="19sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_burlywood"
+                android:text="品牌和品牌和公平和"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_burlywood"
+                android:text="规范苟富贵"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_burlywood"
+                android:text="高端大气上档次"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_burlywood"
+                android:text="高端大气上档次"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_burlywood"
+                android:text="高端大气上档次"
+                android:textColor="@color/common_blueviolet"
+                android:textSize="15sp" />
+        </com.xxd.view.myself.flow.FirstFlowView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/common_gold"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="站位专用"
+            android:textColor="@color/common_black"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+
 
 
         <TextView
