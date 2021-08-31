@@ -1,4 +1,4 @@
-package com.xxd.view.recycler
+package com.xxd.view.recycler.diff
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,7 +14,6 @@ import com.xxd.common.databinding.CommonSimpleTextBinding
 import com.xxd.common.util.log.LogUtil
 import com.xxd.view.databinding.ViewActivityRecyclerBinding
 import java.util.*
-import java.util.logging.Logger
 
 /**
  *    author : xxd

@@ -4,30 +4,43 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
-import com.xxd.view.recycler.RecyclerDiffActivity
+import com.xxd.view.iconfont.IconFontActivity
+import com.xxd.view.material.MaterialDesignActivity
+import com.xxd.view.myself.MyselfViewPagerActivity
+import com.xxd.view.recycler.RecyclerPagerActivity
 import com.xxd.view.systemWidget.SystemWidgetActivity
+import com.xxd.view.third.ThirdPagerActivity
 
 @Route(path = "/view/activity/main")
 class MainActivity : SimpleListActivity<String>() {
 
     private val mDataList = mutableListOf(
-        "lifecycle",
+        "lifecycle", // 0
         "RecyclerView",
         "系统的view",
-        "自定义的view",
+        "meter design",
+        "自定义的view", // 4
+        "icon_font", // 5 阿里通用文本图案
+        "第三方控件", // 6
         "终章"
     )
 
     override fun initView() {
         super.initView()
+        val extras = intent.extras
+        val stringExtra = intent.getStringExtra("key")
         initListener()
     }
 
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
-                1 -> IntentUtil.startActivity<RecyclerDiffActivity>(this)
+                1 -> IntentUtil.startActivity<RecyclerPagerActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
+                3 -> IntentUtil.startActivity<MaterialDesignActivity>(this)
+                4 -> IntentUtil.startActivity<MyselfViewPagerActivity>(this)
+                5 -> IntentUtil.startActivity<IconFontActivity>(this)
+                6 -> IntentUtil.startActivity<ThirdPagerActivity>(this)
             }
         }
     }
@@ -45,7 +58,7 @@ class MainActivity : SimpleListActivity<String>() {
     }
 
     override fun convertItem(holder: BaseViewHolder, item: String) {
-        holder.setText(R.id.tv_Name, item)
+        holder.setText(R.id.tv_name, item)
     }
 
 }

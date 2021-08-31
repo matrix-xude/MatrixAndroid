@@ -22,12 +22,8 @@ class LifeCycleFragment : BaseFragment() {
         super.onAttach(context)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        viewBinding = CommonTestMatchLayoutBinding.inflate(layoutInflater,container,false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = CommonTestMatchLayoutBinding.inflate(layoutInflater, container, false)
         return viewBinding.root
     }
 

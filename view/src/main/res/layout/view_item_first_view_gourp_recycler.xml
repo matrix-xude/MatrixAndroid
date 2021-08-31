@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/common_mediumseagreen"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_red"
+            android:padding="10dp"
+            android:text="添加一个View"
+            android:textColor="@color/common_black"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@color/common_red"
+            android:padding="10dp"
+            android:text="减少一个View"
+            android:textColor="@color/common_black"
+            android:textSize="15sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <com.xxd.view.myself.flow.FirstFlowView
+        android:id="@+id/flow_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_paleturquoise"
+        android:paddingStart="0dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@color/common_burlywood"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="发打发的范德萨范德萨范德萨发的"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/view_bg_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_burlywood"
+            android:maxLines="1"
+            android:text="发打发的范德萨范德fdafxxxxxd"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_burlywood"
+            android:text="短发到付是从v"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_burlywood"
+            android:text="品牌和品牌和公平和"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_burlywood"
+            android:text="规范苟富贵"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_burlywood"
+            android:text="高端大气上档次"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_burlywood"
+            android:text="高端大气上档次"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_burlywood"
+            android:text="高端大气上档次"
+            android:textColor="@color/common_blueviolet"
+            android:textSize="15sp" />
+    </com.xxd.view.myself.flow.FirstFlowView>
+
+
+</LinearLayout>

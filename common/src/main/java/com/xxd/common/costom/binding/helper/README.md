@@ -1,3 +1,4 @@
 ## BaseRecyclerViewAdapterHelper功能增强
-这里放置的是 BaseRecyclerViewAdapterHelper 的扩展功能，BaseRecyclerViewAdapterHelper 是 GitHub上2w+ start的RecyclerView Adapter的帮助类
+这里放置的是 BaseRecyclerViewAdapterHelper 的扩展功能
+BaseRecyclerViewAdapterHelper 是 GitHub上2w+ start的RecyclerView Adapter的帮助类
 地址： https://github.com/CymChad/BaseRecyclerViewAdapterHelper

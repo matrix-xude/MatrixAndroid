@@ -10,7 +10,8 @@
         android:label="@string/view_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/view_AppTheme">
+        android:theme="@style/view_AppTheme"
+        tools:ignore="LockedOrientationActivity">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -22,12 +23,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".recycler.RecyclerDiffActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".systemWidget.SystemWidgetActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            android:name=".recycler.diff.RecyclerDiffActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".systemWidget.SystemWidgetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".material.MaterialDesignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".iconfont.IconFontActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recycler.RecyclerPagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".third.ThirdPagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".myself.MyselfViewPagerActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

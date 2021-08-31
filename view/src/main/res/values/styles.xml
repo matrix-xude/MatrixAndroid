@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="view_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -7,5 +7,16 @@
         <item name="colorPrimaryDark">@color/view_colorPrimaryDark</item>
         <item name="colorAccent">@color/view_colorAccent</item>
     </style>
+
+    <style name="view_indicator_text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <declare-styleable name="NineControlView" tools:ignore="ResourceName">
+        <attr name="intervalWidth" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="oneViewWidthPercent" format="float"/>
+    </declare-styleable>
 
 </resources>

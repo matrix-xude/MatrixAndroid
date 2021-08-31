@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.orhanobut.logger.Logger
 import com.xxd.common.base.fragment.BaseFragment
+import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
 import com.xxd.common.extend.binding
 import com.xxd.common.module.login.LoginOwner
 import com.xxd.common.util.toast.ToastUtil
@@ -40,5 +41,6 @@ class BindingFragment2 : BaseFragment() {
         LoginOwner.instance.status().observe(this) {
             ToastUtil.showToast("当前登录状态： $it")
         }
+
     }
 }

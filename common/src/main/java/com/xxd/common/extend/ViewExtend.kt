@@ -1,5 +1,6 @@
 package com.xxd.common.extend
 
+import android.os.SystemClock
 import android.view.View
 
 /**
@@ -8,9 +9,26 @@ import android.view.View
  * desc   :
  */
 
+data class ClickInterval(
+    val intervalTime: Int,
+    val lastTime: Long
+)
+
+val clickMap by lazy {
+    mutableMapOf<Int, ClickInterval>()
+}
+
 /**
  * View扩展点击事件
  */
-fun View.onClick(block: ((View) -> Unit)?) {
-    this.setOnClickListener(block)
+inline fun View.onClick(intervalTime: Int = 0, crossinline block: ((View) -> Unit)) {
+    this.setOnClickListener {
+        val clickInterval = clickMap[it.id]
+        val elapsedRealtime = SystemClock.elapsedRealtime()
+        if (clickInterval != null && elapsedRealtime - clickInterval.lastTime <= intervalTime)
+            return@setOnClickListener
+
+        clickMap[it.id] = ClickInterval(intervalTime, elapsedRealtime)
+        block(it)
+    }
 }

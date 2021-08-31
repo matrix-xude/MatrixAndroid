@@ -16,6 +16,7 @@
         app:layout_constraintGuide_begin="10dp" />
 
     <TextView
+        android:layout_marginTop="50dp"
         android:id="@+id/tv_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,18 +30,20 @@
         app:layout_constraintTop_toTopOf="@id/gl_1" />
 
     <TextView
+        android:layout_marginStart="20dp"
         android:id="@+id/tv_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/common_azure"
+        android:background="@color/common_lightseagreen"
         android:maxWidth="220dp"
         android:padding="20dp"
         android:text="文字粗细"
         android:textColor="@color/common_black"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_goneMarginTop="50dp"
         app:layout_constraintStart_toEndOf="@id/tv_1"
-        app:layout_constraintTop_toTopOf="@id/gl_1" />
+        app:layout_constraintTop_toTopOf="@id/tv_1" />
 
     <FrameLayout
         android:id="@+id/fl_contain"
