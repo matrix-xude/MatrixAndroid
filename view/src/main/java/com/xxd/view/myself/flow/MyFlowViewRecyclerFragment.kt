@@ -44,6 +44,7 @@ class MyFlowViewRecyclerFragment : BaseFragment() {
             adapter = object : BaseBindingQuickAdapter<String,ViewItemFirstViewGourpRecyclerBinding>(){
                 override fun convert(holder: BaseBindingViewHolder<ViewItemFirstViewGourpRecyclerBinding>, item: String) {
 
+                    holder.binding.flowView.removeViewAt(0)
                 }
 
                 override fun onItemViewHolderCreated(viewHolder: BaseBindingViewHolder<ViewItemFirstViewGourpRecyclerBinding>, viewType: Int) {
@@ -51,9 +52,9 @@ class MyFlowViewRecyclerFragment : BaseFragment() {
 
                     viewHolder.binding.tv1.onClick {
                         val addTv = TextView(context).apply {
-                            textSize = 20f
+                            textSize = 18f
                             setTextColor(Color.BLUE)
-                            text = "我是新加的   哈啊啊"
+                            text = "我是新加的哈啊啊  "
                             layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                         }
                         viewHolder.binding.flowView.addView(addTv)
@@ -65,7 +66,7 @@ class MyFlowViewRecyclerFragment : BaseFragment() {
                     }
                 }
             }.apply {
-                setList(listOf("1","1","1","1","1","1","1",))
+                setList(listOf("1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1",))
             }
         }
 
