@@ -11,19 +11,19 @@ import kotlin.reflect.full.primaryConstructor
  */
 
 
-fun <T : Any> T.deepCopy(): T {
-
-    val kClass = this::class
-//    kClass as KClass<T>
-    if (!kClass.isData)
-        return this
-    val primaryConstructor = kClass.primaryConstructor!!
-
-    primaryConstructor.parameters.map {
-        val value = (kClass as KClass<T>).memberProperties.first {
-            it.name == it.name
-        }.get(this)
-
-    }
-
-}
+//fun <T : Any> T.deepCopy(): T {
+//
+//    val kClass = this::class
+////    kClass as KClass<T>
+//    if (!kClass.isData)
+//        return this
+//    val primaryConstructor = kClass.primaryConstructor!!
+//
+//    primaryConstructor.parameters.map {
+//        val value = (kClass as KClass<T>).memberProperties.first {
+//            it.name == it.name
+//        }.get(this)
+//
+//    }
+//
+//}

@@ -18,28 +18,36 @@ import com.xxd.view.R
 class NineControlView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) :
     ViewGroup(context, attributeSet, defStyleAttr) {
 
-    init {
-        initView(context, attributeSet)
-    }
 
-    // 获取一些自定义属性
-    private fun initView(context: Context, attributeSet: AttributeSet?) {
-        val ta = context.obtainStyledAttributes(attributeSet, R.styleable.NineControlView)
-        mInterval = ta.getDimensionPixelSize(R.styleable.NineControlView_intervalWidth, DEFAULT_INTERVAL)
-        mRadius = ta.getDimensionPixelSize(R.styleable.NineControlView_radius, DEFAULT_RADIUS)
-        mOneViewWidthPercent = ta.getFloat(R.styleable.NineControlView_oneViewWidthPercent, DEFAULT_ONE_VIEW_WIDTH_PERCENT)
-        ta.recycle()
-    }
+    // 间距
+    private var mInterval: Int
+    private var mRadius: Int
 
     /**
      * 当填充九宫图只有一个View的时候，宽度是按照控件的宽度的百分比来设置的
      */
     @FloatRange(from = 0.0, to = 1.0)
-    var mOneViewWidthPercent: Float = DEFAULT_ONE_VIEW_WIDTH_PERCENT
+    var mOneViewWidthPercent: Float
 
-    // 间距
-    private var mInterval = DEFAULT_INTERVAL
-    private var mRadius = DEFAULT_RADIUS
+    init {
+        LogUtil.d("九宫图初始化")
+        initView(context, attributeSet)
+
+        val ta = context.obtainStyledAttributes(attributeSet, R.styleable.NineControlView)
+        mInterval = ta.getDimensionPixelSize(R.styleable.NineControlView_intervalWidth, DEFAULT_INTERVAL)
+        mRadius = ta.getDimensionPixelSize(R.styleable.NineControlView_radius, DEFAULT_RADIUS)
+        mOneViewWidthPercent = ta.getFloat(R.styleable.NineControlView_oneViewWidthPercent, DEFAULT_ONE_VIEW_WIDTH_PERCENT)
+        ta.recycle()
+        LogUtil.d("initView : mInterval=$mInterval mRadius=$mRadius mOneViewWidthPercent=$mOneViewWidthPercent ")
+    }
+
+
+    // 获取一些自定义属性
+    private fun initView(context: Context, attributeSet: AttributeSet?) {
+
+    }
+
+
 
     // 适配器
     private lateinit var mAdapter: Adapter
@@ -85,6 +93,7 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
             return
         }
 
+        LogUtil.d("onMeasure : mInterval=$mInterval mRadius=$mRadius mOneViewWidthPercent=$mOneViewWidthPercent ")
         // 九宫图测量开始
         measureNine(widthMeasureSpec, heightMeasureSpec)
     }

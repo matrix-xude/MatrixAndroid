@@ -18,5 +18,6 @@
         <attr name="radius" format="dimension"/>
         <attr name="oneViewWidthPercent" format="float"/>
     </declare-styleable>
+    
 
 </resources>

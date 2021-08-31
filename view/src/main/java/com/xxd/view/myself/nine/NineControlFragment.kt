@@ -74,19 +74,19 @@ class NineControlFragment : BaseFragment() {
         }
     }
 
-    private fun initNineControlView() {
-        viewBinding.nineControlView.setAdapter(object : NineControlView.Adapter {
-
-            override fun getCount(): Int {
-                return 8
-            }
-
-            override fun createView(position: Int): View {
-                return ImageView(context).apply {
-                    scaleType = ImageView.ScaleType.CENTER
-                    Glide.with(context).load(R.drawable.view_bg_2).into(this)
-                }
-            }
-        })
-    }
+//    private fun initNineControlView() {
+//        viewBinding.nineControlView.setAdapter(object : NineControlView.Adapter {
+//
+//            override fun getCount(): Int {
+//                return 8
+//            }
+//
+//            override fun createView(position: Int): View {
+//                return ImageView(context).apply {
+//                    scaleType = ImageView.ScaleType.CENTER
+//                    Glide.with(context).load(R.drawable.view_bg_2).into(this)
+//                }
+//            }
+//        })
+//    }
 }
