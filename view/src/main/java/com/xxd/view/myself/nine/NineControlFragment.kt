@@ -1,15 +1,13 @@
 package com.xxd.view.myself.nine
 
-import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
 import com.xxd.common.costom.binding.helper.BaseBindingViewHolder
@@ -19,7 +17,6 @@ import com.xxd.common.util.log.LogUtil
 import com.xxd.view.R
 import com.xxd.view.databinding.ViewFragmentNineControlBinding
 import com.xxd.view.databinding.ViewItemNineViewBinding
-import java.util.logging.Logger
 
 /**
  *    author : xxd
@@ -53,36 +50,23 @@ class NineControlFragment : BaseFragment() {
                 boundary = 10
             })
             adapter = object : BaseBindingQuickAdapter<Int, ViewItemNineViewBinding>() {
+
                 override fun convert(holder: BaseBindingViewHolder<ViewItemNineViewBinding>, item: Int) {
+                    LogUtil.d("创建九宫图adapter item=$item")
+                    holder.binding.nineControlView.setAdapter(object : NineControlView.Adapter {
+                        override fun getCount(): Int {
+                            return item
+                        }
 
-//                    if (holder.binding.nineControlView.getAdapter() == null) {
-                        LogUtil.d("创建九宫图adapter item=$item")
-                        holder.binding.nineControlView.setAdapter(object : NineControlView.Adapter {
-                            override fun getCount(): Int {
-//                                val p = holder.adapterPosition - headerLayoutCount
-//                                return list[p]
-                                return item
+                        override fun createView(position: Int): View {
+                            return ImageView(context).apply {
+                                setBackgroundColor(Color.RED)
+                                scaleType = ImageView.ScaleType.CENTER_INSIDE
+                                Glide.with(context).load(R.drawable.view_bg_2).into(this)
                             }
+                        }
 
-                            override fun onCreateViewHolder(): NineControlView.ViewHolder {
-                                val imageView = ImageView(context).apply {
-                                    scaleType = ImageView.ScaleType.CENTER
-                                    setBackgroundColor(context.resources.getColor(R.color.common_aliceblue))
-                                }
-                                return object : NineControlView.ViewHolder(imageView) {}
-                            }
-
-                            override fun onBindingViewHolder(viewHolder: NineControlView.ViewHolder, position: Int) {
-                                LogUtil.d("onBindingViewHolder , position=$position")
-                                viewHolder.itemView as ImageView
-                                Glide.with(context).load(R.drawable.view_bg_2).into(viewHolder.itemView)
-//                                viewHolder.itemView.setImageBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.view_bg_2))
-                            }
-                        })
-//                    } else {
-//                        LogUtil.d("九宫图adapter刷新 item=$item")
-//                        holder.binding.nineControlView.refreshAdapter()
-//                    }
+                    })
                 }
             }.apply {
                 setList(list)
@@ -97,16 +81,11 @@ class NineControlFragment : BaseFragment() {
                 return 8
             }
 
-            override fun onCreateViewHolder(): NineControlView.ViewHolder {
-                val imageView = ImageView(context).apply {
-                    scaleType = ImageView.ScaleType.CENTER_CROP
+            override fun createView(position: Int): View {
+                return ImageView(context).apply {
+                    scaleType = ImageView.ScaleType.CENTER
+                    Glide.with(context).load(R.drawable.view_bg_2).into(this)
                 }
-                return object : NineControlView.ViewHolder(imageView) {}
-            }
-
-            override fun onBindingViewHolder(viewHolder: NineControlView.ViewHolder, position: Int) {
-                viewHolder.itemView as ImageView
-                viewHolder.itemView.setImageBitmap(BitmapFactory.decodeResource(context!!.resources, R.drawable.view_bg_2))
             }
         })
     }
