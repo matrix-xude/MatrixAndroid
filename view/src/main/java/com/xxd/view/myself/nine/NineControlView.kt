@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.FloatRange
 import androidx.core.view.children
-import com.xxd.common.util.log.LogUtil
 import com.xxd.view.R
 
 /**
@@ -21,6 +20,7 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
 
     // 间距
     private var mInterval: Int
+    // 圆角
     private var mRadius: Int
 
     /**
@@ -30,24 +30,12 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
     var mOneViewWidthPercent: Float
 
     init {
-        LogUtil.d("九宫图初始化")
-        initView(context, attributeSet)
-
         val ta = context.obtainStyledAttributes(attributeSet, R.styleable.NineControlView)
         mInterval = ta.getDimensionPixelSize(R.styleable.NineControlView_intervalWidth, DEFAULT_INTERVAL)
         mRadius = ta.getDimensionPixelSize(R.styleable.NineControlView_radius, DEFAULT_RADIUS)
         mOneViewWidthPercent = ta.getFloat(R.styleable.NineControlView_oneViewWidthPercent, DEFAULT_ONE_VIEW_WIDTH_PERCENT)
         ta.recycle()
-        LogUtil.d("initView : mInterval=$mInterval mRadius=$mRadius mOneViewWidthPercent=$mOneViewWidthPercent ")
     }
-
-
-    // 获取一些自定义属性
-    private fun initView(context: Context, attributeSet: AttributeSet?) {
-
-    }
-
-
 
     // 适配器
     private lateinit var mAdapter: Adapter
@@ -93,14 +81,12 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
             return
         }
 
-        LogUtil.d("onMeasure : mInterval=$mInterval mRadius=$mRadius mOneViewWidthPercent=$mOneViewWidthPercent ")
         // 九宫图测量开始
         measureNine(widthMeasureSpec, heightMeasureSpec)
     }
 
     // 测量九宫图
     private fun measureNine(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        LogUtil.d("九宫图measureNine")
         // 控件的测量宽度
         val defaultWidth = getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
         // 这种情况出现的可能：横滑的RecyclerView，并且没设置最小宽度、没有实际背景图
@@ -167,11 +153,9 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
 
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        LogUtil.d("九宫图 onLayout ， changed=$changed")
         // 如果adapter没设置，不需要布局
         if (!this::mAdapter.isInitialized)
             return
-
 
         if (mAdapter.getCount() == 1) { // 只有一条数据的时候
             getChildAt(0)?.let {
