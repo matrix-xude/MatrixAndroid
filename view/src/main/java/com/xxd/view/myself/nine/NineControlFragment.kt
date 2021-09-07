@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.tamsiree.rxkit.RxKeyboardTool
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
 import com.xxd.common.costom.binding.helper.BaseBindingViewHolder
@@ -35,6 +36,7 @@ class NineControlFragment : BaseFragment() {
     override fun initView() {
         super.initView()
 
+        RxKeyboardTool
 //        initNineControlView()
         initRecyclerView()
 

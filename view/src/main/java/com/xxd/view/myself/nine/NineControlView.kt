@@ -17,7 +17,6 @@ import com.xxd.view.R
 class NineControlView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) :
     ViewGroup(context, attributeSet, defStyleAttr) {
 
-
     // 间距
     private var mInterval: Int
     // 圆角

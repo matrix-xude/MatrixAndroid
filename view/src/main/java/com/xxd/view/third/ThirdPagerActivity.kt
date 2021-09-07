@@ -5,6 +5,7 @@ import com.xxd.common.fast.SimpleSwitchFragmentActivity
 import com.xxd.view.third.banner.BannerFragment
 import com.xxd.view.third.banner.BannerFragment2
 import com.xxd.view.third.indicator.MagicIndicatorFragment
+import com.xxd.view.third.indicator.MyMagicIndicatorFragment
 
 /**
  *    author : xxd
@@ -13,7 +14,7 @@ import com.xxd.view.third.indicator.MagicIndicatorFragment
  */
 class ThirdPagerActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("Banner", "Banner2", "MagicIndicator")
+    private val dataList = listOf("Banner", "Banner2", "MagicIndicator","MyMagicIndicatorFragment")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -24,6 +25,7 @@ class ThirdPagerActivity : SimpleSwitchFragmentActivity() {
             0 -> BannerFragment()
             1 -> BannerFragment2()
             2 -> MagicIndicatorFragment()
+            3 -> MyMagicIndicatorFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

@@ -13,9 +13,10 @@ import com.xxd.coroutine.databinding.CoroutineActivityCancelBinding
 import com.xxd.coroutine.databinding.CoroutineItemCancelBinding
 import com.xxd.coroutine.utils.log
 import kotlinx.coroutines.*
-import okhttp3.internal.wait
-import java.util.concurrent.CancellationException
-import java.util.concurrent.Future
+import kotlinx.coroutines.internal.resumeCancellableWith
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 /**
  *    author : xxd
@@ -26,7 +27,7 @@ class CancelCoroutineActivity : BaseTitleActivity() {
 
     private lateinit var viewBinding: CoroutineActivityCancelBinding
     private val buttonArray =
-        listOf("开始携程1", "查看job1", "查看job2", "取消job1", "取消job2", "站位", "站位", "站位", "站位", "站位", "站位", "站位", "站位")
+        listOf("开始携程1", "查看job1", "查看job2", "取消job1", "取消job2", "supervisor空间", "withContext", "suspend", "站位", "站位", "站位", "站位", "站位")
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
         viewBinding = CoroutineActivityCancelBinding.inflate(layoutInflater, rootView, true)
@@ -77,21 +78,26 @@ class CancelCoroutineActivity : BaseTitleActivity() {
     private var index = 0
     private var job1: Job? = null
     private var job2: Job? = null
-    private var job3 : Deferred<*>? = null
+    private var job3: Deferred<*>? = null
     fun m1() {
         job1 = GlobalScope.launch() {
             job3 = async {
                 try {
                     while (true) {
-                        delay(500)
+//                        Thread.sleep(500) // 这样写就像脱缰的野狗，无法控制了
+                        delay(500)  // 必须需要使用 CoroutineContext 的地方才可能实现调度
                         log(index++)
                     }
                 } catch (e: Exception) {
                     log("循环携程被取消 $e")
                 }
             }
+
+
             try {
-                job3!!.await()
+//                val await = job3!!.await()
+                job3!!.join()
+                log("抓不住异常")
             } catch (e: Exception) {
                 log("调用join的携程被取消 $e")
             }
@@ -110,12 +116,107 @@ class CancelCoroutineActivity : BaseTitleActivity() {
     }
 
     // 取消job1（外部携程）
-    fun m4(){
+    fun m4() {
         job1?.cancel()
     }
 
     // 取消job2（内部携程）
-    fun m5(){
+    fun m5() {
         job3?.cancel()
     }
+
+    // supervisorScope 空间
+    fun m6() {
+        job1 = GlobalScope.launch() {
+            supervisorScope {
+                job3 = async {
+                    try {
+                        while (true) {
+//                        Thread.sleep(500) // 这样写就像脱缰的野狗，无法控制了
+                            delay(2000)  // 必须需要使用 CoroutineContext 的地方才可能实现调度
+                            log(index++)
+                            throw RuntimeException("哈哈哈")
+                        }
+                    } catch (e: Exception) {
+                        log("循环携程被取消 $e")
+                    }
+                }
+
+                // 被挂起可以取消
+                async {
+                    while (true) {
+                        delay(500)  // 必须需要使用 CoroutineContext 的地方才可能实现调度
+                        log("我是无忧无虑的循环")
+                    }
+                }
+
+                try {
+                    val await = job3!!.await()
+//                    job3!!.join()
+                    log("抓不住异常")
+                } catch (e: Exception) {
+                    log("调用join的携程被取消 $e")
+                }
+            }
+        }
+    }
+
+    // 模拟网络取消
+    fun m7() {
+        job1 = GlobalScope.launch {
+
+
+//            try {
+//                val value = withContext(Dispatchers.Default) {
+//                    Thread.sleep(5000)
+//                    123
+//                }
+//                log("拿到了网络返回结果 $value")
+//            } catch (e: Exception) {
+//                log("被取消了")
+//            }
+
+            try {
+                val job = async(Dispatchers.Default) {
+                    Thread.sleep(5000)
+                    log("我肯定是取消不了了之的")
+                    123
+                }
+                log("拿到了网络返回结果 ${job.await()}")
+            } catch (e: Exception) {
+                log("被取消了 $e")
+            }
+        }
+    }
+
+    // 使用suspend方法
+    fun m8() {
+        job1 = GlobalScope.launch {
+
+
+            try {
+                log("suspend之前")
+//                val get123 = async { get123() }
+                val get123 = get123()
+                log("suspend之后")
+                log("拿到了网络返回结果 ${get123}")
+            } catch (e: Exception) {
+                log("被取消了 $e")
+            }
+        }
+    }
+
+    private suspend fun get123() : Int{
+       return suspendCoroutine {
+            log("开始执行suspend")
+
+            Thread.sleep(2000)
+//        delay(2000)
+//        it.resumeWith(Result.success(123))
+            it.resume(122)
+
+//            it.resumeWithException(RuntimeException("hahaha"))
+        }
+    }
+
 }

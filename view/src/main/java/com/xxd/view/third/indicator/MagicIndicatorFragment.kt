@@ -136,11 +136,12 @@ class MagicIndicatorFragment : BaseFragment() {
             override fun getIndicator(context: Context?): IPagerIndicator {
                 return LinePagerIndicator(context).apply {
                     mode = LinePagerIndicator.MODE_WRAP_CONTENT
+                    setColors(Color.RED, Color.BLUE)
                 }
             }
         }
         viewBinding.magicIndicator.navigator = commonNavigator
-        ViewPagerHelper.bind(viewBinding.magicIndicator, viewBinding.vp1)
+//        ViewPagerHelper.bind(viewBinding.magicIndicator, viewBinding.vp1)
 
         viewBinding.vp2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
@@ -156,11 +157,11 @@ class MagicIndicatorFragment : BaseFragment() {
             }
 
             override fun onPageSelected(position: Int) {
-                viewBinding.magicIndicator.onPageSelected(position)
+//                viewBinding.magicIndicator.onPageSelected(position)
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-                viewBinding.magicIndicator.onPageScrollStateChanged(state)
+//                viewBinding.magicIndicator.onPageScrollStateChanged(state)
             }
         })
     }
