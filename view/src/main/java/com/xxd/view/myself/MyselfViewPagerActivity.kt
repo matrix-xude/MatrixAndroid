@@ -5,6 +5,7 @@ import com.xxd.common.fast.SimpleSwitchFragmentActivity
 import com.xxd.view.myself.flow.FirstViewGroupFragment
 import com.xxd.view.myself.flow.MyFlowViewRecyclerFragment
 import com.xxd.view.myself.nine.NineControlFragment
+import com.xxd.view.myself.oneline.OneLineLayoutFragment
 import com.xxd.view.third.banner.BannerFragment
 import com.xxd.view.third.banner.BannerFragment2
 import com.xxd.view.third.indicator.MagicIndicatorFragment
@@ -16,7 +17,7 @@ import com.xxd.view.third.indicator.MagicIndicatorFragment
  */
 class MyselfViewPagerActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("自定义ViewGroup","在Recycler中的表现","九宫图")
+    private val dataList = listOf("自定义ViewGroup","在Recycler中的表现","九宫图","一行图")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -27,6 +28,7 @@ class MyselfViewPagerActivity : SimpleSwitchFragmentActivity() {
             0 -> FirstViewGroupFragment()
             1 -> MyFlowViewRecyclerFragment()
             2 -> NineControlFragment()
+            3 -> OneLineLayoutFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

@@ -58,7 +58,7 @@
                 android:background="@color/common_burlywood"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="发打发的范德萨范德萨范德萨发的"
+                android:text="发打发的范萨发的"
                 android:textColor="@color/common_blueviolet"
                 android:textSize="15sp" />
 

@@ -14,10 +14,23 @@
     </style>
 
     <declare-styleable name="NineControlView" tools:ignore="ResourceName">
-        <attr name="intervalWidth" format="dimension"/>
-        <attr name="radius" format="dimension"/>
-        <attr name="oneViewWidthPercent" format="float"/>
+        <attr name="intervalWidth" format="dimension" />
+        <attr name="radius" format="dimension" />
+        <attr name="oneViewWidthPercent" format="float" />
     </declare-styleable>
-    
+
+    <declare-styleable name="OneLineLayout" tools:ignore="ResourceName">
+        <!-- 每个子view之间的间距-->
+        <attr name="oneLineInterval" format="dimension" />
+        <!--子view的对齐方式；3种，top、center、bottom-->
+        <attr name="oneLineAlignAt" format="enum">
+            <enum name="center" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+        </attr>
+        <!--子view需要测量的优先级，数字越大优先级越高-->
+        <attr name="oneLinePriority" format="integer" />
+    </declare-styleable>
+
 
 </resources>

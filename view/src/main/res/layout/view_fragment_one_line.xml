@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_gray"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.xxd.view.myself.oneline.OneLineLayout
+        android:id="@+id/one_lien_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_gold"
+        android:padding="10dp"
+        app:oneLineAlignAt="center"
+        app:oneLineInterval="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            app:oneLinePriority="1"
+            android:maxLines="1"
+            android:text="发电房第三打发打发反的度发aa方"
+            android:textColor="@color/common_black"
+            android:textSize="25sp"
+            tools:ignore="MissingPrefix" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="飞鸿踏雪fd放大幅 反反fdsf 范德萨发"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp"
+            app:oneLinePriority="1" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/view_bg_1"
+            app:oneLinePriority="11"
+            tools:ignore="MissingPrefix" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="飞鸿踏雪"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp"
+            app:oneLinePriority="2" />
+
+    </com.xxd.view.myself.oneline.OneLineLayout>
+
+</LinearLayout>
