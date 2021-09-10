@@ -124,16 +124,16 @@ class OneLineLayout @JvmOverloads constructor(context: Context, attributeSet: At
     // 已经是计算了padding的
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
 
-        var tempLeft = 0
+        var tempLeft = paddingLeft
         children.forEachIndexed { index, view ->
             if (mMeasuredIndexList.contains(index)) {  // 只布局测量过的子View
-                var tempTop = 0
+                var tempTop = paddingTop
                 when (mAlignAt) {
                     ALIGN_AT_CENTER -> tempTop += (mMaxMeasureHeight - view.measuredHeight) / 2
                     ALIGN_AT_TOP -> tempTop += 0
                     ALIGN_AT_BOTTOM -> tempTop += mMaxMeasureHeight - view.measuredHeight
                 }
-                view.layout(l + tempLeft, t + tempTop, l + tempLeft + view.measuredWidth, t + tempTop + view.measuredHeight)
+                view.layout( tempLeft, tempTop, tempLeft + view.measuredWidth, tempTop + view.measuredHeight)
                 tempLeft += view.measuredWidth + mInterval  // 距左边距增加该view的宽度+1个间距
             }
         }
@@ -171,10 +171,9 @@ class OneLineLayout @JvmOverloads constructor(context: Context, attributeSet: At
 
         var priority = DEFAULT_PRIORITY
 
-        @SuppressLint("CustomViewStyleable")
         constructor(c: Context, attrs: AttributeSet?) : super(c, attrs) {
-            val a = c.obtainStyledAttributes(attrs, R.styleable.OneLineLayout)
-            priority = a.getInt(R.styleable.OneLineLayout_oneLinePriority, DEFAULT_PRIORITY)
+            val a = c.obtainStyledAttributes(attrs, R.styleable.OneLineLayout_Layout)
+            priority = a.getInt(R.styleable.OneLineLayout_Layout_layout_oneLinePriority, DEFAULT_PRIORITY)
             a.recycle()
         }
 

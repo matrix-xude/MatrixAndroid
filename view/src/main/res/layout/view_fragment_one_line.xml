@@ -13,20 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/common_gold"
-        android:padding="10dp"
-        app:oneLineAlignAt="center"
-        app:oneLineInterval="15dp">
+        android:padding="4dp"
+        app:oneLineAlignAt="bottom"
+        app:oneLineInterval="15dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            app:oneLinePriority="1"
             android:maxLines="1"
             android:text="发电房第三打发打发反的度发aa方"
             android:textColor="@color/common_black"
             android:textSize="25sp"
-            tools:ignore="MissingPrefix" />
+            android:visibility="gone"
+            app:layout_oneLinePriority="1"/>
 
         <com.xxd.common.costom.shape.CustomShapeSimpleTextView
             android:layout_width="wrap_content"
@@ -40,15 +41,15 @@
             app:CustomShapeRadius="3dp"
             app:CustomShapeStrokeColor="@color/common_blue"
             app:CustomShapeStrokeWidth="1dp"
-            app:oneLinePriority="1" />
+            app:layout_oneLinePriority="1" />
 
         <ImageView
             android:layout_width="70dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/view_bg_1"
-            app:oneLinePriority="11"
-            tools:ignore="MissingPrefix" />
+            app:layout_oneLinePriority="11"
+             />
 
         <com.xxd.common.costom.shape.CustomShapeSimpleTextView
             android:layout_width="wrap_content"
@@ -62,7 +63,7 @@
             app:CustomShapeRadius="3dp"
             app:CustomShapeStrokeColor="@color/common_blue"
             app:CustomShapeStrokeWidth="1dp"
-            app:oneLinePriority="2" />
+            app:layout_oneLinePriority="2" />
 
     </com.xxd.view.myself.oneline.OneLineLayout>
 

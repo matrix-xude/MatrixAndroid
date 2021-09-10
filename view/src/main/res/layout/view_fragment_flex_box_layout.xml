@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_gray"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/one_lien_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_gold"
+        android:padding="10dp"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:dividerDrawableHorizontal="@drawable/view_red"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:maxLine="4"
+        app:justifyContent="flex_start"
+        app:showDividerHorizontal="end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="1111111111111111"
+            android:textColor="@color/common_black"
+            android:textSize="25sp"
+            android:visibility="visible" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:maxWidth="50dp"
+            app:layout_flexGrow="1"
+            app:layout_order="1"
+            android:text="222222222"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="100dp"
+
+            android:scaleType="centerCrop"
+            android:src="@drawable/view_bg_1" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            app:layout_wrapBefore="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            app:layout_alignSelf="center"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="3333333"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="4444"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="高佛的各方的大幅度发放到发的发的发到付"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="高佛的各方的大幅度发放到发的发的发到付"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="高佛的各方的大幅度发放到发的发的发到付"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_gold"
+        android:padding="10dp"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:dividerDrawableHorizontal="@drawable/view_red"
+        app:flexDirection="row"
+        app:flexWrap="nowrap"
+        app:justifyContent="flex_start"
+        app:showDividerHorizontal="end">
+
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            app:layout_flexShrink="1"
+            android:text="222222222222222222"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            app:layout_flexShrink="1"
+            android:text="33333333333333333333"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            app:layout_flexShrink="0"
+            android:text="4444444444444444444444444444444444"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_gold"
+        android:padding="10dp"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:dividerDrawableHorizontal="@drawable/view_red"
+        app:flexDirection="row_reverse"
+        app:flexWrap="nowrap"
+        app:justifyContent="flex_end"
+        app:showDividerHorizontal="end">
+
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            app:layout_flexShrink="0"
+            android:text="222222222222"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            app:layout_flexShrink="1"
+            android:text="33333333333333333333"
+            android:visibility="gone"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            app:layout_flexShrink="1"
+            android:text="4444444444444444444444"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <com.xxd.view.material.flexboxlayout.FlexboxLayoutMaxLine
+        android:layout_width="match_parent"
+        app:flexWrap="wrap"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/common_gold"
+        app:maxLine="3"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="1111111111111111"
+            android:textColor="@color/common_black"
+            android:textSize="25sp"
+            android:visibility="visible" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            app:layout_flexGrow="0"
+            app:layout_order="1"
+            android:text="222222222"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="100dp"
+
+            android:scaleType="centerCrop"
+            android:src="@drawable/view_bg_1" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            app:layout_wrapBefore="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            app:layout_alignSelf="center"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="3333333"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="4444"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="高佛的各方的大幅度发放到发的发的发到付"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="高佛的各方的大幅度发放到发的发的发到付"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+        <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="高佛的各方的大幅度发放到发的发的发到付"
+            android:visibility="visible"
+            app:CustomShapeFillColor="@color/common_bisque"
+            app:CustomShapeRadius="3dp"
+            app:CustomShapeStrokeColor="@color/common_blue"
+            app:CustomShapeStrokeWidth="1dp" />
+
+
+    </com.xxd.view.material.flexboxlayout.FlexboxLayoutMaxLine>
+
+</LinearLayout>

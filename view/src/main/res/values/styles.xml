@@ -28,9 +28,15 @@
             <enum name="top" value="1" />
             <enum name="bottom" value="2" />
         </attr>
-        <!--子view需要测量的优先级，数字越大优先级越高-->
-        <attr name="oneLinePriority" format="integer" />
     </declare-styleable>
+
+    <!--必须以"_Layout"结尾，否则代码获取属性时警告-->
+    <declare-styleable name="OneLineLayout_Layout" tools:ignore="ResourceName">
+        <!--必须以"layout_"开头，否则xml中使用时警告-->
+        <!--子view需要测量的优先级，数字越大优先级越高-->
+        <attr name="layout_oneLinePriority" format="integer" />
+    </declare-styleable>
+
 
 
 </resources>
