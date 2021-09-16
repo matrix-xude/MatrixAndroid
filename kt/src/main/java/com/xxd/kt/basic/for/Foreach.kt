@@ -9,7 +9,7 @@ import com.xxd.kt.coroutines.basic.log
  */
 
 fun main() {
-    m2()
+    m3()
 }
 
 private fun m1() {
@@ -28,4 +28,10 @@ private fun m2(){
     subList.add(11)
     log(list)
     log(subList)
+}
+
+private fun m3(){
+    for (index in 1 until 1){
+        println("$index")
+    }
 }
