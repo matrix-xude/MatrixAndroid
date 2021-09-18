@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_palegoldenrod"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="测量高度"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_weight="1"
+            android:background="@color/common_palegoldenrod"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="预留按钮"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_violet"
+        android:text="发电房第三方大房东FoFo水电费"
+        android:textColor="@color/common_black"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tv_inner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_tan"
+        android:textColor="@color/common_black"
+        android:textSize="22sp" />
+
+
+</LinearLayout>

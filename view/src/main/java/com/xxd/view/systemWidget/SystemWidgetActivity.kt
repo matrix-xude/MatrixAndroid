@@ -2,6 +2,7 @@ package com.xxd.view.systemWidget
 
 import androidx.fragment.app.Fragment
 import com.xxd.common.fast.SimpleSwitchFragmentActivity
+import com.xxd.view.systemWidget.text.TextViewFragment
 
 /**
  *    author : xxd
@@ -10,7 +11,7 @@ import com.xxd.common.fast.SimpleSwitchFragmentActivity
  */
 class SystemWidgetActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("ViewFlipper", "", "", "", "", "", "")
+    private val dataList = listOf("ViewFlipper", "TextView测量", "", "", "", "", "")
     override fun getDataList(): Collection<String> {
         return dataList
     }
@@ -18,7 +19,7 @@ class SystemWidgetActivity : SimpleSwitchFragmentActivity() {
     override fun getPositionFragment(position: Int): Fragment {
         return when (position) {
             0 -> ViewFlipperFragment()
-            1 -> ViewFlipperFragment()
+            1 -> TextViewFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }
