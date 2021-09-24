@@ -36,7 +36,6 @@ class NineControlFragment : BaseFragment() {
     override fun initView() {
         super.initView()
 
-        RxKeyboardTool
 //        initNineControlView()
         initRecyclerView()
 
@@ -63,8 +62,8 @@ class NineControlFragment : BaseFragment() {
                         override fun createView(position: Int): View {
                             return ImageView(context).apply {
                                 setBackgroundColor(Color.RED)
-                                scaleType = ImageView.ScaleType.CENTER_INSIDE
-                                Glide.with(context).load(R.drawable.view_bg_2).into(this)
+                                scaleType = ImageView.ScaleType.CENTER_CROP
+                                Glide.with(context).load(R.drawable.view_bg_6).into(this)
                             }
                         }
 

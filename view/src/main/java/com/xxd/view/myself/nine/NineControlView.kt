@@ -1,6 +1,7 @@
 package com.xxd.view.myself.nine
 
 import android.content.Context
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
 
     // 间距
     private var mInterval: Int
+
     // 圆角
     private var mRadius: Int
 
@@ -189,6 +191,55 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
             MeasureSpec.EXACTLY -> result = specSize
         }
         return result
+    }
+
+    //绘制圆角视图
+    private var mRoundPaint: Paint = Paint()
+    private var mImagePaint: Paint = Paint()
+    private val mMyRadius = 50f
+
+    init {
+        mRoundPaint.color = Color.WHITE
+        mRoundPaint.isAntiAlias = true
+        mRoundPaint.style = Paint.Style.FILL
+        mRoundPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
+
+        mImagePaint.xfermode = null
+    }
+
+    override fun dispatchDraw(canvas: Canvas?) {
+        canvas ?: return
+        // 这里是为了处理截取后的背景色，让显示成背景的样色，不设置，默认解决出的部分是黑色
+        canvas.saveLayer(RectF(0F, 0F, canvas.width.toFloat(), canvas.height.toFloat()), null)
+        super.dispatchDraw(canvas)
+
+        val path = Path()
+        path.moveTo(0f, mMyRadius)
+        path.lineTo(0f, 0f)
+        path.lineTo(mMyRadius, 0f)
+        path.arcTo(RectF(0f, 0f, mMyRadius * 2, mMyRadius * 2), -90f, -90f)
+        path.close()
+//        canvas.drawPath(path, mRoundPaint)
+
+
+//        val path2 = Path()
+        path.moveTo(200f, 200f + mMyRadius)
+        path.lineTo(200f, 200f)
+        path.lineTo(200f + mMyRadius, 200f)
+        path.arcTo(RectF(200f, 200f, 200f + mMyRadius * 2, 200f + mMyRadius * 2), -90f, -90f)
+        path.close()
+//        canvas.drawPath(path, mRoundPaint)
+
+
+        path.moveTo(300f, 300f + mMyRadius)
+        path.lineTo(300f, 300f)
+        path.lineTo(300f + mMyRadius, 300f)
+//        path.arcTo(RectF(300f, 300f, 300f + mMyRadius * 1, 300f + mMyRadius * 1), -90f, -90f)
+//        path.lineTo(RectF(300f, 300f, 300f + mMyRadius * 1, 300f + mMyRadius * 1), -90f, -90f)
+        path.close()
+        canvas.drawPath(path, mRoundPaint)
+
+        canvas.restore()
     }
 
     /**

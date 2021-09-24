@@ -19,6 +19,11 @@
         <attr name="oneViewWidthPercent" format="float" />
     </declare-styleable>
 
+    <declare-styleable name="NineControlSpecialView" tools:ignore="ResourceName">
+        <attr name="nineControlIntervalWidth" format="dimension" />
+        <attr name="nineControlRadius" format="dimension" />
+    </declare-styleable>
+
     <declare-styleable name="OneLineLayout" tools:ignore="ResourceName">
         <!-- 每个子view之间的间距-->
         <attr name="oneLineInterval" format="dimension" />
