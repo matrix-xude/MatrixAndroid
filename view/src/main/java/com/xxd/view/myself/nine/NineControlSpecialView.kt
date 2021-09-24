@@ -13,7 +13,7 @@ import com.xxd.view.R
 
 /**
  *    author : xxd
- *    date   : 2021/8/30
+ *    date   : 2021/9/22
  *    desc   : 特殊的九宫图控件
  *    (规则)[https://app.mockplus.cn/app/ojf6C61wa3wr/specs/design/5qrH2kOiPswQ]
  *    1. 1图模式中的宽、高适配由控件来实现（外部需要在LayoutParameter中传入固定的宽、高）
@@ -28,8 +28,10 @@ class NineControlSpecialView @JvmOverloads constructor(context: Context, attribu
     // 圆角，1图4圆角；5图5圆角；拐角处都是圆角
     private var mRadius: Float
 
-    //绘制圆角视图
+    // 圆角截取画笔
     private var mRoundPaint: Paint = Paint()
+
+    // 保证背景色不变的画笔
     private var mImagePaint: Paint = Paint()
 
     init {
@@ -98,12 +100,12 @@ class NineControlSpecialView @JvmOverloads constructor(context: Context, attribu
         // 测量最后的宽高，需要在下面赋值
         var dimensionWidth = 0
         var dimensionHeight = 0
-        when {
-            mAdapter!!.getCount() == 0 -> {  // 站位使用，防止走到else逻辑
+        when (mAdapter!!.getCount()) {
+            0 -> {  // 站位使用，防止走到else逻辑
                 dimensionWidth = defaultWidth
                 dimensionHeight = 0
             }
-            mAdapter!!.getCount() == 1 -> { // 只有一条数据的时候，宽度是动态设置的
+            1 -> { // 只有一条数据的时候，宽度是动态设置的
                 val view = getChildAt(0)
 
                 // 1图中的子View如果宽、高设置的是固定值，则按照九宫图的1图模式适配；如果宽、高其中有有一个<=0,则按照宽取该控件最大值，高自适应取适配
@@ -158,7 +160,7 @@ class NineControlSpecialView @JvmOverloads constructor(context: Context, attribu
                 dimensionWidth = defaultWidth
                 dimensionHeight = view.measuredHeight
             }
-            mAdapter!!.getCount() == 2 -> { // 一行分2列，宽高固定
+            2 -> { // 一行分2列，宽高固定
                 // 宽高固定，且一样
                 val childWidth = (defaultWidth - mInterval) / 2
                 val measureSpec = MeasureSpec.makeMeasureSpec(childWidth, MeasureSpec.EXACTLY)
@@ -177,7 +179,7 @@ class NineControlSpecialView @JvmOverloads constructor(context: Context, attribu
                 dimensionWidth = defaultWidth
                 dimensionHeight = height
             }
-            mAdapter!!.getCount() == 4 -> { // 4图模式比较特殊，是9图取1，2，4，5
+            4 -> { // 4图模式比较特殊，是9图取1，2，4，5
                 // 宽高固定，且一样
                 val childWidth = (defaultWidth - mInterval) / 3
                 val measureSpec = MeasureSpec.makeMeasureSpec(childWidth, MeasureSpec.EXACTLY)
@@ -259,7 +261,7 @@ class NineControlSpecialView @JvmOverloads constructor(context: Context, attribu
 
     override fun dispatchDraw(canvas: Canvas?) {
         canvas ?: return
-        // 这里是为了处理截取后的背景色，让显示成背景的样色，不设置，默认解决出的部分是黑色
+        // 这里是为了处理截取后的背景色，让显示成背景的样色，不设置，默认截图出的部分是黑色
         canvas.saveLayer(RectF(0F, 0F, canvas.width.toFloat(), canvas.height.toFloat()), null)
         super.dispatchDraw(canvas)
 
