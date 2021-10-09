@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.*
 import android.text.method.LinkMovementMethod
+import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.ImageSpan
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import com.xxd.common.util.toast.ToastUtil
 import com.xxd.view.R
 import com.xxd.view.databinding.ViewFragmentTextViewBinding
 import java.lang.ref.WeakReference
+import java.util.*
 
 /**
  *    author : xxd
@@ -81,8 +83,8 @@ class TextViewFragment() : BaseFragment() {
         return staticLayout.lineCount
     }
 
-    private fun imageSpanAlign(){
-        val ssb = SpannableStringBuilder()
+    private fun imageSpanAlign() {
+        var ssb = SpannableStringBuilder()
         /*val imageSpan = object : ImageSpan(requireContext(),R.drawable.view_red){
 
             private var mDrawableRef: WeakReference<Drawable>? = null
@@ -119,13 +121,32 @@ class TextViewFragment() : BaseFragment() {
             }
         }*/
 
-        val imageSpan = CustomImageSpan(requireContext(), R.drawable.view_red,CustomImageSpan.TYPE_CENTER)
+        val imageSpan = CustomImageSpan(requireContext(), R.drawable.view_red, CustomImageSpan.TYPE_CENTER)
+        val sizeSpan = AbsoluteSizeSpan(40, true)
 
-        ssb.append("1",imageSpan,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        ssb.append("接上一些文字,多一些，来个换行")
+        val paint = viewBinding.tvInner.paint
+
+        ssb.append("高", sizeSpan, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ssb.append("接上")
+        val measureText = paint.measureText(ssb, 0, 1)
+        val measureText2 = paint.measureText(ssb, 1, 2)
+        // 结论：Paint测量不出被替换的Span的宽度
+        LogUtil.d("第一个图片Span的width=$measureText  第二个文字的宽度width=$measureText2")
+
+        val fArray = FloatArray(10)
+        val textWidths = paint.getTextWidths(ssb, 0, 2, fArray)
+        LogUtil.d("getTextWidths方法测量的结果 result=$textWidths  fArray=${fArray.asList()}")
+
+        val fArray2 = FloatArray(10)
+        val breakText = paint.breakText(ssb, 0, ssb.length, true, 500f, fArray2)
+        LogUtil.d("breakText 方法测量的结果 result=$breakText  fArray=${fArray2.asList()}")
+
+//        ssb = ssb.subSequence(1, ssb.length) as SpannableStringBuilder
+        val staticLayout = StaticLayout(ssb, viewBinding.tvInner.paint, viewBinding.tvInner.width, Layout.Alignment.ALIGN_NORMAL, 1F, 0F, false)
+        val lineStart = staticLayout.getLineStart(1)
+        LogUtil.d("StaticLayout 测量的文字第2行起始位置=$lineStart")
         viewBinding.tvInner.text = ssb
     }
-
 
 
     private fun spanClick() {
@@ -142,7 +163,7 @@ class TextViewFragment() : BaseFragment() {
         }
 
         val ssb = SpannableStringBuilder()
-        ssb.append("可以被点击吗",clickSpan,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ssb.append("可以被点击吗", clickSpan, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         ssb.append("后面的内容啊fdafafaa;fdoifdsf dsf dafdfdsfdsf ")
         viewBinding.tvInner.text = ssb
     }

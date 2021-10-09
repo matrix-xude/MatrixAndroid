@@ -3,8 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".recycler.diff.RecyclerDiffActivity">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_1"

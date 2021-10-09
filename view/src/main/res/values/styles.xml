@@ -42,6 +42,16 @@
         <attr name="layout_oneLinePriority" format="integer" />
     </declare-styleable>
 
+    <!--带圆角，边框的ImageView-->
+    <declare-styleable name="CustomImageView" tools:ignore="ResourceName">
+        <attr name="civ_radius_top_left" format="dimension" />
+        <attr name="civ_radius_top_right" format="dimension" />
+        <attr name="civ_radius_bottom_left" format="dimension" />
+        <attr name="civ_radius_bottom_right" format="dimension" />
+        <attr name="civ_radius" format="dimension" />
+        <attr name="civ_stroke_width" format="dimension" />
+        <attr name="civ_stroke_color" format="color" />
+    </declare-styleable>
 
 
 </resources>
