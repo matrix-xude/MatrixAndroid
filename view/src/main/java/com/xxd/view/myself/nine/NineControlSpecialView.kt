@@ -111,14 +111,14 @@ class NineControlSpecialView @JvmOverloads constructor(context: Context, attribu
                 // 1图中的子View如果宽、高设置的是固定值，则按照九宫图的1图模式适配；如果宽、高其中有有一个<=0,则按照宽取该控件最大值，高自适应取适配
                 val childLayoutParams = view.layoutParams
                 if (childLayoutParams.width <= 0 || childLayoutParams.height <= 0) { // 不符合适配模式的九宫图
-                    LogUtil.d("当前九宫的1图模式，不是固定宽高的 width=${childLayoutParams.width} height=${childLayoutParams.height}")
+//                    LogUtil.d("当前九宫的1图模式，不是固定宽高的 width=${childLayoutParams.width} height=${childLayoutParams.height}")
                     // 宽度是固定的
                     val measureSpecWidth = MeasureSpec.makeMeasureSpec(defaultWidth, MeasureSpec.EXACTLY)
                     // 高度需要测量子类
                     val measureSpecHeight = getChildMeasureSpec(heightMeasureSpec, 0, view.layoutParams.height)
                     view.measure(measureSpecWidth, measureSpecHeight)
                 } else {
-                    LogUtil.d("当前九宫的1图模式，固定宽高 width=${childLayoutParams.width} height=${childLayoutParams.height}")
+//                    LogUtil.d("当前九宫的1图模式，固定宽高 width=${childLayoutParams.width} height=${childLayoutParams.height}")
                     val oneWidth = (defaultWidth - 2 * mInterval) / 3 // 9图中1图的宽度
                     val baseWidth = oneWidth * 2 + mInterval  // 判断标准为2图 + 1间隔
                     if (childLayoutParams.width >= baseWidth) {  // wiki中 1-1，1-2，1-3的适配方式

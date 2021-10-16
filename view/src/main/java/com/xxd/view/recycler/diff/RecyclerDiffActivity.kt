@@ -59,10 +59,7 @@ class RecyclerDiffActivity : BaseTitleActivity() {
             adapter3 =
                 object : RecyclerView.Adapter<BaseBindingViewHolder<CommonSimpleTextBinding>>() {
 
-                    override fun onCreateViewHolder(
-                        parent: ViewGroup,
-                        viewType: Int
-                    ): BaseBindingViewHolder<CommonSimpleTextBinding> {
+                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<CommonSimpleTextBinding> {
                         LogUtil.d("创建ViewHolder被执行了 $viewType")
                         val inflate = CommonSimpleTextBinding.inflate(
                             LayoutInflater.from(parent.context),
@@ -72,10 +69,7 @@ class RecyclerDiffActivity : BaseTitleActivity() {
                         return BaseBindingViewHolder(inflate)
                     }
 
-                    override fun onBindViewHolder(
-                        holder: BaseBindingViewHolder<CommonSimpleTextBinding>,
-                        position: Int
-                    ) {
+                    override fun onBindViewHolder(holder: BaseBindingViewHolder<CommonSimpleTextBinding>, position: Int) {
                         LogUtil.d("onBindViewHolder $position")
                         listData3?.let {
                             val bean = it[position]
@@ -103,10 +97,7 @@ class RecyclerDiffActivity : BaseTitleActivity() {
             adapter1 =
                 object : RecyclerView.Adapter<BaseBindingViewHolder<CommonSimpleTextBinding>>() {
 
-                    override fun onCreateViewHolder(
-                        parent: ViewGroup,
-                        viewType: Int
-                    ): BaseBindingViewHolder<CommonSimpleTextBinding> {
+                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<CommonSimpleTextBinding> {
                         LogUtil.d("创建ViewHolder被执行了 $viewType")
                         val inflate = CommonSimpleTextBinding.inflate(
                             LayoutInflater.from(parent.context),
@@ -116,10 +107,7 @@ class RecyclerDiffActivity : BaseTitleActivity() {
                         return BaseBindingViewHolder(inflate)
                     }
 
-                    override fun onBindViewHolder(
-                        holder: BaseBindingViewHolder<CommonSimpleTextBinding>,
-                        position: Int
-                    ) {
+                    override fun onBindViewHolder(holder: BaseBindingViewHolder<CommonSimpleTextBinding>, position: Int) {
                         LogUtil.d("onBindViewHolder $position")
                         listData?.let {
                             val bean = it[position]
@@ -282,7 +270,7 @@ class RecyclerDiffActivity : BaseTitleActivity() {
                                 }
                             }
                             listData3 = new
-                            val calculateDiff = DiffUtil.calculateDiff(myDiff,true)
+                            val calculateDiff = DiffUtil.calculateDiff(myDiff, true)
                             val convertNewPositionToOld = calculateDiff.convertNewPositionToOld(2)
                             LogUtil.d("``` convertNewPositionToOld(2) = $convertNewPositionToOld")
                             val c2 = calculateDiff.convertOldPositionToNew(2)
