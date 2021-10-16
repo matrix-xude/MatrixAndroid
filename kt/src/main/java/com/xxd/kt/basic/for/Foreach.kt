@@ -9,7 +9,7 @@ import com.xxd.kt.coroutines.basic.log
  */
 
 fun main() {
-    m3()
+    m4()
 }
 
 private fun m1() {
@@ -32,6 +32,12 @@ private fun m2(){
 
 private fun m3(){
     for (index in 1 until 1){
+        println("$index")
+    }
+}
+
+private fun m4(){
+    for(index in 10 downTo 0){
         println("$index")
     }
 }

@@ -5,6 +5,7 @@ import com.xxd.common.fast.SimpleSwitchFragmentActivity
 import com.xxd.view.recycler.adapter.DelegateMultiFragment
 import com.xxd.view.recycler.adapter.MultiFragment
 import com.xxd.view.recycler.adapter.provider.ProviderFragment
+import com.xxd.view.recycler.fragment.RecyclerFragment
 
 /**
  *    author : xxd
@@ -13,7 +14,7 @@ import com.xxd.view.recycler.adapter.provider.ProviderFragment
  */
 class RecyclerPagerActivity: SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("MultiFragment", "DelegateMultiFragment", "ProviderFragment", "", "", "", "")
+    private val dataList = listOf("MultiFragment", "DelegateMultiFragment", "ProviderFragment", "RecyclerFragment",)
     override fun getDataList(): Collection<String> {
         return dataList
     }
@@ -23,6 +24,7 @@ class RecyclerPagerActivity: SimpleSwitchFragmentActivity() {
             0 -> MultiFragment()
             1 -> DelegateMultiFragment()
             2 -> ProviderFragment()
+            3 -> RecyclerFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

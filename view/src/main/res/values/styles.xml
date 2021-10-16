@@ -53,5 +53,19 @@
         <attr name="civ_stroke_color" format="color" />
     </declare-styleable>
 
+    <!--一行头像，后一个压住前一个一部分-->
+    <declare-styleable name="OneLineHeadView" tools:ignore="ResourceName">
+        <!--头像的半径-->
+        <attr name="olh_head_radius" format="dimension" />
+        <!--最大显示头像的个数-->
+        <attr name="olh_max_number" format="integer" />
+        <!--边框的宽度-->
+        <attr name="olh_stroke_width" format="dimension" />
+        <!--边框的颜色-->
+        <attr name="olh_stroke_color" format="color" />
+        <!--后一个覆盖前一个的尺寸-->
+        <attr name="olh_cover_dimension" format="dimension" />
+    </declare-styleable>
+
 
 </resources>

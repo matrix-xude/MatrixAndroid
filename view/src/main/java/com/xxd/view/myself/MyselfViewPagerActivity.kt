@@ -8,6 +8,7 @@ import com.xxd.view.myself.image.CustomImageFragment
 import com.xxd.view.myself.nine.NineControlFragment
 import com.xxd.view.myself.nine.NineControlFragment2
 import com.xxd.view.myself.oneline.OneLineLayoutFragment
+import com.xxd.view.myself.onelinehead.OneLineHeadFragment
 import com.xxd.view.third.banner.BannerFragment
 import com.xxd.view.third.banner.BannerFragment2
 import com.xxd.view.third.indicator.MagicIndicatorFragment
@@ -19,7 +20,7 @@ import com.xxd.view.third.indicator.MagicIndicatorFragment
  */
 class MyselfViewPagerActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("自定义ViewGroup", "在Recycler中的表现", "九宫图", "九宫图2", "一行图","自定义的ImageView")
+    private val dataList = listOf("自定义ViewGroup", "在Recycler中的表现", "九宫图", "九宫图2", "一行图","自定义的ImageView","覆盖的头像")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -33,6 +34,7 @@ class MyselfViewPagerActivity : SimpleSwitchFragmentActivity() {
             3 -> NineControlFragment2()
             4 -> OneLineLayoutFragment()
             5 -> CustomImageFragment()
+            6 -> OneLineHeadFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

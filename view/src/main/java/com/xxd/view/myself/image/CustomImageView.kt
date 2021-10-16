@@ -26,8 +26,8 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
     private var mRadiusBottomRight: Float
 
     // 边框
-    private var mStrokeWidth: Float
-    private var mStrokeColor: Int
+    private var mStrokeWidth: Float = DEFAULT_STROKE_WIDTH
+    private var mStrokeColor: Int = DEFAULT_STROKE_COLOR
 
     // 画笔
     private var mRoundPaint: Paint
@@ -37,6 +37,21 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
         const val DEFAULT_RADIUS = 0f // 默认圆角px
         const val DEFAULT_STROKE_WIDTH = 0f // 默认边框px
         const val DEFAULT_STROKE_COLOR = Color.TRANSPARENT // 默认边框颜色px
+    }
+
+    fun applyRadius(radius: Float) {
+        mRadius = radius
+        mRadiusTopLeft = radius
+        mRadiusTopRight = radius
+        mRadiusBottomLeft = radius
+        mRadiusBottomRight = radius
+    }
+
+    fun applyStroke(width: Float, color: Int) {
+        mStrokeWidth = width
+        mStrokeColor = color
+        mStrokePaint.strokeWidth = mStrokeWidth
+        mStrokePaint.color = mStrokeColor
     }
 
     init {
@@ -66,6 +81,7 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
         }
         mStrokePaint = Paint().apply {
             style = Paint.Style.STROKE
+            isAntiAlias = true
             strokeWidth = mStrokeWidth
             color = mStrokeColor
         }
