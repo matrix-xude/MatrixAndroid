@@ -80,6 +80,9 @@ dependencies {
     api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
     //基础工具库(RxTool)
     api 'com.github.tamsiree.RxTool:RxKit:2.6.3'
+    // jackson序列化工具，做kotlin的deepCopy使用
+    api 'com.fasterxml.jackson.core:jackson-core:2.9.0'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
 
     api rootProject.ext.dependencies.gson // gson
     api rootProject.ext.dependencies.rxjava // rxJava

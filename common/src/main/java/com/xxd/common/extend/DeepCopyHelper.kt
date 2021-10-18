@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xxd.kt.data.copy
+package com.xxd.common.extend
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.core.type.TypeReference
@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException
 import com.fasterxml.jackson.databind.node.ArrayNode
 import com.fasterxml.jackson.databind.node.JsonNodeType
 import com.fasterxml.jackson.databind.node.ObjectNode
-import com.xxd.kt.data.copy.ArrayModificationMode.*
+import com.xxd.common.extend.ArrayModificationMode.*
 
 /** Exposed so you can configure it */
 val mapper: ObjectMapper = ObjectMapper().findAndRegisterModules()
@@ -53,6 +53,8 @@ val mapper: ObjectMapper = ObjectMapper().findAndRegisterModules()
  * @throws IndexOutOfBoundsException
  *
  * @author Sergey Volkov
+ *
+ * 必须要有默认构造函数才能实现，放弃该方法
  *
  * 这里使用的jackson的解析，需要引入2个jackson的包
  * 内部使用是序列化+反序列化的操作来实现深拷贝，而且不需要实现Serializable,Parcelable接口，非常方便
