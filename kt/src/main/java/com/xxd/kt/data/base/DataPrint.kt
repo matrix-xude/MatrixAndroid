@@ -1,5 +1,8 @@
 package com.xxd.kt.data.base
 
+import com.xxd.kt.data.copy.ArrayModificationMode
+import com.xxd.kt.data.copy.deepCopy
+
 /**
  *    author : xxd
  *    date   : 2021/10/16
@@ -8,7 +11,7 @@ package com.xxd.kt.data.base
 
 
 fun main() {
-    m4()
+    m5()
 }
 
 // 测试打印，内部包含list
@@ -70,7 +73,7 @@ private fun m4() {
     d1.list?.forEach {
         copyList.add(it.copy())
     }
-    val copy = d1.copy(inner = d1.inner.copy(), list = copyList) // 改变id的copy
+    val copy = d1.copy(inner = d1.inner?.copy(), list = copyList) // 改变id的copy
 //    println(d1)
 //    println(copy)
     println("${d1 === copy}") // 本身是否同一个对象，结论：不是
@@ -79,22 +82,66 @@ private fun m4() {
     println("${d1.list!![0].list === copy.list!![0].list}")
 }
 
-data class D1<T>(
+// 测试data的deepcoyp
+private fun m5() {
+    val d3List1 = listOf(D3("深渊领主"), D3("六翼天使"), D3("八岐大蛇"))
+    val d3List2 = listOf(D3("放射物"), D3("天地大冲撞"), D3("热力学第二定律"))
+
+    val d21 = D2(123356.33, "微不足道的boss", d3List1)
+    val d22 = D2(9999999999.99, "终极boss", d3List2)
+
+    val innerD3 = D3("内部boss,哈哈")
+
+    val d1 = D1(233, "毁灭的", innerD3, listOf(d21, d22))
+
+    val copyList = mutableListOf<D2>()
+    d1.list?.forEach {
+        copyList.add(it.copy())
+    }
+
+    val d2 = d1.copy()
+    val time1 = System.currentTimeMillis()
+    val deepCopy = d1.deepCopy("id", 1, ArrayModificationMode.INSERT_APPEND)
+    val time2 = System.currentTimeMillis()
+    println("深拷贝用时： ${time2 - time1}")
+//    val copy = d1.copy(inner = d1.inner.copy(), list = copyList) // 改变id的copy
+//    println(d1)
+//    println(copy)
+    println("${d1 === deepCopy}") // 本身是否同一个对象，结论：不是
+    println("${d1.inner === deepCopy.inner}")
+    println("${d1.list === deepCopy.list}")
+    println("${d1.list!![0].list === deepCopy.list!![0].list}")
+
+    println("${d1 === d2}") // 本身是否同一个对象，结论：不是
+    println("${d1.inner === d2.inner}")
+    println("${d1.list === d2.list}")
+    println("${d1.list!![0].list === d2.list!![0].list}")
+    println(d1)
+    println(deepCopy)
+}
+
+data class D1(
     val id: Int,
     val name: String,
-    val inner: D3,
-    val list: List<T>?,
-)
+    val inner: D3?,
+    val list: List<D2>?,
+) {
+    constructor():this(0, "", null, mutableListOf())
+}
 
 data class D2(
     val price: Double,
     val desc: String,
     val list: List<D3>?
-)
+){
+    constructor() :this(0.0,"", mutableListOf())
+}
 
 data class D3(
     val boss: String,
-)
+){
+    constructor(): this("")
+}
 
 class D4(
     val boss: String,
