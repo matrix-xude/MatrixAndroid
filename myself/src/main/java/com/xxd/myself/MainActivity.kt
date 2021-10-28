@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ktx.immersionBar
 import com.orhanobut.logger.Logger
+import com.tamsiree.rxkit.RxBarTool
+import com.tamsiree.rxkit.RxDeviceTool
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.extend.onClick
 import com.xxd.common.module.login.LoginOwner
@@ -40,6 +42,7 @@ class MainActivity : BaseTitleActivity() {
         viewBinding.tv2.paint.isFakeBoldText = true
 
         viewBinding.tv1.visibility = View.GONE
+
     }
 
 
