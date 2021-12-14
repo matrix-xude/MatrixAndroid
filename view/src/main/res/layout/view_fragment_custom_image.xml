@@ -12,6 +12,7 @@
         android:id="@+id/civ_1"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:alpha="1"
         android:src="@color/common_gold"
         app:civ_radius="50dp"
         app:civ_stroke_color="@color/common_red"

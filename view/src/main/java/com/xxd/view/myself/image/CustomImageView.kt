@@ -106,10 +106,15 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
         }
 
         // 圆角的处理
-        drawTopLeft(canvas, PointF(0f, 0f), mRadiusTopLeft)
-        drawTopRight(canvas, PointF(width.toFloat(), 0f), mRadiusTopRight)
-        drawBottomLeft(canvas, PointF(0f, height.toFloat()), mRadiusBottomLeft)
-        drawBottomRight(canvas, PointF(width.toFloat(), height.toFloat()), mRadiusBottomRight)
+//        drawTopLeft(canvas, PointF(0f, 0f), mRadiusTopLeft)
+//        drawTopRight(canvas, PointF(width.toFloat(), 0f), mRadiusTopRight)
+//        drawBottomLeft(canvas, PointF(0f, height.toFloat()), mRadiusBottomLeft)
+//        drawBottomRight(canvas, PointF(width.toFloat(), height.toFloat()), mRadiusBottomRight)
+
+        drawTopLeft(canvas, PointF(0f - 1, 0f - 1), mRadiusTopLeft + 1)
+        drawTopRight(canvas, PointF(width.toFloat() + 1, 0f - 1), mRadiusTopRight + 1)
+        drawBottomLeft(canvas, PointF(0f - 1, height.toFloat() + 1), mRadiusBottomLeft + 1)
+        drawBottomRight(canvas, PointF(width.toFloat() + 1, height.toFloat() + 1), mRadiusBottomRight + 1)
 
         canvas.restore()
     }
@@ -124,6 +129,19 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
         path.arcTo(RectF(pointF.x, pointF.y, pointF.x + radius * 2, pointF.y + radius * 2), -90f, -90f)
         path.close()
         canvas.drawPath(path, mRoundPaint)
+
+//        path.moveTo(0f, radius)
+//        path.arcTo(RectF(pointF.x, pointF.y, pointF.x + radius * 2, pointF.y + radius * 2), 180f, 90f)
+//        path.lineTo(width.toFloat(), 0f)
+//        path.lineTo(width.toFloat(), height.toFloat())
+//        path.lineTo(0f, height.toFloat())
+//        path.close()
+
+//        path.moveTo(width.toFloat(),0f)
+//        path.lineTo(width.toFloat(),height.toFloat())
+//        path.lineTo(0f,height.toFloat())
+//        path.lineTo(width.toFloat(),0f)
+//        canvas.drawPath(path, mRoundPaint)
     }
 
     // 右上画圆角
@@ -136,6 +154,14 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
         path.arcTo(RectF(pointF.x - radius * 2, pointF.y, pointF.x, pointF.y + radius * 2), -90f, 90f)
         path.close()
         canvas.drawPath(path, mRoundPaint)
+
+//        path.moveTo(width.toFloat(), radius)
+//        path.arcTo(RectF(pointF.x - radius * 2, pointF.y, pointF.x, pointF.y + radius * 2), 0f, -90f)
+//        path.lineTo(0f, 0f)
+//        path.lineTo(0f, height.toFloat())
+//        path.lineTo(width.toFloat(), height.toFloat())
+//        path.close()
+//        canvas.drawPath(path, mRoundPaint)
     }
 
     // 左下画圆角
@@ -148,6 +174,14 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
         path.arcTo(RectF(pointF.x, pointF.y - radius * 2, pointF.x + radius * 2, pointF.y), 90f, 90f)
         path.close()
         canvas.drawPath(path, mRoundPaint)
+
+//        path.moveTo(0f, width.toFloat() - radius)
+//        path.arcTo(RectF(pointF.x, pointF.y - radius * 2, pointF.x + radius * 2, pointF.y), 180f, -90f)
+//        path.lineTo(width.toFloat(), height.toFloat())
+//        path.lineTo(width.toFloat(), 0f)
+//        path.lineTo(0f, 0f)
+//        path.close()
+//        canvas.drawPath(path, mRoundPaint)
     }
 
     // 右下画圆角
@@ -160,5 +194,13 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
         path.arcTo(RectF(pointF.x - radius * 2, pointF.y - radius * 2, pointF.x, pointF.y), 90f, -90f)
         path.close()
         canvas.drawPath(path, mRoundPaint)
+
+//        path.moveTo(width.toFloat(), height - radius)
+//        path.arcTo(RectF(pointF.x - radius * 2, pointF.y - radius * 2, pointF.x, pointF.y), 0f, 90f)
+//        path.lineTo(0f, height.toFloat())
+//        path.lineTo(0f, 0f)
+//        path.lineTo(width.toFloat(), 0f)
+//        path.close()
+//        canvas.drawPath(path, mRoundPaint)
     }
 }
