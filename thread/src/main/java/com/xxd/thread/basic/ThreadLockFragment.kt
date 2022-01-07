@@ -1,10 +1,12 @@
 package com.xxd.thread.basic
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
-import kotlinx.android.synthetic.main.thread_fragment_lock.*
-import java.lang.Exception
+import com.xxd.thread.databinding.ThreadFragmentLockBinding
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.Condition
 import java.util.concurrent.locks.ReentrantLock
@@ -32,8 +34,11 @@ class ThreadLockFragment : BaseFragment() {
     private val readLock = lock2.readLock()
     private val writeLock = lock2.writeLock()
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_lock
+    private lateinit var viewBinding : ThreadFragmentLockBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentLockBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     // 测试 lockInterrupted函数
@@ -47,19 +52,19 @@ class ThreadLockFragment : BaseFragment() {
 
     override fun initView() {
         super.initView()
-        tv1.setOnClickListener {
+        viewBinding.tv1.setOnClickListener {
             indexFlag1++
             indexFlag2++
             Thread1().start()
             Thread2().start()
         }
-        tv2.setOnClickListener {
+        viewBinding.tv2.setOnClickListener {
             indexFlag1++
             indexFlag2++
             Thread3().start()
             Thread4().start()
         }
-        tv3.setOnClickListener {
+        viewBinding.tv3.setOnClickListener {
             indexFlag1++
             indexFlag2++
             Thread5().start()
@@ -67,10 +72,10 @@ class ThreadLockFragment : BaseFragment() {
                 start()
             }
         }
-        tv4.setOnClickListener {
+        viewBinding.tv4.setOnClickListener {
             thread6?.interrupt()
         }
-        tv5.setOnClickListener {
+        viewBinding.tv5.setOnClickListener {
             condition = lock.newCondition()
             indexFlag1++
             indexFlag2++
@@ -79,16 +84,16 @@ class ThreadLockFragment : BaseFragment() {
             }
             Thread8().start()
         }
-        tv6.setOnClickListener {
+        viewBinding.tv6.setOnClickListener {
             thread7?.interrupt()
         }
-        tv7.setOnClickListener {
+        viewBinding.tv7.setOnClickListener {
             indexFlag1++
             indexFlag2++
             Thread9().start()
             Thread10().start()
         }
-        tv8.setOnClickListener {
+        viewBinding.tv8.setOnClickListener {
             indexFlag1++
             indexFlag2++
             Thread9().start()

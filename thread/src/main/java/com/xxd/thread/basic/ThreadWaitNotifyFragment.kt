@@ -1,9 +1,12 @@
 package com.xxd.thread.basic
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
-import kotlinx.android.synthetic.main.thread_fragment_wait_notify.*
+import com.xxd.thread.databinding.ThreadFragmentWaitNotifyBinding
 import okhttp3.internal.notifyAll
 import okhttp3.internal.wait
 
@@ -35,15 +38,18 @@ class ThreadWaitNotifyFragment : BaseFragment() {
         const val MAX_HOLD_NUM = 5
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_wait_notify
+    private lateinit var viewBinding : ThreadFragmentWaitNotifyBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentWaitNotifyBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     override fun initView() {
         super.initView()
         produceThread = ProduceThread()
         consumeThread = ConsumeThread()
-        bt1.setOnClickListener {
+        viewBinding.bt1.setOnClickListener {
             produceThread?.start()
             consumeThread?.start()
         }

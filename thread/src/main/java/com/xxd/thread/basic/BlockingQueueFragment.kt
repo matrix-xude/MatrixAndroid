@@ -1,9 +1,12 @@
 package com.xxd.thread.basic
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
-import kotlinx.android.synthetic.main.thread_fragment_blocking_queue.*
+import com.xxd.thread.databinding.ThreadFragmentBlockingQueueBinding
 import java.util.concurrent.*
 
 /**
@@ -16,13 +19,16 @@ class BlockingQueueFragment : BaseFragment() {
     private var executorService: ThreadPoolExecutor? = null
     private var executorService2: ExecutorService? = null
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_blocking_queue
+    private lateinit var viewBinding : ThreadFragmentBlockingQueueBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentBlockingQueueBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     override fun initView() {
         super.initView()
-        tv1.setOnClickListener {
+        viewBinding.tv1.setOnClickListener {
             repeat(5) {
                 executorService?.execute {
                     Thread.sleep(1000)
@@ -31,7 +37,7 @@ class BlockingQueueFragment : BaseFragment() {
             }
 
         }
-        tv2.setOnClickListener {
+        viewBinding.tv2.setOnClickListener {
             repeat(10) {
                 executorService?.execute {
                     Thread.sleep(1000)
@@ -39,7 +45,7 @@ class BlockingQueueFragment : BaseFragment() {
                 }
             }
         }
-        tv3.setOnClickListener {
+        viewBinding.tv3.setOnClickListener {
             executorService2 = Executors.newSingleThreadExecutor()
             repeat(10) {
                 executorService2?.execute {

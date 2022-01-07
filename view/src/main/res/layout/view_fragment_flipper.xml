@@ -9,8 +9,9 @@
     <ViewFlipper
         android:id="@+id/view_Flipper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoStart="true"
+        android:layout_height="100dp"
+        android:animateFirstView="true"
+        android:autoStart="false"
         android:flipInterval="2000"
         android:inAnimation="@anim/common_anim_bottom_in"
         android:outAnimation="@anim/common_anim_top_out" />
@@ -22,4 +23,15 @@
         android:layout_marginTop="100dp"
         android:autoStart="false"
         android:flipInterval="2000" />
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:textColor="@color/common_blue"
+        android:background="@color/common_violet"
+        android:text="高级的"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

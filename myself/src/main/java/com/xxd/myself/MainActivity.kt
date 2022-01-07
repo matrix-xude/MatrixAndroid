@@ -10,8 +10,10 @@ import com.tamsiree.rxkit.RxDeviceTool
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.extend.onClick
 import com.xxd.common.module.login.LoginOwner
+import com.xxd.common.util.intent.IntentUtil
 import com.xxd.common.util.toast.ToastUtil
 import com.xxd.myself.databinding.MyselfActivityMainBinding
+import com.xxd.myself.task.activity.FirstActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -41,7 +43,10 @@ class MainActivity : BaseTitleActivity() {
         viewBinding.tv1.paint.isFakeBoldText = true
         viewBinding.tv2.paint.isFakeBoldText = true
 
-        viewBinding.tv1.visibility = View.GONE
+        viewBinding.tv1.onClick {
+            IntentUtil.startActivity<FirstActivity>(this)
+        }
+
 
     }
 
@@ -51,7 +56,7 @@ class MainActivity : BaseTitleActivity() {
         titleBinding.tvTitleName.text = "测试222"
         viewBinding.root
 
-        viewBinding.tv1.setOnClickListener {
+        /*viewBinding.tv1.setOnClickListener {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fl_contain, fragmentArray[currentFragmentIndex].apply {
@@ -59,7 +64,7 @@ class MainActivity : BaseTitleActivity() {
                     currentFragmentIndex %= 2
                 })
                 .commit()
-        }
+        }*/
 
         viewBinding.tv2.onClick {
 //            immersionBar {

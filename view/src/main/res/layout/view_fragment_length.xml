@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_violet"
+        android:padding="5dp"
+        android:text="高级的"
+        android:textColor="@color/common_blue"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/common_violet"
+        android:padding="5dp"
+        android:text="高级的2"
+        android:textColor="@color/common_blue"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/common_violet"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="高级的高发地方地方撒地方的发电房第三方打算范德萨发"
+        android:textColor="@color/common_blue"
+        android:textSize="20sp" />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        app:alignItems="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.xxd.view.systemWidget.text.MarqueeTextView
+            android:id="@+id/tv_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_violet"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:gravity="center"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:text="高级的高发地方地方撒地方"
+            android:textColor="@color/common_blue"
+            android:textSize="20sp" />
+
+        <ImageView
+            app:layout_flexShrink="0"
+            android:src="@drawable/view_bg_1"
+            android:layout_marginStart="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <com.xxd.view.systemWidget.text.MarqueeTextView
+        android:id="@+id/tv_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/common_violet"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="高级的高发地方地方撒地方的发电房第三方打算范德萨发"
+        android:textColor="@color/common_blue"
+        android:textSize="20sp" />
+
+</LinearLayout>

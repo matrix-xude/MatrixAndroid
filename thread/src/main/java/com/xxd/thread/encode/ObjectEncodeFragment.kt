@@ -1,9 +1,12 @@
 package com.xxd.thread.encode
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
-import kotlinx.android.synthetic.main.thread_fragment_encode_object.*
+import com.xxd.thread.databinding.ThreadFragmentEncodeObjectBinding
 import java.io.*
 
 /**
@@ -28,22 +31,25 @@ class ObjectEncodeFragment : BaseFragment() {
 
     private var byteArray: ByteArray? = null
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_encode_object
+    private lateinit var viewBinding : ThreadFragmentEncodeObjectBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentEncodeObjectBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     override fun initView() {
         super.initView()
-        tv1.setOnClickListener {
+        viewBinding.tv1.setOnClickListener {
             encodeBook()
         }
-        tv2.setOnClickListener {
+        viewBinding.tv2.setOnClickListener {
             decodeBook()
         }
-        tv3.setOnClickListener {
+        viewBinding.tv3.setOnClickListener {
             encodeFile()
         }
-        tv4.setOnClickListener {
+        viewBinding.tv4.setOnClickListener {
             decodeFile()
         }
     }

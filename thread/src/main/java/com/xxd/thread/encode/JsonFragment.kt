@@ -20,10 +20,6 @@ class JsonFragment : BaseFragment() {
 
     private val gson = Gson()
 
-    override fun getLayoutId(): Int {
-        return 0
-    }
-
     class JsonA {
         var a: Int = 0
         var name: String? = null

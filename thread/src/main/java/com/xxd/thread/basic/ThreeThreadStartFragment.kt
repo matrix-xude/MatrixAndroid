@@ -1,10 +1,13 @@
 package com.xxd.thread.basic
 
 import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
-import kotlinx.android.synthetic.main.thread_fragment_three_start.*
+import com.xxd.thread.databinding.ThreadFragmentThreeStartBinding
 import java.util.concurrent.Callable
 import java.util.concurrent.FutureTask
 
@@ -17,8 +20,12 @@ import java.util.concurrent.FutureTask
  */
 class ThreeThreadStartFragment : BaseFragment() {
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_three_start
+
+    private lateinit var viewBinding : ThreadFragmentThreeStartBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentThreeStartBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     override fun initView() {
@@ -32,13 +39,13 @@ class ThreeThreadStartFragment : BaseFragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initListener() {
-        bt1.setOnClickListener {
+        viewBinding.bt1.setOnClickListener {
             TestThread().start()
         }
-        bt2.setOnClickListener {
+        viewBinding.bt2.setOnClickListener {
             Thread(TestRunnable()).start()
         }
-        bt3.setOnClickListener {
+        viewBinding.bt3.setOnClickListener {
 
             Thread(Runnable {
                 LogUtil.d("${Thread.currentThread().name}:当前计算for循环的开始线程")

@@ -1,9 +1,12 @@
 package com.xxd.thread.basic
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
-import kotlinx.android.synthetic.main.thread_fragment_interrupt.*
+import com.xxd.thread.databinding.ThreadFragmentInterruptBinding
 import okhttp3.internal.wait
 
 /**
@@ -23,17 +26,20 @@ class ThreadInterruptFragment : BaseFragment() {
 
     private var thread: Thread? = null
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_interrupt
+    private lateinit var viewBinding : ThreadFragmentInterruptBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentInterruptBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     override fun initView() {
         super.initView()
-        bt1.setOnClickListener {
+        viewBinding.bt1.setOnClickListener {
             thread = SleepThread()
             thread?.start()
         }
-        bt2.setOnClickListener {
+        viewBinding.bt2.setOnClickListener {
             thread?.interrupt()
         }
     }

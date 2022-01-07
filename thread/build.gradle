@@ -4,7 +4,6 @@ if (Boolean.valueOf(rootProject.ext.isModuleThread)) {
     apply plugin: 'com.android.library'
 }
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -38,6 +37,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     compileOptions {
@@ -75,6 +78,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
+    implementation project(":myself")
 
     kapt rootProject.ext.dependencies.arouter_compiler
 

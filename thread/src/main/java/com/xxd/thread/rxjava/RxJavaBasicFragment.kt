@@ -3,18 +3,24 @@ package com.xxd.thread.rxjava
 import android.app.ProgressDialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
+import com.xxd.thread.databinding.ThreadFragmentRxjavaBasicBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.*
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableTransformer
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.functions.Function
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.android.synthetic.main.thread_fragment_rxjava_basic.*
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -31,17 +37,20 @@ class RxJavaBasicFragment : BaseFragment() {
             "https://img.rongcat.net/images/2020/07/21/Ta1bnTI3050B1azAGSeuLvhRhq2sP1dI8Pc95lKG.jpeg?width=800&height=800"
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_rxjava_basic
+    private lateinit var viewBinding : ThreadFragmentRxjavaBasicBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentRxjavaBasicBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     override fun initView() {
         super.initView()
-        tv1.setOnClickListener {
+        viewBinding.tv1.setOnClickListener {
             downloadImage2()
         }
-        tv2.setOnClickListener {
-            ivBitmap.setImageBitmap(null)
+        viewBinding.tv2.setOnClickListener {
+            viewBinding.ivBitmap.setImageBitmap(null)
         }
 
 
@@ -80,7 +89,7 @@ class RxJavaBasicFragment : BaseFragment() {
                 if (t2 != null) {
                     LogUtil.e(t2.localizedMessage ?: "Crash with Empty")
                 } else {
-                    ivBitmap.setImageBitmap(t1)
+                    viewBinding.ivBitmap.setImageBitmap(t1)
                 }
             }
     }
@@ -134,7 +143,7 @@ class RxJavaBasicFragment : BaseFragment() {
                 }
 
                 override fun onNext(t: Bitmap?) {
-                    ivBitmap.setImageBitmap(t)
+                    viewBinding.ivBitmap.setImageBitmap(t)
                 }
 
                 override fun onError(e: Throwable?) {

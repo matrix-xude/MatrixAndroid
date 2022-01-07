@@ -1,12 +1,17 @@
 package com.xxd.thread.rxjava
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.util.log.LogUtil
-import com.xxd.thread.R
-import io.reactivex.rxjava3.core.*
+import com.xxd.thread.databinding.ThreadFragmentRxjavaDisposeBinding
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
+import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.android.synthetic.main.thread_fragment_rxjava_dispose.*
 
 /**
  * author : xxd
@@ -15,28 +20,31 @@ import kotlinx.android.synthetic.main.thread_fragment_rxjava_dispose.*
  */
 class RxJavaDisposeFragment : BaseFragment() {
 
-    override fun getLayoutId(): Int {
-        return R.layout.thread_fragment_rxjava_dispose
+    private lateinit var viewBinding : ThreadFragmentRxjavaDisposeBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = ThreadFragmentRxjavaDisposeBinding.inflate(inflater,container,false)
+        return viewBinding.root
     }
 
     override fun initView() {
         super.initView()
-        tv1.setOnClickListener {
+        viewBinding.tv1.setOnClickListener {
             testCreateDispose()
         }
-        tv2.setOnClickListener {
+        viewBinding.tv2.setOnClickListener {
             testDisposeCreate()
         }
-        tv3.setOnClickListener {
+        viewBinding.tv3.setOnClickListener {
             testReturnDispose()
         }
-        tv4.setOnClickListener {
+        viewBinding.tv4.setOnClickListener {
             testDisposeReturn()
         }
-        tv5.setOnClickListener {
+        viewBinding.tv5.setOnClickListener {
             prepareObservable()
         }
-        tv6.setOnClickListener {
+        viewBinding.tv6.setOnClickListener {
             beginSubscribe()
         }
     }
