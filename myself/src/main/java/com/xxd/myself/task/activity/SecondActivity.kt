@@ -31,8 +31,8 @@ class SecondActivity : BaseTitleActivity() {
 
         viewBinding.tv2.text = "taskId=$taskId"
         viewBinding.tv1.onClick {
-            IntentUtil.startActivity<SecondActivity>(this){
-                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            IntentUtil.startActivity<ThirdActivity>(this){
+//                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
         }
     }
