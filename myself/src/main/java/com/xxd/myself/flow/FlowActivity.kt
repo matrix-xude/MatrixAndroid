@@ -2,20 +2,14 @@ package com.xxd.myself.flow
 
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import com.xxd.common.base.activity.BaseLogicActivity
 import com.xxd.common.extend.onClick
 import com.xxd.common.util.log.LogUtil
 import com.xxd.common.util.toast.ToastUtil
 import com.xxd.myself.databinding.MyselfActivityFlowBinding
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 /**
@@ -37,12 +31,15 @@ class FlowActivity : BaseLogicActivity() {
         super.initView()
 
         viewBinding.tv1.onClick {
-            viewModel.uiState.value = AAA(1,"张三")
+            viewModel.uiState.value = AAA(1, "张三")
 //            lifecycleScope.launch {
 //            }
         }
         viewBinding.tv2.onClick {
-            viewModel.uiState.value = AAA(2,"张三")
+            it.postDelayed({
+            viewModel.uiState.value = AAA(2, "张三")
+
+            },1)
 //            lifecycleScope.launch {
 //                val tryEmit = viewModel.uiState.emit(3)
 //            }
@@ -56,6 +53,7 @@ class FlowActivity : BaseLogicActivity() {
     override fun initData() {
         super.initData()
         testStateFlow3()
+
 
     }
 
@@ -75,13 +73,13 @@ class FlowActivity : BaseLogicActivity() {
 
     private fun testStateFlow3() {
         lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED){
-            viewModel.uiState.collect {
-                LogUtil.d("接收到的first数据$it")
-//                ToastUtil.showToast("当前数据是$it")
+            whenStarted {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    LogUtil.d("接收到的first数据$it")
+                ToastUtil.showToast("当前数据是$it")
+                }
             }
-
-//            }
         }
     }
 

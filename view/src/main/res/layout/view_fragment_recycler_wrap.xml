@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:padding="0dp">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerDrawable="@drawable/view_divider_normal"
+        app:flexWrap="wrap"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showDivider="middle">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_aliceblue"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="按钮1"
+            android:textColor="@color/common_red"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_aliceblue"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="按钮2"
+            android:textColor="@color/common_red"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_aliceblue"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="按钮3"
+            android:textColor="@color/common_red"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_aliceblue"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="按钮4"
+            android:textColor="@color/common_red"
+            android:textSize="16sp" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gl_1">
+
+        <View
+            android:id="@+id/v_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/common_hotpink"
+            android:gravity="center"
+            android:text="标题"
+            android:textColor="@color/common_black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@id/recycler_view"
+            app:layout_constraintTop_toBottomOf="@id/v_1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

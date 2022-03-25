@@ -1,5 +1,6 @@
 package com.xxd.myself.flow
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -27,5 +28,9 @@ class FlowViewModel : ViewModel() {
 
     val uiShireFlow by lazy {
         MutableSharedFlow<Int>(2)
+    }
+
+    val uiLiveData by lazy {
+        MutableLiveData(0)
     }
 }
