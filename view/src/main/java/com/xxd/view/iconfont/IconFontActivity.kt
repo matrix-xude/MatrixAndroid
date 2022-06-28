@@ -10,7 +10,7 @@ import com.xxd.common.fast.SimpleSwitchFragmentActivity
  */
 class IconFontActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("IconFontFirst", "", "", "", "", "", "")
+    private val dataList = listOf("IconFontFirst", "IconFontSecond", "", "", "", "", "")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -19,7 +19,7 @@ class IconFontActivity : SimpleSwitchFragmentActivity() {
     override fun getPositionFragment(position: Int): Fragment {
         return when (position) {
             0 -> IconFontFirstFragment()
-            1 -> IconFontFirstFragment()
+            1 -> IconFontSecondFragment()
             else -> throw RuntimeException("当前无内容")
         }
     }

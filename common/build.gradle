@@ -52,8 +52,10 @@ android {
 
         //把implementation 用api代替,它是对外部公开的, 所有其他的module就不需要添加该依赖
 
+
         // Android必须的库
         api rootProject.ext.dependencies.appcompat
+        api 'com.android.support:appcompat-v7:28.0.0'
 
         // kotlin相关
         api rootProject.ext.dependencies.kotlin_stdlib_jdk // 基础

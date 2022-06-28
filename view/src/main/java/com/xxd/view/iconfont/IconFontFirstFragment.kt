@@ -26,11 +26,7 @@ class IconFontFirstFragment : BaseFragment() {
 
     private var viewBinding by binding<ViewFragmentIconFontFirstBinding>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewBinding = ViewFragmentIconFontFirstBinding.inflate(layoutInflater, container, false)
         return viewBinding.root
     }
@@ -38,7 +34,7 @@ class IconFontFirstFragment : BaseFragment() {
     override fun initView() {
         super.initView()
 
-        val iconfont = Typeface.createFromAsset(requireActivity().assets, "iconfont.ttf")
+        val iconfont = Typeface.createFromAsset(requireActivity().assets, "iconfont/iconfont.ttf")
         viewBinding.tv1.typeface = iconfont
         viewBinding.tv2.typeface = iconfont
         viewBinding.tv3.typeface = iconfont

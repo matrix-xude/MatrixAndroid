@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.xxd.view.iconfont.view.IconFontView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_gold"
+        android:text="@string/icon_604"
+        android:textSize="20dp" />
+
+    <com.xxd.view.iconfont.view.IconFontView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe60e;"
+        android:textColor="@color/common_red"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/iv_1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/view_svg_clear" />
+
+    <ImageView
+        android:id="@+id/iv_2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:scaleType="centerInside"
+        android:src="@drawable/view_svg_notice" />
+
+    <com.xxd.view.iconfont.view.IconFontView2
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe6b3;"
+        android:textColor="@color/common_red"
+        android:textSize="40dp" />
+
+    <com.xxd.view.iconfont.view.IconFontView2
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe6fc;"
+        android:textColor="@color/common_red"
+        android:textSize="40dp" />
+
+    <com.xxd.view.iconfont.view.IconFontView3
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe6b3;"
+        android:textSize="20dp" />
+
+    <com.xxd.view.iconfont.view.IconFontView3
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe6fc;"
+        android:textSize="20dp" />
+
+    <com.xxd.view.iconfont.view.IconFontView4
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe6b3;"
+        android:textColor="@color/common_red"
+        android:textSize="200dp" />
+
+    <com.xxd.view.iconfont.view.IconFontView4
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe6fc;"
+        android:textColor="@color/common_red"
+        android:textSize="40dp" />
+
+    <com.xxd.view.iconfont.view.IconFontView4
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_gold"
+        android:text="&#xe6b4;"
+        android:textColor="@color/common_red"
+        android:textSize="40dp" />
+
+</LinearLayout>
