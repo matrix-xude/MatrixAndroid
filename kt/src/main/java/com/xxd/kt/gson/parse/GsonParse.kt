@@ -12,10 +12,13 @@ import com.xxd.kt.gson.bean.Partner2
  */
 
 val gson = Gson()
-val gson2: Gson = GsonBuilder().registerTypeAdapter(String::class.java, StringAdapter()).create()
+val gson2: Gson = GsonBuilder()
+    .registerTypeAdapter(String::class.java, StringAdapter())
+    .registerTypeAdapter(Int::class.java, IntAdapter())
+    .create()
 
 const val json1 = """
-    {"name":"Amber","attack":206,"defence":189,"criticalRate":0.32,"criticalDMG":0.88,"comeOnTheStage":true,"prologue":"侦查骑士，登场！"}
+    {"name":"Amber","attack":"20.01","defence":189,"criticalRate":0.32,"criticalDMG":0.88,"comeOnTheStage":true,"prologue":"侦查骑士，登场！"}
 """
 const val json2 = """
     {"attack":206,"criticalDMG":0.88,"comeOnTheStage":true,"prologue":"侦查骑士，登场！"}
@@ -28,8 +31,9 @@ const val json4 = """
 """
 
 fun main() {
-    m2()
+    m3()
 }
+
 
 fun m1() {
     val amber = Partner2(null, 206, 189, 0.32f, 1.88f, true, "侦查骑士，登场！")
@@ -44,4 +48,9 @@ fun m2() {
     println(bean1)
     val bean2 = gson2.fromJson(json4, Partner::class.java)
     println(bean2)
+}
+
+fun m3() {
+    val amberJson = gson2.fromJson(json1, Partner::class.java)
+    println(amberJson)
 }
