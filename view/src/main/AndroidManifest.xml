@@ -28,6 +28,9 @@
         <activity
             android:name=".myself.MyselfViewPagerActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".bigpic.BigPictureActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

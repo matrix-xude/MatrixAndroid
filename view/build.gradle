@@ -77,4 +77,6 @@ dependencies {
 
     kapt rootProject.ext.dependencies.arouter_compiler
 
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
 }

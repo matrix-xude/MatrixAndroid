@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
+import com.xxd.view.bigpic.BigPictureActivity
 import com.xxd.view.iconfont.IconFontActivity
 import com.xxd.view.material.MaterialDesignActivity
 import com.xxd.view.myself.MyselfViewPagerActivity
@@ -15,7 +16,7 @@ import com.xxd.view.third.ThirdPagerActivity
 class MainActivity : SimpleListActivity<String>() {
 
     private val mDataList = mutableListOf(
-        "lifecycle", // 0
+        "大图", // 0
         "RecyclerView",
         "系统的view",
         "meter design",
@@ -35,6 +36,7 @@ class MainActivity : SimpleListActivity<String>() {
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
+                0 -> IntentUtil.startActivity<BigPictureActivity>(this)
                 1 -> IntentUtil.startActivity<RecyclerPagerActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
                 3 -> IntentUtil.startActivity<MaterialDesignActivity>(this)
