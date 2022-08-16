@@ -1,9 +1,13 @@
 package com.xxd.view.bigpic
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.gyf.immersionbar.ktx.immersionBar
+import com.xxd.common.base.activity.BaseActivity
 import com.xxd.common.base.activity.BaseTitleActivity
+import com.xxd.view.R
 import com.xxd.view.databinding.ViewActivityBigPictureBinding
 
 /**
@@ -11,19 +15,19 @@ import com.xxd.view.databinding.ViewActivityBigPictureBinding
  *    date   : 2022/8/15
  *    desc   : 使用了第三方PhotoView的大图页
  */
-class BigPictureActivity : BaseTitleActivity() {
+class BigPictureActivity : BaseActivity() {
 
     private lateinit var viewBinding: ViewActivityBigPictureBinding
 
-    override fun provideBaseTitleRootView(rootView: ViewGroup) {
-        viewBinding = ViewActivityBigPictureBinding.inflate(layoutInflater, rootView, true)
-    }
-
-    override fun getTitleName(): CharSequence {
-        return "大图页"
+    override fun getContentViewBase(): View {
+        viewBinding = ViewActivityBigPictureBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun initView() {
+        immersionBar {
+            statusBarColor(R.color.common_transparent)
+        }
         super.initView()
         initViewPager2()
     }

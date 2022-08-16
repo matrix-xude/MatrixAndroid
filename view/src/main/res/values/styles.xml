@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="view_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/view_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/view_colorPrimaryDark</item>
-        <item name="colorAccent">@color/view_colorAccent</item>
+<!--        <item name="colorPrimary">@color/view_colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/view_colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/view_colorAccent</item>-->
     </style>
 
     <style name="view_indicator_text">
@@ -66,6 +66,11 @@
         <!--后一个覆盖前一个的尺寸-->
         <attr name="olh_cover_dimension" format="dimension" />
     </declare-styleable>
+
+    <style name="view_transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item><!-- 半透明,设置为false无透明效果 -->
+    </style>
 
 
 </resources>

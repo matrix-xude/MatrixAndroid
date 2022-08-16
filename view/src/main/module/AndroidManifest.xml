@@ -45,7 +45,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".bigpic.BigPictureActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/view_transparent" />
     </application>
 
 </manifest>
