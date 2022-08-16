@@ -19,7 +19,7 @@ class MovePhotoView @JvmOverloads constructor(context: Context, attributeSet: At
 
     /****** 外部可以赋值的变量 *******/
     // 移动多少距离后，该页面增加消失的回调，单位px
-    var moveDragDistance = 200
+    var moveDragDistance = 300
 
     // 外部可以传入的监听事件
     var movePhotoListener: MovePhotoListener? = null

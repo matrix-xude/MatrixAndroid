@@ -154,7 +154,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
              */
             ViewParent parent = mImageView.getParent();
             // 源码修改
-            Logger.d("mOffsetX=%s mOffsetY=%s", mOffsetX, mOffsetY);
+//            Logger.d("mOffsetX=%s mOffsetY=%s", mOffsetX, mOffsetY);
             if (mAllowParentInterceptOnEdge && !mScaleDragDetector.isScaling() && !mBlockParentIntercept
                     && !isMoveDrag && (!isLongPicMode || Math.abs(mOffsetX) > Math.abs(mOffsetY))) {  // 增加了 1.外部开启拖拽判断；2.长图模式下的滑动容易横滑
                 if (mHorizontalScrollEdge == HORIZONTAL_EDGE_BOTH
@@ -408,8 +408,8 @@ public class PhotoViewAttacher implements View.OnTouchListener,
                     break;
                 // 修改源码
                 case MotionEvent.ACTION_MOVE:
-                    mOffsetX += ev.getX() - mDownX;
-                    mOffsetY += ev.getY() - mDownY;
+                    mOffsetX = ev.getX() - mDownX;
+                    mOffsetY = ev.getY() - mDownY;
                     break;
                 case MotionEvent.ACTION_CANCEL:
                 case MotionEvent.ACTION_UP:

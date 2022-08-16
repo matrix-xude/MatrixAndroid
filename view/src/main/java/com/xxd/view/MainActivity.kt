@@ -36,7 +36,10 @@ class MainActivity : SimpleListActivity<String>() {
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
-                0 -> IntentUtil.startActivity<BigPictureActivity>(this)
+                0 ->{
+                    IntentUtil.startActivity<BigPictureActivity>(this)
+
+                }
                 1 -> IntentUtil.startActivity<RecyclerPagerActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)
                 3 -> IntentUtil.startActivity<MaterialDesignActivity>(this)

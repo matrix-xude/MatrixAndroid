@@ -52,7 +52,7 @@ class BigPictureFragment(private val index: Int) : BaseFragment() {
             override fun moving(dx: Float, dy: Float) {
                 val dist = viewBinding.photoView.moveDragDistance
                 val alpha = if (dy < dist) 1f else (1 - (dy - dist) / 1000).coerceAtLeast(0f)
-                viewBinding.vBg.alpha = alpha
+                viewBinding.photoView.alpha = alpha
             }
 
             override fun click() {
