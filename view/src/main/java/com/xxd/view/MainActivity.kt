@@ -1,5 +1,7 @@
 package com.xxd.view
 
+import android.content.Intent
+import androidx.core.app.ActivityOptionsCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
@@ -34,11 +36,12 @@ class MainActivity : SimpleListActivity<String>() {
     }
 
     private fun initListener() {
-        simpleAdapter.setOnItemClickListener { _, _, position ->
+        simpleAdapter.setOnItemClickListener { _, view, position ->
             when (position) {
-                0 ->{
-                    IntentUtil.startActivity<BigPictureActivity>(this)
-
+                0 -> {
+//                    val optionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(view, view.x.toInt(), view.x.toInt(), view.width, view.height)
+                    val optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, "shareView")
+                    startActivity(Intent(this, BigPictureActivity::class.java), optionsCompat.toBundle())
                 }
                 1 -> IntentUtil.startActivity<RecyclerPagerActivity>(this)
                 2 -> IntentUtil.startActivity<SystemWidgetActivity>(this)

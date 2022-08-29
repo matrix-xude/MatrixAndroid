@@ -113,6 +113,8 @@ android {
         api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper // adapter
         api 'io.github.youth5201314:banner:2.2.2' // 轮播图
         api 'com.github.hackware1993:MagicIndicator:1.7.0' // 指示器
+        api  'io.github.scwang90:refresh-layout-kernel:2.0.5'      // 下拉刷新核心必须依赖
+        api  'io.github.scwang90:refresh-header-classics:2.0.5'  // 下拉刷新的经典头
 
         /*// annotationProcessor的测试注解
         api project(":apt-annotation")
