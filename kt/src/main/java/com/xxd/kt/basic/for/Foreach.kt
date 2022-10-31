@@ -9,7 +9,7 @@ import com.xxd.kt.coroutines.basic.log
  */
 
 fun main() {
-    m5()
+    m4()
 }
 
 private fun m0() {

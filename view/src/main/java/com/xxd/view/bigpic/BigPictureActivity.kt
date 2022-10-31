@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.gyf.immersionbar.ktx.immersionBar
 import com.orhanobut.logger.Logger
+import com.tamsiree.rxkit.RxDataTool
 import com.xxd.common.base.activity.BaseActivity
 import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
 import com.xxd.common.costom.binding.helper.BaseBindingViewHolder
@@ -53,6 +54,7 @@ class BigPictureActivity : BaseActivity() {
         viewBinding.horizontalPullLayout.releaseListener = {
             Logger.d("我加载下一页")
         }
+
     }
 
     override fun initData() {

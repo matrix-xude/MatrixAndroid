@@ -47,6 +47,10 @@
             android:name=".bigpic.BigPictureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/view_transparent" />
+        <activity
+            android:name=".test.TestEditActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

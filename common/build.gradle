@@ -103,9 +103,10 @@ android {
         // 系统控件
         api rootProject.ext.dependencies.constraintlayout
         api rootProject.ext.dependencies.recyclerview
+
         api rootProject.ext.dependencies.cardview
         api "androidx.viewpager2:viewpager2:1.0.0"
-        api 'com.google.android.material:material:1.2.1'
+        api 'com.google.android.material:material:1.4.0'
         api 'com.google.android:flexbox:2.0.1' // 弹性控件（功能强大）
 
         // 第三方控件

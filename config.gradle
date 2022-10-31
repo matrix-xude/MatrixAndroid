@@ -1,7 +1,7 @@
 ext {
 
     // thread组件是否作为application存在，true:作为application,false:作为lib
-    isModuleThread = true
+    isModuleThread = false
     // view组件是否作为application存在，true:作为application,false:作为lib
     isModuleView = true
     // other组件是否作为application存在，true:作为application,false:作为lib
