@@ -70,8 +70,8 @@ class RxJavaBasicFragment : BaseFragment() {
      */
     private fun downloadImage1() {
         Single.just(IMG_PATH)
-            .map(object : Function<String, Bitmap?> {
-                override fun apply(t: String?): Bitmap? {
+            .map(object : Function<String, Bitmap> {
+                override fun apply(t: String): Bitmap {
                     val url = URL(t)
                     val openConnection = url.openConnection() as HttpURLConnection
                     openConnection.connectTimeout = 5000
@@ -103,7 +103,7 @@ class RxJavaBasicFragment : BaseFragment() {
                 .observeOn(AndroidSchedulers.mainThread())
         }
 
-    private fun <UP> getTransformer(): ObservableTransformer<UP, UP>? {
+    private fun <UP : Any> getTransformer(): ObservableTransformer<UP, UP> {
         return ObservableTransformer<UP, UP> { upstream ->
             upstream.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -118,8 +118,8 @@ class RxJavaBasicFragment : BaseFragment() {
      */
     private fun downloadImage2() {
         Observable.just(IMG_PATH)
-            .map(object : Function<String, Bitmap?> {
-                override fun apply(t: String?): Bitmap? {
+            .map(object : Function<String, Bitmap> {
+                override fun apply(t: String): Bitmap {
                     val url = URL(t)
                     val openConnection = url.openConnection() as HttpURLConnection
                     openConnection.connectTimeout = 5000
@@ -135,20 +135,20 @@ class RxJavaBasicFragment : BaseFragment() {
 //            .subscribeOn(Schedulers.io())
 //            .observeOn(AndroidSchedulers.mainThread())
             .compose(getTransformer())
-            .subscribe(object : Observer<Bitmap?> {
-                override fun onSubscribe(d: Disposable?) {
+            .subscribe(object : Observer<Bitmap> {
+                override fun onSubscribe(d: Disposable) {
                     progressDialog = ProgressDialog(context)
                     progressDialog!!.setTitle("等待图片下载")
                     progressDialog!!.show()
                 }
 
-                override fun onNext(t: Bitmap?) {
+                override fun onNext(t: Bitmap) {
                     viewBinding.ivBitmap.setImageBitmap(t)
                 }
 
-                override fun onError(e: Throwable?) {
+                override fun onError(e: Throwable) {
                     progressDialog?.dismiss()
-                    Toast.makeText(context, "下载图片是失败：${e?.stackTrace}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "下载图片是失败：${e.stackTrace}", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onComplete() {

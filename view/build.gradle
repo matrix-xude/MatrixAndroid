@@ -1,6 +1,6 @@
 if (Boolean.valueOf(rootProject.ext.isModuleView)) {
     apply plugin: 'com.android.application'
-}else {
+} else {
     apply plugin: 'com.android.library'
 }
 apply plugin: 'kotlin-android'
@@ -11,7 +11,6 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-
         if (Boolean.valueOf(rootProject.ext.isModuleView)) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.view"
@@ -75,7 +74,7 @@ dependencies {
     // 所有的module公共依赖
     implementation project(":common")
 
-    kapt rootProject.ext.dependencies.arouter_compiler
+    kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
 
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 

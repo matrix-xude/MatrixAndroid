@@ -54,68 +54,59 @@ android {
 
 
         // Android必须的库
-        api rootProject.ext.dependencies.appcompat
+        api "androidx.appcompat:appcompat:${versions.appcompatVersion}"
         api 'com.android.support:appcompat-v7:28.0.0'
 
         // kotlin相关
-        api rootProject.ext.dependencies.kotlin_stdlib_jdk // 基础
-//    api 'org.jetbrains.kotlinx:kotlin-reflect.jar' // kt反射包
-        api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0' // android Main等
-        api rootProject.ext.dependencies.kotlinx_coroutines_core // 携程
+        api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlinStdlibJdkVersion}" // 基础
+        api "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlinReflectVersion}" // 反射
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 携程
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesAndroidVersion}" // 携程Android main
 
         // ktx
-        api rootProject.ext.dependencies.core_ktx // Android简便扩展库
-        api "androidx.fragment:fragment-ktx:1.3.5"
-        api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-
-        def livedataVersion = "2.4.0"
-        api "androidx.lifecycle:lifecycle-livedata-core-ktx:$livedataVersion"
-        api "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
-        api "androidx.lifecycle:lifecycle-reactivestreams-ktx:$livedataVersion"
-        api "androidx.lifecycle:lifecycle-runtime-ktx:$livedataVersion"
+        api "androidx.core:core-ktx:${versions.coreKtxVersion}" // Android简便扩展库
+        api "androidx.fragment:fragment-ktx:${versions.fragmentKtxVersion}"
+        api "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycleKtxVersion}"
+        api "androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.lifecycleKtxVersion}"
+        api "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleKtxVersion}"
+        api "androidx.lifecycle:lifecycle-reactivestreams-ktx:${versions.lifecycleKtxVersion}"
+        api "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycleKtxVersion}"
 
         // 常用工具
-        api rootProject.ext.dependencies.multidex // 分包
-        api rootProject.ext.dependencies.logger // 日志
-        api rootProject.ext.dependencies.rxpermissions // 权限
-        api rootProject.ext.dependencies.arouter_api // 阿里路由
-        api rootProject.ext.dependencies.immersionbar // 沉浸式bar
-        // fragment快速实现（可选）
-        api 'com.gyf.immersionbar:immersionbar-components:3.0.0'
-        // kotlin扩展（可选）
-        api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
-        //基础工具库(RxTool)
-        api 'com.github.tamsiree.RxTool:RxKit:2.6.3'
-        // jackson序列化工具，做kotlin的deepCopy使用
-        api 'com.fasterxml.jackson.core:jackson-core:2.9.0'
-        api 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
-
-        api rootProject.ext.dependencies.gson // gson
-        api rootProject.ext.dependencies.rxjava // rxJava
-        api rootProject.ext.dependencies.rxandroid // rxAndroid
-        api rootProject.ext.dependencies.okio // okio
-        api rootProject.ext.dependencies.okhttp // okHttp
-        api rootProject.ext.dependencies.retrofit // retrofit
-        api rootProject.ext.dependencies.converter_gson // retrofit转json
-        api rootProject.ext.dependencies.glide // glide图片加载，还需要配置annotationProcessor到使用的类中
-        kapt rootProject.ext.dependencies.glide_compiler // glide annotationProcessor
+        api "com.android.support:multidex:${versions.multidexVersion}" // 分包
+        api "com.orhanobut:logger:${versions.loggerVersion}" // 日志
+        api "com.github.tbruyelle:rxpermissions:${versions.rxpermissionsVersion}" // 权限
+        api "com.alibaba:arouter-api:${versions.arouterApiVersion}" // 阿里路由
+        api "com.gyf.immersionbar:immersionbar:${versions.immersionbarVersion}" // 沉浸式bar
+        api "com.gyf.immersionbar:immersionbar-components:${versions.immersionbarVersion}" // fragment快速实现（可选）
+        api "com.gyf.immersionbar:immersionbar-ktx:${versions.immersionbarVersion}" // kotlin扩展（可选）
+        api "com.github.tamsiree.RxTool:RxKit:${versions.rxToolVersion}" //基础工具库(RxTool)
+        api "com.fasterxml.jackson.core:jackson-core:${versions.jacksonVersion}" // jackson序列化工具，做kotlin的deepCopy使用
+        api "com.fasterxml.jackson.core:jackson-databind:${versions.jacksonVersion}"
+        api "com.google.code.gson:gson:${versions.gsonVersion}" // gson
+        api "io.reactivex.rxjava3:rxjava:${versions.rxjavaVersion}" // rxJava
+        api "io.reactivex.rxjava3:rxandroid:${versions.rxandroidVersion}" // rxAndroid
+        api "com.squareup.okio:okio:${versions.okioVersion}" // okio
+        api "com.squareup.okhttp3:okhttp:${versions.okhttpVersion}" // okHttp
+        api "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}" // retrofit
+        api "com.squareup.retrofit2:converter-gson:${versions.converterGsonVersion}" // retrofit转json
+        api "com.github.bumptech.glide:glide:${versions.glideVersion}" // glide图片加载，还需要配置annotationProcessor到使用的类中
+//        kapt "com.github.bumptech.glide:compiler:${versions.glideVersion}" // glide annotationProcessor
 
         // 系统控件
-        api rootProject.ext.dependencies.constraintlayout
-        api rootProject.ext.dependencies.recyclerview
-
-        api rootProject.ext.dependencies.cardview
-        api "androidx.viewpager2:viewpager2:1.0.0"
-        api 'com.google.android.material:material:1.4.0'
-        api 'com.google.android:flexbox:2.0.1' // 弹性控件（功能强大）
+        api "androidx.constraintlayout:constraintlayout:${versions.constraintlayoutVersion}"
+        api "androidx.recyclerview:recyclerview:${versions.recyclerviewVersion}"
+        api "androidx.cardview:cardview:${versions.cardviewVersion}"
+        api "androidx.viewpager2:viewpager2:${versions.viewpager2}"
+        api "com.google.android:flexbox:${versions.flexboxVersion}" // 弹性控件（功能强大）
+        api "com.google.android.material:material:${versions.materialVersion}"
 
         // 第三方控件
-        api "org.jetbrains.kotlin:kotlin-reflect:1.5.10"
-        api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper // adapter
+        api "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.BaseRecyclerViewAdapterHelperVersion}" // adapter
         api 'io.github.youth5201314:banner:2.2.2' // 轮播图
         api 'com.github.hackware1993:MagicIndicator:1.7.0' // 指示器
-        api  'io.github.scwang90:refresh-layout-kernel:2.0.5'      // 下拉刷新核心必须依赖
-        api  'io.github.scwang90:refresh-header-classics:2.0.5'  // 下拉刷新的经典头
+        api 'io.github.scwang90:refresh-layout-kernel:2.0.5'      // 下拉刷新核心必须依赖
+        api 'io.github.scwang90:refresh-header-classics:2.0.5'  // 下拉刷新的经典头
 
         /*// annotationProcessor的测试注解
         api project(":apt-annotation")

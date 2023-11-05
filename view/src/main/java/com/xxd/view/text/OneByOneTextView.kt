@@ -30,16 +30,16 @@ class OneByOneTextView : AppCompatTextView {
         // 考虑view生命周期问题,ScheduledExecutorService可能比当前界面生命周期长
         addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
 
-            override fun onViewDetachedFromWindow(v: View?) {
-                isViewAttachedToWindow = false
-                shutdownScheduledExecutorService()
-            }
-
-            override fun onViewAttachedToWindow(v: View?) {
+            override fun onViewAttachedToWindow(v: View) {
                 isViewAttachedToWindow = true
                 // 如果挂载的时候已经显示完全部，需要重新设置,判null是因为可以当做普通textView使用
                 if (subText != null)
                     refreshSubText()
+            }
+
+            override fun onViewDetachedFromWindow(v: View) {
+                isViewAttachedToWindow = false
+                shutdownScheduledExecutorService()
             }
         })
     }

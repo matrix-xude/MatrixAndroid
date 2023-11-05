@@ -20,10 +20,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
  */
 class RxJavaDisposeFragment : BaseFragment() {
 
-    private lateinit var viewBinding : ThreadFragmentRxjavaDisposeBinding
+    private lateinit var viewBinding: ThreadFragmentRxjavaDisposeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewBinding = ThreadFragmentRxjavaDisposeBinding.inflate(inflater,container,false)
+        viewBinding = ThreadFragmentRxjavaDisposeBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
 
@@ -60,9 +60,9 @@ class RxJavaDisposeFragment : BaseFragment() {
      */
     private fun testCreateDispose() {
         Observable.create(ObservableOnSubscribe<Int> { emitter ->
-            emitter?.onNext(1)
-            emitter?.onNext(2)
-            emitter?.onNext(3)
+            emitter.onNext(1)
+            emitter.onNext(2)
+            emitter.onNext(3)
         })
             .map {
                 logDisposable(createDisposable)
@@ -84,16 +84,16 @@ class RxJavaDisposeFragment : BaseFragment() {
             }
             .subscribeOn(Schedulers.io())
             .subscribe(object : Observer<String> {
-                override fun onSubscribe(d: Disposable?) {
+                override fun onSubscribe(d: Disposable) {
                     createDisposable = d
                     LogUtil.d("Disposable 赋值执行了")
                 }
 
-                override fun onError(e: Throwable?) {
-                    e?.printStackTrace()
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
                 }
 
-                override fun onNext(t: String?) {
+                override fun onNext(t: String) {
                     logDisposable(createDisposable)
                     LogUtil.d("onNext 执行了 $t")
                 }
@@ -133,12 +133,12 @@ class RxJavaDisposeFragment : BaseFragment() {
                 "${it}——再来一个"
             }
             .subscribe({
-                it?.let {
+                it.let {
                     logDisposable(returnDisposable)
                     LogUtil.d("onNext 执行了 $it")
                 }
             }, {
-                it?.printStackTrace()
+                it.printStackTrace()
             }, {
                 LogUtil.d("onComplete 执行了")
             })
@@ -156,7 +156,7 @@ class RxJavaDisposeFragment : BaseFragment() {
 
     var subscribe: Observable<String>? = null
     var observer: Observer<String>? = null
-    var disposable : Disposable? = null
+    var disposable: Disposable? = null
 
     private fun prepareObservable() {
         subscribe = Observable.just(1, 2, 3)
@@ -165,17 +165,17 @@ class RxJavaDisposeFragment : BaseFragment() {
             }
 
         observer = object : Observer<String> {
-            override fun onSubscribe(d: Disposable?) {
+            override fun onSubscribe(d: Disposable) {
                 disposable = d
                 LogUtil.d("onSubscribe $d")
             }
 
-            override fun onNext(t: String?) {
+            override fun onNext(t: String) {
                 LogUtil.d("onNext $t")
             }
 
-            override fun onError(e: Throwable?) {
-                e?.printStackTrace()
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
             }
 
             override fun onComplete() {
@@ -186,6 +186,8 @@ class RxJavaDisposeFragment : BaseFragment() {
     }
 
     private fun beginSubscribe() {
-        subscribe?.subscribe(observer)
+        observer?.let {
+            subscribe?.subscribe(it)
+        }
     }
 }

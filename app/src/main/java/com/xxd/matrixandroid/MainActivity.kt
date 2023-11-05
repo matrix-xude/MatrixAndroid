@@ -1,5 +1,6 @@
 package com.xxd.matrixandroid
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
@@ -10,8 +11,8 @@ import com.xxd.matrixandroid.databinding.AppActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    @Autowired
-    lateinit var viewProvider: IViewProvide
+//    @Autowired
+//    lateinit var viewProvider: IViewProvide
 
     private lateinit var viewBinding: AppActivityMainBinding
 
@@ -29,11 +30,11 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.tvName.setOnClickListener {
 //            startActivity(Intent(this,MainActivity::class.java))
-//            ARouter.getInstance()
-//                .build("/view/activity/main")
-//                .withInt("position",1)
-//                .withString("key","just do it")
-//                .navigation()
+            ARouter.getInstance()
+                .build("/view/activity/main")
+                .withInt("position",1)
+                .withString("key","just do it")
+                .navigation()
 
 //            val uri = Uri.Builder()
 //                .scheme("")
@@ -44,12 +45,12 @@ class MainActivity : AppCompatActivity() {
 //            ARouter.getInstance()
 //                .build(Uri.parse("http://main/thread/activity/main?position=1&key=aaa"))
 //                .navigation()
-            viewProvider.show("高级")
+//            viewProvider.show("高级")
         }
 
-        viewBinding.tv1.onClick {
-            ARouter.getInstance().inject(this)
-        }
+//        viewBinding.tv1.onClick {
+//            ARouter.getInstance().inject(this)
+//        }
 
     }
 }
