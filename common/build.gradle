@@ -84,6 +84,7 @@ android {
         api "com.fasterxml.jackson.core:jackson-core:${versions.jacksonVersion}" // jackson序列化工具，做kotlin的deepCopy使用
         api "com.fasterxml.jackson.core:jackson-databind:${versions.jacksonVersion}"
         api "com.google.code.gson:gson:${versions.gsonVersion}" // gson
+        api("com.squareup.moshi:moshi:${versions.moshiVersion}") // moshi
         api "io.reactivex.rxjava3:rxjava:${versions.rxjavaVersion}" // rxJava
         api "io.reactivex.rxjava3:rxandroid:${versions.rxandroidVersion}" // rxAndroid
         api "com.squareup.okio:okio:${versions.okioVersion}" // okio

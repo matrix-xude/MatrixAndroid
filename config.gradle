@@ -48,6 +48,7 @@ ext {
             arouterCompilerVersion              : "1.2.2", // annotation 阿里路由
             loggerVersion                       : "2.2.0", // 支持各种的logger类
             gsonVersion                         : "2.8.9", // gson
+            moshiVersion                        : "1.14.0", // 更适配kotlin的json转换工具
             immersionbarVersion                 : "3.0.0", // 沉浸式bar
             rxToolVersion                       : "2.6.3", // rxTool核心包
             jacksonVersion                      : "2.9.0", // jackson序列化工具，做kotlin的deepCopy使用

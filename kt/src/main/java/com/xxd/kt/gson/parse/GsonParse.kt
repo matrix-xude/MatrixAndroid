@@ -2,8 +2,8 @@ package com.xxd.kt.gson.parse
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.xxd.kt.gson.bean.Partner
-import com.xxd.kt.gson.bean.Partner2
+import com.xxd.kt.moshi.bean.Partner
+import com.xxd.kt.moshi.bean.Partner2
 
 /**
  *    author : xxd
