@@ -31,7 +31,7 @@ fun main(){
 }
 
 fun m1(){
-    val adapter : JsonAdapter<Partner> = moshi.adapter(Partner::class.java)
-    val fromJson = adapter.fromJson(json1)
-    println(fromJson)
+//    val adapter : JsonAdapter<Partner> = moshi.adapter(Partner::class.java)
+//    val fromJson = adapter.fromJson(json1)
+//    println(fromJson)
 }
