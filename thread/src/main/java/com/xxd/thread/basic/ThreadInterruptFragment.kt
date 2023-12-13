@@ -18,9 +18,6 @@ import okhttp3.internal.wait
  *      3. thread.interrupt()  在线程中打入一个中断标志，并不会马上中断线程，当线程被阻塞的时候
  *        （如：sleep(),wait(),join()），马上会抛出一个 InterruptedException,且中断标志被清除，
  *         线程中断。
- *         如要加入逻辑操作，thread.isInterrupted 可以判断中断标志是否为true,当前中断判断后立马回变为false，
- *         二次判断则为true
- *
  */
 class ThreadInterruptFragment : BaseFragment() {
 

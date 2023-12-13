@@ -16,8 +16,6 @@ public class ParcelableJava implements Parcelable {
     private String name;
     private int speed;
 
-
-
     @Override
     public int describeContents() {
         return 0;

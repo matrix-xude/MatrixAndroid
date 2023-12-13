@@ -75,7 +75,7 @@ dependencies {
     implementation project(":common")
 
     kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.14.0"
+//    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.14.0"
 
     // 测试模块不能放在common中，引用不到
     testImplementation "junit:junit:${versions.junitVersion}"

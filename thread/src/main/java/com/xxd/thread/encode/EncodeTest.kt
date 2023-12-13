@@ -22,10 +22,11 @@ class EncodeTest {
         @Transient
         var fixedStar: FixedStar? = null
         var planet: Planet? = null
+
+
         override fun toString(): String {
             return "Galaxy(name=$name, diameter=$diameter, fixedStar=$fixedStar, planet=$planet)"
         }
-
 
     }
 
@@ -121,7 +122,7 @@ class EncodeTest {
                 oos.writeUnshared(planet)
             }
 
-//            resolver1()
+            resolver1()
             oos.writeObject(planet)
             val byteArray = bos.toByteArray()
 
@@ -131,7 +132,7 @@ class EncodeTest {
             val planet2 = ois.readObject() as Planet
             println(planet1)
             println(planet2)
-            println(planet1 == planet2)
+            println(planet1 === planet2)
 
 
         } catch (e: Exception) {
@@ -161,12 +162,12 @@ class EncodeTest {
 
     /**
      * 测试Serializable 的4个反射方法
-    writeReplace
-    writeObject
-    readObject
-    readResolve
-    FixedStar(name=北极星_writeReplace_readResolve, lifecycle=25 亿年,
-    burst=永不爆发_writeReplace_readResolve)
+        writeReplace
+        writeObject
+        readObject
+        readResolve
+        FixedStar(name=北极星_writeReplace_readResolve, lifecycle=25 亿年,
+        burst=永不爆发_writeReplace_readResolve)
      */
     fun test3() {
         val fixedStar = FixedStar().apply {
@@ -187,7 +188,7 @@ class EncodeTest {
         val planet = Planet("天王星", 32.67)
         val byteArray = writeObject(planet)
         val planetAfter = readObject<Planet>(byteArray)
-        println(planet==planetAfter)
+        println(planet === planetAfter)  // kotlin中===才是判断对象地址，==是判断对象的equals
     }
 
     private fun writeObject(any: Any): ByteArray {
