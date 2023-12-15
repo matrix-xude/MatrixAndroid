@@ -48,4 +48,14 @@ class JsonFragmentTest {
     fun test6() {
         jsonFragment.test6()
     }
+
+    @Test
+    fun test7() {
+        jsonFragment.test7()
+    }
+
+    @Test
+    fun test8() {
+        jsonFragment.test8()
+    }
 }
