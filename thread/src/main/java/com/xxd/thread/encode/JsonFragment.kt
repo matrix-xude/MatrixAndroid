@@ -336,7 +336,7 @@ class JsonFragment : BaseFragment() {
 
     class JsonG(
         var i : Int,
-        var name : String,  // 在这里写成String比String?使用方便，但是Gson自带的解析可以使得该值为null，导致安全异常
+        var name : String?,  // 在这里写成String比String?使用方便，但是Gson自带的解析可以使得该值为null，导致安全异常
     ) {
         override fun toString(): String {
             return "特殊的 JsonG(i=$i, name='$name')"
@@ -356,6 +356,15 @@ class JsonFragment : BaseFragment() {
         """.trimIndent()
         val fromJson = gson.fromJson(jsonStr, JsonG::class.java)
         println(fromJson)
+    }
+
+    fun test9(){
+        val jsonG = JsonG(6, null)
+        val gson = GsonBuilder()
+            .serializeNulls()  // 加入这一行会使得null参数也参与序列化 {"i":6,"name":null},否则为{"i":6}
+            .create()
+        val toJson = gson.toJson(jsonG)
+        println(toJson)
     }
 
 

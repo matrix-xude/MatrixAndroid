@@ -1,6 +1,5 @@
 package com.xxd.common.costom.decoration
 
-import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.View
