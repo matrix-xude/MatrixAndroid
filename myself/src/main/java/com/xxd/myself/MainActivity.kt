@@ -41,7 +41,6 @@ class MainActivity : BaseTitleActivity() {
             IntentUtil.startActivity<FlowActivity>(this)
         }
 
-        testMoshi()
     }
 
 

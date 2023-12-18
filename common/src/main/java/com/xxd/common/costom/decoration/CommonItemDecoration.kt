@@ -2,13 +2,13 @@ package com.xxd.common.costom.decoration
 
 import android.graphics.Canvas
 import android.graphics.Rect
+import android.util.Log
 import android.view.View
 import androidx.annotation.IntDef
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.orhanobut.logger.Logger
 
 /**
  *    author : xxd
@@ -18,70 +18,57 @@ import com.orhanobut.logger.Logger
 class CommonItemDecoration : RecyclerView.ItemDecoration() {
 
     companion object {
-        const val NONE = 0 // 没有确定方向，此状态下不绘制
-        const val VERTICAL = 1 // 垂直方向
-        const val HORIZONTAL = 2 // 水平方向
+        // 当前RecyclerView的滑动方向
+        private const val NONE = 0 // 没有确定方向，此状态下不绘制
+        private const val VERTICAL = 1 // 垂直方向
+        private const val HORIZONTAL = 2 // 水平方向
 
         /**
          * 限制ItemDecoration方向
-         * kotlin 1.0.3之后就不支持IntDef等，此处限制无效，改用enum
          */
         @IntDef(NONE, VERTICAL, HORIZONTAL)
         @Retention(AnnotationRetention.SOURCE)
         @Target(AnnotationTarget.FIELD, AnnotationTarget.VALUE_PARAMETER)
-        annotation class ItemDecorationOrientation {}
+        annotation class ItemDecorationOrientation
 
-        /**
-         * 当前recyclerview的滑动方向
-         */
-        enum class Orientation {
-            NONE, VERTICAL, HORIZONTAL
-        }
-
-        /**
-         * 当前recyclerview的layoutManager类型
-         */
-        enum class LayoutManager {
-            // 对应3种系统的manager,自定义manager暂时未处理
-            NONE, Grid, Linear, StaggeredGrid
-        }
     }
 
     /**
-     * 根据 orientation 来区分以下参数的含义
-     * ex: head,tail 表示recyclerview滑动的开始、结束两端，VERTICAL下即为上下方向，HORIZONTAL即为左右方向
+     * 这些参数是可以用来外部设置的
+     * 根据orientation的不同，注意设置参数的的需求
      */
-    var boundaryHead = 0 // 滑动开始端方向偏移量
-    var boundaryTail = 0 // 滑动结束端方向偏移量
-    var boundaryStart = 0 // 整体的"左"（HORIZONTAL下为"上"）边距
-    var boundaryEnd = 0 // 整体的"右"（HORIZONTAL下为"下"）边距
+    var boundaryTop = 0 // 顶部边距
+    var boundaryBottom = 0 // 底部边距
+    var boundaryLeft = 0 // 左边距
+    var boundaryRight = 0 // 右边距
     var interval = 0 // 中间item的间距，不包含头尾
     var spanInterval = 0 // 当 spanCount>1 的时候，每个span之间的间距，处理时该间距前后各取1/2，所以最好设置偶数
-    var boundary = 0  // 同时设置4个边距的数值，类型padding
+    var boundary = 0  // 同时设置4个边距的数值
         set(value) {
-            boundaryStart = value
-            boundaryEnd = value
-            boundaryHead = value
-            boundaryTail = value
+            boundaryTop = value
+            boundaryBottom = value
+            boundaryLeft = value
+            boundaryRight = value
             field = value
         }
 
     /**
      * 当前recyclerview方向
      */
-    private var orientation = Orientation.NONE
+    @ItemDecorationOrientation
+    private var orientation = NONE
 
     /**
      * 当前recyclerview的layoutManager类型
      */
-    private var layoutManager = LayoutManager.NONE
+    private var layoutManager: RecyclerView.LayoutManager? = null
 
     /**
      * 初始化该recyclerview的滑动方向
      */
     private fun initOrientation(spanCount: Int, isVertical: Boolean) {
         this.spanCount = spanCount
-        orientation = if (isVertical) Orientation.VERTICAL else Orientation.HORIZONTAL
+        orientation = if (isVertical) VERTICAL else HORIZONTAL
     }
 
     /**
@@ -92,7 +79,6 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
             if (value > 0) field = value
         }
 
-
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
     }
@@ -101,47 +87,29 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
         super.onDraw(c, parent, state)
     }
 
-    override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
 
         // 没获取到滑动方向前
-        if (orientation == Orientation.NONE) {
+        if (orientation == NONE) {
             when (val layoutManager = parent.layoutManager) {
-                is GridLayoutManager -> {
-                    initOrientation(
-                        layoutManager.spanCount,
-                        layoutManager.orientation == LinearLayoutManager.VERTICAL
-                    )
-                    this.layoutManager = LayoutManager.Grid
-                }
-                is LinearLayoutManager -> {
-                    initOrientation(
-                        1,
-                        layoutManager.orientation == LinearLayoutManager.VERTICAL
-                    )
-                    this.layoutManager = LayoutManager.Linear
-                }
-                is StaggeredGridLayoutManager -> {
-                    initOrientation(
-                        layoutManager.spanCount,
-                        layoutManager.orientation == LinearLayoutManager.VERTICAL
-                    )
-                    this.layoutManager = LayoutManager.StaggeredGrid
-                }
-                else -> {
-                    Logger.e("当前recyclerview获取不到layoutManager")
-                    this.layoutManager = LayoutManager.NONE
-                }
+                is GridLayoutManager ->
+                    initOrientation(layoutManager.spanCount, layoutManager.orientation == LinearLayoutManager.VERTICAL)
+
+                is LinearLayoutManager ->
+                    initOrientation(1, layoutManager.orientation == LinearLayoutManager.VERTICAL)
+
+                is StaggeredGridLayoutManager ->
+                    initOrientation(layoutManager.spanCount, layoutManager.orientation == LinearLayoutManager.VERTICAL)
+
+                else -> // 暂时不提供其它layoutManager的处理
+                    Log.e(this::class.java.simpleName, "当前recyclerview无法处理${layoutManager?.javaClass?.simpleName}")
             }
         }
+        layoutManager = parent.layoutManager
 
         // 获取不到滑动方向，不处理间隔
-        if (orientation == Orientation.NONE) {
-            Logger.e("当前recyclerview获取不到orientation")
+        if (orientation == NONE) {
+            Log.e(this::class.java.simpleName, "当前recyclerview获取不到orientation")
             return
         }
 
@@ -150,51 +118,51 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
         adapter?.let {
             val position = parent.getChildAdapterPosition(view)
 
+            // 找不到实际位置，不处理
+            if (position == RecyclerView.NO_POSITION)
+                return
+
             // 以下注释以竖直滑动为例，实际处理了竖直、水平2种滑动
 
-            // 第一行：headOffset设置，非第一行：滑动方向上间隔设置
+            // 第一行：topOffset设置，非第一行：滑动方向上间隔设置
             val isFirstRow = position / spanCount == 0
             if (isFirstRow) {
-                evaluateHead(outRect, boundaryHead)
+                evaluateHead(outRect)
             } else { // 滑动方向上的间隔处理
-                evaluateInterval(outRect, interval)
+                evaluateInterval(outRect)
             }
 
-            // 最后一行：tailOffset设置
+            // 最后一行：bottomOffset设置
             val isLastRow = position / spanCount == (it.itemCount - 1) / spanCount
             if (isLastRow) {
-                evaluateTail(outRect, boundaryTail)
+                evaluateTail(outRect)
             }
 
-            // 第一列：boundaryStart设置，非第一列：非滑动方向间隔设置
+            // 第一列：leftOffset设置，非第一列：非滑动方向间隔设置
             var isFirstLine = position % spanCount == 0
-            if (layoutManager == LayoutManager.StaggeredGrid) { // 瀑布流判断第一列需要特殊处理
+            if (layoutManager is StaggeredGridLayoutManager) { // 瀑布流判断第一列需要特殊处理
                 val layoutParams = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
                 isFirstLine = layoutParams.spanIndex == 0
             }
             if (isFirstLine) {
-                evaluateBoundaryStart(outRect, boundaryStart)
+                evaluateStart(outRect)
                 if (spanCount > 1) {
-                    evaluateSpanInterval(outRect, spanInterval / 2, true)
+                    evaluateSpanInterval(outRect, true)
                 }
             } else { // 非滑动方向上的间隔处理
-                evaluateSpanInterval(outRect, spanInterval / 2, false)
-                evaluateSpanInterval(outRect, spanInterval / 2, true) // 最后一列尾部的多处理了，不过下面重新处理最后一列
+                evaluateSpanInterval(outRect, false)
+                evaluateSpanInterval(outRect, true) // 最后一列尾部的多处理了，不过下面重新处理最后一列
             }
 
-            // 最后一列：boundaryEnd设置
+            // 最后一列：rightOffset设置
             var isLastLine = position % spanCount == spanCount - 1
-            if (layoutManager == LayoutManager.StaggeredGrid) { // 瀑布流需要特殊处理
+            if (layoutManager is StaggeredGridLayoutManager) { // 瀑布流需要特殊处理
                 val layoutParams = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
                 isLastLine = layoutParams.spanIndex == spanCount - 1
             }
             if (isLastLine) {
-                evaluateBoundaryEnd(outRect, boundaryEnd)
-                if (spanCount > 1) {
-                    evaluateSpanInterval(outRect, spanInterval / 2, false)
-                }
+                evaluateEnd(outRect)
             }
-
         }
 
     }
@@ -202,60 +170,60 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
     /**
      * 给头部偏移量赋值
      */
-    private fun evaluateHead(outRect: Rect, offset: Int) {
-        if (orientation == Orientation.VERTICAL) {
-            outRect.top = offset
+    private fun evaluateHead(outRect: Rect) {
+        if (orientation == VERTICAL) {
+            outRect.top = boundaryTop
         }
-        if (orientation == Orientation.HORIZONTAL) {
-            outRect.left = offset
+        if (orientation == HORIZONTAL) {
+            outRect.left = boundaryLeft
         }
     }
 
     /**
      * 给尾部偏移量赋值
      */
-    private fun evaluateTail(outRect: Rect, offset: Int) {
-        if (orientation == Orientation.VERTICAL) {
-            outRect.bottom = offset
+    private fun evaluateTail(outRect: Rect) {
+        if (orientation == VERTICAL) {
+            outRect.bottom = boundaryBottom
         }
-        if (orientation == Orientation.HORIZONTAL) {
-            outRect.right = offset
+        if (orientation == HORIZONTAL) {
+            outRect.right = boundaryRight
         }
     }
 
     /**
      * BoundaryStart赋值
      */
-    private fun evaluateBoundaryStart(outRect: Rect, offset: Int) {
-        if (orientation == Orientation.VERTICAL) {
-            outRect.left = offset
+    private fun evaluateStart(outRect: Rect) {
+        if (orientation == VERTICAL) {
+            outRect.left = boundaryLeft
         }
-        if (orientation == Orientation.HORIZONTAL) {
-            outRect.top = offset
+        if (orientation == HORIZONTAL) {
+            outRect.top = boundaryTop
         }
     }
 
     /**
      * BoundaryEnd赋值
      */
-    private fun evaluateBoundaryEnd(outRect: Rect, offset: Int) {
-        if (orientation == Orientation.VERTICAL) {
-            outRect.right = offset
+    private fun evaluateEnd(outRect: Rect) {
+        if (orientation == VERTICAL) {
+            outRect.right = boundaryRight
         }
-        if (orientation == Orientation.HORIZONTAL) {
-            outRect.bottom = offset
+        if (orientation == HORIZONTAL) {
+            outRect.bottom = boundaryBottom
         }
     }
 
     /**
      * 间隔赋值,默认赋值在上部、左部
      */
-    private fun evaluateInterval(outRect: Rect, offset: Int) {
-        if (orientation == Orientation.VERTICAL) {
-            outRect.top = offset
+    private fun evaluateInterval(outRect: Rect) {
+        if (orientation == VERTICAL) {
+            outRect.top = interval
         }
-        if (orientation == Orientation.HORIZONTAL) {
-            outRect.left = offset
+        if (orientation == HORIZONTAL) {
+            outRect.left = interval
         }
     }
 
@@ -263,18 +231,18 @@ class CommonItemDecoration : RecyclerView.ItemDecoration() {
      * 非滑动方向上的间隔赋值
      * @param isTail 是否为尾部，vertical下为bottom, horizontal下为right  true:是否尾部，false:不是尾部
      */
-    private fun evaluateSpanInterval(outRect: Rect, offset: Int, isTail: Boolean) {
-        if (orientation == Orientation.VERTICAL) {
+    private fun evaluateSpanInterval(outRect: Rect, isTail: Boolean) {
+        if (orientation == VERTICAL) {
             if (isTail)
-                outRect.right = offset
+                outRect.right = spanInterval / 2
             else
-                outRect.left = offset
+                outRect.left = spanInterval / 2
         }
-        if (orientation == Orientation.HORIZONTAL) {
+        if (orientation == HORIZONTAL) {
             if (isTail)
-                outRect.bottom = offset
+                outRect.bottom = spanInterval / 2
             else
-                outRect.top = offset
+                outRect.top = spanInterval / 2
         }
     }
 }

@@ -78,7 +78,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
-    implementation project(":myself")
 
     kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
 

@@ -41,10 +41,7 @@ abstract class BaseBindingQuickAdapter<T, VB : ViewBinding>(
     }
 
     // 覆写父类创建ViewHolder的方法
-    override fun onCreateDefViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): BaseBindingViewHolder<VB> {
+    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<VB> {
         val vb = reflectMethod?.invoke(null, LayoutInflater.from(context), parent, false)?.let { it as VB }
             ?: reflectNullViewHolder(LayoutInflater.from(context))
             ?: throw NullPointerException("当前反射找不到VB : ViewBinding的泛型,请覆写 getHolder(layoutInflater: LayoutInflater) 方法")

@@ -69,7 +69,7 @@ class RxJavaBasicFragment : BaseFragment() {
      * 通过RxJava的Single方式流式下载图片
      */
     private fun downloadImage1() {
-        Single.just(IMG_PATH)
+        val subscribe = Single.just(IMG_PATH)
             .map(object : Function<String, Bitmap> {
                 override fun apply(t: String): Bitmap {
                     val url = URL(t)

@@ -11,7 +11,7 @@ import java.lang.IllegalArgumentException
  */
 class RxJavaActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("RxJava基础","Disposable的赋值时机")
+    private val dataList = listOf("RxJava基础","RxJava类型","Disposable的赋值时机")
 
     override fun getDataList(): Collection<String> {
         return dataList
@@ -20,7 +20,8 @@ class RxJavaActivity : SimpleSwitchFragmentActivity() {
     override fun getPositionFragment(position: Int): Fragment {
         return when(position){
             0 -> RxJavaBasicFragment()
-            1 -> RxJavaDisposeFragment()
+            1 -> RxJavaTypeFragment()
+            2 -> RxJavaDisposeFragment()
             else -> throw IllegalArgumentException()
         }
     }

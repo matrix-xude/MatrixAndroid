@@ -1,7 +1,7 @@
 ext {
 
     // thread组件是否作为application存在，true:作为application,false:作为lib
-    isModuleThread = false
+    isModuleThread = true
     // view组件是否作为application存在，true:作为application,false:作为lib
     isModuleView = false
     // other组件是否作为application存在，true:作为application,false:作为lib
@@ -53,8 +53,8 @@ ext {
             rxToolVersion                       : "2.6.3", // rxTool核心包
             jacksonVersion                      : "2.9.0", // jackson序列化工具，做kotlin的deepCopy使用
 
-            rxjavaVersion                       : '3.0.6',// RxJava3
-            rxandroidVersion                    : "3.0.0",// RxAndroid 对应 RxJava3使用
+            rxjavaVersion                       : '3.1.8',// RxJava3
+            rxandroidVersion                    : "3.0.2",// RxAndroid 对应 RxJava3使用
 
             okioVersion                         : '2.8.0',// okIo
             okhttpVersion                       : "4.8.1",// okHttp,包含okIo
