@@ -53,7 +53,7 @@ ext {
             rxToolVersion                       : "2.6.3", // rxTool核心包
             jacksonVersion                      : "2.9.0", // jackson序列化工具，做kotlin的deepCopy使用
 
-            rxjavaVersion                       : '3.1.8',// RxJava3
+            rxjavaVersion                       : '3.1.6',// RxJava3
             rxandroidVersion                    : "3.0.2",// RxAndroid 对应 RxJava3使用
 
             okioVersion                         : '2.8.0',// okIo
