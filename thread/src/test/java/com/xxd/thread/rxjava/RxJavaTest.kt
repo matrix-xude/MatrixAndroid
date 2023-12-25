@@ -23,9 +23,4 @@ class RxJavaTest {
         zipTest.flatMap()
     }
 
-    @Test
-    fun m1(){
-        val fragment = RxJavaTypeFragment()
-        fragment.hotOrCold()
-    }
 }

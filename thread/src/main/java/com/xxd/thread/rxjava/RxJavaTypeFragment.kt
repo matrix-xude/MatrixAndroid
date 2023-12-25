@@ -19,7 +19,10 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.SingleSource
+import io.reactivex.rxjava3.core.SingleTransformer
 import io.reactivex.rxjava3.functions.Function
+import io.reactivex.rxjava3.internal.operators.single.SingleTakeUntil
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.AsyncSubject
@@ -37,7 +40,7 @@ class RxJavaTypeFragment : BaseFragment() {
 
     private lateinit var viewBinding: ThreadFragmentRxjavaTypeBinding
     private lateinit var adapter: BaseBindingQuickAdapter<String, CommonItemSimpleTextBinding>
-    private val list = listOf("Observable1", "Observable2", "Single", "Completable", "Maybe", "Flowable")
+    private val list = listOf("Observable1", "Observable2", "Single", "Completable", "Maybe", "Flowable","compose")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewBinding = ThreadFragmentRxjavaTypeBinding.inflate(inflater, container, false)
@@ -71,6 +74,7 @@ class RxJavaTypeFragment : BaseFragment() {
                             3 -> typeCompletable()
                             4 -> typeMaybe()
                             5 -> typeFlowable()
+                            6 -> composeTest()
                         }
                     }
                 }
@@ -123,7 +127,7 @@ class RxJavaTypeFragment : BaseFragment() {
             Logger.d("我收到一个异常：${it.cause}")
         }
 
-        val disposable = Observable.just(1, 2, )
+        val disposable = Observable.just(1, 2)
             .map {
                 Logger.d("currentThread : ${Thread.currentThread().name} -> just：$it")
                 it * 2
@@ -186,7 +190,7 @@ class RxJavaTypeFragment : BaseFragment() {
     }
 
     fun typeFlowable() {
-        val disposable = Flowable.range(0,1000)
+        val disposable = Flowable.range(0, 1000)
             .onBackpressureBuffer(1000) // 可以指定缓存大小
             .onBackpressureDrop()  // 可以指定背压策略
             .map {
@@ -212,6 +216,29 @@ class RxJavaTypeFragment : BaseFragment() {
                     Logger.d("Flowable onNext -> $t")
                 }
             })
+    }
+
+
+    private fun <T : Any> applyScheduler(): SingleTransformer<T, T> {
+        return SingleTransformer { upstream ->
+            upstream
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+        }
+    }
+
+    fun composeTest() {
+        val subscribe = Single.just(1)
+            .map { it * 2 }
+            .compose(applyScheduler())
+            .subscribe { t1, t2 ->
+                t1?.let {
+                    Logger.d("currentThread : ${Thread.currentThread().name} -> onNext：$t1")
+                }
+                t2?.let {
+                    Logger.e(t2, "transform Error")
+                }
+            }
     }
 }
 
