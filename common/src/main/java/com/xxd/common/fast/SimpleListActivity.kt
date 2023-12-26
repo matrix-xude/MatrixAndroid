@@ -56,14 +56,12 @@ abstract class SimpleListActivity<T> : BaseTitleActivity() {
 
     private fun initRecyclerView() {
 
-        simpleRecyclerBinding.recyclerView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        simpleRecyclerBinding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         simpleRecyclerBinding.recyclerView.addItemDecoration(CommonItemDecoration().apply {
             boundary = 20
             interval = 15
         })
-        simpleAdapter = object :
-            BaseQuickAdapter<T, BaseViewHolder>(getItemLayoutResId()) {
+        simpleAdapter = object : BaseQuickAdapter<T, BaseViewHolder>(getItemLayoutResId()) {
             override fun convert(holder: BaseViewHolder, item: T) {
                 convertItem(holder, item)
             }

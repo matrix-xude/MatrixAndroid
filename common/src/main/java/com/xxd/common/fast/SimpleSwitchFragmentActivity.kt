@@ -26,8 +26,7 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
     private lateinit var switchFragmentBinding: CommonActivitySwitchFragmentBinding
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
-        switchFragmentBinding =
-            CommonActivitySwitchFragmentBinding.inflate(layoutInflater, rootView, true)
+        switchFragmentBinding = CommonActivitySwitchFragmentBinding.inflate(layoutInflater, rootView, true)
     }
 
     /**
@@ -51,25 +50,21 @@ abstract class SimpleSwitchFragmentActivity : BaseTitleActivity() {
 
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.flContent, getPositionFragment(position)).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.flContent, getPositionFragment(position)).commit()
         }
     }
 
     private fun initRecyclerView() {
 
-        switchFragmentBinding.rvTop.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        switchFragmentBinding.rvTop.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         switchFragmentBinding.rvTop.addItemDecoration(CommonItemDecoration().apply {
             boundary = 20
             interval = 15
         })
-        simpleAdapter = object :
-            BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_horizontal_simple_text) {
+        simpleAdapter = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.common_item_horizontal_simple_text) {
             override fun convert(holder: BaseViewHolder, item: String) {
                 holder.setText(R.id.tv_name, item)
             }
-
         }
         switchFragmentBinding.rvTop.adapter = simpleAdapter
     }

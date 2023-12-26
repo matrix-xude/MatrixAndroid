@@ -13,9 +13,9 @@
         android:theme="@style/myself_AppTheme">
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:exported="true">
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,22 +25,25 @@
         <activity
             android:name=".task.activity.FirstActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-        </activity>
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".task.activity.SecondActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
-            tools:ignore="LockedOrientationActivity">
-        </activity>
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".task.activity.ThirdActivity"
-            android:taskAffinity="com.xxd.myself2"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-        </activity>
+            android:taskAffinity="com.xxd.myself2"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
-            android:name=".flow.FlowActivity" />
+            android:name=".flow.FlowActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".dp.DpActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>
