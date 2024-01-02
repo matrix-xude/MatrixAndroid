@@ -10,15 +10,12 @@ java {
 }
 
 dependencies {
-//    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshiVersion}"
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlinStdlibJdkVersion}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 携程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinxCoroutinesCoreVersion}"
     implementation "com.google.code.gson:gson:${versions.gsonVersion}" // gson
     implementation("com.squareup.moshi:moshi:${versions.moshiVersion}") // moshi
-//    implementation("com.squareup.moshi:moshi-kotlin:${versions.moshiVersion}") // moshi
-    implementation("com.squareup.moshi:moshi-kotlin-codegen:${versions.moshiVersion}") // moshi
     implementation "com.fasterxml.jackson.core:jackson-core:${versions.jacksonVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${versions.jacksonVersion}"
 }

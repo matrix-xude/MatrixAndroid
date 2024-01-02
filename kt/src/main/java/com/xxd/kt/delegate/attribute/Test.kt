@@ -14,6 +14,7 @@ var d2 by FirstDelegate()
 //var d3 : String by FirstDelegate()
 
 fun main() {
+    Ref().use()
     d1 = 22
     println(d1)
     println(d1)

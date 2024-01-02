@@ -5,10 +5,11 @@ import com.gyf.immersionbar.ktx.immersionBar
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
 import com.xxd.myself.dp.DpActivity
+import com.xxd.myself.touchevent.TouchEventActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val mDataList = listOf("Px Dp 与 屏幕适配")
+    private val mDataList = listOf("Px Dp 与 屏幕适配","Android事件分发机制")
 
     override fun initView() {
         super.initView()
@@ -25,6 +26,7 @@ class MainActivity : SimpleListActivity<String>() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> IntentUtil.startActivity<DpActivity>(this)
+                1 -> IntentUtil.startActivity<TouchEventActivity>(this)
             }
         }
     }

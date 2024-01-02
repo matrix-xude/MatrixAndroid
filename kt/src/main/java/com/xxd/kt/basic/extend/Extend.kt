@@ -3,7 +3,7 @@ package com.xxd.kt.basic.extend
 /**
  *    author : xxd
  *    date   : 2021/10/21
- *    desc   :
+ *    desc   : 当内部方法和扩展方法重名的时候，优先调用内部方法
  */
 
 fun main() {

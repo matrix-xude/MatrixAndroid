@@ -26,6 +26,7 @@ class SecondDelegate {
 }
 
 // 通过扩展函数实现也可以，优先使用内部函数，没有内部函数再使用此函数
+// operator 的好处，可以在扩展函数处理覆写操作
 operator fun  SecondDelegate.setValue(thisRef: Any?, property: KProperty<*>, value: String) {
     val str = "扩展函数${setValueAmount}"
     println("对象：${thisRef?.javaClass?.simpleName} 中的 ${property.name} 赋值一次：${str}")

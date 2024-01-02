@@ -15,7 +15,7 @@ fun main() {
 fun m1(){
     val pattern = Pattern.compile("ABC")
     val pattern1 = pattern.pattern()
-    println("$pattern1")
+    println(pattern1)
     val matcher = pattern.matcher("ADFCKABCd")
     val find = matcher.find()
     println("匹配是否成功 $matcher $find")
