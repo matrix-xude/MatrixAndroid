@@ -13,7 +13,6 @@ import com.xxd.common.costom.decoration.CommonItemDecoration
 import com.xxd.common.databinding.CommonSimpleTextBinding
 import com.xxd.common.util.log.LogUtil
 import com.xxd.view.databinding.ViewActivityRecyclerBinding
-import java.util.*
 
 /**
  *    author : xxd
@@ -24,17 +23,36 @@ class RecyclerDiffActivity : BaseTitleActivity() {
 
     private lateinit var viewBinding: ViewActivityRecyclerBinding
     private lateinit var adapter1: RecyclerView.Adapter<*>
+    private lateinit var adapter2: BaseBindingQuickAdapter<String, CommonSimpleTextBinding>
     private lateinit var adapter3: RecyclerView.Adapter<*>
 
-    private var listData: MutableList<String>? = null
-    private var listData3: MutableList<Bean1>? = null
+    private var listData1: MutableList<String> = fakeData2()
+    private var listData2: MutableList<String> = mutableListOf(
+        "notifyAll",
+        "插入2",
+        "修改1",
+        "删除1",
+        "listData赋新值",
+        "Diff赋新值",
+        "data检测",
+        "data检测2"
+    )
+    private var listData3: MutableList<Bean1> = mutableListOf(
+        Bean1(1, Bean1.Bean2("张三")),
+        Bean1(2, Bean1.Bean2("李四")),
+        Bean1(1, Bean1.Bean2("王五")),
+        Bean1(1, Bean1.Bean2("赵六"))
+    )
+
+    val old = mutableListOf<Bean1>()
+    val new = mutableListOf<Bean1>()
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
         viewBinding = ViewActivityRecyclerBinding.inflate(layoutInflater, rootView, true)
     }
 
     override fun getTitleName(): CharSequence {
-        return "DiffUtil"
+        return "DiffUtil研究"
     }
 
     override fun initView() {
@@ -46,44 +64,8 @@ class RecyclerDiffActivity : BaseTitleActivity() {
 
     override fun initData() {
         super.initData()
-        listData = fakeData2()
-    }
 
-    private fun initRecyclerView3() {
-        viewBinding.rv3.apply {
-            layoutManager = LinearLayoutManager(this@RecyclerDiffActivity)
-            addItemDecoration(CommonItemDecoration().apply {
-                boundary = 10
-                interval = 30
-            })
-            adapter3 =
-                object : RecyclerView.Adapter<BaseBindingViewHolder<CommonSimpleTextBinding>>() {
-
-                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<CommonSimpleTextBinding> {
-                        LogUtil.d("创建ViewHolder被执行了 $viewType")
-                        val inflate = CommonSimpleTextBinding.inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                        return BaseBindingViewHolder(inflate)
-                    }
-
-                    override fun onBindViewHolder(holder: BaseBindingViewHolder<CommonSimpleTextBinding>, position: Int) {
-                        LogUtil.d("onBindViewHolder $position")
-                        listData3?.let {
-                            val bean = it[position]
-                            holder.binding.tvName.text = bean.bean2.name
-                        }
-                    }
-
-                    override fun getItemCount(): Int {
-                        return listData3?.size ?: 0
-                    }
-                }
-
-            adapter = adapter3
-        }
+        adapter2.setList(listData2)
     }
 
     // 创建第一个RecyclerView
@@ -94,33 +76,59 @@ class RecyclerDiffActivity : BaseTitleActivity() {
                 boundary = 10
                 interval = 30
             })
-            adapter1 =
-                object : RecyclerView.Adapter<BaseBindingViewHolder<CommonSimpleTextBinding>>() {
+            adapter1 = object : RecyclerView.Adapter<BaseBindingViewHolder<CommonSimpleTextBinding>>() {
 
-                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<CommonSimpleTextBinding> {
-                        LogUtil.d("创建ViewHolder被执行了 $viewType")
-                        val inflate = CommonSimpleTextBinding.inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                        return BaseBindingViewHolder(inflate)
-                    }
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<CommonSimpleTextBinding> {
+                    LogUtil.d("创建ViewHolder被执行了 $viewType")
+                    val inflate = CommonSimpleTextBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    return BaseBindingViewHolder(inflate)
+                }
 
-                    override fun onBindViewHolder(holder: BaseBindingViewHolder<CommonSimpleTextBinding>, position: Int) {
-                        LogUtil.d("onBindViewHolder $position")
-                        listData?.let {
-                            val bean = it[position]
-                            holder.binding.tvName.text = bean
-                        }
-                    }
-
-                    override fun getItemCount(): Int {
-                        return listData?.size ?: 0
+                override fun onBindViewHolder(holder: BaseBindingViewHolder<CommonSimpleTextBinding>, position: Int) {
+                    LogUtil.d("onBindViewHolder $position")
+                    listData1.let {
+                        val bean = it[position]
+                        holder.binding.tvName.text = bean
                     }
                 }
 
+                override fun getItemCount(): Int {
+                    return listData1.size
+                }
+            }
             adapter = adapter1
+        }
+    }
+
+    private fun initRecyclerView3() {
+        viewBinding.rv3.apply {
+            layoutManager = LinearLayoutManager(this@RecyclerDiffActivity)
+            addItemDecoration(CommonItemDecoration().apply {
+                boundary = 10
+                interval = 30
+            })
+            adapter3 = object : RecyclerView.Adapter<BaseBindingViewHolder<CommonSimpleTextBinding>>() {
+
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<CommonSimpleTextBinding> {
+                    LogUtil.d("创建ViewHolder被执行了 $viewType")
+                    val inflate = CommonSimpleTextBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    return BaseBindingViewHolder(inflate)
+                }
+
+                override fun onBindViewHolder(holder: BaseBindingViewHolder<CommonSimpleTextBinding>, position: Int) {
+                    LogUtil.d("onBindViewHolder $position")
+                    listData3.let {
+                        val bean = it[position]
+                        holder.binding.tvName.text = bean.bean2.name
+                    }
+                }
+
+                override fun getItemCount(): Int {
+                    return listData3.size
+                }
+            }
+
+            adapter = adapter3
         }
     }
 
@@ -186,105 +194,92 @@ class RecyclerDiffActivity : BaseTitleActivity() {
                 interval = 8
                 spanInterval = 15
             })
-            adapter = object : BaseBindingQuickAdapter<String, CommonSimpleTextBinding>() {
-                override fun convert(
-                    holder: BaseBindingViewHolder<CommonSimpleTextBinding>,
-                    item: String
-                ) {
+            adapter2 = object : BaseBindingQuickAdapter<String, CommonSimpleTextBinding>() {
+                override fun convert(holder: BaseBindingViewHolder<CommonSimpleTextBinding>, item: String) {
                     holder.binding.tvName.text = item
                 }
-            }.apply {
-                setNewInstance(
-                    mutableListOf(
-                        "notifyAll",
-                        "插入2",
-                        "修改1",
-                        "删除1",
-                        "listData赋新值",
-                        "Diff赋新值",
-                        "data检测",
-                        "data检测2"
-                    )
-                )
-                setOnItemClickListener { _, _, position ->
-                    when (position) {
-                        0 -> {
-                            insert1(listData!!)
-                            adapter1.notifyDataSetChanged()
-                        }
-                        1 -> {
-                            val insert2 = insert2(listData!!)
-                            adapter1.notifyItemInserted(insert2)
-                        }
-                        2 -> {
-                            val change1 = change1(listData!!)
-                            adapter1.notifyItemChanged(change1)
-                        }
-                        3 -> {
-                            val delete1 = delete1(listData!!)
-                            adapter1.notifyItemRemoved(delete1)
-                        }
-                        4 -> {
-                            listData = fakeData()
-                            adapter1.notifyDataSetChanged()
-                        }
-                        5 -> {
-                            val newData = MutableList(listData?.size ?: 0) {
-                                listData?.get(it) ?: ""
-                            }
-                            newData?.add("高等代数")
-                            val cb1 = MyDiff(listData, newData)
-                            val diffResult = DiffUtil.calculateDiff(cb1)
-                            listData = newData
-                            diffResult.dispatchUpdatesTo(adapter1)
-                        }
-                        6 -> {
-                            val b1 = Bean1(1, Bean1.Bean2("jack"))
-                            val b2 = Bean1(2, Bean1.Bean2("amber"))
-                            val b3 = Bean1(1, Bean1.Bean2("youtube"))
-                            val b4 = Bean1(1, Bean1.Bean2("jack"))
+            }
+            adapter = adapter2
+
+            adapter2.setOnItemClickListener { _, _, position ->
+                when (position) {
+                    0 -> {
+                        insert1(listData1)
+                        adapter1.notifyDataSetChanged()
+                    }
+
+                    1 -> {
+                        val insert2 = insert2(listData1)
+                        adapter1.notifyItemInserted(insert2)
+                    }
+
+                    2 -> {
+                        val change1 = change1(listData1)
+                        adapter1.notifyItemChanged(change1)
+                    }
+
+                    3 -> {
+                        val delete1 = delete1(listData1)
+                        adapter1.notifyItemRemoved(delete1)
+                    }
+
+                    4 -> {
+                        listData1 = fakeData()
+                        adapter1.notifyDataSetChanged()
+                    }
+
+                    5 -> {
+                        val newData = listData1.toMutableList()
+                        newData.add(2,"高等代数")
+                        val callback = MyDiff(listData1, newData)
+                        val diffResult = DiffUtil.calculateDiff(callback,false) // 计算比较结果
+                        diffResult.dispatchUpdatesTo(adapter1)  // 比较结果直接更新adapter
+                        listData1 = newData  // 赋值必须有，写在上一句后面可以的，因为刷新界面需要走handler驱动
+                    }
+
+                    6 -> {
+                        val b1 = Bean1(1, Bean1.Bean2("jack"))
+                        val b2 = Bean1(2, Bean1.Bean2("amber"))
+                        val b3 = Bean1(1, Bean1.Bean2("youtube"))
+                        val b4 = Bean1(1, Bean1.Bean2("jack"))
 
 
-                            old.apply {
-                                add(b1)
-                                add(b2)
-                                add(b3)
-                            }
-                            new.apply {
-                                add(b1)
-                                add(b2)
-                                add(b4)
-                            }
-                            listData3 = old
-                            adapter3.notifyDataSetChanged()
+                        old.apply {
+                            add(b1)
+                            add(b2)
+                            add(b3)
+                        }
+                        new.apply {
+                            add(b1)
+                            add(b2)
+                            add(b4)
+                        }
+                        listData3 = old
+                        adapter3.notifyDataSetChanged()
 
-                        }
-                        7 -> {
-                            val myDiff = object : MyDiff<Bean1>(old, new) {
-                                override fun areItemsTheSame(
-                                    oldItemPosition: Int,
-                                    newItemPosition: Int
-                                ): Boolean {
-                                    super.areItemsTheSame(oldItemPosition, newItemPosition)
-                                    return old[oldItemPosition].id == new[newItemPosition].id
-                                }
+                    }
+
+                    7 -> {
+                        val myDiff = object : MyDiff<Bean1>(old, new) {
+                            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                                super.areItemsTheSame(oldItemPosition, newItemPosition)
+                                return old[oldItemPosition].id == new[newItemPosition].id
                             }
-                            listData3 = new
-                            val calculateDiff = DiffUtil.calculateDiff(myDiff, true)
-                            val convertNewPositionToOld = calculateDiff.convertNewPositionToOld(2)
-                            LogUtil.d("``` convertNewPositionToOld(2) = $convertNewPositionToOld")
-                            val c2 = calculateDiff.convertOldPositionToNew(2)
-                            LogUtil.d("``` convertOldPositionToNew(2) = $c2")
-                            calculateDiff.dispatchUpdatesTo(MyListUpdateBack())
-                            calculateDiff.dispatchUpdatesTo(adapter3)
                         }
+                        listData3 = new
+                        val calculateDiff = DiffUtil.calculateDiff(myDiff, true)
+                        val convertNewPositionToOld = calculateDiff.convertNewPositionToOld(2)
+                        LogUtil.d("``` convertNewPositionToOld(2) = $convertNewPositionToOld")
+                        val c2 = calculateDiff.convertOldPositionToNew(2)
+                        LogUtil.d("``` convertOldPositionToNew(2) = $c2")
+                        calculateDiff.dispatchUpdatesTo(MyListUpdateBack())
+                        calculateDiff.dispatchUpdatesTo(adapter3)
                     }
                 }
             }
-
         }
+
     }
 
-    val old = mutableListOf<Bean1>()
-    val new = mutableListOf<Bean1>()
+
 }

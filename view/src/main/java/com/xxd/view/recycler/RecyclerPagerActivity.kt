@@ -1,10 +1,13 @@
 package com.xxd.view.recycler
 
 import androidx.fragment.app.Fragment
+import com.xxd.common.extend.onClick
 import com.xxd.common.fast.SimpleSwitchFragmentActivity
+import com.xxd.common.util.intent.IntentUtil
 import com.xxd.view.recycler.adapter.DelegateMultiFragment
 import com.xxd.view.recycler.adapter.MultiFragment
 import com.xxd.view.recycler.adapter.provider.ProviderFragment
+import com.xxd.view.recycler.diff.RecyclerDiffActivity
 import com.xxd.view.recycler.fragment.*
 
 /**
@@ -14,8 +17,19 @@ import com.xxd.view.recycler.fragment.*
  */
 class RecyclerPagerActivity : SimpleSwitchFragmentActivity() {
 
-    private val dataList = listOf("MultiFragment", "DelegateMultiFragment", "ProviderFragment", "RecyclerFragment", "PayloadFragment"
-        , "SimpleFragment", "ReverseFragment","WrapFragment")
+    private val dataList = listOf(
+        "MultiFragment", "DelegateMultiFragment", "ProviderFragment", "RecyclerFragment", "PayloadFragment", "SimpleFragment",
+        "ReverseFragment", "WrapFragment", "跳转到RecyclerDiffActivity"
+    )
+
+    override fun initView() {
+        super.initView()
+        // 增加一个点击标题跳转到RecyclerDiffActivity的功能
+        titleBinding.tvTitleName.onClick {
+            IntentUtil.startActivity<RecyclerDiffActivity>(this)
+        }
+    }
+
     override fun getDataList(): Collection<String> {
         return dataList
     }

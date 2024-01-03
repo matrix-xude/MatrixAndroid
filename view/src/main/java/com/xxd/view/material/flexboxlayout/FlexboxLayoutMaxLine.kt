@@ -31,7 +31,7 @@ class FlexboxLayoutMaxLine @JvmOverloads constructor(context: Context, attribute
     }
 
     /**
-     * see [.getMaxLines]
+     * see [getMaxLines]
      */
     @Deprecated("", ReplaceWith("NOT_SET", "com.google.android.flexbox.FlexboxLayout.NOT_SET"))
     override fun getMaxLine(): Int {
