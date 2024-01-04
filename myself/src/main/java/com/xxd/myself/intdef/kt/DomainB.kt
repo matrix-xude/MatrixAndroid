@@ -1,4 +1,4 @@
-package com.xxd.myself.intdefks
+package com.xxd.myself.intdef.kt
 
 /**
  *    author : xxd

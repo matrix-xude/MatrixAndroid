@@ -1,6 +1,4 @@
-package com.xxd.myself.intdefks
-
-import com.xxd.myself.intdef.DomainA
+package com.xxd.myself.intdef.kt
 
 /**
  *    author : xxd
