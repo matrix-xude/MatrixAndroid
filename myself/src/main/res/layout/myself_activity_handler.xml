@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white">
+
+    <TextView
+        android:id="@+id/tv_create_handler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/common_lavender"
+        android:padding="10dp"
+        android:text="创建一个子线程Handler"
+        android:textColor="@color/common_black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/common_darksalmon"
+        android:padding="8dp"
+        android:text="发送一个Message"
+        android:textColor="@color/common_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_create_handler" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:background="@color/common_darksalmon"
+        android:padding="8dp"
+        android:text="Looper.quit()"
+        android:textColor="@color/common_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/tv_1"
+        app:layout_constraintTop_toTopOf="@id/tv_1" />
+
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="@color/common_violet"
+        android:padding="8dp"
+        android:text="监听MainLooper,暂未实现"
+        android:textColor="@color/common_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tv_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_1" />
+
+    <TextView
+        android:id="@+id/tv_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="@color/common_orangered"
+        android:padding="8dp"
+        android:text="创建IdleHandler"
+        android:textColor="@color/common_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tv_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
