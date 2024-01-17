@@ -2,7 +2,9 @@ package com.xxd.kt.coroutines.context
 
 import com.xxd.kt.coroutines.basic.log
 import kotlinx.coroutines.*
+import java.lang.RuntimeException
 import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 /**
@@ -18,8 +20,7 @@ fun m31() {
     GlobalScope.launch(MyInterceptor()) {
         log(1)
         val job = async {
-            val sm32 = sm32()
-            log(sm32)
+            log(m33())
             delay(500)
             log(4)
             "Hello"
@@ -38,8 +39,16 @@ suspend fun sm30() {
     Thread.sleep(500)
 }
 
-suspend fun sm32() = suspendCoroutine<String> {
+suspend fun m32() = suspendCoroutine<String> {
     it.resume("哈哈哈")
+}
+
+suspend fun m33()= suspendCancellableCoroutine { it ->
+    it.resume(1111)
+//    it.resumeWithException(RuntimeException("go go go"))
+    it.invokeOnCancellation {throwable ->
+        log("invokeOnCancellation被调用了$throwable")
+    }
 }
 
 

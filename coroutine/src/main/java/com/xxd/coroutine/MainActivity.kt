@@ -9,7 +9,7 @@ import com.xxd.coroutine.exception.ExceptionCoroutineActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val itemArray = listOf("携程异常","携程取消")
+    private val itemArray = listOf("协程异常","协程取消")
 
     override fun getDataList(): Collection<String> {
         return itemArray
@@ -20,7 +20,7 @@ class MainActivity : SimpleListActivity<String>() {
     }
 
     override fun getTitleName(): CharSequence {
-        return "携程"
+        return "协程"
     }
 
     override fun convertItem(holder: BaseViewHolder, item: String) {

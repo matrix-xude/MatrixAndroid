@@ -12,7 +12,7 @@ java {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlinStdlibJdkVersion}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 携程
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinxCoroutinesCoreVersion}"
     implementation "com.google.code.gson:gson:${versions.gsonVersion}" // gson
     implementation("com.squareup.moshi:moshi:${versions.moshiVersion}") // moshi

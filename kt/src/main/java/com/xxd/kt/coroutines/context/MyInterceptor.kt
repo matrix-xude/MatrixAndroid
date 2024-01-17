@@ -1,5 +1,6 @@
 package com.xxd.kt.coroutines.context
 
+import com.xxd.kt.coroutines.basic.log
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
 import kotlin.coroutines.CoroutineContext
@@ -14,6 +15,7 @@ class MyInterceptor : ContinuationInterceptor {
         get() = ContinuationInterceptor
 
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
-       return MyContinuation(continuation)
+        log("拦截器MyInterceptor 的方法 interceptContinuation被调用")
+        return MyContinuation(continuation)
     }
 }

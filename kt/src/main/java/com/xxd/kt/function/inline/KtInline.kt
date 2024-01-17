@@ -21,17 +21,29 @@ inline fun attack1(i: Int, noinline block: (Int) -> Int): String {
 
 // 普通函数
 fun attack2(i: Int, block: (Int) -> Int): String {
-    return block(i).toString()
+    println("attack2调用")
+    val toString = block(i).toString()
+    println("attack2 block调用$toString")
+    return toString
 }
 
 fun main() {
 
     // kotlin调用内联函数、普通函数的区别
-    attack(1) { i -> i + 1 }
+    attack(1) { i ->
+        i + 1
+    }
     println("--------------------------")
-    attack1(1) { i -> i + 1 }
+    attack1(1) {
+            i -> i + 1
+    }
     println("--------------------------")
-    attack2(1) { i -> i + 1 }
+    val result = attack2(1) { i ->
+        i + 1
+        // return 直接写return报错
+        return@attack2 13  // 只能return到传入的方法体，返回值必须和方法体一致
+    }
+    println(result)
 
     val inlineDemo = InlineDemo()
     println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~")

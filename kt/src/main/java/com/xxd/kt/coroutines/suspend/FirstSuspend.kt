@@ -3,6 +3,11 @@ package com.xxd.kt.coroutines.suspend
 import com.xxd.kt.coroutines.basic.log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import java.lang.RuntimeException
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 /**
  *    author : xxd
@@ -12,7 +17,7 @@ import kotlinx.coroutines.launch
 suspend fun main() {
     GlobalScope.launch {
         log(1)
-        m1()
+        m2()
         log(2)
         launch {
             log(3)
@@ -20,6 +25,17 @@ suspend fun main() {
     }.join()
 }
 
-suspend fun m1(){
+suspend fun m1() = suspendCoroutine<String> {
     Thread.sleep(1000)
+//    it.resume("哈哈")
+    it.resumeWithException(RuntimeException("报错"))
+}
+
+suspend fun m2() = suspendCancellableCoroutine<String> {
+    Thread.sleep(2000)
+    it.resume("go go go")
+//    it.resumeWithException(RuntimeException("报错"))
+    it.invokeOnCancellation {
+        log("当前协程被取消了")
+    }
 }

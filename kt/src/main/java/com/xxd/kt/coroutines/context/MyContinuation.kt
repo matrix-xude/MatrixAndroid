@@ -14,7 +14,7 @@ class MyContinuation<T>(private val c : Continuation<T>) : Continuation<T> {
         get() = c.context
 
     override fun resumeWith(result: Result<T>) {
-        log("MyContinuation拦截器被调用：$result")
+        log("MyContinuation的resumeWith被调用：$result")
         c.resumeWith(result)
     }
 }

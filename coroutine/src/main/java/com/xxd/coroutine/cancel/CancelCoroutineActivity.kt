@@ -27,14 +27,14 @@ class CancelCoroutineActivity : BaseTitleActivity() {
 
     private lateinit var viewBinding: CoroutineActivityCancelBinding
     private val buttonArray =
-        listOf("开始携程1", "查看job1", "查看job2", "取消job1", "取消job2", "supervisor空间", "withContext", "suspend", "站位", "站位", "站位", "站位", "站位")
+        listOf("开始协程1", "查看job1", "查看job2", "取消job1", "取消job2", "supervisor空间", "withContext", "suspend", "站位", "站位", "站位", "站位", "站位")
 
     override fun provideBaseTitleRootView(rootView: ViewGroup) {
         viewBinding = CoroutineActivityCancelBinding.inflate(layoutInflater, rootView, true)
     }
 
     override fun getTitleName(): CharSequence {
-        return "携程取消"
+        return "协程取消"
     }
 
     override fun initView() {
@@ -89,7 +89,7 @@ class CancelCoroutineActivity : BaseTitleActivity() {
                         log(index++)
                     }
                 } catch (e: Exception) {
-                    log("循环携程被取消 $e")
+                    log("循环协程被取消 $e")
                 }
             }
 
@@ -99,7 +99,7 @@ class CancelCoroutineActivity : BaseTitleActivity() {
                 job3!!.join()
                 log("抓不住异常")
             } catch (e: Exception) {
-                log("调用join的携程被取消 $e")
+                log("调用join的协程被取消 $e")
             }
         }
     }
@@ -115,12 +115,12 @@ class CancelCoroutineActivity : BaseTitleActivity() {
         log("Job2活跃？：${job2?.isActive}； Job2是否执行完毕：${job2?.isCompleted}; Job2是否取消：${job2?.isCancelled}")
     }
 
-    // 取消job1（外部携程）
+    // 取消job1（外部协程）
     fun m4() {
         job1?.cancel()
     }
 
-    // 取消job2（内部携程）
+    // 取消job2（内部协程）
     fun m5() {
         job3?.cancel()
     }
@@ -138,7 +138,7 @@ class CancelCoroutineActivity : BaseTitleActivity() {
                             throw RuntimeException("哈哈哈")
                         }
                     } catch (e: Exception) {
-                        log("循环携程被取消 $e")
+                        log("循环协程被取消 $e")
                     }
                 }
 
@@ -155,7 +155,7 @@ class CancelCoroutineActivity : BaseTitleActivity() {
 //                    job3!!.join()
                     log("抓不住异常")
                 } catch (e: Exception) {
-                    log("调用join的携程被取消 $e")
+                    log("调用join的协程被取消 $e")
                 }
             }
         }

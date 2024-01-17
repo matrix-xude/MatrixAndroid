@@ -60,8 +60,8 @@ android {
         // kotlin相关
         api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlinStdlibJdkVersion}" // 基础
         api "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlinReflectVersion}" // 反射
-        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 携程
-        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesAndroidVersion}" // 携程Android main
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 协程
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesAndroidVersion}" // 协程Android main
 
         // ktx
         api "androidx.core:core-ktx:${versions.coreKtxVersion}" // Android简便扩展库

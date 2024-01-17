@@ -29,7 +29,7 @@ fun log2(message: Any, coroutineContext: CoroutineContext? = null, printInterval
     }
 
     println(
-        "(线程：${Thread.currentThread().name}；携程：${coroutineContext?.let { it[CoroutineName] }}; ${
+        "(线程：${Thread.currentThread().name}；协程：${coroutineContext?.let { it[CoroutineName] }}; ${
             printInterval.takeIf { it }.let {
                 "距离上次间隔：${interval}毫秒"
             }

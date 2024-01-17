@@ -17,7 +17,7 @@ import kotlinx.coroutines.*
 /**
  * author : xxd
  * date   : 2021/7/11
- * desc   : 测试携程的异常机制
+ * desc   : 测试协程的异常机制
  */
 class ExceptionCoroutineActivity : BaseTitleActivity() {
 
@@ -44,7 +44,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
     }
 
     override fun getTitleName(): CharSequence {
-        return "携程异常"
+        return "协程异常"
     }
 
     override fun initView() {

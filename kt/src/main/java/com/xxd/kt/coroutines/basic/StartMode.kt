@@ -6,7 +6,7 @@ import kotlin.concurrent.thread
 /**
  *    author : xxd
  *    date   : 2021/7/6
- *    desc   : 携程启动方式
+ *    desc   : 协程启动方式
  */
 
 suspend fun main() {
@@ -31,27 +31,27 @@ fun start2() {
     }
 }
 
-// 携程默认直接启动,DEFAULT模式
+// 协程默认直接启动,DEFAULT模式
 fun start3() {
     GlobalScope.launch {
-        println("直接启动了携程！")
+        println("直接启动了协程！")
     }
     Thread.sleep(100)
 }
 
-// 携程不直接启动，LAZY模式
+// 协程不直接启动，LAZY模式
 suspend fun start4() {
     println(1)
     val job = GlobalScope.launch(start = CoroutineStart.LAZY) {
-        println("携程没有直接启动")
+        println("协程没有直接启动")
     }
-    // 隐式启动携程
+    // 隐式启动协程
     job.join()
     println(2)
     Thread.sleep(100)
 }
 
-// 携程取消,ATOMIC模式
+// 协程取消,ATOMIC模式
 suspend fun start5(){
     log(1)
     val job = GlobalScope.launch(start = CoroutineStart.ATOMIC) {
@@ -74,6 +74,6 @@ suspend fun start6(){
     }
     log(4)
     job.join()
-    // join之后，打印5的携程不再是main,待理解
+    // join之后，打印5的协程不再是main,待理解
     log(5)
 }

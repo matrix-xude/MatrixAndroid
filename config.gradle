@@ -34,8 +34,8 @@ ext {
             // kotlin相关
             kotlinStdlibJdkVersion              : '1.9.21', // kotlin基础包
             kotlinReflectVersion                : '1.9.10', // kotlin反射
-            kotlinxCoroutinesCoreVersion        : '1.8.0-RC2', // kotlin携程核心包
-            kotlinxCoroutinesAndroidVersion     : '1.6.4', // kotlin-Android,Main携程包
+            kotlinxCoroutinesCoreVersion        : '1.8.0-RC2', // kotlin协程核心包
+            kotlinxCoroutinesAndroidVersion     : '1.6.4', // kotlin-Android,Main协程包
             // ktx
             coreKtxVersion                      : "1.9.0", // ktx扩展，简便写法
             fragmentKtxVersion                  : "1.5.6", // ktx扩展，fragment
