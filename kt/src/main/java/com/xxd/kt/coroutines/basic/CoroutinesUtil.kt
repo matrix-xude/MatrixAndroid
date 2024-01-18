@@ -17,7 +17,7 @@ private var lastPrintTime = 0L
  * @param message 打印的信息
  * @param printInterval 距离上一次打印的间隔，用来记录延时
  */
-fun log(message: Any, printInterval: Boolean = false) {
+fun log(message: Any, printInterval: Boolean = true) {
     // 处理打印间隔问题
     var intervalInfo = ""
     System.currentTimeMillis().apply {
