@@ -11,6 +11,7 @@
       <module name="MatrixAndroid.kt.main" target="17" />
       <module name="MatrixAndroid.kt.test" target="17" />
       <module name="MatrixAndroid.myself" target="17" />
+      <module name="MatrixAndroid.service" target="17" />
       <module name="MatrixAndroid.thread" target="17" />
       <module name="MatrixAndroid.view" target="17" />
     </bytecodeTargetLevel>

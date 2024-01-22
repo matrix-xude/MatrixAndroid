@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <style name="service_Theme.MatrixAndroid" parent="android:Theme.Material.Light.NoActionBar" />  这种方式只能启动Compose，不能启动兼容的Activity-->
+    <style name="service_Theme.MatrixAndroid" parent="Theme.AppCompat.Light.NoActionBar" />
+</resources>

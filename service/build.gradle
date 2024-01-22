@@ -1,0 +1,103 @@
+plugins {
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+if (Boolean.valueOf(rootProject.ext.isModuleService)) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    namespace 'com.xxd.service'
+    compileSdk rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        if (Boolean.valueOf(rootProject.ext.isModuleService)) {
+            // 当作为application运行时需要application id
+            applicationId "com.xxd.service"
+        }
+
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        // 约束资源名字前缀
+        resourcePrefix "${project.name}_"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+//        compose true
+        viewBinding true
+    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion '1.4.3'
+//    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (Boolean.valueOf(rootProject.ext.isModuleService)) {//apk
+                // module 单独作为application时，使用此manifest
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // 所有的module公共依赖
+    implementation project(":common")
+
+    kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
+
+    // 测试模块不能放在common中，引用不到
+    testImplementation "junit:junit:${versions.junitVersion}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
+//    androidTestImplementation platform('androidx.compose:compose-bom:2023.03.00')
+
+    // 新的compose引入的包
+//    implementation 'androidx.activity:activity-compose:1.7.0'
+//    implementation platform('androidx.compose:compose-bom:2023.03.00')
+//    implementation 'androidx.compose.ui:ui'
+//    implementation 'androidx.compose.ui:ui-graphics'
+//    implementation 'androidx.compose.ui:ui-tooling-preview'
+//    implementation 'androidx.compose.material3:material3'
+//    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+//    debugImplementation 'androidx.compose.ui:ui-tooling'
+//    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+}
