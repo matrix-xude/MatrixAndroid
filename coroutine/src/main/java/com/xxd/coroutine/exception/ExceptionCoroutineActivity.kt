@@ -7,11 +7,11 @@ import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
 import com.xxd.common.costom.binding.helper.BaseBindingViewHolder
 import com.xxd.common.costom.decoration.CommonItemDecoration
 import com.xxd.common.util.toast.ToastUtil
-import com.xxd.coroutine.cancel.MyInterceptor
 import com.xxd.coroutine.databinding.CoroutineActivityExceptionBinding
 import com.xxd.coroutine.databinding.CoroutineItemExceptionBinding
+import com.xxd.coroutine.myself.MyInterceptor
 import com.xxd.coroutine.utils.log
-import com.xxd.coroutine.utils.log2
+import com.xxd.coroutine.utils.logCoroutine
 import kotlinx.coroutines.*
 
 /**
@@ -81,8 +81,8 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
     }
 
     private val coroutineExceptionHandler =
-        CoroutineExceptionHandler { coroutineContext, throwable ->
-            log2("handler捕获了异常：${throwable}", coroutineContext)
+        CoroutineExceptionHandler { _, throwable ->
+            log("handler捕获了异常：${throwable}")
         }
 
     // try catch 会捕获异常，不会传到 coroutineExceptionHandler
@@ -92,7 +92,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
                 delay(10)
                 throw RuntimeException("异常-1")
             } catch (e: Exception) {
-                log(e, this)
+                logCoroutine(e)
             }
         }
     }
@@ -107,21 +107,21 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     fun m3() {
         GlobalScope.launch(Dispatchers.Main + CoroutineName("3") + coroutineExceptionHandler) {
-            log(1, this)
+            logCoroutine(1)
             try {
                 GlobalScope.launch {
                     delay(10)
                     throw RuntimeException("异常3")
                 }
             } catch (e: Exception) {
-                log(e, this)
+                logCoroutine(e)
             }
         }
     }
 
     fun m4() {
         GlobalScope.launch(Dispatchers.Main + CoroutineName("4") + coroutineExceptionHandler) {
-            log(1, this)
+            logCoroutine(1)
             GlobalScope.launch {
                 delay(10)
                 throw RuntimeException("异常4")
@@ -131,21 +131,21 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     fun m5() {
         MyScope.launch(coroutineExceptionHandler) {
-            log(1, this)
+            logCoroutine(1)
             try {
                 MyScope.launch {
                     delay(10)
                     throw RuntimeException("异常3")
                 }
             } catch (e: Exception) {
-                log(e, this)
+                logCoroutine(e)
             }
         }
     }
 
     fun m6() {
         MyScope.launch(coroutineExceptionHandler) {
-            log(1, this)
+            logCoroutine(1)
             MyScope.launch {
                 delay(10)
                 throw RuntimeException("异常4")
@@ -191,11 +191,11 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     fun m9() {
         MyScope.launch(coroutineExceptionHandler) {
-            log(9, this)
+            logCoroutine(9)
             try {
                 delay(2000)
             } catch (e: Exception) {
-                log("9 $e", this)
+                logCoroutine("9 $e")
             }
             log(91)
         }
@@ -203,7 +203,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     fun m10() {
         MyScope.launch(coroutineExceptionHandler) {
-            log(10, this)
+            logCoroutine(10)
             delay(1000)
             throw RuntimeException("异常10")
         }
@@ -211,7 +211,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
     fun m11() {
         MyScope.launch() {
-            log(11, this)
+            logCoroutine(11)
 
             supervisorScope {
                 val job1 = async(coroutineExceptionHandler) {
@@ -259,7 +259,7 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
         GlobalScope.launch(MyInterceptor()) {
             val job1 = async {
                 delay(1)
-                log(0,this)
+                logCoroutine(0)
             }
             job1.await() // 根据job1是否完成执行调度
         }

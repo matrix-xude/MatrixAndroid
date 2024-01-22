@@ -2,18 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <com.xxd.common.costom.shape.CustomShapeSimpleTextView
         android:id="@+id/tv_1"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:padding="5dp"
         app:CustomShapeFillColor="@color/common_orange"
+        app:CustomShapeRadius="5dp"
         app:CustomShapeStrokeColor="@color/common_mediumslateblue"
         app:CustomShapeStrokeWidth="1dp"
-        app:CustomShapeRadius="5dp"
-        style="@style/common_TextStyleLevel2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="测试字样" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

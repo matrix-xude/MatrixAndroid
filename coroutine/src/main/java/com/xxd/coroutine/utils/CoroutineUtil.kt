@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.coroutineContext
 
 /**
  * author : xxd
@@ -11,28 +12,42 @@ import kotlin.coroutines.CoroutineContext
  * desc   :
  */
 
-var lastPrintTime = 0L
+private var lastPrintTime = 0L
 
-fun log(message: Any, contextScope: CoroutineScope? = null, printInterval: Boolean = true) {
-
-    log2(message, contextScope?.coroutineContext, printInterval)
-
+/**
+ * 打印线程信息
+ * @param message 打印的信息
+ * @param printInterval 距离上一次打印的间隔，用来记录延时
+ */
+fun log(message: Any?, printInterval: Boolean = false) {
+    // 处理打印间隔问题
+    var intervalInfo = ""
+    System.currentTimeMillis().apply {
+        if (printInterval) {  // 打印距离上一次的间隔
+            lastPrintTime
+                .takeIf { it != 0L }
+                ?.let { intervalInfo = " ~~~距离上一次打印间隔=${this - it}" }
+        }
+        lastPrintTime = this
+    }
+    // 打印当前信息
+    println("(当前线程：${Thread.currentThread().name}) --> $message $intervalInfo")
 }
 
-fun log2(message: Any, coroutineContext: CoroutineContext? = null, printInterval: Boolean = true) {
-
-    val interval: Long // 距离上一次打印间隔
-    lastPrintTime = System.currentTimeMillis().apply {
-        interval = this.minus(lastPrintTime.takeIf {
-            it != 0L // 上一次为0，间隔为0
-        } ?: 0)
+/**
+ * 打印协程信息专用，信息头包含协程上下文信息
+ */
+suspend fun logCoroutine(message: Any?, printInterval: Boolean = false) {
+    // 处理打印间隔问题
+    var intervalInfo = ""
+    System.currentTimeMillis().apply {
+        if (printInterval) {  // 打印距离上一次的间隔
+            lastPrintTime
+                .takeIf { it != 0L }
+                ?.let { intervalInfo = " ~~~距离上一次打印间隔=${this - it}" }
+        }
+        lastPrintTime = this
     }
-
-    println(
-        "(线程：${Thread.currentThread().name}；协程：${coroutineContext?.let { it[CoroutineName] }}; ${
-            printInterval.takeIf { it }.let {
-                "距离上次间隔：${interval}毫秒"
-            }
-        }) --> $message"
-    )
+    // 打印当前信息
+    println("(当前线程：${Thread.currentThread().name}) $coroutineContext --> $message $intervalInfo")
 }
