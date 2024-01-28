@@ -71,6 +71,7 @@ android {
             }
         }
     }
+    namespace 'com.xxd.thread'
 
 }
 

@@ -19,7 +19,7 @@ buildscript {
     dependencies {
         println("文件——build.gradle——buildscript——dependencies——执行时机")
 
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21"
 
         // NOTE: Do not place your application dependencies here; they belong

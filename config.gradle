@@ -23,7 +23,7 @@ ext {
             targetSdkVersion : 33,
 
             compileSdkVersion: 33,
-            buildToolsVersion: "30.0.3"
+            buildToolsVersion: "33.0.1"
     ]
 
     // 放置引入的version版本，方便统一管理，使用请加注释，方便替换、升级

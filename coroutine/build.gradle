@@ -64,6 +64,7 @@ android {
             }
         }
     }
+    namespace 'com.xxd.coroutine'
 }
 
 dependencies {
