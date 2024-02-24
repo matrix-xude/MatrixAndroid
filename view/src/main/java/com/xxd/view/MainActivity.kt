@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
+import com.xxd.view.animator.AnimatorActivity
 import com.xxd.view.bigpic.BigPictureActivity
 import com.xxd.view.iconfont.IconFontActivity
 import com.xxd.view.material.MaterialDesignActivity
@@ -50,7 +51,7 @@ class MainActivity : SimpleListActivity<String>() {
                 4 -> IntentUtil.startActivity<MyselfViewPagerActivity>(this)
                 5 -> IntentUtil.startActivity<IconFontActivity>(this)
                 6 -> IntentUtil.startActivity<ThirdPagerActivity>(this)
-                7 -> IntentUtil.startActivity<TestEditActivity>(this)
+                7 -> IntentUtil.startActivity<AnimatorActivity>(this)
             }
         }
     }

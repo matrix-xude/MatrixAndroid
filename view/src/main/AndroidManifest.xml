@@ -30,6 +30,9 @@
         <activity
             android:name=".bigpic.BigPictureActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".animator.AnimatorActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
