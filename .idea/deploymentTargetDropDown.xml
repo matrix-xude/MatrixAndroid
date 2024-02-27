@@ -2,13 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="TestModifierSimple">
-        <State />
-      </entry>
-      <entry key="TestModifierSimple2">
+      <entry key="app">
         <State />
       </entry>
       <entry key="compose">
+        <State />
+      </entry>
+      <entry key="coroutine">
+        <State />
+      </entry>
+      <entry key="myself">
+        <State />
+      </entry>
+      <entry key="service">
+        <State />
+      </entry>
+      <entry key="thread">
         <State />
       </entry>
       <entry key="view">
