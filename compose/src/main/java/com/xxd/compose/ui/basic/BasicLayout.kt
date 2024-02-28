@@ -5,12 +5,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,7 +31,7 @@ import com.xxd.compose.ui.theme.MatrixAndroidTheme
  */
 @Composable
 fun RowSimple(nameList: List<String>) {
-    Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.Bottom) {
+    Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.Bottom, modifier = Modifier.fillMaxWidth()) {
         Icon(tint = Color.Red, painter = painterResource(id = R.drawable.facebook), contentDescription = "")
         nameList.forEach {
             Text(text = it)
@@ -42,7 +44,7 @@ fun RowSimple(nameList: List<String>) {
  */
 @Composable
 fun ColumnSimple(nameList: List<String>) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top, modifier = Modifier.fillMaxWidth()) {
         nameList.forEach {
             Text(text = it)
         }
@@ -67,6 +69,7 @@ fun BoxSimple(nameList: List<String>) {
 @Composable
 fun RowTest() {
     val shotStrList = FakeData.fakeShotStrList(3)
+//    val shotStrList = listOf("123","222","323")
     MatrixAndroidTheme {
         RowSimple(nameList = shotStrList)
     }

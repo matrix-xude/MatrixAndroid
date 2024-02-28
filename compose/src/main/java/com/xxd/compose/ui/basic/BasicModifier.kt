@@ -1,8 +1,10 @@
 package com.xxd.compose.ui.basic
 
 import android.util.Log
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
@@ -27,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -56,15 +59,19 @@ fun ModifierSimple(onClick: () -> Unit) {
                 )
             }
             .background(Color(0x66FF00FF), RoundedCornerShape(15.dp, 5.dp, 10.dp, 25.dp))
-            .padding(padding)
+            .fillMaxWidth()
             .height(300.dp)
+            .padding(padding)
     ) {
         Text(text = FakeData.fakeSimpleString(), color = Color(255, 255, 0, 255))
-        Text(text = FakeData.fakeSimpleString())
+        Text(text = FakeData.fakeSimpleString(), modifier = Modifier.padding(top = 10.dp))
         Text(
-            text = "YMCA", color = Color.Red, modifier = Modifier
-                .background(Color.Gray)
+            text = "YMCA", color = Color(0xFFFF0000), modifier = Modifier
                 .fillMaxWidth(0.5f)
+//                .graphicsLayer( rotationX = 0f , rotationY = 0f, translationX = 200f, shape = RoundedCornerShape(10.dp), clip = true)
+                .border(BorderStroke(2.dp,Color.Black))
+                .clip(RoundedCornerShape(10.dp))
+                .background(Color.Cyan)
         )
         Spacer(modifier = Modifier.size(10.dp))
         Image(
@@ -169,7 +176,7 @@ fun ModifierSimple3(onClick: () -> Unit) {
     }
 }
 
-//@Preview
+@Preview
 @Composable
 fun TestModifierSimple() {
     MatrixAndroidTheme {
@@ -189,7 +196,7 @@ fun TestModifierSimple2() {
     }
 }
 
-@Preview
+//@Preview
 @Composable
 fun TestModifierSimple3() {
     MatrixAndroidTheme {
