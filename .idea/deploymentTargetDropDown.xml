@@ -8,10 +8,13 @@
       <entry key="RowTest">
         <State />
       </entry>
+      <entry key="TestCustomFirstBaseline">
+        <State />
+      </entry>
       <entry key="TestModifierSimple">
         <State />
       </entry>
-      <entry key="TestModifierSimple2">
+      <entry key="UseBoxWithConstraintsTest">
         <State />
       </entry>
       <entry key="compose">

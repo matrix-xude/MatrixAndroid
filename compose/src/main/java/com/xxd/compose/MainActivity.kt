@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.xxd.compose.ui.basic.CustomFirstBaseline
 import com.xxd.compose.ui.basic.ModifierSimple2
 import com.xxd.compose.ui.theme.MatrixAndroidTheme
 import kotlinx.coroutines.launch
@@ -23,9 +24,7 @@ class MainActivity : ComponentActivity() {
             MatrixAndroidTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    ModifierSimple2 {
-
-                    }
+                    CustomFirstBaseline()
                 }
             }
         }

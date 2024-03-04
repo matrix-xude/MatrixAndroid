@@ -69,9 +69,12 @@ fun ModifierSimple(onClick: () -> Unit) {
             text = "YMCA", color = Color(0xFFFF0000), modifier = Modifier
                 .fillMaxWidth(0.5f)
 //                .graphicsLayer( rotationX = 0f , rotationY = 0f, translationX = 200f, shape = RoundedCornerShape(10.dp), clip = true)
-                .border(BorderStroke(2.dp,Color.Black))
+                .border(2.dp, Color.Black, RoundedCornerShape(5.dp))
+                .padding(2.dp)
+                .border(2.dp, Color.Yellow, RoundedCornerShape(5.dp))
                 .clip(RoundedCornerShape(10.dp))
                 .background(Color.Cyan)
+                .padding(5.dp)
         )
         Spacer(modifier = Modifier.size(10.dp))
         Image(

@@ -3,10 +3,14 @@ package com.xxd.compose.ui.basic
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -31,6 +35,9 @@ import com.xxd.compose.ui.theme.MatrixAndroidTheme
  *    1. Text
  *    2. Image
  *    3. Icon
+ *    4. Spacer
+ *    5. Button
+ *    6. Divider
  */
 
 /**
@@ -64,16 +71,29 @@ fun ButtonSimple() {
     Column {
         Button(
             enabled = true,
-            onClick = { ToastUtil.showToast(context, "12223")},
+            onClick = { ToastUtil.showToast(context, "12223") },
             shape = RoundedCornerShape(5.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFFFFF), contentColor = Color(0xFF0000FF),
-                disabledContainerColor =  Color(0x22000000), disabledContentColor = Color.Black),
-//            modifier = Modifier.background(Color.Cyan)
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF00FF00), contentColor = Color(0xFF0000FF),
+                disabledContainerColor = Color(0x22000000), disabledContentColor = Color.Black
+            ),
+            modifier = Modifier.background(Color.Magenta)
         ) {
             Text(text = "稀奇")
             Icon(painter = painterResource(id = R.drawable.ic_info_outline_white_48dp), contentDescription = "")
         }
 
+        Spacer(
+            modifier = Modifier
+                .size(10.dp)
+                .background(Color.Yellow)
+        )
+        Divider(
+            thickness = 2.dp,
+            color = Color.Red,
+            modifier = Modifier
+                .width(50.dp)
+        )
 
         OutlinedButton(
             onClick = {
