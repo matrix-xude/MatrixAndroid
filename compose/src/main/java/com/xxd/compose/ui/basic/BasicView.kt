@@ -4,13 +4,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Badge
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -21,7 +25,11 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.xxd.common.util.toast.ToastUtil
 import com.xxd.compose.R
 import com.xxd.compose.data.FakeData
@@ -65,10 +73,15 @@ fun IconSimple(painter: Painter, tint: Color) {
     Icon(painter = painter, contentDescription = "IconSimple", tint = tint)
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ButtonSimple() {
     val context = LocalContext.current
     Column {
+
+        Badge(modifier = Modifier.wrapContentSize(), contentColor = Color.Cyan) {
+            Text(text = "999+", fontSize = 12.sp, modifier = Modifier.padding(2.dp))
+        }
         Button(
             enabled = true,
             onClick = { ToastUtil.showToast(context, "12223") },

@@ -42,7 +42,7 @@ ext {
             // ktx
             coreKtxVersion                      : "1.9.0", // ktx扩展，简便写法
             fragmentKtxVersion                  : "1.5.6", // ktx扩展，fragment
-            lifecycleKtxVersion                 : "2.6.1", // ktx扩展，lifecycle相关的一堆
+            lifecycleKtxVersion                 : "2.7.0", // ktx扩展，lifecycle相关的一堆
 
             // 工具
             multidexVersion                     : "1.0.3", // 分包支持，多dex,5.0以下需要

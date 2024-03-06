@@ -37,4 +37,13 @@ object FakeData {
         }
         return shotStrList.subList(0, realSize)
     }
+
+    // 造一个list假数据
+    fun fakeFirstList(): List<FirstItem> {
+        val items = mutableListOf<FirstItem>()
+        repeat((10..20).random()) {
+            items.add(FirstItem("歼星舰$it", fakeSimpleString()))
+        }
+        return items
+    }
 }

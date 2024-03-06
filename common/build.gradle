@@ -69,6 +69,7 @@ android {
         api "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleKtxVersion}"
         api "androidx.lifecycle:lifecycle-reactivestreams-ktx:${versions.lifecycleKtxVersion}"
         api "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycleKtxVersion}"
+        api "androidx.lifecycle:lifecycle-runtime-compose:${versions.lifecycleKtxVersion}"
 
         // 常用工具
         api "com.android.support:multidex:${versions.multidexVersion}" // 分包
