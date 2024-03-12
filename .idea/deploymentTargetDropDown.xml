@@ -2,22 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ButtonTest">
-        <State />
-      </entry>
-      <entry key="RowTest">
-        <State />
-      </entry>
-      <entry key="TestCustomFirstBaseline">
-        <State />
-      </entry>
-      <entry key="TestModifierSimple">
-        <State />
-      </entry>
-      <entry key="UseBoxWithConstraintsTest">
-        <State />
-      </entry>
       <entry key="compose">
+        <State />
+      </entry>
+      <entry key="myself">
         <State />
       </entry>
       <entry key="view">
