@@ -18,11 +18,7 @@ class BindingFragment : BaseFragment() {
 
     private var binding by binding<MyselfFragmentTestBinding>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MyselfFragmentTestBinding.inflate(inflater, container, false)
         return binding.root
     }

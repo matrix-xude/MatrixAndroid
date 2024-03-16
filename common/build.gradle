@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
+    namespace 'com.xxd.common'
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
@@ -93,6 +95,19 @@ android {
         api "com.github.bumptech.glide:glide:${versions.glideVersion}" // glide图片加载，还需要配置annotationProcessor到使用的类中
 //        kapt "com.github.bumptech.glide:compiler:${versions.glideVersion}" // glide annotationProcessor
 
+        // navigation
+        def nav_version = "2.6.0"
+        // Java language implementation
+        implementation "androidx.navigation:navigation-fragment:$nav_version"
+        implementation "androidx.navigation:navigation-ui:$nav_version"
+        // Kotlin
+        implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+        implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+        // Feature module Support
+        implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+        // Testing Navigation
+        androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
         // 系统控件
         api "androidx.constraintlayout:constraintlayout:${versions.constraintlayoutVersion}"
         api "androidx.recyclerview:recyclerview:${versions.recyclerviewVersion}"
@@ -112,7 +127,13 @@ android {
         api project(":apt-annotation")
         //annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放在需要使用processor的module中
         kapt project(":apt-processor")*/
+
+//        api 'androidx.test:monitor:1.6.1'
+
+        testImplementation "junit:junit:${versions.junitVersion}"
+        androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
+        androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
     }
-    namespace 'com.xxd.common'
+
 }
 

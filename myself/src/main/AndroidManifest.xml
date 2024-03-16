@@ -37,6 +37,10 @@
             android:name=".handler.HandlerActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".navigation.NavigationActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 
