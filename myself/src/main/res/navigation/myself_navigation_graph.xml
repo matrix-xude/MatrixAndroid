@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myself_navigation_graph"
+    app:startDestination="@id/myself_navigationfragment1">
+
+    <fragment
+        android:id="@+id/myself_navigationfragment1"
+        android:name="com.xxd.myself.navigation.fragment.NavigationFragment1"
+        android:label="NavigationFragment1" >
+        <action
+            android:id="@+id/myself_action_myself_navigationfragment1_to_myself_navigationfragment2"
+            app:destination="@id/myself_navigationfragment2"
+            app:popUpToInclusive="true"
+            app:restoreState="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/myself_action_myself_navigationfragment1_to_myself_navigationfragment3"
+            app:destination="@id/myself_navigationfragment3"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/myself_navigationfragment2"
+        android:name="com.xxd.myself.navigation.fragment.NavigationFragment2"
+        android:label="NavigationFragment2" />
+    <fragment
+        android:id="@+id/myself_navigationfragment3"
+        android:name="com.xxd.myself.navigation.fragment.NavigationFragment3"
+        android:label="NavigationFragment3" >
+        <action
+            android:id="@+id/myself_action_myself_navigationfragment3_to_myself_navigationfragment2"
+            app:destination="@id/myself_navigationfragment2" />
+    </fragment>
+</navigation>

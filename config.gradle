@@ -66,6 +66,8 @@ ext {
 
             glideVersion                        : "4.11.0",// glide,与annotationProcessor版本一致
 
+            navigationVersion                   : "2.6.0",// navigation版本
+
 
             // 各种系统自带控件
             constraintlayoutVersion             : '2.1.4', // 约束布局
