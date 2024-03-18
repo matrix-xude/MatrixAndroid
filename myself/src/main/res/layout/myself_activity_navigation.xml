@@ -25,12 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:background="@color/common_lightseagreen"
         android:padding="20dp"
         android:text="按钮2"
         android:textColor="@color/common_black"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:CustomShapeFillColor="@color/common_turquoise"
         app:CustomShapeRadius="20dp"
         app:layout_constraintStart_toEndOf="@id/tv_1"
         app:layout_constraintTop_toTopOf="@id/tv_1" />
@@ -49,16 +49,59 @@
         app:layout_constraintStart_toEndOf="@id/tv_2"
         app:layout_constraintTop_toTopOf="@id/tv_1" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:navGraph="@navigation/myself_navigation_graph"
+    <TextView
+        android:id="@+id/tv_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_rosybrown"
+        android:padding="20dp"
+        android:text="按钮4"
+        android:textColor="@color/common_black"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_1" />
+
+    <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+        android:id="@+id/tv_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@color/common_turquoise"
+        android:padding="20dp"
+        android:text="按钮5"
+        android:textColor="@color/common_black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:CustomShapeFillColor="@color/common_turquoise"
+        app:CustomShapeRadius="20dp"
+        app:layout_constraintStart_toEndOf="@id/tv_4"
+        app:layout_constraintTop_toTopOf="@id/tv_4" />
+
+    <TextView
+        android:id="@+id/tv_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@color/common_gold"
+        android:padding="20dp"
+        android:text="按钮6"
+        android:textColor="@color/common_black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tv_5"
+        app:layout_constraintTop_toTopOf="@id/tv_4" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_4"
+        app:navGraph="@navigation/myself_navigation_graph" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

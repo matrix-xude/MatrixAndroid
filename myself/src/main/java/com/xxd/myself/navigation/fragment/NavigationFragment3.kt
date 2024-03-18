@@ -43,10 +43,10 @@ class NavigationFragment3 : BaseFragment() {
 
         }
         viewBinding.tv3.onClick {
-            findNavController().popBackStack(R.id.myself_navigationfragment1,false)
+//            findNavController().popBackStack(R.id.myself_navigationfragment1,false)
         }
         viewBinding.tv4.onClick {
-
+            viewBinding.tv1.text = "我改变了Fragment 333"
         }
     }
 

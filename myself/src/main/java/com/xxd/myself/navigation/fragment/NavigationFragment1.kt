@@ -40,13 +40,13 @@ class NavigationFragment1 : BaseFragment() {
 
     private fun initListener() {
         viewBinding.tv2.onClick {
-            findNavController().navigate(R.id.myself_navigationfragment2)
+//            findNavController().navigate(R.id.myself_navigationfragment2)
         }
         viewBinding.tv3.onClick {
 
         }
         viewBinding.tv4.onClick {
-
+            viewBinding.tv1.text = "我改变了Fragment 111"
         }
     }
 

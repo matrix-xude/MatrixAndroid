@@ -44,18 +44,18 @@ class NavigationFragment2 : BaseFragment() {
 
     private fun initListener() {
         viewBinding.tv2.onClick {
-            findNavController().navigate(R.id.myself_navigationfragment3)
+//            findNavController().navigate(R.id.myself_navigationfragment3)
         }
         viewBinding.tv3.onClick {
-            findNavController().navigate(R.id.myself_navigationfragment3, null, navOptions {
-                popUpTo(R.id.myself_navigationfragment1){
-                    inclusive = true
-                }
-            })
+//            findNavController().navigate(R.id.myself_navigationfragment3, null, navOptions {
+//                popUpTo(R.id.myself_navigationfragment1){
+//                    inclusive = true
+//                }
+//            })
 
         }
         viewBinding.tv4.onClick {
-
+            viewBinding.tv1.text = "我改变了Fragment 222"
         }
     }
 
