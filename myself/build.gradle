@@ -85,4 +85,7 @@ dependencies {
 
     //popup
     implementation 'com.github.zyyoona7:EasyPopup:1.1.2'
+
+    // navigation 测试
+    androidTestImplementation "androidx.navigation:navigation-testing:${versions.navigationVersion}"
 }
