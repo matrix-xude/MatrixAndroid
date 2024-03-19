@@ -7,6 +7,7 @@ import androidx.navigation.createGraph
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.fragment
+import androidx.navigation.navOptions
 import com.orhanobut.logger.Logger
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.extend.onClick
@@ -15,6 +16,7 @@ import com.xxd.myself.R
 import com.xxd.myself.databinding.MyselfActivityNavigationBinding
 import com.xxd.myself.navigation.fragment.NavigationFragment1
 import com.xxd.myself.navigation.fragment.NavigationFragment2
+import com.xxd.myself.navigation.fragment.NavigationFragment3
 
 /**
  *    author : xxd
@@ -42,18 +44,23 @@ class NavigationActivity : BaseTitleActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
 
-//        navController.graph = navController.createGraph("first", "route1") {
-//
-//            fragment<NavigationFragment1>("first") {
-//                Logger.d("目的地first触发")
-//                label = "go first"
-//            }
-//
-//            fragment<NavigationFragment2>("second") {
-//                Logger.d("目的地second 触发")
-//                label = "go second"
-//            }
-//        }
+        navController.graph = navController.createGraph("first", "route1") {
+
+            fragment<NavigationFragment1>("first") {
+                Logger.d("目的地 first 触发")
+                label = "go first"
+            }
+
+            fragment<NavigationFragment2>("second") {
+                Logger.d("目的地 second 触发")
+                label = "go second"
+            }
+
+            fragment<NavigationFragment3>("third") {
+                Logger.d("目的地 third 触发")
+                label = "go third"
+            }
+        }
 
     }
 
@@ -64,13 +71,34 @@ class NavigationActivity : BaseTitleActivity() {
 
     private fun initListener() {
         viewBinding.tv1.onClick {
-            navController.navigate(R.id.myself_action_myself_navigationfragment1_to_myself_navigationfragment2)
+            navController.navigate("first") {
+                popUpTo("first"){
+                    saveState = true
+                }
+            }
         }
         viewBinding.tv2.onClick {
-            navController.navigate(R.id.myself_navigationfragment3)
+            navController.navigate("second") {
+                popUpTo("first"){
+                    saveState = true
+                }
+            }
         }
         viewBinding.tv3.onClick {
+            navController.navigate("third") {
+                popUpTo("third"){
+                    saveState = true
+                }
+            }
+        }
 
+        viewBinding.tv4.onClick {
+            navController.navigate("first") {
+//                popUpTo("first"){
+////                    saveState = true
+//                }
+//                restoreState = true
+            }
         }
     }
 
@@ -79,8 +107,8 @@ class NavigationActivity : BaseTitleActivity() {
         Logger.d("按钮被点击了 ${item.itemId}")
 //        when (item.itemId) {
 //            android.R.id.home -> {
-                navController.popBackStack()
-                return true
+        navController.popBackStack()
+        return true
 //            }
 //        }
 //        return super.onOptionsItemSelected(item)
@@ -88,8 +116,10 @@ class NavigationActivity : BaseTitleActivity() {
 
     override fun onBackPressed() {
 //        super.onBackPressed()
-        if (!navController.popBackStack()){
+//        if (!navController.popBackStack(navController.currentDestination!!.route!!,true,true)) {
+//            finish()
+//        }
+        if (!navController.popBackStack())
             finish()
-        }
     }
 }
