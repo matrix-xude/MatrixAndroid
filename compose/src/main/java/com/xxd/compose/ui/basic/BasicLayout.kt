@@ -124,7 +124,7 @@ fun BoxTest() {
 @Composable
 fun UseBoxWithConstraintsTest() {
     MatrixAndroidTheme {
-        Box(modifier = Modifier.width(401.dp)) {
+        Box(modifier = Modifier.width(280.dp)) {
             UseBoxWithConstraints()
         }
     }

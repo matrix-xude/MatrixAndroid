@@ -21,7 +21,7 @@ class SecondViewModel : ViewModel() {
     val uiState = _uiState.asStateFlow()
 
     // State创建数据源
-    var uiState2 by mutableStateOf(SecondUIState(expanded = true))
+    var uiState2 = mutableStateOf(SecondUIState(expanded = true))
         private set
 
     fun changeExpanded() {
@@ -33,9 +33,12 @@ class SecondViewModel : ViewModel() {
 //            it.copy(expanded = !it.expanded)
 //        }
 
-        uiState2 = uiState2.let {
-            it.copy(expanded = !it.expanded)
-        }
+//        uiState2 = uiState2.let {
+//            it.copy(expanded = !it.expanded)
+//        }
+//        uiState2.value = uiState2.value.let {
+//            it.copy(expanded = it.expanded, desc = it.desc+"1")
+//        }
 
     }
 }

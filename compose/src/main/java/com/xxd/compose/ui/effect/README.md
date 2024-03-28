@@ -1,0 +1,3 @@
+# SideEffect 附带效应
+因为compose的重组频繁，很多代码不能频繁执行，并且和生命周期相关，这就是附带效应。
+这里就需要用到LaunchedEffect,DisposableEffect等代码

@@ -100,6 +100,7 @@ android {
         // Java language implementation
         api "androidx.navigation:navigation-fragment:${versions.navigationVersion}"
         api "androidx.navigation:navigation-ui:${versions.navigationVersion}"
+        api "androidx.navigation:navigation-compose:${versions.navigationVersion}"
         // Kotlin
         api "androidx.navigation:navigation-fragment-ktx:${versions.navigationVersion}"
         api "androidx.navigation:navigation-ui-ktx:${versions.navigationVersion}"

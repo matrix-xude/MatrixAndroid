@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.xxd.compose.activitys.FirstActivity
 import com.xxd.compose.activitys.SecondActivity
+import com.xxd.compose.activitys.ThirdActivity
 import com.xxd.compose.ui.basic.CustomFirstBaseline
 import com.xxd.compose.ui.theme.MatrixAndroidTheme
 
@@ -51,6 +52,10 @@ fun Greeting() {
 
         CustomText(text = "Second Activity") {
             context.startActivity(Intent(context, SecondActivity::class.java))
+        }
+
+        CustomText(text = "Third Activity") {
+            context.startActivity(Intent(context, ThirdActivity::class.java))
         }
     }
 }
