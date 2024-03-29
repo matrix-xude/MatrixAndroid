@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -37,7 +38,10 @@ fun Effect1() {
         mutableIntStateOf(0)
     }
 
-    Column(modifier = Modifier.width(200.dp).height(300.dp).background(color = Color(0xFF00FF00))) {
+    Column(modifier = Modifier
+        .width(200.dp)
+        .height(300.dp)
+        .background(color = Color(0xFF00FF00))) {
 
         Text(
             modifier = Modifier
@@ -64,9 +68,13 @@ fun Effect1() {
             }
         }
 
+        SideEffect {
+            Log.d("xxd-effect", "trace SideEffect : key1=$key")
+        }
+
         Text(
             modifier = Modifier
-            .size(100.dp, 150.dp)
+                .size(100.dp, 150.dp)
                 .background(color = Color(0x5500FFFF), shape = RoundedCornerShape(20))
                 .padding(10.dp)
                 .clickable { key++ }

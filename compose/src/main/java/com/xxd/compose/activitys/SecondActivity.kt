@@ -26,6 +26,7 @@ import com.xxd.compose.ui.state.ExpandedText
 import com.xxd.compose.ui.state.Foo
 import com.xxd.compose.ui.state.RememberMain
 import com.xxd.compose.ui.state.SecondMain
+import com.xxd.compose.ui.state.SeekStable
 import com.xxd.compose.ui.theme.MatrixAndroidTheme
 import com.xxd.compose.viewmodel.SecondViewModel
 import kotlinx.coroutines.launch
@@ -33,7 +34,7 @@ import kotlinx.coroutines.launch
 /**
  *    author : xxd
  *    date   : 2024/3/6
- *    desc   :
+ *    desc   : 专门测试 compose 重组的 稳定性问题
  */
 class SecondActivity : ComponentActivity() {
 
@@ -44,8 +45,7 @@ class SecondActivity : ComponentActivity() {
         setContent {
             MatrixAndroidTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    SecondMain(viewModel)
-//                    Foo()
+                   SeekStable()
                 }
             }
         }
@@ -53,13 +53,13 @@ class SecondActivity : ComponentActivity() {
     }
 
     private fun initData() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
-                    // 使用View收集数据
-                    Log.d("xxd2", "使用View收集数据改变 ${it.expanded}")
-                }
-            }
-        }
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.uiState.collect {
+//                    // 使用View收集数据
+//                    Log.d("xxd2", "使用View收集数据改变 ${it.expanded}")
+//                }
+//            }
+//        }
     }
 }
