@@ -22,6 +22,7 @@ import com.xxd.compose.ui.state.domain.Level1
 import com.xxd.compose.ui.state.domain.Level2
 import com.xxd.compose.ui.state.domain.Level2Object
 import com.xxd.compose.util.ColorUtil
+import com.xxd.compose.viewmodel.SecondViewModel
 
 /**
  *    author : xxd
@@ -29,58 +30,49 @@ import com.xxd.compose.util.ColorUtil
  *    desc   : 探索 compose重组中 参数的稳定性问题
  */
 @Composable
-fun SeekStable() {
+fun SeekStableVM(viewModel: SecondViewModel) {
+
 
     // 需要测试的数据
-    var level1 by remember {
-        mutableStateOf(Level1(name = "高大上",
-            age = 18,
-            level2 = Level2(score = 99.9f, desc = "满分只有100，你确只能考99"),
-            level2Object = Level2Object(33,"do it")
-        ))
-    }
+    var level1 by remember { viewModel.uiState2 }
 
     Column(
         modifier = Modifier
             .width(0.dp)
             .height(100.dp)
-//            .background(color = ColorUtil.randomColor())
+            .background(color = ColorUtil.randomColor())
     ) {
 
-        SeekStable1(name = level1.name, age = level1.age, click = {
-            level1 = level1.copy(age = level1.age + 1)
-//            level1 = level1.copy()
+        SeekStable11(name = level1.name, age = level1.age, click = {
+           viewModel.changeExpanded()
         })
         Spacer(modifier = Modifier.size(10.dp))
-        SeekStable2(level2 = level1.level2, click = {
-            level1 = level1.copy(level2 = level1.level2.copy())
-        })
-        Spacer(modifier = Modifier.size(10.dp))
-        SeekStable3(level2Object = level1.level2Object, click = {
-//            level1 = level1.copy(level2Object = Level2Object(33,"do it"))
-            level1 = level1.copy()
-        })
 
+        SeekStable21(level2 = level1.level2, click = {
+        })
         Spacer(modifier = Modifier.size(10.dp))
+
+        SeekStable31(level2Object = level1.level2Object, click = {
+        })
+        Spacer(modifier = Modifier.size(10.dp))
+
         // 直接在该重组范围内调用系统compose，因为传入参数太多，不能保证所有必须参数都稳定，导致该Text无法跳过
         Text(
             text = "不变的，是真心",
             modifier = Modifier
-                .clickable(onClick = { level1 = level1.copy() })
+                .clickable(onClick = { })
                 .background(color = ColorUtil.randomColor(), shape = RoundedCornerShape(5.dp))
                 .padding(10.dp)
         )
-
         Spacer(modifier = Modifier.size(10.dp))
+
         // 多加一层，再调用系统compose,保证不会重组
-        SeekStable4(click = {
-            level1 = level1.copy()
-        })
+        SeekStable41(click = {})
     }
 }
 
 @Composable
-fun SeekStable1(name: String, age: Int, click: () -> Unit) {
+fun SeekStable11(name: String, age: Int, click: () -> Unit) {
     Text(
         text = "$name ----- $age",
         modifier = Modifier
@@ -91,7 +83,7 @@ fun SeekStable1(name: String, age: Int, click: () -> Unit) {
 }
 
 @Composable
-fun SeekStable2(level2: Level2, click: () -> Unit) {
+fun SeekStable21(level2: Level2, click: () -> Unit) {
     Text(
         text = "${level2.score} ----- ${level2.desc}",
         modifier = Modifier
@@ -102,7 +94,7 @@ fun SeekStable2(level2: Level2, click: () -> Unit) {
 }
 
 @Composable
-fun SeekStable3(level2Object: Level2Object,click: () -> Unit) {
+fun SeekStable31(level2Object: Level2Object,click: () -> Unit) {
     Text(
         text = "${level2Object.i} ----- ${level2Object.str}",
         modifier = Modifier
@@ -113,7 +105,7 @@ fun SeekStable3(level2Object: Level2Object,click: () -> Unit) {
 }
 
 @Composable
-fun SeekStable4(click: () -> Unit) {
+fun SeekStable41(click: () -> Unit) {
     Text(
         text = "不变的，是真心",
         modifier = Modifier
