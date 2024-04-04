@@ -72,6 +72,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     // constraintLayout-compose
-
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 }
