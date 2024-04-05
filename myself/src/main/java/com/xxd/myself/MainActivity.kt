@@ -1,5 +1,7 @@
 package com.xxd.myself
 
+import android.content.ComponentName
+import android.content.Intent
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.gyf.immersionbar.ktx.immersionBar
 import com.xxd.common.fast.SimpleListActivity
@@ -11,7 +13,7 @@ import com.xxd.myself.touchevent.TouchEventActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val mDataList = listOf("Px Dp 与 屏幕适配","Android事件分发机制","Handler研究","Navigation")
+    private val mDataList = listOf("Px Dp 与 屏幕适配","Android事件分发机制","Handler研究","Navigation","开启其它进程服务")
 
     override fun initView() {
         super.initView()
@@ -31,6 +33,12 @@ class MainActivity : SimpleListActivity<String>() {
                 1 -> IntentUtil.startActivity<TouchEventActivity>(this)
                 2 -> IntentUtil.startActivity<HandlerActivity>(this)
                 3 -> IntentUtil.startActivity<NavigationActivity>(this)
+                4 -> {
+                    val intent = Intent().apply {
+                        component = ComponentName("com.xxd.service","com.xxd.service.service.FirstService")
+                    }
+                    this.startService(intent)
+                }
             }
         }
     }
