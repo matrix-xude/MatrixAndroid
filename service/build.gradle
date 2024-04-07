@@ -52,6 +52,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
+        aidl true
         compose true
         viewBinding true
     }
@@ -66,6 +67,9 @@ android {
 
     sourceSets {
         main {
+            aidl {
+                srcDirs 'src/main/aidl', 'src/main/xxx/aidl'
+            }
             if (Boolean.valueOf(rootProject.ext.isModuleService)) {//apk
                 // module 单独作为application时，使用此manifest
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'

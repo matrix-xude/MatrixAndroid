@@ -1,7 +1,10 @@
 package com.xxd.myself
 
+import android.app.Service
 import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.gyf.immersionbar.ktx.immersionBar
 import com.xxd.common.fast.SimpleListActivity
@@ -9,6 +12,7 @@ import com.xxd.common.util.intent.IntentUtil
 import com.xxd.myself.dp.DpActivity
 import com.xxd.myself.handler.HandlerActivity
 import com.xxd.myself.navigation.NavigationActivity
+import com.xxd.myself.service.ServiceActivity
 import com.xxd.myself.touchevent.TouchEventActivity
 
 class MainActivity : SimpleListActivity<String>() {
@@ -33,12 +37,7 @@ class MainActivity : SimpleListActivity<String>() {
                 1 -> IntentUtil.startActivity<TouchEventActivity>(this)
                 2 -> IntentUtil.startActivity<HandlerActivity>(this)
                 3 -> IntentUtil.startActivity<NavigationActivity>(this)
-                4 -> {
-                    val intent = Intent().apply {
-                        component = ComponentName("com.xxd.service","com.xxd.service.service.FirstService")
-                    }
-                    this.startService(intent)
-                }
+                4 -> IntentUtil.startActivity<ServiceActivity>(this)
             }
         }
     }

@@ -2,6 +2,7 @@ package com.xxd.service.ui.service
 
 import android.app.Service
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.content.res.Configuration
@@ -34,8 +35,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orhanobut.logger.Logger
 import com.xxd.common.util.toast.ToastUtil
+import com.xxd.service.MyFirstDo
 import com.xxd.service.domain.FunctionItem
 import com.xxd.service.service.FirstService
+import com.xxd.service.service.RemoteService
 import com.xxd.service.ui.local.LocalColor
 import com.xxd.service.ui.theme.ServiceTheme
 import com.xxd.service.ui.util.ColorUtil
@@ -80,13 +83,16 @@ private fun ServiceAction() {
     val myColor = LocalColor.current
     val context = LocalContext.current
 
-    var serviceConnection : ServiceConnection? = null
+    var serviceConnection: ServiceConnection? = null
+    var aidlConnection: ServiceConnection? = null
+    var aidlService: MyFirstDo? = null
+
     LaunchedEffect(key1 = true) {
-         serviceConnection= object : ServiceConnection{
+        serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
                 // service 不为null才会回调，并且同一个 serviceConnection 只会回调一次
                 Logger.d("onServiceConnected className=${name?.className},packageName=${name?.packageName}")
-                if (service is FirstService.FirstBinder){
+                if (service is FirstService.FirstBinder) {
                     service.getService().logFirstService()
                 }
             }
@@ -95,7 +101,16 @@ private fun ServiceAction() {
                 // 一般不会走到
                 Logger.d("onServiceDisconnected className=${name?.className},packageName=${name?.packageName}")
             }
+        }
 
+        aidlConnection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                aidlService = MyFirstDo.Stub.asInterface(service)
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {
+                aidlService = null
+            }
         }
     }
 
@@ -107,6 +122,10 @@ private fun ServiceAction() {
                 1 -> FunctionItem(it + 1, "stopService")
                 2 -> FunctionItem(it + 1, "bindService")
                 3 -> FunctionItem(it + 1, "unBindService")
+                4 -> FunctionItem(it + 1, "aidlBinding")
+                5 -> FunctionItem(it + 1, "aidlUnbinding")
+                6 -> FunctionItem(it + 1, "info")
+                7 -> FunctionItem(it + 1, "add")
                 else -> FunctionItem(it + 1, "功能${it + 1}")
             }
             list.add(item)
@@ -127,19 +146,42 @@ private fun ServiceAction() {
                         val componentName = context.startService(Intent(context, FirstService::class.java))
 //                        Logger.d("start服务返回值 className=${componentName?.className},packageName=${componentName?.packageName}")
                     }
+
                     2 -> {
                         val stopService = context.stopService(Intent(context, FirstService::class.java))
 //                        Logger.d("stop服务返回值 $stopService")
                     }
+
                     3 -> {
                         val intent = Intent(context, FirstService::class.java)
                         // Service.BIND_AUTO_CREATE 使用后才会创建Service，否则无效！
                         // 同一个 serviceConnection 只会生效1次
                         val bindService = context.bindService(intent, serviceConnection!!, Service.BIND_AUTO_CREATE)
                     }
+
                     4 -> {
                         // 并且同一个 serviceConnection 多次调用会抛出异常
                         context.unbindService(serviceConnection!!)
+                    }
+
+                    5 -> {
+                        // aidl
+                        val intent = Intent(context, RemoteService::class.java)
+                        context.bindService(intent, aidlConnection!!, Context.BIND_AUTO_CREATE)
+                    }
+
+                    6 -> {
+                        context.unbindService(aidlConnection!!)
+                    }
+
+                    7 -> {
+                        Logger.d("info : ${aidlService?.info}")
+                    }
+
+                    8 -> {
+                        val a = 5
+                        val b = 3
+                        Logger.d("$a + $b =${aidlService?.add(a, b)}")
                     }
                 }
             }

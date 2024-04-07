@@ -4,13 +4,15 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.os.Binder
-import android.os.Handler
+import android.graphics.PointF
+import android.os.Build
 import android.os.IBinder
-import android.os.Messenger
 import android.view.ViewGroup
+import com.orhanobut.logger.Logger
+import com.xxd.common.CommonFirst
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.extend.onClick
+import com.xxd.common.service.CommonRemoteService
 import com.xxd.myself.databinding.MyselfActivityServiceBinding
 
 /**
@@ -30,30 +32,58 @@ class ServiceActivity : BaseTitleActivity() {
         return "Service研究"
     }
 
+    private var remoteService: CommonFirst? = null
+
+    private val connect1 = object : ServiceConnection {
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            remoteService = CommonFirst.Stub.asInterface(service)
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            remoteService = null
+        }
+
+    }
+
     override fun initView() {
         super.initView()
 
+        viewBinding.tv0.onClick {
+            Logger.d("开启其他进程service")
+            val intent = Intent().apply {
+                `package` = "com.xxd.service"  // 与服务端包名一致
+                action = "com.xxd.startRemoteFirst"  // 与服务端 manifest 中 intent-filer定义的action一致
+            }
+            // 29 只能前台启动，否则报错
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                // 启动后5秒报错，ForegroundServiceDidNotStartInTimeException，所以不推荐隐式意图开启Service
+                startForegroundService(intent)
+            } else {
+                startService(intent)
+            }
+
+        }
 
         viewBinding.tv1.onClick {
-            startService(Intent(this, SeekLifeService::class.java))
+            Logger.d("开启aidl")
+            val intent = Intent().apply{
+                component = ComponentName("com.xxd.service", CommonRemoteService::class.java.name)
+            }
+//            val intent = Intent(this,CommonRemoteService::class.java)
+            this.bindService(intent, connect1, Context.BIND_AUTO_CREATE)
         }
         viewBinding.tv2.onClick {
-            stopService(Intent(this, SeekLifeService::class.java))
+            this.unbindService(connect1)
         }
         viewBinding.tv3.onClick {
-            bindService(Intent(),object : ServiceConnection{
-                override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onServiceDisconnected(name: ComponentName?) {
-                    TODO("Not yet implemented")
-                }
-
-            },Context.BIND_AUTO_CREATE)
+            Logger.d("获取 remoteInfo:${remoteService?.info}")
         }
         viewBinding.tv4.onClick {
-            Messenger(Handler()).binder
+            val a = 12
+            val b = 5
+//            Logger.d("remoteAdd:$a + $b = ${remoteService?.add(a, b)}")
+            
         }
     }
 }
