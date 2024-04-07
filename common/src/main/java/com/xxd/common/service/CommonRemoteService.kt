@@ -7,6 +7,7 @@ import android.graphics.PointF
 import android.os.IBinder
 import com.orhanobut.logger.Logger
 import com.xxd.common.CommonFirst
+import com.xxd.common.service.domain.CommonPoint
 
 class CommonRemoteService : Service() {
 
@@ -23,7 +24,11 @@ class CommonRemoteService : Service() {
             }
 
             override fun point(a: Int, b: Int): PointF {
-                return PointF(a.toFloat(),b.toFloat())
+                return PointF(a.toFloat(), b.toFloat())
+            }
+
+            override fun myPoint(a: Int, b: Int): CommonPoint {
+                return CommonPoint(a, b)
             }
         }
     }

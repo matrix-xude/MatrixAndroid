@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 
 android {
     namespace 'com.xxd.common'
@@ -36,8 +37,8 @@ android {
     }
 
     buildFeatures {
-        aidl = true
-        viewBinding = true
+        aidl true
+        viewBinding true
     }
 
     compileOptions {
@@ -135,6 +136,13 @@ android {
         testImplementation "junit:junit:${versions.junitVersion}"
         androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
         androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
+    }
+    sourceSets {
+        main {
+            aidl {
+                srcDirs 'src\\main\\aidl'
+            }
+        }
     }
 
 }

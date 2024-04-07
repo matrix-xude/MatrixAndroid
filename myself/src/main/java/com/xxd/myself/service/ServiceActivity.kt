@@ -77,13 +77,18 @@ class ServiceActivity : BaseTitleActivity() {
             this.unbindService(connect1)
         }
         viewBinding.tv3.onClick {
-            Logger.d("获取 remoteInfo:${remoteService?.info}")
+//            Logger.d("获取 remoteInfo:${remoteService?.info}")
+
+            val point = remoteService?.point(13, 4)
+            Logger.d("commonPoint = $point")
         }
         viewBinding.tv4.onClick {
             val a = 12
             val b = 5
 //            Logger.d("remoteAdd:$a + $b = ${remoteService?.add(a, b)}")
-            
+            val point = remoteService?.point(3, 4)
+            Logger.d("point = $point")
+
         }
     }
 }
