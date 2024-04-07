@@ -26,7 +26,11 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.xxd.compose.R
+import com.xxd.compose.util.ColorUtil
 
+private fun printTag(str: String) {
+    Log.d("xxd-effect", str)
+}
 
 /**
  * 研究各种附带效应 Effect
@@ -38,22 +42,24 @@ fun Effect1() {
         mutableIntStateOf(0)
     }
 
-    Column(modifier = Modifier
-        .width(200.dp)
-        .height(300.dp)
-        .background(color = Color(0xFF00FF00))) {
+    Column(
+        modifier = Modifier
+            .width(200.dp)
+            .height(300.dp)
+            .background(color = Color(0xFF00FF00))
+    ) {
 
         Text(
             modifier = Modifier
                 .size(100.dp, 150.dp)
-                .background(color = Color(0x5500FFFF), shape = RoundedCornerShape(20))
+                .background(color = ColorUtil.randomColor(), shape = RoundedCornerShape(20))
                 .padding(10.dp)
                 .clickable { key++ }
-                .apply { Log.d("xxd-effect", "trace Text-Modifier Effect之前") }, // 检测 LaunchedEffect
+                .apply { printTag("trace Text-Modifier Effect之前") }, // 检测 LaunchedEffect
             text = "我在Effect之前",
             overflow = TextOverflow.Ellipsis,
             color = colorResource(id = R.color.purple_700),
-        ).apply { Log.d("xxd-effect", "trace Text Effect之前") }
+        ).apply { printTag("trace Text Effect之前") }
 
         // 这些代码放在Text之前执行的也执行的比Text晚，可能是Effect中开启了协程的原因
         LaunchedEffect(key1 = key) {
@@ -75,13 +81,13 @@ fun Effect1() {
         Text(
             modifier = Modifier
                 .size(100.dp, 150.dp)
-                .background(color = Color(0x5500FFFF), shape = RoundedCornerShape(20))
+                .background(color = ColorUtil.randomColor(), shape = RoundedCornerShape(20))
                 .padding(10.dp)
                 .clickable { key++ }
                 .apply { Log.d("xxd-effect", "trace Text-Modifier Effect之后") }, // 检测 LaunchedEffect
             text = "我在Effect之后",
             overflow = TextOverflow.Ellipsis,
             color = colorResource(id = R.color.purple_700),
-        ).apply { Log.d("xxd-effect", "trace Text Effect之后") }
+        ).apply { printTag("trace Text Effect之后") }
     }
 }

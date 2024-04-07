@@ -21,7 +21,7 @@ import com.xxd.compose.ui.theme.MatrixAndroidTheme
 /**
  *    author : xxd
  *    date   : 2024/3/28
- *    desc   :
+ *    desc   : 验证 side-effect
  */
 class ThirdActivity : ComponentActivity() {
 
