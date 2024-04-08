@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import com.orhanobut.logger.Logger
-import com.xxd.common.service.CommonRemoteService
 import com.xxd.service.MyFirstDo
 
 class RemoteService : Service() {
@@ -19,13 +18,12 @@ class RemoteService : Service() {
 
             override fun add(a: Int, b: Int): Int {
                 Logger.d("收到了远程请求 add(a: Int, b: Int)")
-                return a + b
+                return a - b
             }
         }
     }
 
     override fun onBind(intent: Intent?): IBinder {
-        CommonRemoteService()
         Logger.d("RemoteService -> onBind")
         return binder
     }
