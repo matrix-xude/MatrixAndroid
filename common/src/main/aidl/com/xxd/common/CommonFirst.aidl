@@ -12,5 +12,5 @@ interface CommonFirst{
 
     CommonPoint myPoint(int a, int b);
 
-    int pointIn(in CommonPoint point);
+    int pointIn(out CommonPoint point);
 }

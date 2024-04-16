@@ -4,15 +4,13 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.graphics.PointF
-import android.os.Build
 import android.os.IBinder
 import android.view.ViewGroup
 import com.orhanobut.logger.Logger
 import com.xxd.common.CommonFirst
 import com.xxd.common.base.activity.BaseTitleActivity
 import com.xxd.common.extend.onClick
-import com.xxd.common.service.CommonRemoteService
+import com.xxd.common.service.domain.CommonPoint
 import com.xxd.myself.databinding.MyselfActivityServiceBinding
 import com.xxd.service.MyFirstDo
 
@@ -121,20 +119,24 @@ class ServiceActivity : BaseTitleActivity() {
             Logger.d("开启aidl")
             val intent = Intent().apply{
 //                component = ComponentName("com.xxd.service", CommonRemoteService::class.java.name)
-                // 使用包名开启服务无效
+                // 使用包名开启服务,必须能显式引用到类
                 component = ComponentName("com.xxd.service", "com.xxd.common.service.CommonRemoteService")
             }
 //            val intent = Intent(this,CommonRemoteService::class.java)
             val bindService = this.bindService(intent, connect1, Context.BIND_AUTO_CREATE)
-            val bindService1 = this.bindService(intent, connect11, Context.BIND_AUTO_CREATE)
-            val bindService2 = this.bindService(intent, connect12, Context.BIND_AUTO_CREATE)
-            Logger.d("bindService=$bindService bindService1=$bindService1 bindService2=$bindService2 ")
+//            val bindService1 = this.bindService(intent, connect11, Context.BIND_AUTO_CREATE)
+//            val bindService2 = this.bindService(intent, connect12, Context.BIND_AUTO_CREATE)
+//            Logger.d("bindService=$bindService bindService1=$bindService1 bindService2=$bindService2 ")
         }
         viewBinding.tv2.onClick {
             this.unbindService(connect1)
         }
         viewBinding.tv3.onClick {
-            Logger.d("获取 remoteInfo:${remoteService?.info}")
+//            Logger.d("获取 remoteInfo:${remoteService?.info}")
+            val commonPoint = CommonPoint(3, 7)
+            val pointIn = remoteService?.pointIn(commonPoint)
+            Logger.d("pointIn:${pointIn}")
+            Logger.d("pointIn point:${commonPoint}")
         }
         viewBinding.tv4.onClick {
             val a = 12
@@ -146,7 +148,7 @@ class ServiceActivity : BaseTitleActivity() {
             Logger.d("commonPoint = $point")
         }
         viewBinding.tv6.onClick {
-            val point = remoteService?.point(3, 4)
+            val point = remoteService?.myPoint(3, 4)
             Logger.d("point = $point")
         }
 

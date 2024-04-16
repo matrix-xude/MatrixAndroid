@@ -32,10 +32,12 @@ class CommonRemoteService : Service() {
             }
 
             override fun pointIn(point: CommonPoint?): Int {
-                return point?.let {
-                    it.x + it.y
-                } ?: 0
+                Logger.d("aidl out point:$point")
+                point?.x = 10
+                point?.y = 15
+                return point?.run { x - y }?:0
             }
+
         }
     }
 
@@ -51,8 +53,8 @@ class CommonRemoteService : Service() {
 
     override fun onCreate() {
         Logger.d("CommonRemoteService -> onCreate")
-        Thread.sleep(1000)
-        Logger.d("CommonRemoteService -> onCreate sleep")
+//        Thread.sleep(1000)
+//        Logger.d("CommonRemoteService -> onCreate sleep")
         super.onCreate()
     }
 
