@@ -30,6 +30,12 @@ class CommonRemoteService : Service() {
             override fun myPoint(a: Int, b: Int): CommonPoint {
                 return CommonPoint(a, b)
             }
+
+            override fun pointIn(point: CommonPoint?): Int {
+                return point?.let {
+                    it.x + it.y
+                } ?: 0
+            }
         }
     }
 
@@ -45,6 +51,8 @@ class CommonRemoteService : Service() {
 
     override fun onCreate() {
         Logger.d("CommonRemoteService -> onCreate")
+        Thread.sleep(1000)
+        Logger.d("CommonRemoteService -> onCreate sleep")
         super.onCreate()
     }
 

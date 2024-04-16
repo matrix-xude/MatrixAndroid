@@ -11,4 +11,6 @@ interface CommonFirst{
     PointF point(int a, int b);
 
     CommonPoint myPoint(int a, int b);
+
+    int pointIn(in CommonPoint point);
 }

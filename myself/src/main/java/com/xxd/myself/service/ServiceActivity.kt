@@ -50,6 +50,34 @@ class ServiceActivity : BaseTitleActivity() {
         }
     }
 
+    private val connect11 = object : ServiceConnection {
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            Logger.d("11 onServiceConnected name=$name service=$service")
+            remoteService = CommonFirst.Stub.asInterface(service)
+            Logger.d("11 remoteService = $remoteService")
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            Logger.d("11 onServiceDisconnected name=$name")
+            remoteService = null
+        }
+    }
+
+    private val connect12 = object : ServiceConnection {
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            Logger.d("12 onServiceConnected name=$name service=$service")
+            remoteService = CommonFirst.Stub.asInterface(service)
+            Logger.d("12 remoteService = $remoteService")
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            Logger.d("12 onServiceDisconnected name=$name")
+            remoteService = null
+        }
+    }
+
     private val connect2 = object : ServiceConnection {
 
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
@@ -97,7 +125,10 @@ class ServiceActivity : BaseTitleActivity() {
                 component = ComponentName("com.xxd.service", "com.xxd.common.service.CommonRemoteService")
             }
 //            val intent = Intent(this,CommonRemoteService::class.java)
-            this.bindService(intent, connect1, Context.BIND_AUTO_CREATE)
+            val bindService = this.bindService(intent, connect1, Context.BIND_AUTO_CREATE)
+            val bindService1 = this.bindService(intent, connect11, Context.BIND_AUTO_CREATE)
+            val bindService2 = this.bindService(intent, connect12, Context.BIND_AUTO_CREATE)
+            Logger.d("bindService=$bindService bindService1=$bindService1 bindService2=$bindService2 ")
         }
         viewBinding.tv2.onClick {
             this.unbindService(connect1)
