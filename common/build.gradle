@@ -95,7 +95,7 @@ android {
         api "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}" // retrofit
         api "com.squareup.retrofit2:converter-gson:${versions.converterGsonVersion}" // retrofit转json
         api "com.github.bumptech.glide:glide:${versions.glideVersion}" // glide图片加载，还需要配置annotationProcessor到使用的类中
-//        kapt "com.github.bumptech.glide:compiler:${versions.glideVersion}" // glide annotationProcessor
+        api "androidx.room:room-runtime:${versions.roomVersion}" // room
 
         // navigation
         def nav_version = "2.6.0"

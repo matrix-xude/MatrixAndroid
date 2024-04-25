@@ -12,12 +12,13 @@ import com.xxd.common.util.intent.IntentUtil
 import com.xxd.myself.dp.DpActivity
 import com.xxd.myself.handler.HandlerActivity
 import com.xxd.myself.navigation.NavigationActivity
+import com.xxd.myself.room.RoomActivity
 import com.xxd.myself.service.ServiceActivity
 import com.xxd.myself.touchevent.TouchEventActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val mDataList = listOf("Px Dp 与 屏幕适配","Android事件分发机制","Handler研究","Navigation","开启其它进程服务")
+    private val mDataList = listOf("Px Dp 与 屏幕适配","Android事件分发机制","Handler研究","Navigation","开启其它进程服务","room")
 
     override fun initView() {
         super.initView()
@@ -38,6 +39,7 @@ class MainActivity : SimpleListActivity<String>() {
                 2 -> IntentUtil.startActivity<HandlerActivity>(this)
                 3 -> IntentUtil.startActivity<NavigationActivity>(this)
                 4 -> IntentUtil.startActivity<ServiceActivity>(this)
+                5 -> IntentUtil.startActivity<RoomActivity>(this)
             }
         }
     }
