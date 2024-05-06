@@ -40,7 +40,6 @@ class MainActivity : SimpleListActivity<String>() {
                 3 -> IntentUtil.startActivity<NavigationActivity>(this)
                 4 -> IntentUtil.startActivity<ServiceActivity>(this)
                 5 -> IntentUtil.startActivity<RoomActivity>(this)
-                else -> {}
             }
         }
     }
