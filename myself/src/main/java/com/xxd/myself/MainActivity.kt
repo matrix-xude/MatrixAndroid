@@ -31,6 +31,7 @@ class MainActivity : SimpleListActivity<String>() {
         initClickListener()
     }
 
+    // 注释1
     private fun initClickListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
@@ -44,6 +45,7 @@ class MainActivity : SimpleListActivity<String>() {
         }
     }
 
+    // 高端大气
     override fun getDataList(): Collection<String> {
         return mDataList
     }
