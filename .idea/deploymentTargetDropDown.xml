@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="DoorDatabaseTest">
+        <State />
+      </entry>
       <entry key="compose">
         <State />
       </entry>
@@ -15,6 +18,9 @@
         <State />
       </entry>
       <entry key="view">
+        <State />
+      </entry>
+      <entry key="writeUser()">
         <State />
       </entry>
     </value>

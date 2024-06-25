@@ -75,6 +75,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
+    testImplementation 'junit:junit:4.12'
 
     kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
     kapt "androidx.room:room-compiler:${versions.roomVersion}"
