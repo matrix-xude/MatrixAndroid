@@ -1,15 +1,14 @@
 package com.xxd.myself.room
 
 import android.util.Log
-import androidx.lifecycle.lifecycleScope
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.myself.R
+import com.xxd.myself.room.dao.FireDao
 import com.xxd.myself.room.dao.UserDao
 import com.xxd.myself.room.database.DoorDatabaseHelper
+import com.xxd.myself.room.domain.Fire
 import com.xxd.myself.room.domain.User
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.UUID
 
 /**
@@ -19,7 +18,10 @@ import java.util.UUID
  */
 class RoomActivity : SimpleListActivity<String>() {
 
-    private val listData = listOf("insert 1条数据", "insert 2条数据", "insert n条数据", "delete 1条数据", "delete n条数据", "deleteById", "update 1条数据")
+    private val listData = listOf(
+        "insert 1条数据", "insert 2条数据", "insert n条数据", "delete 1条数据", "delete n条数据",
+        "deleteById", "update 1条数据", "query All"
+    )
 
     override fun getDataList(): Collection<String> {
         return listData
@@ -49,17 +51,26 @@ class RoomActivity : SimpleListActivity<String>() {
         super.initData()
 
         userDao = DoorDatabaseHelper.getDb(this@RoomActivity).userDao()
+
     }
 
     private fun initListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> {
-                    userDao.insert(fakeUser())
+//                    userDao.insert(fakeUser())
+                    val fireDao = DoorDatabaseHelper.getDb(this@RoomActivity).fireDao()
+                    fireDao.insert(Fire(id = 0, desc = "更大的发电工"))
                 }
 
                 1 -> {
-                    userDao.insert(fakeUser(), fakeUser())
+                    repeat(3) {
+                        val userId = UUID.randomUUID().leastSignificantBits // Long类型唯一di
+                        val userName = names[names.indices.random()] // 取随机名字
+                        val user = User(id = 0, userId = userId, userName = userName, userIcon = null, userKeys = null)
+                        Log.d("xxd", user.toString())
+                        userDao.insert(user)
+                    }
                 }
 
                 2 -> {
@@ -87,7 +98,12 @@ class RoomActivity : SimpleListActivity<String>() {
                 6 -> {
                     val user = userDao.queryById(12)
                     val update = userDao.update(user!!.copy(userName = "王大锤"))
-                    Log.d("xxd","update result = $update")
+                    Log.d("xxd", "update result = $update")
+                }
+
+                7 -> {
+                    val users = userDao.queryAll();
+                    Log.d("xxd", "queryAll result = $users")
                 }
 
 

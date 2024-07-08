@@ -22,7 +22,7 @@ object DoorDatabaseHelper {
                     db = Room
                         .databaseBuilder(context = context, klass = DoorDatabase::class.java, "door.db")
                         .allowMainThreadQueries()
-//                        .addMigrations(migration_1_2, migration_2_3)
+                        .addMigrations(migration_1_2, migration_2_3)
                         .build()
             }
         }
@@ -34,7 +34,8 @@ object DoorDatabaseHelper {
         override fun migrate(db: SupportSQLiteDatabase) {
             Log.d("xxd", "走到了1-2的升级数据库代码")
 
-            db.execSQL("create table 'users2' (id INTEGER PRIMARY KEY NOT NULL, user_id INTEGER NOT NULL, user_name TEXT NOT NULL,user_icon TEXT, user_keys TEXT)")
+//            db.execSQL("create table 'fire' (id INTEGER PRIMARY KEY NOT NULL, desc TEXT NOT NULL)")
+            db.execSQL("CREATE TABLE IF NOT EXISTS `fire` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `desc` TEXT NOT NULL)")
         }
     }
 
@@ -42,7 +43,7 @@ object DoorDatabaseHelper {
         override fun migrate(db: SupportSQLiteDatabase) {
             Log.d("xxd", "走到了2-3的升级数据库代码")
 
-            db.execSQL("drop table if exists 'door_users'")
+            db.execSQL("drop table if exists 'fire'")
         }
     }
 
