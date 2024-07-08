@@ -59,6 +59,7 @@ class RoomActivity : SimpleListActivity<String>() {
             when (position) {
                 0 -> {
 //                    userDao.insert(fakeUser())
+                    Log.d("xxd","插入新的表fire")
                     val fireDao = DoorDatabaseHelper.getDb(this@RoomActivity).fireDao()
                     fireDao.insert(Fire(id = 0, desc = "更大的发电工"))
                 }
@@ -75,6 +76,9 @@ class RoomActivity : SimpleListActivity<String>() {
 
                 2 -> {
                     userDao.insert(fakeUsers(4))
+                    val fireDao = DoorDatabaseHelper.getDb(this@RoomActivity).fireDao()
+                    val queryAll = fireDao.queryAll()
+                    Log.d("xxd", "queryAll fire result = $queryAll")
                 }
 
                 3 -> {

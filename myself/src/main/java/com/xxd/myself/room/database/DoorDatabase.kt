@@ -12,7 +12,8 @@ import com.xxd.myself.room.domain.User
  *    date   : 2024/4/25
  *    desc   :
  */
-@Database(entities = [User::class, Fire::class], version = 3, exportSchema = false)
+@Database(entities = [User::class,Fire::class], version = 2, exportSchema = false)
+//@Database(entities = [User::class], version = 1, exportSchema = false)
 abstract class DoorDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao

@@ -14,4 +14,5 @@ import androidx.room.PrimaryKey
 data class Fire(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "desc") val desc: String,
+
 )

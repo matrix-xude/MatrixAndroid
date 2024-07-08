@@ -18,12 +18,14 @@ object DoorDatabaseHelper {
     fun getDb(context: Context): DoorDatabase {
         if (db == null) {
             synchronized(this::class.java) {
-                if (db == null)
+                if (db == null){
+                    Log.d("xxd","走到了单例的DoorDatabase")
                     db = Room
                         .databaseBuilder(context = context, klass = DoorDatabase::class.java, "door.db")
                         .allowMainThreadQueries()
-                        .addMigrations(migration_1_2, migration_2_3)
+//                        .addMigrations(migration_1_2)
                         .build()
+                }
             }
         }
         return db!!
