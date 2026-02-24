@@ -45,6 +45,7 @@ android {
     }
 
     buildFeatures {
+        aidl true
         viewBinding true
     }
 
@@ -74,8 +75,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
+    testImplementation 'junit:junit:4.12'
 
     kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
+    kapt "androidx.room:room-compiler:${versions.roomVersion}"
 //    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.14.0"
 
     // 测试模块不能放在common中，引用不到
@@ -85,4 +88,7 @@ dependencies {
 
     //popup
     implementation 'com.github.zyyoona7:EasyPopup:1.1.2'
+
+    // navigation 测试
+    androidTestImplementation "androidx.navigation:navigation-testing:${versions.navigationVersion}"
 }

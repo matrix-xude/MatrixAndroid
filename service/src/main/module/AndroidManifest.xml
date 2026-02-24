@@ -12,14 +12,25 @@
         android:theme="@style/service_Theme.MatrixAndroid">
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.ServiceActivity"/>
+        <service android:name=".service.FirstService"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.xxd.startRemoteFirst"/>
+            </intent-filter>
+        </service>
+        <service android:name=".service.RemoteService"
+            android:exported="true"/>
+        <service android:name="com.xxd.common.service.CommonRemoteService"
+            android:exported="true"/>
     </application>
 
 </manifest>

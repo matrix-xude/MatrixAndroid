@@ -20,9 +20,9 @@ ext {
             versionName      : "1.0",
 
             minSdkVersion    : 21,
-            targetSdkVersion : 33,
+            targetSdkVersion : 34,
 
-            compileSdkVersion: 33,
+            compileSdkVersion: 34,
             buildToolsVersion: "33.0.1"
     ]
 
@@ -47,8 +47,8 @@ ext {
             // 工具
             multidexVersion                     : "1.0.3", // 分包支持，多dex,5.0以下需要
             rxpermissionsVersion                : "0.12", // 权限请求
-            arouterApiVersion                   : "1.5.0", // 阿里路由基础包
-            arouterCompilerVersion              : "1.2.2", // annotation 阿里路由
+            arouterApiVersion                   : "1.5.2", // 阿里路由基础包
+            arouterCompilerVersion              : "1.5.2", // annotation 阿里路由
             loggerVersion                       : "2.2.0", // 支持各种的logger类
             gsonVersion                         : "2.8.9", // gson
             moshiVersion                        : "1.14.0", // 更适配kotlin的json转换工具
@@ -65,6 +65,10 @@ ext {
             converterGsonVersion                : '2.9.0',// retrofit转gson
 
             glideVersion                        : "4.11.0",// glide,与annotationProcessor版本一致
+            roomVersion                        : "2.6.1",// jetpack中的room,kapt要与版本一致
+
+
+            navigationVersion                   : "2.6.0",// navigation版本
 
 
             // 各种系统自带控件

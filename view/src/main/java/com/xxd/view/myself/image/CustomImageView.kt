@@ -88,7 +88,7 @@ class CustomImageView @JvmOverloads constructor(context: Context, attributeSet: 
     }
 
     @SuppressLint("DrawAllocation")
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         canvas ?: return
 
         canvas.saveLayer(RectF(0f, 0f, width.toFloat(), height.toFloat()), null)

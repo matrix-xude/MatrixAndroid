@@ -80,7 +80,7 @@ class MovePhotoView @JvmOverloads constructor(context: Context, attributeSet: At
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         canvas ?: return
 
         if (isMoveDrag) {

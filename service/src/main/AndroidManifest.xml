@@ -5,6 +5,18 @@
 
     <application>
         <activity android:name=".MainActivity" />
+        <activity android:name=".activity.ServiceActivity"/>
+        <service android:name=".service.FirstService"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.xxd.startRemoteFirst"/>
+            </intent-filter>
+        </service>
+        <service android:name=".service.RemoteService"
+            android:exported="true"/>
+        <service android:name="com.xxd.common.service.CommonRemoteService"
+            android:exported="true"/>
     </application>
 
 

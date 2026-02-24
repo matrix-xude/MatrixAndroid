@@ -1,16 +1,24 @@
 package com.xxd.myself
 
+import android.app.Service
+import android.content.ComponentName
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.gyf.immersionbar.ktx.immersionBar
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
 import com.xxd.myself.dp.DpActivity
 import com.xxd.myself.handler.HandlerActivity
+import com.xxd.myself.navigation.NavigationActivity
+import com.xxd.myself.room.RoomActivity
+import com.xxd.myself.service.ServiceActivity
 import com.xxd.myself.touchevent.TouchEventActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val mDataList = listOf("Px Dp 与 屏幕适配","Android事件分发机制","Handler研究")
+    private val mDataList = listOf("Px Dp 与 屏幕适配","Android事件分发机制","Handler研究","Navigation","开启其它进程服务","room")
 
     override fun initView() {
         super.initView()
@@ -23,16 +31,21 @@ class MainActivity : SimpleListActivity<String>() {
         initClickListener()
     }
 
+    // 注释1
     private fun initClickListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> IntentUtil.startActivity<DpActivity>(this)
                 1 -> IntentUtil.startActivity<TouchEventActivity>(this)
                 2 -> IntentUtil.startActivity<HandlerActivity>(this)
+                3 -> IntentUtil.startActivity<NavigationActivity>(this)
+                4 -> IntentUtil.startActivity<ServiceActivity>(this)
+                5 -> IntentUtil.startActivity<RoomActivity>(this)
             }
         }
     }
 
+    // 高端大气
     override fun getDataList(): Collection<String> {
         return mDataList
     }

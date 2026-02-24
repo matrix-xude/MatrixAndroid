@@ -3,6 +3,8 @@ package com.xxd.service
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.gyf.immersionbar.ktx.immersionBar
 import com.xxd.common.fast.SimpleListActivity
+import com.xxd.common.util.intent.IntentUtil
+import com.xxd.service.activity.ServiceActivity
 
 
 class MainActivity : SimpleListActivity<String>() {
@@ -23,7 +25,9 @@ class MainActivity : SimpleListActivity<String>() {
     private fun initClickListener() {
         simpleAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
-                0 -> {}
+                0 -> {
+                    IntentUtil.startActivity<ServiceActivity>(this)
+                }
             }
         }
     }
