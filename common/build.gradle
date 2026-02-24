@@ -80,9 +80,9 @@ android {
         api "com.orhanobut:logger:${versions.loggerVersion}" // 日志
         api "com.github.tbruyelle:rxpermissions:${versions.rxpermissionsVersion}" // 权限
         api "com.alibaba:arouter-api:${versions.arouterApiVersion}" // 阿里路由
-        api "com.gyf.immersionbar:immersionbar:${versions.immersionbarVersion}" // 沉浸式bar
-        api "com.gyf.immersionbar:immersionbar-components:${versions.immersionbarVersion}" // fragment快速实现（可选）
-        api "com.gyf.immersionbar:immersionbar-ktx:${versions.immersionbarVersion}" // kotlin扩展（可选）
+        api "com.geyifeng.immersionbar:immersionbar:${versions.immersionbarVersion}" // 沉浸式bar
+        api "com.geyifeng.immersionbar:immersionbar-components:${versions.immersionbarVersion}" // fragment快速实现（可选）
+        api "com.geyifeng.immersionbar:immersionbar-ktx:${versions.immersionbarVersion}" // kotlin扩展（可选）
         api "com.github.tamsiree.RxTool:RxKit:${versions.rxToolVersion}" //基础工具库(RxTool)
         api "com.fasterxml.jackson.core:jackson-core:${versions.jacksonVersion}" // jackson序列化工具，做kotlin的deepCopy使用
         api "com.fasterxml.jackson.core:jackson-databind:${versions.jacksonVersion}"
