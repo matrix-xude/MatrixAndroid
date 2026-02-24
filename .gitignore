@@ -67,7 +67,7 @@ obj/
 # User-specific configurations
 .idea/
 # 如果想保留团队统一的代码格式，再用感叹号排除：
-# !.idea/codeStyles/
+!.idea/codeStyles/
 
 # Legacy Eclipse project files
 .classpath
@@ -92,9 +92,6 @@ hs_err_pid*
 
 # JIRA plugin
 atlassian-ide-plugin.xml
-
-# Mongo Explorer plugin
-.idea/mongoSettings.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
