@@ -63,7 +63,7 @@ android {
         api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlinStdlibJdkVersion}" // 基础
         api "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlinReflectVersion}" // 反射
         api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 协程
-        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesAndroidVersion}" // 协程Android main
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesAndroidVersion}" //协程Android main
 
         // ktx
         api "androidx.core:core-ktx:${versions.coreKtxVersion}" // Android简便扩展库
@@ -116,7 +116,7 @@ android {
         api "androidx.recyclerview:recyclerview:${versions.recyclerviewVersion}"
         api "androidx.cardview:cardview:${versions.cardviewVersion}"
         api "androidx.viewpager2:viewpager2:${versions.viewpager2}"
-        api "com.google.android:flexbox:${versions.flexboxVersion}" // 弹性控件（功能强大）
+        api "com.google.android.flexbox:flexbox:${versions.flexboxVersion}" // 弹性控件（功能强大）
         api "com.google.android.material:material:${versions.materialVersion}"
 
         // 第三方控件
@@ -146,4 +146,3 @@ android {
     }
 
 }
-

@@ -207,7 +207,7 @@ class NineControlView @JvmOverloads constructor(context: Context, attributeSet: 
         mImagePaint.xfermode = null
     }
 
-    override fun dispatchDraw(canvas: Canvas?) {
+    override fun dispatchDraw(canvas: Canvas) {
         canvas ?: return
         // 这里是为了处理截取后的背景色，让显示成背景的样色，不设置，默认解决出的部分是黑色
         canvas.saveLayer(RectF(0F, 0F, canvas.width.toFloat(), canvas.height.toFloat()), null)

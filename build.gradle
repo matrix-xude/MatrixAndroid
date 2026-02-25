@@ -1,49 +1,36 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-
+apply from: "config.gradle"
 
 buildscript {
-    println("文件——build.gradle——buildscript——执行时机")
-     /**
-      * 此方法内需要用到 kotlin_version,放在 config.gradle 文件中找不到
-      * 此变量可以在 config.gradle 中找到，所以 buildscript 先于 apply from: "config.gradle" 运行
-      * 尚未理解， 需要了解gradle的各个编译机制才能解决
-      * */
+    // 在 buildscript 内部 apply，确保下面可以使用 versions 变量
+    apply from: "config.gradle"
+    
     repositories {
-        println("文件——build.gradle——buildscript——repositories——执行时机")
-
         google()
-        jcenter()
-        
+        mavenCentral()
     }
     dependencies {
-        println("文件——build.gradle——buildscript——dependencies——执行时机")
-
+        // 使用 gradle 8.1.2 和 kotlin 1.9.21
         classpath 'com.android.tools.build:gradle:8.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
-println("文件——build.gradle——外部——执行时机")
-apply from: "config.gradle"
-
-
 // 给所有的项目配置
 allprojects {
-    println("文件——build.gradle——buildscript——allprojects——执行时机")
-
     repositories {
-        println("文件——build.gradle——buildscript——repositories——执行时机")
+        // 带url的需要放置在mavenCentral()之前才行
+//        maven { url 'https://maven.aliyun.com/repository/google' }
+//        maven { url 'https://maven.aliyun.com/repository/public' }
+//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+
+        maven { url 'https://jitpack.io' }
+        maven { url "https://oss.jfrog.org/libs-snapshot" }
+        maven { url "https://s01.oss.sonatype.org/content/groups/public" }
 
         google()
-        jcenter()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
-        maven { url "https://oss.jfrog.org/libs-snapshot" } // rxAndroid引入的
-        maven { url "https://s01.oss.sonatype.org/content/groups/public" } //banner轮播器引入 https://github.com/youth5201314/banner
     }
 }
 
