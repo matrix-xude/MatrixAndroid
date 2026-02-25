@@ -21,11 +21,11 @@ constraintlayout = "2.1.4"
 recyclerview = "1.3.0"
 cardview = "1.0.0"
 navigation = "2.6.0"
-multidex = "1.0.3" # 分包支持，多dex,5.0以下需要
+multidex = "1.0.3"
 
 # Google
 material = "1.8.0"
-flexbox = "3.0.0" # 弹性控件（功能强大）
+flexbox = "3.0.0"
 gson = "2.8.9"
 
 # Network
@@ -49,8 +49,11 @@ rxjava = "3.1.8"
 rxandroid = "3.0.2"
 
 # UI components
-brvah = "3.0.4" # BaseRecyclerViewAdapterHelper
+brvah = "3.0.4"
 viewpager2 = "1.0.0"
+banner = "2.2.2"
+magicIndicator = "1.7.0"
+refreshLayout = "2.0.5"
 
 # Test
 junit = "4.13.2"
@@ -69,13 +72,21 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-livedata-core-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-core-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-reactivestreams-ktx = { group = "androidx.lifecycle", name = "lifecycle-reactivestreams-ktx", version.ref = "lifecycle" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 androidx-multidex = { group = "com.android.support", name = "multidex", version.ref = "multidex" }
+androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-navigation-dynamic-features-fragment = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "navigation" }
 androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
 
 # Google & Material
@@ -97,11 +108,15 @@ glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", versi
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-immersionbar = { group = "com.gyf.immersionbar", name = "immersionbar", version.ref = "immersionbar" }
+immersionbar = { group = "com.geyifeng.immersionbar", name = "immersionbar", version.ref = "immersionbar" }
+immersionbar-components = { group = "com.geyifeng.immersionbar", name = "immersionbar-components", version.ref = "immersionbar" }
+immersionbar-ktx = { group = "com.geyifeng.immersionbar", name = "immersionbar-ktx", version.ref = "immersionbar" }
 logger = { group = "com.orhanobut", name = "logger", version.ref = "logger" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 rxpermissions = { group = "com.github.tbruyelle", name = "rxpermissions", version.ref = "rxpermissions" }
-jackson = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
+rxTool-kit = { group = "com.github.tamsiree.RxTool", name = "RxKit", version.ref = "rxTool" }
+jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson" }
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
 
 # Reactive
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
@@ -109,6 +124,10 @@ rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = 
 
 # Third Party UI
 brvah = { group = "com.github.CymChad", name = "BaseRecyclerViewAdapterHelper", version.ref = "brvah" }
+banner = { group = "io.github.youth5201314", name = "banner", version.ref = "banner" }
+magicIndicator = { group = "com.github.hackware1993", name = "MagicIndicator", version.ref = "magicIndicator" }
+refresh-layout-kernel = { group = "io.github.scwang90", name = "refresh-layout-kernel", version.ref = "refreshLayout" }
+refresh-header-classics = { group = "io.github.scwang90", name = "refresh-header-classics", version.ref = "refreshLayout" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -122,6 +141,11 @@ common-ui = [
     "androidx-core-ktx",
     "androidx-constraintlayout",
     "material"
+]
+lifecycle = [
+    "androidx-lifecycle-runtime-ktx",
+    "androidx-lifecycle-viewmodel-ktx",
+    "androidx-lifecycle-livedata-ktx"
 ]
 navigation = [
     "androidx-navigation-fragment-ktx",

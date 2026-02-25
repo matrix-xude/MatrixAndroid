@@ -6,12 +6,11 @@ apply plugin: 'kotlin-parcelize'
 android {
     namespace 'com.xxd.common'
 
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -52,90 +51,70 @@ android {
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-        //把implementation 用api代替,它是对外部公开的, 所有其他的module就不需要添加该依赖
-
-
-        // Android必须的库
-        api "androidx.appcompat:appcompat:${versions.appcompatVersion}"
-        api 'com.android.support:appcompat-v7:28.0.0'
+        // Android 必须的库
+        api libs.androidx.appcompat
+        // api 'com.android.support:appcompat-v7:28.0.0' // 建议移除旧的 support 库，与 androidx 冲突
 
         // kotlin相关
-        api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlinStdlibJdkVersion}" // 基础
-        api "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlinReflectVersion}" // 反射
-        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesCoreVersion}" // 协程
-        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinxCoroutinesAndroidVersion}" //协程Android main
+        api libs.kotlin.stdlib
+        api libs.kotlin.reflect
+        api libs.kotlin.coroutines.core
+        api libs.kotlin.coroutines.android
 
-        // ktx
-        api "androidx.core:core-ktx:${versions.coreKtxVersion}" // Android简便扩展库
-        api "androidx.fragment:fragment-ktx:${versions.fragmentKtxVersion}"
-        api "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycleKtxVersion}"
-        api "androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.lifecycleKtxVersion}"
-        api "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleKtxVersion}"
-        api "androidx.lifecycle:lifecycle-reactivestreams-ktx:${versions.lifecycleKtxVersion}"
-        api "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycleKtxVersion}"
-        api "androidx.lifecycle:lifecycle-runtime-compose:${versions.lifecycleKtxVersion}"
+        // ktx & lifecycle
+        api libs.androidx.core.ktx
+        api libs.androidx.fragment.ktx
+        api libs.bundles.lifecycle
+        api libs.androidx.lifecycle.runtime.compose
 
         // 常用工具
-        api "com.android.support:multidex:${versions.multidexVersion}" // 分包
-        api "com.orhanobut:logger:${versions.loggerVersion}" // 日志
-        api "com.github.tbruyelle:rxpermissions:${versions.rxpermissionsVersion}" // 权限
-        api "com.alibaba:arouter-api:${versions.arouterApiVersion}" // 阿里路由
-        api "com.geyifeng.immersionbar:immersionbar:${versions.immersionbarVersion}" // 沉浸式bar
-        api "com.geyifeng.immersionbar:immersionbar-components:${versions.immersionbarVersion}" // fragment快速实现（可选）
-        api "com.geyifeng.immersionbar:immersionbar-ktx:${versions.immersionbarVersion}" // kotlin扩展（可选）
-        api "com.github.tamsiree.RxTool:RxKit:${versions.rxToolVersion}" //基础工具库(RxTool)
-        api "com.fasterxml.jackson.core:jackson-core:${versions.jacksonVersion}" // jackson序列化工具，做kotlin的deepCopy使用
-        api "com.fasterxml.jackson.core:jackson-databind:${versions.jacksonVersion}"
-        api "com.google.code.gson:gson:${versions.gsonVersion}" // gson
-        api("com.squareup.moshi:moshi:${versions.moshiVersion}") // moshi
-        api "io.reactivex.rxjava3:rxjava:${versions.rxjavaVersion}" // rxJava
-        api "io.reactivex.rxjava3:rxandroid:${versions.rxandroidVersion}" // rxAndroid
-        api "com.squareup.okio:okio:${versions.okioVersion}" // okio
-        api "com.squareup.okhttp3:okhttp:${versions.okhttpVersion}" // okHttp
-        api "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}" // retrofit
-        api "com.squareup.retrofit2:converter-gson:${versions.converterGsonVersion}" // retrofit转json
-        api "com.github.bumptech.glide:glide:${versions.glideVersion}" // glide图片加载，还需要配置annotationProcessor到使用的类中
-        api "androidx.room:room-runtime:${versions.roomVersion}" // room
+        api libs.androidx.multidex
+        api libs.logger
+        api libs.rxpermissions
+        api libs.arouter.api
+        api libs.immersionbar
+        api libs.immersionbar.components
+        api libs.immersionbar.ktx
+        api libs.rxTool.kit
+        api libs.jackson.core
+        api libs.jackson.databind
+        api libs.gson
+        api libs.moshi
+        api libs.rxjava
+        api libs.rxandroid
+        api libs.okio
+        api libs.okhttp
+        api libs.retrofit
+        api libs.retrofit.converter.gson
+        api libs.glide
+        api libs.room.runtime
 
         // navigation
-        def nav_version = "2.6.0"
-        // Java language implementation
-        api "androidx.navigation:navigation-fragment:${versions.navigationVersion}"
-        api "androidx.navigation:navigation-ui:${versions.navigationVersion}"
-        api "androidx.navigation:navigation-compose:${versions.navigationVersion}"
-        // Kotlin
-        api "androidx.navigation:navigation-fragment-ktx:${versions.navigationVersion}"
-        api "androidx.navigation:navigation-ui-ktx:${versions.navigationVersion}"
-        // Feature module Support
-        api "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigationVersion}"
-        // Testing Navigation
-//        androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+        api libs.androidx.navigation.fragment
+        api libs.androidx.navigation.ui
+        api libs.androidx.navigation.compose
+        api libs.androidx.navigation.fragment.ktx
+        api libs.androidx.navigation.ui.ktx
+        api libs.androidx.navigation.dynamic.features.fragment
 
         // 系统控件
-        api "androidx.constraintlayout:constraintlayout:${versions.constraintlayoutVersion}"
-        api "androidx.recyclerview:recyclerview:${versions.recyclerviewVersion}"
-        api "androidx.cardview:cardview:${versions.cardviewVersion}"
-        api "androidx.viewpager2:viewpager2:${versions.viewpager2}"
-        api "com.google.android.flexbox:flexbox:${versions.flexboxVersion}" // 弹性控件（功能强大）
-        api "com.google.android.material:material:${versions.materialVersion}"
+        api libs.androidx.constraintlayout
+        api libs.androidx.recyclerview
+        api libs.androidx.cardview
+        api libs.androidx.viewpager2
+        api libs.flexbox
+        api libs.material
 
         // 第三方控件
-        api "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.BaseRecyclerViewAdapterHelperVersion}" // adapter
-        api 'io.github.youth5201314:banner:2.2.2' // 轮播图
-        api 'com.github.hackware1993:MagicIndicator:1.7.0' // 指示器
-        api 'io.github.scwang90:refresh-layout-kernel:2.0.5'      // 下拉刷新核心必须依赖
-        api 'io.github.scwang90:refresh-header-classics:2.0.5'  // 下拉刷新的经典头
+        api libs.brvah
+        api libs.banner
+        api libs.magicIndicator
+        api libs.refresh.layout.kernel
+        api libs.refresh.header.classics
 
-        /*// annotationProcessor的测试注解
-        api project(":apt-annotation")
-        //annotationProcessor在公共类中引用无效，只有初始化方法会执行，所以应该放在需要使用processor的module中
-        kapt project(":apt-processor")*/
-
-//        api 'androidx.test:monitor:1.6.1'
-
-        testImplementation "junit:junit:${versions.junitVersion}"
-        androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
-        androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
+        testImplementation libs.junit
+        androidTestImplementation libs.androidx.test.ext.junit
+        androidTestImplementation libs.androidx.test.espresso.core
     }
     sourceSets {
         main {
@@ -144,5 +123,4 @@ android {
             }
         }
     }
-
 }
