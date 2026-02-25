@@ -1,19 +1,17 @@
-plugins {
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-}
-if (Boolean.valueOf(rootProject.ext.isModuleService)) {
+if (isModuleService.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     namespace 'com.xxd.service'
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        if (Boolean.valueOf(rootProject.ext.isModuleService)) {
+        if (isModuleService.toBoolean()) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.service"
         }
@@ -70,7 +68,7 @@ android {
             aidl {
                 srcDirs 'src/main/aidl', 'src/main/xxx/aidl'
             }
-            if (Boolean.valueOf(rootProject.ext.isModuleService)) {//apk
+            if (isModuleService.toBoolean()) {//apk
                 // module 单独作为application时，使用此manifest
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'
             } else {

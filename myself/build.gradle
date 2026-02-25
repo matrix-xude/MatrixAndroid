@@ -1,4 +1,4 @@
-if (Boolean.valueOf(rootProject.ext.isModuleMyself)) {
+if (isModuleMyself.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -11,7 +11,7 @@ android {
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        if (Boolean.valueOf(rootProject.ext.isModuleMyself)) {
+        if (isModuleMyself.toBoolean()) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.myself"
         }
@@ -56,7 +56,7 @@ android {
 
     sourceSets {
         main {
-            if (Boolean.valueOf(rootProject.ext.isModuleMyself)) {//apk
+            if (isModuleMyself.toBoolean()) {//apk
                 // module 单独作为application时，使用此manifest
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'
             } else {

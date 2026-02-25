@@ -9,10 +9,6 @@ plugins {
 
 apply from: "config.gradle"
 
-// 给所有的项目配置
-allprojects {
-
-}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
