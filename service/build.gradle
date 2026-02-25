@@ -10,7 +10,7 @@ if (Boolean.valueOf(rootProject.ext.isModuleService)) {
 
 android {
     namespace 'com.xxd.service'
-    compileSdk 34
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
         if (Boolean.valueOf(rootProject.ext.isModuleService)) {
@@ -18,10 +18,10 @@ android {
             applicationId "com.xxd.service"
         }
 
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionCode libs.versions.versionCode.get().toInteger()
+        versionName libs.versions.versionName.get()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -57,7 +57,7 @@ android {
         viewBinding true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.5.7'
+        kotlinCompilerExtensionVersion libs.versions.kotlinCompilerExtension.get()
     }
     packagingOptions {
         resources {
@@ -81,37 +81,24 @@ android {
 }
 
 dependencies {
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
 
-    kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
-
-    // 测试模块不能放在common中，引用不到
-    testImplementation "junit:junit:${versions.junitVersion}"
-    androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
-
-    // 所有的module公共依赖
-    implementation(project(":common"))
+    kapt libs.arouter.compiler
 
     // 统一配置Bom,版本号管理
-    def composeBom = platform("androidx.compose:compose-bom:2024.04.00")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
+    implementation platform(libs.androidx.compose.bom)
+    androidTestImplementation platform(libs.androidx.compose.bom)
 
-    implementation("androidx.activity:activity-compose:1.8.2")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    implementation libs.bundles.compose
+    implementation libs.androidx.constraintlayout.compose
 
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    // constraintLayout-compose
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
-
+    // 测试模块不能放在common中，引用不到
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.core
+    androidTestImplementation libs.androidx.compose.ui.test.junit4
+    debugImplementation libs.androidx.compose.ui.tooling
+    debugImplementation libs.androidx.compose.ui.test.manifest
 }

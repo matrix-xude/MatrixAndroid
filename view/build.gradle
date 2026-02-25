@@ -7,23 +7,25 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    namespace "com.xxd.view"
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
         if (Boolean.valueOf(rootProject.ext.isModuleView)) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.view"
         }
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionCode libs.versions.versionCode.get().toInteger()
+        versionName libs.versions.versionName.get()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         kapt {
             arguments {
+                // 阿里路由的包参数
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
@@ -66,8 +68,6 @@ android {
             }
         }
     }
-    namespace 'com.xxd.view'
-
 }
 
 dependencies {
@@ -75,12 +75,10 @@ dependencies {
     // 所有的module公共依赖
     implementation project(":common")
 
-    kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
+    kapt libs.arouter.compiler
+    implementation libs.photoview
 
-    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
-
-    testImplementation "junit:junit:${versions.junitVersion}"
-    androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
-
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.core
 }

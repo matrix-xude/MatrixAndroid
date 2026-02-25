@@ -7,18 +7,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    namespace 'com.xxd.thread'
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
         if (Boolean.valueOf(rootProject.ext.isModuleThread)) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.thread"
         }
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionCode libs.versions.versionCode.get().toInteger()
+        versionName libs.versions.versionName.get()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -29,7 +29,6 @@ android {
         }
 
         resourcePrefix "${project.name}_"
-
     }
 
     buildTypes {
@@ -48,15 +47,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        // 解决ktx的编译问题，默认使用的是1.6
         jvmTarget = "1.8"
     }
 
-    /*
-    * java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，
-    * 可以指定哪些源文件（或文件夹下的源文件）要被编译，
-    * 哪些源文件要被排除。
-    * */
     sourceSets {
         main {
             if (Boolean.valueOf(rootProject.ext.isModuleThread)) {//apk
@@ -64,15 +57,9 @@ android {
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
-                /*java {
-                    //library模式下，排除java/debug文件夹下的所有文件
-                    exclude '*module'
-                }*/
             }
         }
     }
-    namespace 'com.xxd.thread'
-
 }
 
 dependencies {
@@ -80,10 +67,10 @@ dependencies {
     // 所有的module公共依赖
     implementation project(":common")
 
-    kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
+    kapt libs.arouter.compiler
 
     // 测试模块不能放在common中，引用不到
-    testImplementation "junit:junit:${versions.junitVersion}"
-    androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.core
 }

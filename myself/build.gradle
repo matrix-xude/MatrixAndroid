@@ -1,28 +1,25 @@
-plugins {
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-}
 if (Boolean.valueOf(rootProject.ext.isModuleMyself)) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    namespace 'com.xxd.myself'
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-
         if (Boolean.valueOf(rootProject.ext.isModuleMyself)) {
             // 当作为application运行时需要application id
             applicationId "com.xxd.myself"
         }
 
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionCode libs.versions.versionCode.get().toInteger()
+        versionName libs.versions.versionName.get()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -67,28 +64,22 @@ android {
             }
         }
     }
-    namespace 'com.xxd.myself'
 }
 
 dependencies {
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 所有的module公共依赖
     implementation project(":common")
-    testImplementation 'junit:junit:4.12'
 
-    kapt "com.alibaba:arouter-compiler:${versions.arouterCompilerVersion}"
-    kapt "androidx.room:room-compiler:${versions.roomVersion}"
-//    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.14.0"
-
-    // 测试模块不能放在common中，引用不到
-    testImplementation "junit:junit:${versions.junitVersion}"
-    androidTestImplementation "androidx.test.ext:junit:${versions.junitAndroidVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCoreVersion}"
+    kapt libs.arouter.compiler
+    kapt libs.room.compiler
 
     //popup
-    implementation 'com.github.zyyoona7:EasyPopup:1.1.2'
+    implementation libs.easypopup
 
-    // navigation 测试
-    androidTestImplementation "androidx.navigation:navigation-testing:${versions.navigationVersion}"
+    // 测试模块不能放在common中，引用不到
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.core
+    androidTestImplementation libs.androidx.navigation.testing
 }
