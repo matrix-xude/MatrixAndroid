@@ -10,3 +10,16 @@ include ':kt'
 include ':coroutine'
 include ':service'
 include ':compose'
+
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // ... 其他 maven 地址
+        maven { url 'https://jitpack.io' }
+        maven { url "https://oss.jfrog.org/libs-snapshot" }
+        maven { url "https://s01.oss.sonatype.org/content/groups/public" }
+    }
+}

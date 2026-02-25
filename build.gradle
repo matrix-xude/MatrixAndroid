@@ -19,19 +19,7 @@ buildscript {
 
 // 给所有的项目配置
 allprojects {
-    repositories {
-        // 带url的需要放置在mavenCentral()之前才行
-//        maven { url 'https://maven.aliyun.com/repository/google' }
-//        maven { url 'https://maven.aliyun.com/repository/public' }
-//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
 
-        maven { url 'https://jitpack.io' }
-        maven { url "https://oss.jfrog.org/libs-snapshot" }
-        maven { url "https://s01.oss.sonatype.org/content/groups/public" }
-
-        google()
-        mavenCentral()
-    }
 }
 
 task clean(type: Delete) {
