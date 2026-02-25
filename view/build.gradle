@@ -1,10 +1,13 @@
-if (isModuleView.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
+plugins {
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+
+if (isModuleView.toBoolean()) {
+    apply plugin: libs.plugins.android.application.get().pluginId
+} else {
+    apply plugin: libs.plugins.android.library.get().pluginId
+}
 
 android {
     namespace "com.xxd.view"
@@ -53,6 +56,11 @@ android {
         viewBinding = true
     }
 
+    /*
+    * java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，
+    * 可以指定哪些源文件（或文件夹下的源文件）要被编译，
+    * 哪些源文件要被排除。
+    * */
     sourceSets {
         main {
             if (isModuleView.toBoolean()) {//apk
