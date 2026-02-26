@@ -17,16 +17,16 @@ class AndroidComposePlugin : Plugin<Project> {
         with(target) {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
-            pluginManager.withPlugin("com.android.application") {
+            // 必须在withPlugin中执行， 它是延迟执行的，但它非常安全，如果外部没有加载该插件，它只是不执行，而不会报错。
+            pluginManager.withPlugin(libs.findPlugin("android-application").get().get().pluginId) {
                 configureCompose(libs)
             }
-            pluginManager.withPlugin("com.android.library") {
+            pluginManager.withPlugin(libs.findPlugin("android-library").get().get().pluginId) {
                 configureCompose(libs)
             }
         }
     }
 
-    @Suppress("NewApi")
     private fun Project.configureCompose(libs: VersionCatalog) {
         extensions.configure(BaseExtension::class.java) {
             buildFeatures.compose = true

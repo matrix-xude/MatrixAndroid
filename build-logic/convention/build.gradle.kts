@@ -15,9 +15,19 @@ gradlePlugin {
             id = "matrix.android.compose"
             implementationClass = "com.xxd.matrix.plugin.AndroidComposePlugin"
         }
+        create("androidModule") {
+            id = "matrix.android.module"
+            implementationClass = "com.xxd.matrix.plugin.AndroidModulePlugin"
+        }
+        create("androidARouter") {
+            id = "matrix.android.arouter"
+            implementationClass = "com.xxd.matrix.plugin.AndroidARouterPlugin"
+        }
     }
 }
 
+// 关键：将 toml 中定义的插件作为 build-logic 的依赖引入
+// 这样在你的 Kotlin 插件代码里 apply 时，classpath 才有对应的版本
 dependencies {
     implementation(libs.android.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)

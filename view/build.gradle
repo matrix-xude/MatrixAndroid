@@ -1,66 +1,12 @@
 plugins {
+    id 'matrix.android.module'
     id 'matrix.android.common'
-    alias(libs.plugins.kotlin.kapt)
-}
-
-if (isModuleView.toBoolean()) {
-    apply plugin: libs.plugins.android.application.get().pluginId
-} else {
-    apply plugin: libs.plugins.android.library.get().pluginId
+    id 'matrix.android.arouter'
 }
 
 android {
-    namespace "com.xxd.view"
-
-    defaultConfig {
-        if (isModuleView.toBoolean()) {
-            // 当作为application运行时需要application id
-            applicationId "com.xxd.view"
-        }
-
-        kapt {
-            arguments {
-                // 阿里路由的包参数
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
-
-        // 约束资源名字前缀已经在 matrix.android.common 中通过 project.name 自动配置
-    }
-
-    kotlinOptions {
-        // 解决ktx的编译问题，默认使用的是1.6
-        jvmTarget = "1.8"
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
-
-    /*
-    * java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，
-    * 可以指定哪些源文件（或文件夹下的源文件）要被编译，
-    * 哪些源文件要被排除。
-    * */
-    sourceSets {
-        main {
-            if (isModuleView.toBoolean()) {//apk
-                // module 单独作为application时，使用此manifest
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
-        }
-    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    kapt libs.arouter.compiler
     implementation libs.photoview
-
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit
-    androidTestImplementation libs.androidx.test.espresso.core
 }
