@@ -6,11 +6,22 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+/**
+ * 外部配置扩展
+ */
+interface AndroidCommonExtension {
+    /**
+     * 是否加载 :common 模块，默认为 true
+     */
+    val includeCommon: Property<Boolean>
+}
 
 /**
  * 标准化 Android 通用配置插件
@@ -21,19 +32,23 @@ class AndroidCommonPlugin : Plugin<Project> {
         with(target) {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
+            // 创建扩展配置，默认值为 true
+            val extension = extensions.create<AndroidCommonExtension>("androidCommon")
+            extension.includeCommon.convention(true)
+
             pluginManager.apply(libs.findPlugin("kotlin-android").get().get().pluginId)
 
             // 必须在withPlugin中执行， 它是延迟执行的，但它非常安全，如果外部没有加载该插件，它只是不执行，而不会报错。
             pluginManager.withPlugin(libs.findPlugin("android-application").get().get().pluginId) {
-                configureAndroid(libs)
+                configureAndroid(libs, extension)
             }
             pluginManager.withPlugin(libs.findPlugin("android-library").get().get().pluginId) {
-                configureAndroid(libs)
+                configureAndroid(libs, extension)
             }
         }
     }
 
-    private fun Project.configureAndroid(libs: VersionCatalog) {
+    private fun Project.configureAndroid(libs: VersionCatalog, extension: AndroidCommonExtension) {
         extensions.configure(BaseExtension::class.java) {
             compileSdkVersion(libs.findVersion("compileSdk").get().requiredVersion.toInt())
 
@@ -82,13 +97,18 @@ class AndroidCommonPlugin : Plugin<Project> {
             }
         }
 
-        dependencies {
-            add("implementation", project(":common"))
-            add("implementation", fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+        // 使用 afterEvaluate 确保在配置完成后读取扩展参数，避免因配置顺序导致的读取默认值问题
+        afterEvaluate {
+            dependencies {
+                if (extension.includeCommon.get()) {
+                    add("implementation", project(":common"))
+                }
+                add("implementation", fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-            add("testImplementation", libs.findLibrary("junit").get())
-            add("androidTestImplementation", libs.findLibrary("androidx-test-ext-junit").get())
-            add("androidTestImplementation", libs.findLibrary("androidx-test-espresso-core").get())
+                add("testImplementation", libs.findLibrary("junit").get())
+                add("androidTestImplementation", libs.findLibrary("androidx-test-ext-junit").get())
+                add("androidTestImplementation", libs.findLibrary("androidx-test-espresso-core").get())
+            }
         }
     }
 }

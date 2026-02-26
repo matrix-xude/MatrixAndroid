@@ -57,7 +57,7 @@ class MainActivity : SimpleListActivity<String>() {
     }
 
     override fun getTitleName(): CharSequence {
-        return "View集合" + BuildConfig.APPLICATION_ID
+        return "View集合"
     }
 
     override fun getDataList(): Collection<String> {
