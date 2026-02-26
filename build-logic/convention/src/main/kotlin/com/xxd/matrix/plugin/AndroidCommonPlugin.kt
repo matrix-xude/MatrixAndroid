@@ -11,6 +11,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 /**
  * 标准化 Android 通用配置插件
  */
@@ -37,6 +38,14 @@ class AndroidCommonPlugin : Plugin<Project> {
             compileSdkVersion(libs.findVersion("compileSdk").get().requiredVersion.toInt())
 
             defaultConfig {
+                // 【自动化 Namespace】基于目录结构生成唯一包名，如 :feature:login -> com.xxd.login
+                val modulePath = project.path.replace(":", ".").removePrefix(".")
+                val basePackage = "com.xxd"
+                val generatedNamespace =
+                    if (modulePath.isNotEmpty()) "$basePackage.$modulePath" else basePackage
+
+                namespace = generatedNamespace
+
                 minSdk = libs.findVersion("minSdk").get().requiredVersion.toInt()
                 targetSdk = libs.findVersion("targetSdk").get().requiredVersion.toInt()
                 versionCode = libs.findVersion("versionCode").get().requiredVersion.toInt()
@@ -53,7 +62,6 @@ class AndroidCommonPlugin : Plugin<Project> {
                 targetCompatibility = JavaVersion.VERSION_1_8
             }
 
-            // 开启viewBinding
             buildFeatures.viewBinding = true
         }
 

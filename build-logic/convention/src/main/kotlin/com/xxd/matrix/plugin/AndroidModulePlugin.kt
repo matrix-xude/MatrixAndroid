@@ -23,15 +23,10 @@ class AndroidModulePlugin : Plugin<Project> {
             }
 
             extensions.configure(BaseExtension::class.java) {
-                // 提取 namespace
-                namespace = "com.xxd.${project.name}"
-
                 if (isModularize) {
-                    defaultConfig {
-                        // 当作为 application 运行时需要 application id
-                        if (applicationId == null) {
+                        defaultConfig {
+                            // 当作为 application 运行时需要 application id
                             applicationId = "com.xxd.${project.name}"
-                        }
                     }
                 }
 
