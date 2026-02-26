@@ -23,6 +23,10 @@ gradlePlugin {
             id = "matrix.android.arouter"
             implementationClass = "com.xxd.matrix.plugin.AndroidARouterPlugin"
         }
+        create("javaLibrary") {
+            id = "matrix.java.library"
+            implementationClass = "com.xxd.matrix.plugin.JavaLibraryPlugin"
+        }
     }
 }
 

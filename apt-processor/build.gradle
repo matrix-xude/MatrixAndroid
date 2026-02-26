@@ -1,12 +1,8 @@
-apply plugin: 'java-library'
-apply plugin: 'kotlin'
+plugins {
+    id 'matrix.java.library'
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation libs.kotlin.stdlib
-
     implementation project(":apt-annotation")
 }
-
-sourceCompatibility = "17"
-targetCompatibility = "17"

@@ -1,82 +1,15 @@
 plugins {
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-}
-
-if (isModuleCoroutine.toBoolean()) {
-    apply plugin: libs.plugins.android.application.get().pluginId
-} else {
-    apply plugin: libs.plugins.android.library.get().pluginId
+    id 'matrix.android.common'
+    id 'matrix.android.module'
+    id 'matrix.android.arouter'
 }
 
 android {
-    namespace 'com.xxd.coroutine'
-    compileSdk libs.versions.compileSdk.get().toInteger()
-
     defaultConfig {
-        if (isModuleCoroutine.toBoolean()) {
-            // 当作为application运行时需要application id
-            applicationId "com.xxd.coroutine"
-        }
-
-        minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
-        versionCode libs.versions.versionCode.get().toInteger()
-        versionName libs.versions.versionName.get()
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
-
-        // 约束资源名字前缀
-        resourcePrefix "${project.name}_"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    buildFeatures {
-        viewBinding true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    sourceSets {
-        main {
-            if (isModuleCoroutine.toBoolean()) {//apk
-                // module 单独作为application时，使用此manifest
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
-        }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // 所有的module公共依赖
-    implementation project(":common")
-
-    kapt libs.arouter.compiler
-
-    // 测试模块不能放在common中，引用不到
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit
-    androidTestImplementation libs.androidx.test.espresso.core
+    // 公共配置和依赖已由插件统一管理
 }

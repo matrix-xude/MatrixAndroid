@@ -1,79 +1,16 @@
 plugins {
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-}
-
-if (isModuleThread.toBoolean()) {
-    apply plugin: libs.plugins.android.application.get().pluginId
-} else {
-    apply plugin: libs.plugins.android.library.get().pluginId
+    id 'matrix.android.common'
+    id 'matrix.android.module'
+    id 'matrix.android.arouter'
 }
 
 android {
-    namespace 'com.xxd.thread'
-    compileSdk libs.versions.compileSdk.get().toInteger()
-
-    defaultConfig {
-        if (isModuleThread.toBoolean()) {
-            // 当作为application运行时需要application id
-            applicationId "com.xxd.thread"
-        }
-        minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
-        versionCode libs.versions.versionCode.get().toInteger()
-        versionName libs.versions.versionName.get()
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
-
-        resourcePrefix "${project.name}_"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    buildFeatures {
-        viewBinding true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    sourceSets {
-        main {
-            if (isModuleThread.toBoolean()) {//apk
-                // module 单独作为application时，使用此manifest
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
-        }
-    }
+    // 绝大部分配置已在公共插件中处理：
+    // 1. matrix.android.common: 基础SDK版本、namespace、ViewBinding、Java版本、buildTypes、测试配置等
+    // 2. matrix.android.module: 根据 isModularize 自动切换 application/library 以及 manifest 路径
+    // 3. matrix.android.arouter: arouter 的 kapt 配置
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // 所有的module公共依赖
-    implementation project(":common")
-
-    kapt libs.arouter.compiler
-
-    // 测试模块不能放在common中，引用不到
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit
-    androidTestImplementation libs.androidx.test.espresso.core
+    // 公共依赖（:common, arouter, junit等）已在插件中统一引入
 }
