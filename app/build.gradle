@@ -64,10 +64,8 @@ dependencies {
     androidTestImplementation libs.androidx.test.espresso.core
 
     // 根据配置设置依赖
-    if (!isModuleThread.toBoolean()) {
+    if (!isModularize.toBoolean()) {
         implementation project(":thread")
-    }
-    if (!isModuleView.toBoolean()) {
         implementation project(":view")
     }
 }
