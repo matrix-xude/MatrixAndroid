@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.kotlin.android)
+    id 'matrix.android.common'
     alias(libs.plugins.kotlin.kapt)
 }
 
@@ -11,7 +11,6 @@ if (isModuleView.toBoolean()) {
 
 android {
     namespace "com.xxd.view"
-    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
         if (isModuleView.toBoolean()) {
@@ -19,12 +18,8 @@ android {
             applicationId "com.xxd.view"
         }
 
-        minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
         versionCode libs.versions.versionCode.get().toInteger()
         versionName libs.versions.versionName.get()
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         kapt {
             arguments {
@@ -33,8 +28,7 @@ android {
             }
         }
 
-        // 约束资源名字前缀
-        resourcePrefix "${project.name}_"
+        // 约束资源名字前缀已经在 matrix.android.common 中通过 project.name 自动配置
     }
 
     buildTypes {
@@ -43,10 +37,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
     kotlinOptions {
         // 解决ktx的编译问题，默认使用的是1.6
         jvmTarget = "1.8"
@@ -75,8 +66,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // 所有的module公共依赖
-    implementation project(":common")
+    // 所有的module公共依赖已在 matrix.android.common 中统一包含
 
     kapt libs.arouter.compiler
     implementation libs.photoview

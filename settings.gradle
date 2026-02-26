@@ -7,6 +7,8 @@ pluginManagement {
     }
 }
 
+includeBuild("build-logic")
+
 dependencyResolutionManagement {
     // 这行代码表示：如果子模块里自己写了 repositories {}，构建直接报错
     // 强制所有模块必须统一使用这里的仓库配置
@@ -34,7 +36,3 @@ include ':kt'
 include ':coroutine'
 include ':service'
 include ':compose'
-
-
-
-
