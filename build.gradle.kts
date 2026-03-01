@@ -9,11 +9,21 @@ plugins {
 }
 
 tasks.register<Delete>("clean") {
-    // 删除根目录的 build
+    group = "build" // 显式指定分组，方便在面板中查找
     delete(rootProject.layout.buildDirectory)
+    // 使用 map 转换确保在配置阶段正确获取路径
+    delete(subprojects.map { it.layout.buildDirectory })
+}
 
-    // 遍历所有子项目并删除它们的 build
-    subprojects {
-        delete(layout.buildDirectory)
+// 1. 注册一个名为 "hello" 的基础任务
+tasks.register("hello") {
+    // 2. 分组（决定它出现在 Gradle 面板的哪个文件夹下）
+    group = "custom"
+    // 3. 描述（鼠标悬停时显示的说明）
+    description = "这是一个演示任务"
+
+    // 4. 执行逻辑（必须写在 doLast 闭包中，否则同步时就会运行）
+    doLast {
+        println("${description} Hello from Kotlin DSL!")
     }
 }
