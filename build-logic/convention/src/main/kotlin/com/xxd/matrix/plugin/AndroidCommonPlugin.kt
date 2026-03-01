@@ -91,12 +91,12 @@ class AndroidCommonPlugin : Plugin<Project> {
             buildFeatures.viewBinding = true
         }
 
-        /**
-         * 这段代码的作用是 全局配置 Kotlin 编译器的 JVM 目标版本。简单来说，它告诉 Kotlin 编译器：“请把我的 Kotlin 代码编译成兼容 Java 17 虚拟机的字节码。”
-         * 在 Gradle 的较新版本中（尤其是 Kotlin 1.9.x 及以后），compilerOptions 是配置编译器参数的推荐方式，它取代了旧的 kotlinOptions。
-         */
         val jvmTargetStr = libs.findVersion("jvmTarget").get().requiredVersion
         extensions.configure(KotlinAndroidProjectExtension::class.java) {
+            /**
+             * 这段代码的作用是 全局配置 Kotlin 编译器的 JVM 目标版本。简单来说，它告诉 Kotlin 编译器：“请把我的 Kotlin 代码编译成兼容 Java 17 虚拟机的字节码。”
+             * 在 Gradle 的较新版本中（尤其是 Kotlin 1.9.x 及以后），compilerOptions 是配置编译器参数的推荐方式，它取代了旧的 kotlinOptions。
+             */
             compilerOptions {
                 jvmTarget.set(JvmTarget.fromTarget(jvmTargetStr))
             }

@@ -2,6 +2,13 @@ plugins {
     id("matrix.android.module")
     id("matrix.android.common")
     id("matrix.android.arouter")
+    id("com.xxd.gradle.plugin") version "1.0.0"
+}
+
+myConfig{
+    inputPath.set("config.json")
+    // 这样可以返回到上级目录
+//    inputPath.set("../config.json")
 }
 
 android {
