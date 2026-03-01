@@ -7,6 +7,8 @@ buildTools = "33.0.1"
 versionCode = "1"
 versionName = "1.0"
 applicationId = "com.xxd.matrixandroid"
+javaVersion = "17"
+jvmTarget = "17"
 
 # AGP & Kotlin
 androidGradlePlugin = "8.1.2"
@@ -205,3 +207,4 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+java-library = { id = "java-library" }
