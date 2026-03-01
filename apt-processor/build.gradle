@@ -1,8 +1,0 @@
-plugins {
-    id 'matrix.java.library'
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":apt-annotation")
-}

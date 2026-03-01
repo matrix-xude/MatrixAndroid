@@ -44,7 +44,7 @@ class EncodeDeep {
 
     /**
      * 测试没有无餐构造函数是否能被反序列化
-     * 结论：反序列化不需要无参构造函数，可以反序列化成功
+     * 结论：反序列化不需要无参构造函数(没有父类 or 父类也实现了序列化)，可以反序列化成功
      * tip：java中有4种创建类的方法 1.new 2.反射 3.clone 4.ObjectInputStream的readObject（）方法
      */
     class DeepConstructor private constructor(var a : Int, var name : String, var b : Int) : Serializable{

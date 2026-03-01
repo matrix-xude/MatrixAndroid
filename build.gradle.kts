@@ -8,7 +8,12 @@ plugins {
     alias(libs.plugins.kotlin.kapt) apply false
 }
 
+tasks.register<Delete>("clean") {
+    // 删除根目录的 build
+    delete(rootProject.layout.buildDirectory)
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    // 遍历所有子项目并删除它们的 build
+    subprojects {
+        delete(layout.buildDirectory)
+    }
 }

@@ -1,7 +1,7 @@
 plugins {
-    id 'matrix.android.common'
-    id 'matrix.android.module'
-    id 'matrix.android.arouter'
+    id("matrix.android.common")
+    id("matrix.android.module")
+    id("matrix.android.arouter")
 }
 
 android {

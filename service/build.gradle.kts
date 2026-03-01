@@ -1,26 +1,26 @@
 plugins {
-    id 'matrix.android.common'
-    id 'matrix.android.module'
-    id 'matrix.android.arouter'
-    id 'matrix.android.compose'
+    id("matrix.android.common")
+    id("matrix.android.module")
+    id("matrix.android.arouter")
+    id("matrix.android.compose")
 }
 
 android {
     defaultConfig {
         vectorDrawables {
-            useSupportLibrary true
+            useSupportLibrary = true
         }
     }
 
     buildFeatures {
         // 插件中已包含 viewBinding 和 compose，此处仅保留 aidl
-        aidl true
+        aidl = true
     }
 
     sourceSets {
-        main {
+        getByName("main") {
             aidl {
-                srcDirs 'src/main/aidl', 'src/main/xxx/aidl'
+                srcDirs("src/main/aidl", "src/main/xxx/aidl")
             }
             // manifest 的切换逻辑已在 AndroidModulePlugin 中处理
         }
