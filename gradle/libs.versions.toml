@@ -1,9 +1,9 @@
 [versions]
 # Android Config
-minSdk = "21"
-targetSdk = "34"
-compileSdk = "34"
-buildTools = "33.0.1"
+minSdk = "23"
+targetSdk = "35"
+compileSdk = "36"
+buildTools = "35.0.0"
 versionCode = "1"
 versionName = "1.0"
 applicationId = "com.xxd.matrixandroid"
@@ -11,94 +11,94 @@ javaVersion = "17"
 jvmTarget = "17"
 
 # AGP & Kotlin
-androidGradlePlugin = "8.1.2"
-kotlin = "1.9.21"
-kotlinReflect = "1.9.10"
-coroutines = "1.8.0-RC2"
-coroutinesAndroid = "1.6.4"
+androidGradlePlugin = "8.9.1"
+kotlin = "2.2.0"
+coroutines = "1.10.2"
 
 # AndroidX
-appcompat = "1.6.1"
-coreKtx = "1.9.0"
-fragmentKtx = "1.7.0"
-lifecycle = "2.6.1"
-constraintlayout = "2.1.4"
-recyclerview = "1.3.0"
+appcompat = "1.7.1"
+coreKtx = "1.17.0"
+fragmentKtx = "1.8.9"
+multidex = "2.0.1"
+lifecycle = "2.10.0"
+navigation = "2.9.7"
+constraintlayout = "2.2.1"
+recyclerview = "1.4.0"
 cardview = "1.0.0"
-navigation = "2.6.0"
-multidex = "1.0.3"
-activityCompose = "1.8.2"
-constraintlayoutCompose = "1.0.1"
+viewpager2 = "1.1.0"
 
 # Compose
-composeBom = "2024.04.00"
-kotlinCompilerExtension = "1.5.7"
+composeBom = "2026.02.01"
+activityCompose = "1.12.4"
+constraintlayoutCompose = "1.1.1"
 
 # Google
-material = "1.8.0"
+material = "1.13.0"
 flexbox = "3.0.0"
-gson = "2.8.9"
+gson = "2.13.2"
 
 # Network
-okhttp = "4.8.1"
-okio = "2.8.0"
-retrofit = "2.9.0"
+okhttp = "5.3.2"
+okio = "3.16.4"
+retrofit = "3.0.0"
+
+# Reactive
+rxjava = "3.1.12"
+rxandroid = "3.0.2"
 
 # Tools
 arouter = "1.5.2"
-glide = "4.11.0"
-room = "2.6.1"
+glide = "5.0.5"
+room = "2.8.4"
 immersionbar = "3.2.2"
 logger = "2.2.0"
-moshi = "1.14.0"
+moshi = "1.15.2"
 rxpermissions = "0.10.2"
 rxTool = "2.6.2"
-jackson = "2.9.0"
+jackson = "2.21.1"
 photoview = "2.3.0"
 easypopup = "1.1.2"
 
-# Reactive
-rxjava = "3.1.8"
-rxandroid = "3.0.2"
-
-# UI components
+# Third Party UI
 brvah = "3.0.4"
-viewpager2 = "1.0.0"
-banner = "2.2.2"
+banner = "2.2.3"
 magicIndicator = "1.7.0"
-refreshLayout = "2.0.5"
+refreshLayout = "2.1.1"
 
 # Test
 junit = "4.13.2"
-junitAndroid = "1.1.5"
-espresso = "3.5.1"
+junitAndroid = "1.3.0"
+espresso = "3.7.0"
 
 [libraries]
 # Build Logic Helpers (For build-logic)
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+# 这是给插件代码用的 API 依赖（注意 group 和 name 与插件 ID 不同）
+kotlin-compose-compiler-gradle-plugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 
 # Kotlin
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinReflect" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 kotlin-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
-kotlin-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesAndroid" }
+kotlin-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
 # AndroidX
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
+
+# AndroidX - Lifecycle
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-livedata-core-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-core-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-reactivestreams-ktx = { group = "androidx.lifecycle", name = "lifecycle-reactivestreams-ktx", version.ref = "lifecycle" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
-androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
-androidx-multidex = { group = "com.android.support", name = "multidex", version.ref = "multidex" }
+
+# AndroidX - Navigation
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
@@ -106,9 +106,12 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 androidx-navigation-dynamic-features-fragment = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "navigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation" }
+
+# AndroidX - UI
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitAndroid" }
-androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 
 # Compose
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -121,6 +124,9 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+# 包含 ArrowBack 等自动镜像图标的库
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
 
 # Google & Material
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -132,6 +138,10 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
+# Reactive
+rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
+rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 
 # Tools
 arouter-api = { group = "com.alibaba", name = "arouter-api", version.ref = "arouter" }
@@ -153,10 +163,6 @@ jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-datab
 photoview = { group = "com.github.chrisbanes", name = "PhotoView", version.ref = "photoview" }
 easypopup = { group = "com.github.zyyoona7", name = "EasyPopup", version.ref = "easypopup" }
 
-# Reactive
-rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
-rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
-
 # Third Party UI
 brvah = { group = "com.github.CymChad", name = "BaseRecyclerViewAdapterHelper", version.ref = "brvah" }
 banner = { group = "io.github.youth5201314", name = "banner", version.ref = "banner" }
@@ -166,6 +172,8 @@ refresh-header-classics = { group = "io.github.scwang90", name = "refresh-header
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitAndroid" }
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 
 [bundles]
 # 常用组合
@@ -208,3 +216,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 java-library = { id = "java-library" }
+# 在 Kotlin 2.0 之前，Compose 编译器是 Android Gradle Plugin (AGP) 自动处理的；而在 Kotlin 2.0+，它变成了一个独立的 Kotlin 插件。
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+
     defaultConfig {
         vectorDrawables {
             useSupportLibrary = true
