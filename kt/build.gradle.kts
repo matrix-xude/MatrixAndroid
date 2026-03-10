@@ -11,6 +11,7 @@ java {
 
 dependencies {
     implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.test)
     implementation(libs.gson)

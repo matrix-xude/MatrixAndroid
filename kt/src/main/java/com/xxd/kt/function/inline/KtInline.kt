@@ -40,7 +40,7 @@ fun main() {
     println("--------------------------")
     val result = attack2(1) { i ->
         i + 1
-        // return 直接写return报错
+        // return 直接写return报错,非内联函数不能直接return
         return@attack2 13  // 只能return到传入的方法体，返回值必须和方法体一致
     }
     println(result)

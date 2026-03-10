@@ -1,4 +1,4 @@
-package com.xxd.kt.basic.`for`
+package com.xxd.kt.basic.loop
 
 import com.xxd.kt.coroutines.basic.log
 
@@ -9,7 +9,7 @@ import com.xxd.kt.coroutines.basic.log
  */
 
 fun main() {
-    m2()
+    m7()
 }
 
 private fun m0() {
@@ -64,4 +64,22 @@ private fun m5() {
         it == 7
     }
     println(filter)
+}
+
+private fun m6() {
+   isOutside@ for (i in 1..10) {
+        for (j in 1..5) {
+            println("i=$i, j=$j")
+            break@isOutside  // 这样可以直接break到外层
+        }
+    }
+}
+
+private fun m7() {
+    listOf(1, 2, 3, 4, 5).forEach {
+        // lambda表达式中不是可以使用 break,continue
+        if (it == 3) return@forEach // 这是就等于continue的作用，继续下次循环; forEach是默认标识，也可以自己创建
+        print(it)
+    }
+    print(" done with explicit label")
 }

@@ -6,6 +6,7 @@ package com.xxd.kt.tips
  *    desc   : 不带val的构造函数参数，都是在构造函数里赋值，顺序是从上到下
  */
 class InitOrderDemo(name: String) {
+
     //    val firstProperty = "First property: $name".also(::println)
     val firstProperty = "First property: $name".also {
         println(it)

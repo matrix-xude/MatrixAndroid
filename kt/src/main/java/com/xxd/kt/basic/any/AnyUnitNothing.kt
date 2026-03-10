@@ -21,7 +21,6 @@ fun any1(any: Any, any2: Any?): Any? {
 
 fun unit1(u: Unit): Unit {}
 
-
 fun nothing1(): Nothing {
     // 死循环，无法返回，可编译，不报错
     while (true) {

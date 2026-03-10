@@ -182,6 +182,7 @@ data class D2(
     val list: List<D3>?
 ) {
     constructor() : this(0.0, "", mutableListOf())
+
 }
 
 data class D3(
