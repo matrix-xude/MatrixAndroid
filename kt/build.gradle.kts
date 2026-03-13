@@ -13,9 +13,11 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.coroutines.core)
-    implementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.kotlin.coroutines.test)
+    implementation(libs.junit)
     implementation(libs.gson)
     implementation(libs.moshi)
     implementation(libs.jackson.core)
     implementation(libs.jackson.databind)
+
 }

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 
 fun main() {
-   m7()
+   m1()
 }
 
 // 第一个协程
