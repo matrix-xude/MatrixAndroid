@@ -2,6 +2,7 @@ package com.xxd.kt.generic
 
 import com.xxd.kt.generic.domain.Animal
 import com.xxd.kt.generic.domain.Dog
+import java.util.function.Function
 
 /**
  *    author : xxd
@@ -11,6 +12,7 @@ import com.xxd.kt.generic.domain.Dog
 // 在声明处加了 in，代表 T 只能出现在“输入”位置
 interface Consumer<in T> {
     fun consume(item: T)
+
     // fun produce(): T // 报错！编译器不允许 T 作为返回值
 }
 
@@ -27,4 +29,6 @@ fun main() {
     val dogConsumer: Consumer<Dog> = animalConsumer
 
     dogConsumer.consume(Dog()) // 安全，因为 animalConsumer 本就能处理任何 Animal
+
+
 }
