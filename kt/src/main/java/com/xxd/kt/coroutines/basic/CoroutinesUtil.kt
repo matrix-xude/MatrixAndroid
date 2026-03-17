@@ -1,6 +1,7 @@
 package com.xxd.kt.coroutines.basic
 
 import kotlinx.coroutines.Job
+import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 
 /**
@@ -17,7 +18,7 @@ private var lastPrintTime = 0L
  * @param message 打印的信息
  * @param printInterval 距离上一次打印的间隔，用来记录延时
  */
-fun log(message: Any, printInterval: Boolean = true) {
+fun log(message: Any?, printInterval: Boolean = true) {
     // 处理打印间隔问题
     var intervalInfo = ""
     System.currentTimeMillis().apply {
@@ -30,6 +31,18 @@ fun log(message: Any, printInterval: Boolean = true) {
     }
     // 打印当前信息
     println("(当前线程：${Thread.currentThread().name}) --> $message $intervalInfo")
+}
+
+/**
+ * 打印当前CoroutineContext中所有的 Element 信息
+ */
+fun printContextElements(context: CoroutineContext) {
+    println("--- CoroutineContext Elements ---")
+    // fold 类似于集合的 reduce，可以遍历所有 Element
+    context.fold(Unit) { _, element ->
+        println("Key: ${element.key} \t Value: $element")
+    }
+    println("---------------------------------")
 }
 
 /**

@@ -1,9 +1,12 @@
 package com.xxd.kt.coroutines.basic
 
+import com.xxd.kt.coroutines.context.MyInterceptor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.newCoroutineContext
+import kotlinx.coroutines.runBlocking
 
 /**
  *    author : xxd
@@ -14,7 +17,7 @@ import kotlinx.coroutines.launch
 
 
 fun main() {
-   m1()
+   m2()
 }
 
 // 第一个协程
@@ -29,6 +32,7 @@ fun m1(){
 fun m2(){
     GlobalScope.launch {
         log("第一个协程")
+        printContextElements(coroutineContext)
     }
     log("主线程执行，代码在GlobalScope.launch之后")
     Thread.sleep(10)
