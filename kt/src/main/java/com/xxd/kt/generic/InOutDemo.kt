@@ -1,5 +1,8 @@
 package com.xxd.kt.generic
 
+import com.xxd.kt.generic.domain.Animal
+import com.xxd.kt.generic.domain.Cat
+import com.xxd.kt.generic.domain.Dog
 import java.util.function.Function
 
 /**
@@ -8,7 +11,7 @@ import java.util.function.Function
  *    desc   : in out 用法示例, 声明处型变
  */
 
-abstract class InOutDemo<in T , out K> {
+abstract class InOutDemo<in T, out K> {
 
     // 1. 用在变量上， out 的不能 set(),因为单做参数用了，所以没有实际意义
     /*var k : K
@@ -43,7 +46,18 @@ abstract class InOutDemo<in T , out K> {
     // ————————————————————————————————————————下面是泛型嵌套的使用—————————————————————————————————————————————————————————————
 
     // 支持,T 最终是被 m3 内部逻辑消费掉的。这完全符合 T 作为 in 消费者的身份。
-    fun m3(src: List<T>) {
+    open fun m3(src: List<T>) {
+        val t: T = src[0]
+        // 为什么 in T 可以赋值给 out ?
+        /*val animalDemo: InOutDemo<Animal, Any> = object : InOutDemo<Animal, Any>() {
+            override fun m3(src: List<Animal>) {
+                val animal : Animal = src[0] // ！！！重点：放入是的Dog集合，在Dog集合中里获取一个当作Animal使用完全没有问题
+            }
+        }
+        // 因为 in T 是逆变的，我们可以把父类赋值给子类引用
+        val dogDemo : InOutDemo<Dog, Any> = animalDemo
+        // 调用m3放入 Dog集合
+        dogDemo.m3(listOf(Dog(), Dog()))*/
     }
 
     // 报错,这里的 T 发生了“型变溢出”。你试图把一个只能作为“输入”的类型 T，放进了一个会把它作为“输出”暴露出来的容器 MutableList 中。
@@ -52,6 +66,16 @@ abstract class InOutDemo<in T , out K> {
 
     // 报错,本质矛盾： 拿到这个 K 后，你就相当于在方法内部消费了 K。而你定义的 K 是 out（只能被生产，不能被消费）。
 //    fun m5(src : List<K>) {
+        /* 假设 out T 可以赋值给 out ?
+        val dogDemo: InOutDemo<Any, Dog> = object : InOutDemo<Any, Dog>() {
+            override fun m3(src: List<Dog>) {
+                val dog : Dog = src[0] // ！！！重点：放入是的Animal集合，在Animal集合中获取一个当作Dog使用直接崩溃，所以系统禁止了这样赋值
+            }
+        }
+        // 因为 out K 是协变的，我们可以把子类赋值给父类引用
+        val animalDemo : InOutDemo<Any, Animal> = dogDemo
+        // 调用m5放入 Animal集合
+        animalDemo.m5(listOf(Animal(), Animal()))*/
 //    }
 
     // 这里能通过，因为List<out E>只能返回E ，而TestInClass<in E> 只能放入E

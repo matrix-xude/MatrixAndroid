@@ -7,7 +7,7 @@ package com.xxd.kt.function.inline
  */
 class InlineDemo {
 
-    val i : Int by lazy { 1 }
+    val i: Int by lazy { 1 }
 
     fun m1(i: Int, block: (Int) -> Int): Int {
         return block.invoke(i)
