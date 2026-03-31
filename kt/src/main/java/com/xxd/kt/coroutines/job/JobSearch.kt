@@ -1,7 +1,7 @@
 package com.xxd.kt.coroutines.job
 
-import com.xxd.kt.coroutines.basic.log
-import com.xxd.kt.coroutines.basic.printContextElements
+import com.xxd.kt.coroutines.utils.log
+import com.xxd.kt.coroutines.utils.printContextElements
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
@@ -9,12 +9,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.yield
 import kotlin.coroutines.cancellation.CancellationException
 

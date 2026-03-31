@@ -1,6 +1,6 @@
 package com.xxd.kt.coroutines.suspend
 
-import com.xxd.kt.coroutines.basic.log
+import com.xxd.kt.coroutines.utils.log
 import com.xxd.kt.coroutines.context.MyInterceptor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.GlobalScope
@@ -8,7 +8,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 /**
  *    author : xxd

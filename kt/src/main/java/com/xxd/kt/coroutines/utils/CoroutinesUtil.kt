@@ -1,9 +1,7 @@
-package com.xxd.kt.coroutines.basic
+package com.xxd.kt.coroutines.utils
 
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.currentCoroutineContext
 import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.coroutineContext
 
 /**
  *    author : xxd
@@ -19,7 +17,7 @@ private var lastPrintTime = 0L
  * @param message 打印的信息
  * @param printInterval 距离上一次打印的间隔，用来记录延时
  */
-fun log(message: Any?, printInterval: Boolean = false) {
+fun log(message: Any?, printInterval: Boolean = true) {
     // 处理打印间隔问题
     var intervalInfo = ""
     System.currentTimeMillis().apply {

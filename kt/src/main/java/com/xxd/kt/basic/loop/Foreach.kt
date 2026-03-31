@@ -1,6 +1,6 @@
 package com.xxd.kt.basic.loop
 
-import com.xxd.kt.coroutines.basic.log
+import com.xxd.kt.coroutines.utils.log
 
 /**
  *    author : xxd

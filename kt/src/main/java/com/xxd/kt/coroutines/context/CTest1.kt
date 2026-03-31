@@ -1,6 +1,6 @@
 package com.xxd.kt.coroutines.context
 
-import com.xxd.kt.coroutines.basic.log
+import com.xxd.kt.coroutines.utils.log
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

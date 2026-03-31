@@ -1,12 +1,11 @@
 package com.xxd.kt.coroutines.basic
 
-import com.xxd.kt.coroutines.context.MyInterceptor
+import com.xxd.kt.coroutines.utils.log
+import com.xxd.kt.coroutines.utils.printContextElements
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.newCoroutineContext
-import kotlinx.coroutines.runBlocking
 
 /**
  *    author : xxd

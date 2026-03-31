@@ -1,10 +1,8 @@
 package com.xxd.kt.coroutines.context
 
-import com.xxd.kt.coroutines.basic.log
+import com.xxd.kt.coroutines.utils.log
 import kotlinx.coroutines.*
-import java.lang.RuntimeException
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 /**

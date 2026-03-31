@@ -1,7 +1,6 @@
 package com.xxd.kt.coroutines.job
 
-import com.xxd.kt.coroutines.basic.log
-import kotlinx.coroutines.Dispatchers
+import com.xxd.kt.coroutines.utils.log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
