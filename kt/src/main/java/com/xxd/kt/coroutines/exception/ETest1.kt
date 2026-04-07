@@ -1,6 +1,6 @@
 package com.xxd.kt.coroutines.exception
 
-import com.xxd.kt.coroutines.suspend.NoDefaultInterceptor
+import com.xxd.kt.coroutines.context.NoDefaultInterceptor
 import com.xxd.kt.coroutines.utils.log
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName

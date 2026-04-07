@@ -5,10 +5,14 @@ import com.xxd.kt.coroutines.utils.printContextElements
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -22,6 +26,8 @@ import kotlin.coroutines.cancellation.CancellationException
  */
 fun main() {
     m7()
+
+    Thread.sleep(2000)
 }
 
 // 展示Job如何生成，状态怎么流转
@@ -170,4 +176,27 @@ fun m7() {
 
     }
     Thread.sleep(1000)
+}
+
+// 测试合并对个 Deferred 的返回值，使用扩展函数
+fun m8() {
+    GlobalScope.launch {
+        // coroutineScope 本身就是 suspend 方法
+        val list = coroutineScope {
+            val listOf = listOf<Deferred<String>>(
+                // 2个Deferred，但是不需要单独获取返回值
+                async {
+                    delay(80)
+                    "aaa"
+                },
+                async {
+                    delay(50)
+                    "bbb"
+                }
+            )
+            // 这里会自动合并 Deferred 返回值
+            listOf.awaitAll()
+        }
+        log(list)
+    }
 }

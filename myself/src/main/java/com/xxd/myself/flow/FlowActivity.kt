@@ -61,7 +61,7 @@ class FlowActivity : BaseLogicActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiShireFlow
-//                    .distinctUntilChanged()
+                    .distinctUntilChanged()
                     .collect {
 //                        LogUtil.d("接收到的first数据$it")
                         ToastUtil.showToast("当前数据是$it")
@@ -73,6 +73,9 @@ class FlowActivity : BaseLogicActivity() {
 
     private fun testStateFlow3() {
         lifecycleScope.launch {
+            withCreated {
+
+            }
             whenStarted {
 //            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {

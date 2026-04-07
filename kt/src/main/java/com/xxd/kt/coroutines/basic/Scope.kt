@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 
 fun main() {
-   m2()
+   m6()
 }
 
 // 第一个协程
@@ -59,7 +59,7 @@ fun m5(){
     GlobalScope.launch(Dispatchers.Default) {
         log("Dispatchers.Default 协程")
         delay(100)
-        GlobalScope.launch (Dispatchers.Unconfined){
+        launch (Dispatchers.Unconfined){
             log("Dispatchers.Unconfined 协程,内部")
         }
     }
@@ -81,7 +81,7 @@ fun m6(){
     Thread.sleep(1000)
 }
 
-// Main调度器,报错，没有ain
+// Main调度器,报错，没有main
 fun m7(){
     GlobalScope.launch(Dispatchers.Main) {
         log("Dispatchers.Main 协程")

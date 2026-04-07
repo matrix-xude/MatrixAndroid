@@ -2,12 +2,14 @@ package com.xxd.kt.coroutines.suspend
 
 import com.xxd.kt.coroutines.utils.log
 import com.xxd.kt.coroutines.context.MyInterceptor
+import com.xxd.kt.coroutines.context.NoDefaultInterceptor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
+import kotlin.coroutines.startCoroutine
 
 /**
  *    author : xxd
@@ -104,15 +106,15 @@ fun main() {
     GlobalScope.launch(NoDefaultInterceptor() + CoroutineExceptionHandler { _, throwable ->
         log("CoroutineExceptionHandler: $throwable")
     }) {
-        log("start :")
-        val result1 = seek.m1(1, "")
-        log("after m1 : $result1")
-        val result2 = seek.m2()
-        log("after m2 : $result2")
-//      val result3 =  seek.m3()
-//       log("after m2 : $result3")
-        val result4 = seek.m4()
-        log("after m4 : $result4")
+//        log("start :")
+//        val result1 = seek.m1(1, "")
+//        log("after m1 : $result1")
+//        val result2 = seek.m2()
+//        log("after m2 : $result2")
+      val result3 =  seek.m3()
+       log("after m2 : $result3")
+//        val result4 = seek.m4()
+//        log("after m4 : $result4")
 //        val result5 = seek.m5()
 //        log("after m5 : $result5")
         val result6 = seek.m6()
