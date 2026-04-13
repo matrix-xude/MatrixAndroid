@@ -15,6 +15,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.coroutineContext
 import kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED
 import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
 import kotlin.coroutines.resume
@@ -29,11 +30,15 @@ class ContinuationSeek {
 
     // 调用系统方法，内部代码调用了uCont.intercepted()，会经过拦截器包裹
     suspend fun m1() = suspendCancellableCoroutine {
-        Thread {
+        val thread = Thread {
             Thread.sleep(100)
             log("m1 resume 1")
             it.resume(1)
-        }.start()
+        }.apply { start() }
+
+        it.invokeOnCancellation {
+            thread.interrupt()
+        }
     }
 
     // 自己接手，不手动调用uCont.intercepted()，不会经过拦截器包裹
@@ -55,7 +60,7 @@ class ContinuationSeek {
          b. create(Object value, Continuation $completion) : $completion 就是 "C1" , 返回值是 SuspendLambda,标记为"C2"
          c. "C2".intercepted() , 这里的拦截器是 MainCoroutineDispatcher ,创建出一个新的 DispatchedContinuation : "C3"
          d. "C3"创建好后立马resumeWith(Unit)，所以拆箱"C3",根据Dispatcher的逻辑进行调度，所以在block{}代码块中拿到的是"C2"*/
-        GlobalScope.launch(Dispatchers.Default) {
+        GlobalScope.launch(Dispatchers.Main.immediate) {
             log(": start")
             // 步骤2: block 代码块内的 Continuation 就是"C2"
             // m2方法拿到的就是"C2"，SuspendLambda
@@ -97,7 +102,7 @@ class ContinuationSeek {
     // 对比 launch 和 runBlocking 的区别
     fun m5() {
         // 因为内部的 launch 不是 suspend 方法，不会挂起，所以直接跳出外部 launch 方法
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.IO) {
             log("start")
             launch {
                 m1()
@@ -159,7 +164,7 @@ class ContinuationSeek {
     }
 
     //  AbstractCoroutine 的 resumeWith 必须等待自己所以子Job完成，才能继续执行
-    fun m9(){
+    fun m9() {
         GlobalScope.launch {
             log("start")
             val job = launch {
