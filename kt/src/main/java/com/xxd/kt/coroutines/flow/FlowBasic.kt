@@ -1,14 +1,16 @@
 package com.xxd.kt.coroutines.flow
 
 import com.xxd.kt.coroutines.utils.log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.reduce
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 
 /**
@@ -116,11 +118,70 @@ class Basic {
             }
         }
     }
+
+    // flow 特点3：有多种创建方式
+    fun m7() {
+        runBlocking {
+            (1..3).asFlow()
+                .collect { log(it) }
+        }
+    }
+
+    // flow中间操作符有很多： 转化操作符 ：map
+    fun m8() {
+        runBlocking {
+            (1..3).asFlow()
+                .map {
+                    delay(100)
+                    it * it
+                }
+                .collect {
+                    log(it)
+                }
+        }
+    }
+
+    // flow中间操作符有很多： 转化操作符 ：transform 更加基础
+    fun m9() {
+        runBlocking {
+            (1..3).asFlow()
+                .transform {
+                    emit(it)
+                    emit("复制emit: $it")
+                }
+                .collect {
+                    log(it)
+                }
+        }
+    }
+
+    // flow中间操作符有很多： 数量限制操作符 ：take 内部抛出异常终止flow，然后捕获该异常内部消化
+    fun m10() {
+        runBlocking {
+            (1..10).asFlow()
+                .map { delay(100) }
+                .take(2)
+                .collect {
+                    log(it)
+                }
+        }
+    }
+
+    // flow 终端操作符不止有collect，还有很多，全都是suspend方法，如toList,toSet,first,reduce,fold
+    fun m11() {
+        runBlocking {
+            val reduce = (1..10).asFlow()
+                .reduce { accumulator, value ->
+                    accumulator + value
+                }
+            log(reduce)
+        }
+    }
 }
 
 fun main() {
     val basic = Basic()
 
-    basic.m6()
+    basic.m11()
 
 }

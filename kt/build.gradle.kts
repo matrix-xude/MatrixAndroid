@@ -13,6 +13,7 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.coroutines.core)
+    implementation(libs.litertlm.android)
     testImplementation(libs.kotlin.coroutines.test)
     implementation(libs.junit)
     implementation(libs.gson)
