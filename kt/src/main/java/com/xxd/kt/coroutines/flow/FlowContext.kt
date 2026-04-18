@@ -16,8 +16,17 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.yield
 
 /**
  *    author : xxd
@@ -119,7 +128,7 @@ class FlowContext {
         }
     }
 
-    // 使用 buffer ，原理是在指定的容器通道 emission , 在单独的协程collect
+    // 使用 buffer ，原理是在指定的Channel缓存数据 , 在单独的协程collect
     fun m5() {
         runBlocking {
             val measureTime = measureTimeMillis {
@@ -135,7 +144,7 @@ class FlowContext {
         }
     }
 
-    // Conflation 可以合并emit的value,在collect耗时比较久的场景使用，比如时时定位，处理定位数据后，只需要拿到最新的emit value即可，其他value可以丢弃
+    // Conflation 可以只保留emit最新value,在collect耗时比较久的场景使用，比如时时定位，处理定位数据后，只需要拿到最新的value即可，其他value可以丢弃
     fun m6() {
         runBlocking {
             val measureTime = measureTimeMillis {
@@ -222,12 +231,104 @@ class FlowContext {
             }
         }
     }
+
+    // 组合多个Flow 的操作符，如 zip ,组合2个Flow中少的数量
+    fun m10() {
+        val ints = (1..5).asFlow()
+        val strs = flowOf("高端", "大气", "上档次")
+        val flow = ints.zip(strs) { i, str ->
+            "$i , $str"
+        }
+
+        runBlocking {
+            flow.collect {
+                log(it)
+            }
+        }
+    }
+
+    // 组合多个Flow 的操作符，在加上时间限制，更能体现不同的作用。
+    fun m11() {
+        val ints = (1..5).asFlow().onEach { delay(300) }
+        val strs = flowOf("高端", "大气", "上档次").onEach { delay(400) }
+
+        // zip 操作符内部使用 channel中 capacity = 0；必须等待2个flow的数据都获取到新value在emit; 只要有一个flow结束，立马cancel channel
+        val flowZip = ints.zip(strs) { i, str ->
+            "zip: $i , $str"
+        }
+
+        // combine 操作符也是用了 channel, 不过capacity = 2, 并且使用了"纪元计数" 与 "同源中断", 每次都会拿出一批缓存数据emit,并且可能丢弃一部分数据
+        val flowCombine = ints.combine(strs) { i, str ->
+            "combine: $i , $str"
+        }
+
+        runBlocking {
+            flowZip.collect {
+                log(it)
+            }
+
+            flowCombine.collect {
+                log(it)
+            }
+        }
+    }
+
+    // flot 操作符，就是为了把Flow<Flow<T>> 转换成 Flow<T>，所以叫做平铺操作符
+    // 一个把 value 转换成 Flow<T> 的的数据源
+    fun requestFlow(i: Int): Flow<String> = flow {
+        emit("$i: First")
+        delay(500) // 模拟挂起
+        emit("$i: Second")
+    }
+
+    // flatMapConcat, 顺序平铺。即先把1平铺，执行完后；再接收2平铺；以此类推
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun m12() {
+        val flow = (1..3).asFlow()
+            .onEach { delay(100) }
+            .flatMapConcat { requestFlow(it) }
+
+        runBlocking {
+            flow.collect {
+                log(it)
+            }
+        }
+    }
+
+    // flatMapMerge, 并行平铺。即接收1平铺；接收2后也平铺，不等1执行完毕；以此类推
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun m13() {
+        val flow = (1..3).asFlow()
+            .onEach { delay(100) }
+            .flatMapMerge { requestFlow(it) }
+
+        runBlocking{
+            flow.collect {
+                log(it)
+            }
+        }
+    }
+
+    // flatMapLatest, 与 xxxLatest操作符类似；都是在新的value到达后，如果collect没执行完，就取消colletor的block代码块
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun m14() {
+        val flow = (1..3).asFlow()
+            .onEach { delay(100) }
+            .flatMapLatest { requestFlow(it) }
+
+        runBlocking{
+            flow.collect {
+                log(it)
+            }
+        }
+    }
+
 }
 
 
 fun main() {
     val flowContext = FlowContext()
 
-    flowContext.m3()
+    flowContext.m14()
 //    flowContext.m5()
 }
