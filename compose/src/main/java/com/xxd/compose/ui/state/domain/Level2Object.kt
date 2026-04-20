@@ -16,3 +16,18 @@ class Level2Object(
      var j : Int = 0
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

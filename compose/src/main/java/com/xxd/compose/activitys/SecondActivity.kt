@@ -51,3 +51,18 @@ class SecondActivity : ComponentActivity() {
 //        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

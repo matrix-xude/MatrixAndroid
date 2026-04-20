@@ -79,7 +79,7 @@ fun FirstListItem(item: FirstItem) {
     ConstraintLayout(modifier = Modifier.fillMaxWidth().background(Color(0x22ff0000)).padding(0.dp).clickable {  }) {
         val (icon, text1, text2) = createRefs()
 
-        Icon(painter = painterResource(id = R.drawable.facebook), contentDescription = "", tint = Color.Cyan,
+        Icon(painter = painterResource(id = R.drawable.compose_facebook), contentDescription = "", tint = Color.Cyan,
             modifier = Modifier
                 .size(20.dp)
                 .constrainAs(icon) {
@@ -112,3 +112,18 @@ fun TestFirstListItem() {
     val firstList = FirstItem("高大上", "出山志在登熬顶")
     FirstListItem(firstList)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

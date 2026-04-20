@@ -132,7 +132,7 @@ fun TextTest() {
 @Preview(showBackground = true)
 @Composable
 fun ImageTest() {
-    val painter = painterResource(id = R.drawable.ic_launcher_background)
+    val painter = painterResource(id = R.drawable.compose_ic_launcher_background)
     MatrixAndroidTheme {
         ImageSimple(painter)
     }
@@ -154,4 +154,19 @@ fun ButtonTest() {
         ButtonSimple()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

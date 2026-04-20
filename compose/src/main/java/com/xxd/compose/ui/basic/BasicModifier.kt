@@ -78,7 +78,7 @@ fun ModifierSimple(onClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.size(10.dp))
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(id = R.drawable.compose_ic_launcher_background),
             contentDescription = "",
             Modifier
                 .background(color = Color(0x330000FF), RoundedCornerShape(20.dp))
@@ -112,7 +112,7 @@ fun ModifierSimple2(onClick: () -> Unit) {
                 verticalAlignment = Alignment.Top
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background),
+                    painter = painterResource(id = R.drawable.compose_ic_launcher_background),
                     contentDescription = "",
                     Modifier
                         .size(120.dp, 150.dp)
@@ -158,7 +158,7 @@ fun ModifierSimple3(onClick: () -> Unit) {
             verticalAlignment = Alignment.Top
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+                painter = painterResource(id = R.drawable.compose_ic_launcher_background),
                 contentDescription = "",
                 Modifier
                     .size(100.dp, 100.dp)
@@ -208,3 +208,18 @@ fun TestModifierSimple3() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

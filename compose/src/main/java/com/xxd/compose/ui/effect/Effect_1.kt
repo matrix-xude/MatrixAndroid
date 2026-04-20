@@ -58,7 +58,7 @@ fun Effect1() {
                 .apply { printTag("trace Text-Modifier Effect之前") }, // 检测 LaunchedEffect
             text = "我在Effect之前",
             overflow = TextOverflow.Ellipsis,
-            color = colorResource(id = R.color.purple_700),
+            color = colorResource(id = R.color.compose_purple_700),
         ).apply { printTag("trace Text Effect之前") }
 
         // 这些代码放在Text之前执行的也执行的比Text晚，可能是Effect中开启了协程的原因
@@ -87,7 +87,22 @@ fun Effect1() {
                 .apply { Log.d("xxd-effect", "trace Text-Modifier Effect之后") }, // 检测 LaunchedEffect
             text = "我在Effect之后",
             overflow = TextOverflow.Ellipsis,
-            color = colorResource(id = R.color.purple_700),
+            color = colorResource(id = R.color.compose_purple_700),
         ).apply { printTag("trace Text Effect之后") }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

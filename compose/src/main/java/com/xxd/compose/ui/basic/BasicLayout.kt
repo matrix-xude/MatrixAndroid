@@ -37,7 +37,7 @@ import com.xxd.compose.ui.theme.MatrixAndroidTheme
 @Composable
 fun RowSimple(nameList: List<String>) {
     Row(horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.Bottom, modifier = Modifier.fillMaxWidth()) {
-        Icon(tint = Color.Red, painter = painterResource(id = R.drawable.facebook), contentDescription = "")
+        Icon(tint = Color.Red, painter = painterResource(id = R.drawable.compose_facebook), contentDescription = "")
         nameList.forEach {
             Text(text = it)
         }
@@ -62,7 +62,7 @@ fun ColumnSimple(nameList: List<String>) {
 @Composable
 fun BoxSimple(nameList: List<String>) {
     Box {
-        Image(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = "")
+        Image(painter = painterResource(id = R.drawable.compose_ic_launcher_background), contentDescription = "")
         Icon(imageVector = Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "", tint = Color.Red)
 //        nameList.forEach {
 //            Text(text = it)
@@ -129,3 +129,18 @@ fun UseBoxWithConstraintsTest() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

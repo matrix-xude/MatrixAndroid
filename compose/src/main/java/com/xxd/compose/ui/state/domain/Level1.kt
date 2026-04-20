@@ -6,3 +6,18 @@ data class Level1(
     var level2: Level2,
     val level2Object: Level2Object,
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
