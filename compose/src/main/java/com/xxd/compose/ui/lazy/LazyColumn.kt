@@ -50,7 +50,7 @@ fun FirstList(list: List<FirstItem>) {
                         .height(50.dp)
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.settings), contentDescription = "",
+                        painter = painterResource(id = R.drawable.compose_settings), contentDescription = "",
                         tint = Color.Red,
                         modifier = Modifier
                             .padding(start = 15.dp)

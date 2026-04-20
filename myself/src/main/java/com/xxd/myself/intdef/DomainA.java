@@ -11,3 +11,4 @@ public class DomainA {
     public static final int Type2 = 2;
     public static final int Type3 = 3;
 }
+

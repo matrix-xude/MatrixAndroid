@@ -4,3 +4,4 @@ data class Level2(
     var score : Float,
     val desc : String
 )
+

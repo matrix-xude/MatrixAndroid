@@ -18,3 +18,4 @@ data class User(
     @ColumnInfo(name = "user_icon") val userIcon: String?,
     @ColumnInfo(name = "user_keys") val userKeys: String?, // 用户秘钥，用json表示，可以为多个
 )
+

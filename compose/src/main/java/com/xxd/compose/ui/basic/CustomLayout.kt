@@ -93,7 +93,7 @@ fun TestMyCustomLayout() {
     Surface {
         MyCustomLayout2(modifier = Modifier.padding(10.dp).width(IntrinsicSize.Max)) {
             Text(modifier = Modifier.fillMaxWidth(), text = "高级")
-//            Icon(modifier = Modifier.size(30.dp), tint = Color.Red, painter = painterResource(id = R.drawable.settings), contentDescription = "")
+//            Icon(modifier = Modifier.size(30.dp), tint = Color.Red, painter = painterResource(id = R.drawable.compose_settings), contentDescription = "")
             Text(modifier = Modifier.fillMaxWidth(),text = "dsfdaf dfdsfadsf")
             Text(modifier = Modifier.fillMaxWidth(),text = "超级 YMC")
         }

@@ -19,7 +19,7 @@
         android:paddingEnd="5dp"
         android:paddingBottom="1dp"
         android:textColor="@color/common_black"
-        android:background="@drawable/coupon_show_right2"
+        android:background="@drawable/myself_coupon_show_right2"
         android:layout_height="wrap_content"/>
 
     <ImageView
@@ -27,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="13:12"
-        android:src="@drawable/coupon_show_left_small"
+        android:src="@drawable/myself_coupon_show_left_small"
         app:layout_constraintBottom_toBottomOf="@id/tv_1"
         app:layout_constraintEnd_toStartOf="@id/tv_1"
         app:layout_constraintTop_toTopOf="@id/tv_1" />

@@ -16,3 +16,4 @@ data class Fire(
     @ColumnInfo(name = "desc") val desc: String,
 
 )
+
