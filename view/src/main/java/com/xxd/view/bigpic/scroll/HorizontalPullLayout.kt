@@ -57,10 +57,10 @@ class HorizontalPullLayout @JvmOverloads constructor(context: Context, attribute
         if (maxWidth > 0) {
             offSetX = offSetX.coerceAtMost(maxWidth)
             if (offSetX < maxWidth * 2 / 3) {
-                rightViewBinding.iconArrow.text = resources.getString(R.string.icon_629)
+                rightViewBinding.iconArrow.text = resources.getString(R.string.common_icon_629)
                 rightViewBinding.tvDesc.text = pullDesc
             } else {
-                rightViewBinding.iconArrow.text = resources.getString(R.string.icon_617)
+                rightViewBinding.iconArrow.text = resources.getString(R.string.common_icon_617)
                 rightViewBinding.tvDesc.text = releaseDesc
             }
         }

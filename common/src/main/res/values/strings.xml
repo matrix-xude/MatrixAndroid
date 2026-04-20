@@ -1,11 +1,10 @@
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="ResourceName">
+<resources>
     <string name="common_app_name">common</string>
     <string name="common_item_simple_desc">哥德尔不完备定理</string>
 
-    <string name="icon_630" >&#xe630;</string>
-    <string name="icon_604" >&#xe604;</string>
-    <string name="icon_614" >&#xe614;</string>
-    <string name="icon_629" >&#xe629;</string>
-    <string name="icon_617" >&#xe617;</string>
+    <string name="common_icon_630" >&#xe630;</string>
+    <string name="common_icon_604" >&#xe604;</string>
+    <string name="common_icon_614" >&#xe614;</string>
+    <string name="common_icon_629" >&#xe629;</string>
+    <string name="common_icon_617" >&#xe617;</string>
 </resources>
