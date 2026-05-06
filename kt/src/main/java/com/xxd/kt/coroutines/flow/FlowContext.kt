@@ -206,7 +206,6 @@ class FlowContext {
     @OptIn(ExperimentalCoroutinesApi::class)
     fun m9() {
         runBlocking {
-            log(":start")
             val channel = Channel<Int>(capacity = 3)
 
             // 发送在独立协程中

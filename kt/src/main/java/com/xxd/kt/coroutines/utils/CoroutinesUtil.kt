@@ -32,6 +32,26 @@ fun log(message: Any?, printInterval: Boolean = true) {
     println("(当前线程：${Thread.currentThread().name}) --> $message $intervalInfo")
 }
 
+// 第一次打印的时间
+private var firstPrintTime = 0L
+
+/**
+ * 根据时间线打印出内容，第一次打时间为 0ms, 后面每次打印当前时间与第一次打印时间的差值 xxx ms
+ */
+fun logAndTime(message: Any?) {
+    val currentTimeMillis = System.currentTimeMillis()
+    val timeInfo = firstPrintTime.let {
+        if (it > 0) {
+            "${currentTimeMillis - it} ms"
+        } else {
+            firstPrintTime = currentTimeMillis
+            "0 ms"
+        }
+    }
+    // 打印当前信息
+    println("(当前线程：${Thread.currentThread().name}) --> $message ($timeInfo)")
+}
+
 /**
  * 打印当前CoroutineContext中所有的 Element 信息
  */
