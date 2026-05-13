@@ -6,10 +6,12 @@ import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
 import com.xxd.coroutine.cancel.CancelCoroutineActivity
 import com.xxd.coroutine.exception.ExceptionCoroutineActivity
+import com.xxd.coroutine.lifecycle.LifecycleActivity
+import com.xxd.coroutine.lifecycle.LifecycleSwitchActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val itemArray = listOf("协程异常","协程取消")
+    private val itemArray = listOf("协程异常","协程取消","Lifecycle Activity","Lifecycle Switch Activity")
 
     override fun getDataList(): Collection<String> {
         return itemArray
@@ -33,6 +35,8 @@ class MainActivity : SimpleListActivity<String>() {
             when (position) {
                 0 -> IntentUtil.startActivity<ExceptionCoroutineActivity>(this)
                 1 -> IntentUtil.startActivity<CancelCoroutineActivity>(this)
+                2 -> IntentUtil.startActivity<LifecycleActivity>(this)
+                3 -> IntentUtil.startActivity<LifecycleSwitchActivity>(this)
             }
         }
     }

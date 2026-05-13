@@ -3,10 +3,6 @@ package com.xxd.common.base.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
-import com.orhanobut.logger.Logger
 
 /**
  *    author : xxd
@@ -18,18 +14,13 @@ import com.orhanobut.logger.Logger
  */
 abstract class BaseFragment : Fragment(), IFragmentInitData, IFragmentVisible {
 
-    /**
-     * 真实判断是否可见的Observer
-     */
-    private lateinit var visibleObserver: FragmentVisibleObserver
+    private lateinit var initDataObserver: FragmentInitDataObserver
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        visibleObserver = FragmentVisibleObserver()
-        viewLifecycleOwner.lifecycle.addObserver(visibleObserver)
         initView()
-//        lifecycle.addObserver(FragmentLifecycleObserver())
-        viewLifecycleOwner.lifecycle.addObserver(FragmentInitDataObserver(this))
+        initDataObserver = FragmentInitDataObserver(this, this)
+        viewLifecycleOwner.lifecycle.addObserver(initDataObserver)
     }
 
     open fun initView() {}
@@ -40,49 +31,23 @@ abstract class BaseFragment : Fragment(), IFragmentInitData, IFragmentVisible {
 
     override fun initDataEveryTime() {}
 
+    /**
+     * 实现 IFragmentVisible 接口
+     * 直接利用 Fragment 官方提供的 isVisible 属性
+     */
     override fun isVisibilityToUser(): Boolean {
-        return visibleObserver.isVisibilityToUser()
+        // isResumed: 确保处于活跃生命周期 (onResume 之后, onPause 之前)
+        // isVisible: fragment.isVisible 内部逻辑：isAdded() && !isHidden() && view != null && view.windowToken != null
+        return isResumed && isVisible
     }
 
     /**
-     * 监听fragment生命周期的观察者
-     * @OnLifecycleEvent 标记的每个方法都是粘性的，可以接收到已经发生过的回调
+     * 处理 show/hide 导致的可见性变化，同步给数据加载观察者
      */
-    class FragmentLifecycleObserver : LifecycleObserver {
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-        fun onCreate() {
-            Logger.d("FragmentLifecycleObserver.onCreate")
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_START)
-        fun onStart() {
-            Logger.d("FragmentLifecycleObserver.onStart")
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        fun onResume() {
-            Logger.d("FragmentLifecycleObserver.onResume")
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-        fun onPause() {
-            Logger.d("FragmentLifecycleObserver.onPause")
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-        fun onStop() {
-            Logger.d("FragmentLifecycleObserver.onStop")
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        fun onDestroy() {
-            Logger.d("FragmentLifecycleObserver.onDestroy")
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-        fun onAny() {
-            Logger.d("FragmentLifecycleObserver.onAny")
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (::initDataObserver.isInitialized) {
+            initDataObserver.onHiddenChanged(hidden)
         }
     }
 }

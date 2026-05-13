@@ -1,5 +1,7 @@
 package com.xxd.coroutine.utils
 
+import com.xxd.common.util.log.LogUtil
+import com.youth.banner.util.LogUtils
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

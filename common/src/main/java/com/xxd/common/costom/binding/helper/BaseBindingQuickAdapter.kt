@@ -13,9 +13,8 @@ import java.lang.reflect.ParameterizedType
  *    1. 因为该类抽象，子类能获取到父类的泛型 VB,所有可以直接创建该类的子类，该类中反射获取泛型调用 VB.inflater
  *    2. 如果需要层级继承该类，那么可能导致不能直接获取到 VB 的真实类型，一旦获取不到，提供一个兜底方法，手动调用 VB.inflater
  */
-abstract class BaseBindingQuickAdapter<T, VB : ViewBinding>(
-    data: MutableList<T>? = null
-) : BaseQuickAdapter<T, BaseBindingViewHolder<VB>>(0, data) {
+abstract class BaseBindingQuickAdapter<T, VB : ViewBinding>(data: MutableList<T>? = null)
+    : BaseQuickAdapter<T, BaseBindingViewHolder<VB>>(0, data) {
 
     // 用子类获取到当前类的class，可能找不到
     private var viewBindingClass: Class<*>? = null

@@ -10,12 +10,12 @@
         android:label="@string/coroutine_app_name"
         android:roundIcon="@mipmap/coroutine_ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/common_AppTheme">
+        android:theme="@style/common_AppTheme"
+        tools:ignore="LockedOrientationActivity">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,12 +24,16 @@
         </activity>
         <activity
             android:name=".exception.ExceptionCoroutineActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".cancel.CancelCoroutineActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".lifecycle.LifecycleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".lifecycle.LifecycleSwitchActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
