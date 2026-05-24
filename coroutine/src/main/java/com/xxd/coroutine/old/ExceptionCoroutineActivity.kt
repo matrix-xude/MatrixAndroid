@@ -1,4 +1,4 @@
-package com.xxd.coroutine.exception
+package com.xxd.coroutine.old
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,10 +9,18 @@ import com.xxd.common.costom.decoration.CommonItemDecoration
 import com.xxd.common.util.toast.ToastUtil
 import com.xxd.coroutine.databinding.CoroutineActivityExceptionBinding
 import com.xxd.coroutine.databinding.CoroutineItemExceptionBinding
-import com.xxd.coroutine.myself.MyInterceptor
 import com.xxd.coroutine.utils.log
 import com.xxd.coroutine.utils.logCoroutine
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 /**
  * author : xxd
@@ -267,4 +275,3 @@ class ExceptionCoroutineActivity : BaseTitleActivity() {
 
 
 }
-

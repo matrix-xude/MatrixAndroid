@@ -16,7 +16,7 @@ import com.xxd.common.base.fragment.BaseFragment
 import com.xxd.common.costom.binding.helper.BaseBindingQuickAdapter
 import com.xxd.common.costom.binding.helper.BaseBindingViewHolder
 import com.xxd.common.util.toast.ToastUtil
-import com.xxd.coroutine.databinding.CoroutineActivityLifecyclelBinding
+import com.xxd.coroutine.databinding.CoroutineFragmentLifecycleBinding
 import com.xxd.coroutine.databinding.CoroutineItemLifecycleBinding
 import com.xxd.coroutine.utils.log
 import kotlinx.coroutines.delay
@@ -41,7 +41,7 @@ class LifecycleFragment : BaseFragment() {
         "8. repeatOnLifecycle 最佳实践"
     )
 
-    private var _binding: CoroutineActivityLifecyclelBinding? = null
+    private var _binding: CoroutineFragmentLifecycleBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -49,7 +49,7 @@ class LifecycleFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = CoroutineActivityLifecyclelBinding.inflate(inflater, container, false)
+        _binding = CoroutineFragmentLifecycleBinding.inflate(inflater, container, false)
         return binding.root
     }
 

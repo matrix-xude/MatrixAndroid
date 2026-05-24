@@ -1,5 +1,6 @@
-package com.xxd.coroutine.myself
+package com.xxd.coroutine.old
 
+import com.xxd.coroutine.old.MyContinuation
 import com.xxd.coroutine.utils.log
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
@@ -12,7 +13,7 @@ import kotlin.coroutines.CoroutineContext
  */
 class MyInterceptor : ContinuationInterceptor {
     override val key: CoroutineContext.Key<*>
-        get() = ContinuationInterceptor
+        get() = ContinuationInterceptor.Key
 
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
         log("interceptContinuation被调用了 $continuation")

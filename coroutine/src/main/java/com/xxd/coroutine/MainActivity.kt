@@ -4,8 +4,8 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxd.common.R
 import com.xxd.common.fast.SimpleListActivity
 import com.xxd.common.util.intent.IntentUtil
-import com.xxd.coroutine.cancel.CancelCoroutineActivity
-import com.xxd.coroutine.exception.ExceptionCoroutineActivity
+import com.xxd.coroutine.old.CancelCoroutineActivity
+import com.xxd.coroutine.old.ExceptionCoroutineActivity
 import com.xxd.coroutine.lifecycle.LifecycleActivity
 import com.xxd.coroutine.lifecycle.LifecycleSwitchActivity
 

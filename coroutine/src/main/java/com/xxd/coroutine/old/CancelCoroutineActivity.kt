@@ -1,4 +1,4 @@
-package com.xxd.coroutine.cancel
+package com.xxd.coroutine.old
 
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
@@ -10,21 +10,17 @@ import com.xxd.common.costom.decoration.CommonItemDecoration
 import com.xxd.common.util.toast.ToastUtil
 import com.xxd.coroutine.databinding.CoroutineActivityCancelBinding
 import com.xxd.coroutine.databinding.CoroutineItemCancelBinding
-import com.xxd.coroutine.myself.MyInterceptor
 import com.xxd.coroutine.utils.log
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Delay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
-import java.lang.RuntimeException
 import kotlin.concurrent.thread
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException

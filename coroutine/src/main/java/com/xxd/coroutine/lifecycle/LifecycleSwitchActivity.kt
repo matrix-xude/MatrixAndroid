@@ -7,9 +7,10 @@ import com.xxd.coroutine.lifecycle.fragment.LifecycleFragment
 /**
  *    author : xxd
  *    date   : 2026/5/13
- *    desc   : 研究 lifeCycle, 切换Fragment的Activity
+ *    desc   : 研究 lifeCycle,ViewModel等基础Jetpack组件
  */
 class LifecycleSwitchActivity : SimpleSwitchFragmentActivity() {
+
 
     val dataList = listOf("LifeCycle Fragment基础使用")
 

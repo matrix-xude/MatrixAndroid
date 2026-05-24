@@ -1,4 +1,4 @@
-package com.xxd.coroutine.myself
+package com.xxd.coroutine.old
 
 import com.xxd.coroutine.utils.log
 import kotlin.coroutines.Continuation
@@ -9,7 +9,7 @@ import kotlin.coroutines.CoroutineContext
  * date   : 2021/7/9
  * desc   : 自定义的拦截器中消息的处理，打印log，原封不动的调用下去
  */
-class MyContinuation<T>(private val c : Continuation<T>) : Continuation<T> {
+class MyContinuation<T>(private val c: Continuation<T>) : Continuation<T> {
     override val context: CoroutineContext
         get() = c.context
 

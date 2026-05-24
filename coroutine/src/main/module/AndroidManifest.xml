@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".exception.ExceptionCoroutineActivity"
+            android:name=".old.ExceptionCoroutineActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".cancel.CancelCoroutineActivity"
+            android:name=".old.CancelCoroutineActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".lifecycle.LifecycleActivity"

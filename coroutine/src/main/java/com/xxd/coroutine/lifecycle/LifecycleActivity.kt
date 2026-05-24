@@ -17,7 +17,10 @@ import com.xxd.common.util.toast.ToastUtil
 import com.xxd.coroutine.databinding.CoroutineActivityLifecyclelBinding
 import com.xxd.coroutine.databinding.CoroutineItemLifecycleBinding
 import com.xxd.coroutine.utils.log
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -36,7 +39,9 @@ class LifecycleActivity : BaseTitleActivity() {
         "LifeCycleOwner作用",
         "LifecycleRegistry是LifeCycle的具体实现类",
         "Activity中LifeCycle通知流程",
-        "LifeCycle与Coroutine结合"
+        "LifeCycle与Coroutine结合",
+        "LifeCycle when系列方法 (已弃用)",
+        "LifeCycle when调用collect (已弃用)"
     )
     private lateinit var viewBinding: CoroutineActivityLifecyclelBinding
 
@@ -165,7 +170,7 @@ class LifecycleActivity : BaseTitleActivity() {
         // lifecycleScope 在 Lifecycle 销毁时自动取消
         lifecycleScope.launch {
             log("lifecycleScope -> 协程启动")
-            
+
             // repeatOnLifecycle 会在进入对应状态时执行，离开时挂起/取消
             // 建议源码查看：androidx.lifecycle.RepeatOnLifecycleKt
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -178,7 +183,71 @@ class LifecycleActivity : BaseTitleActivity() {
             }
             // 注意：当 Lifecycle 变为 DESTROYED 时，上面的 block 会被取消，
             // 且 repeatOnLifecycle 下方的代码只有在 Lifecycle 销毁后才可能（如果是挂起函数）继续执行（通常不会执行了，因为 scope 已经取消）
-            log("lifecycleScope -> 协程结束") 
+            log("lifecycleScope -> 协程结束")
         }
+    }
+
+    /**
+     * LifeCycle when系列方法：launchWhenCreated, launchWhenStarted, launchWhenResumed
+     * 重点研究：与 repeatOnLifecycle 的挂起 vs 取消的区别
+     */
+    private fun m9() {
+        log("m9: 展示 lifecycleScope.launchWhenResumed (已弃用)")
+        // launchWhenResumed 会在生命周期至少为 RESUMED 时执行。
+        // 【关键不同点】：
+        // 1. 如果生命周期离开 RESUMED，协程会【挂起】，直到再次回到 RESUMED。
+        // 2. 它不会取消协程，状态恢复时从挂起点继续执行。
+        // 3. 这可能导致在后台时虽然协程挂起了，但某些资源（如 Flow 订阅）可能仍然保持活跃（取决于具体实现）。
+        @Suppress("DEPRECATION")
+        lifecycleScope.launchWhenResumed {
+            log("launchWhenResumed -> 协程开始/恢复执行")
+            var count = 0
+            try {
+                while (true) {
+                    delay(1000)
+                    log("launchWhenResumed -> 计数中: ${++count}")
+                }
+            } finally {
+                // 注意：由于是挂起而不是取消，当你切到后台时，这里不会执行。
+                // 只有 Activity 真正销毁（Scope 取消）时才会走到这里。
+                log("launchWhenResumed -> finally 块执行（协程被取消，通常是 Scope 销毁）")
+            }
+        }
+    }
+
+    /**
+     * 热流使用 BufferOverflow.SUSPEND 策略会导致 collect 挂起, 一个观察者挂起 会导致 其它观察者都收不到数据。
+     * 在 UI 场景下几乎用不到，都是使用 DROP_OLDEST 策略。
+     */
+    private fun m10() {
+        log("m10: 展示 lifecycleScope.launchWhenResumed collect热流，也会因为 BufferOverflow.SUSPEND 挂起")
+        // launchWhenResumed 会在生命周期至少为 RESUMED 时执行。
+        @Suppress("DEPRECATION")
+        lifecycleScope.launchWhenResumed {
+            sharedFlow
+                .collect {
+                    log("launchWhenResumed -> collect: $it")
+                }
+        }
+
+        lifecycleScope.launch {
+            sharedFlow
+                .collect {
+                    log("launch -> collect: $it")
+                }
+        }
+    }
+
+    // 创建 BufferOverflow.SUSPEND 策略的热流, 会因为 collect 挂起而导致 其它观察者收不到数据
+    private val sharedFlow: SharedFlow<Int> by lazy {
+        val sharedFlow = MutableSharedFlow<Int>(replay = 3, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+        lifecycleScope.launch {
+            var i = 0
+            while (true) {
+                delay(1000)
+                sharedFlow.emit(++i)
+            }
+        }
+        sharedFlow
     }
 }
