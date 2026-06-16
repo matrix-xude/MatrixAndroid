@@ -18,6 +18,9 @@
         <activity
             android:name=".lifecycle.LifecycleSwitchActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".vm.SearchVMActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

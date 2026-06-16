@@ -8,10 +8,12 @@ import com.xxd.coroutine.old.CancelCoroutineActivity
 import com.xxd.coroutine.old.ExceptionCoroutineActivity
 import com.xxd.coroutine.lifecycle.LifecycleActivity
 import com.xxd.coroutine.lifecycle.LifecycleSwitchActivity
+import com.xxd.coroutine.vm.SearchVMActivity
 
 class MainActivity : SimpleListActivity<String>() {
 
-    private val itemArray = listOf("协程异常","协程取消","Lifecycle Activity","Lifecycle Switch Activity")
+    private val itemArray =
+        listOf("协程异常", "协程取消", "Lifecycle Activity", "Lifecycle Switch Activity", "ViewModel研究")
 
     override fun getDataList(): Collection<String> {
         return itemArray
@@ -37,6 +39,10 @@ class MainActivity : SimpleListActivity<String>() {
                 1 -> IntentUtil.startActivity<CancelCoroutineActivity>(this)
                 2 -> IntentUtil.startActivity<LifecycleActivity>(this)
                 3 -> IntentUtil.startActivity<LifecycleSwitchActivity>(this)
+                4 -> IntentUtil.startActivity<SearchVMActivity>(this) {
+                    putExtra("name", "xxd")
+                    putExtra("age", 18)
+                }
             }
         }
     }

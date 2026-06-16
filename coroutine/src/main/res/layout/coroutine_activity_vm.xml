@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+        android:id="@+id/btn_no_param_vm"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="NoParamVM"
+        app:CustomShapeFillColor="@color/common_khaki"
+        app:CustomShapeRadius="10dp"
+        app:CustomShapeStrokeColor="@color/common_mediumvioletred"
+        app:CustomShapeStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+        android:id="@+id/btn_app_vm"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="AppVM"
+        app:CustomShapeFillColor="@color/common_khaki"
+        app:CustomShapeRadius="10dp"
+        app:CustomShapeStrokeColor="@color/common_mediumvioletred"
+        app:CustomShapeStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_no_param_vm" />
+
+    <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+        android:id="@+id/btn_my_param_vm"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="MyParamVM"
+        app:CustomShapeFillColor="@color/common_khaki"
+        app:CustomShapeRadius="10dp"
+        app:CustomShapeStrokeColor="@color/common_mediumvioletred"
+        app:CustomShapeStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_app_vm" />
+
+    <com.xxd.common.costom.shape.CustomShapeSimpleTextView
+        android:id="@+id/btn_saved_state_vm"
+        style="@style/common_TextStyleLevel2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="SavedStateVM"
+        app:CustomShapeFillColor="@color/common_khaki"
+        app:CustomShapeRadius="10dp"
+        app:CustomShapeStrokeColor="@color/common_mediumvioletred"
+        app:CustomShapeStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_my_param_vm" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,7 @@ object IntentUtil {
      * @param context 上下文
      * @param block intent回传函数
      */
-    inline fun <reified T> startActivity(context: Context, crossinline block: (Intent) -> Unit) {
+    inline fun <reified T> startActivity(context: Context, crossinline block: Intent.() -> Unit) {
         context.startActivity(Intent(context, T::class.java).apply {
             block(this)
         })
