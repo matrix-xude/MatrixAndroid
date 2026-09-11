@@ -19,9 +19,4 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         return getApplication<Application>().getString(R.string.coroutine_app_name)
     }
 
-    inner class MyClose : AutoCloseable {
-        override fun close() {
-            println("MyClose: close")
-        }
-    }
 }
